@@ -9,23 +9,23 @@ module.exports = function ( grunt ) {
             dist: {
                 // the files to concatenate
                 src: [
-                    //'bower_components/bootstrap/js/affix.js',
-                    //'bower_components/bootstrap/js/alert.js',
-                    //'bower_components/bootstrap/js/button.js',
-                    //'bower_components/bootstrap/js/carousel.js',
-                    //'bower_components/bootstrap/js/collapse.js',
-                    //'bower_components/bootstrap/js/dropdown.js',
-                    //'bower_components/bootstrap/js/modal.js',
-                    //'bower_components/bootstrap/js/tooltip.js',
-                    //'bower_components/bootstrap/js/popover.js',
-                    //'bower_components/bootstrap/js/scrollspy.js',
-                    //'bower_components/bootstrap/js/tab.js',
-                    //'bower_components/bootstrap/js/transition.js',
-                    //'bower_components/bootstrap/js/bootstrap.js',
-                    //'bower_components/underscore/underscore.js',
-                    //'bower_components/angular/angular.js',
-                    //'bower_components/angular-route/angular-route.js',
-                    //'bower_components/angular-scroll-glue/src/scrollglue.js'
+                    'bower_components/bootstrap/js/affix.js',
+                    'bower_components/bootstrap/js/alert.js',
+                    'bower_components/bootstrap/js/button.js',
+                    'bower_components/bootstrap/js/carousel.js',
+                    'bower_components/bootstrap/js/collapse.js',
+                    'bower_components/bootstrap/js/dropdown.js',
+                    'bower_components/bootstrap/js/modal.js',
+                    'bower_components/bootstrap/js/tooltip.js',
+                    'bower_components/bootstrap/js/popover.js',
+                    'bower_components/bootstrap/js/scrollspy.js',
+                    'bower_components/bootstrap/js/tab.js',
+                    'bower_components/bootstrap/js/transition.js',
+                    'bower_components/bootstrap/js/bootstrap.js',
+                    'bower_components/underscore/underscore.js',
+                    'bower_components/angular/angular.js',
+                    'bower_components/angular-route/angular-route.js',
+                    'bower_components/angular-scroll-glue/src/scrollglue.js'
                 ],
                 // the location of the resulting JS file
                 dest: 'dist/js/<%= pkg.name %>.js'
@@ -39,13 +39,13 @@ module.exports = function ( grunt ) {
             dist: {
                 files: {
                     'dist/js/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-        }
-    }
-},
-    jshint: {
+                }
+            }
+        },
+        jshint: {
             all: [
-                'src/JavaScript/*.js',
-                '!src/JavaScript/socket.io.min.js', /* Thessi file er uglified og þar af leiðandi generatar endalaust af villum */
+                'src/js/*.js',
+                '!src/js/socket.io.min.js', /* Thessi file er uglified og þar af leiðandi generatar endalaust af villum */
             ],
             gruntfile: [
                 'Gruntfile.js'
