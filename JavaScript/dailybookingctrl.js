@@ -1,6 +1,6 @@
 'use strict'
 
-myApp.module('sego').controller('DailyBookingCtrl', ['$scope', function ($scope) {
+angular.module('sego').controller('DailyBookingCtrl', ['$scope', function ($scope) {
     $scope.open = function() {
       console.log("rassgat");
     };

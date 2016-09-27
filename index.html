@@ -61,14 +61,17 @@
   .stillingar {
     font-size: 2em;
   }
-  .setttings {
+  .settings {
     position: absolute;
     left: 50%;
     top: 50%;
     margin-top: 100px;
-    margin-left: 250px;
     width: 500px;
     height: 200px;
+    background-color: gray;
+    border: 1px solid black; 
+    border-radius: 1em;
+    z-index: 10;
   }
 </style>
 <div class="container-fluid">
@@ -88,7 +91,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a ng-click="openSettings()"><i class="fa fa-cog stillingar"></i></a></li>
       </ul>
-
+        <div ng-include="templateURL"></div>
   </div><!-- /.container-fluid -->
 </nav>
 
@@ -269,6 +272,5 @@
   </div>
 
   </div>
-  <div class="settings"></div>
 </body>
 </html>

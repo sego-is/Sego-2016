@@ -2,6 +2,6 @@
 
 angular.module('sego').controller('navbarCtrl', ['$scope', function ($scope) {
 	$scope.openSettings = function() {
-		alert("fuck ff");
+		$scope.templateURL = 'settings.html';
 	};
 }]);
