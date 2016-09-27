@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <script src="./node_modules/angular/angular.js"></script>
-    <script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="./JavaScript/app.js"></script>
-    <link href="./CSS/segoLook.css">
+    <head>
+        <script src="./node_modules/angular/angular.js"></script>
+        <script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="./JavaScript/app.js"></script>
+        <link href="./CSS/segoLook.css">
 
-    <style></style>
-</head>
+        <style></style>
+    </head>
+    <body ng-app="helloworld">
+        <a ui-sref="hello" ui-sref-active="active">Hello</a>
+        <a ui-sref="about" ui-sref-active="active">About</a>
 
-<body ng-app="helloworld">
-<a ui-sref="hello" ui-sref-active="active">Hello</a>
-<a ui-sref="about" ui-sref-active="active">About</a>
-
-<ui-view></ui-view>
-</body>
+        <ui-view></ui-view>
+    </body>
 </html>
