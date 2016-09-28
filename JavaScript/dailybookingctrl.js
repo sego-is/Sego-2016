@@ -27,36 +27,17 @@ angular.module('sego').controller('DailyBookingCtrl', ['$scope', function ($scop
     }];
     $scope.booking = [];
 }])
-.directive('privateChat', function() {
+.directive('openSettings', function() {
 	return {
         restrict: 'E',
-        templateUrl: 'views/private.html',
+        templateUrl: 'views/settings.html',
         transclude: true,
         scope: {
             userInfo: '=info',
-            quitChat: '&onQuit'
+            closeSettings: '&onQuit'
         },
         link: function(scope, element, attrs) {
-            scope.privateMessage = {
-                nick: scope.userInfo.key,
-                message: ""
-            };
-            
-            scope.closeWindow = function() {
-                scope.quitChat();
-            };
-                        
-            scope.chatHistory = user.getPrivateChatFromUser(scope.privateMessage.nick);
-            
-            scope.sendPrivate = function() {
-                var currMsg = scope.privateMessage.message;
-                if (currMsg.length > 0) {
-                    scope.privateMessage.message = user.getUsername() + ": " + currMsg;
-                    user.addMessage(scope.userInfo.key, scope.privateMessage.message);
-                    helpfunctions.sendPrivate(scope.privateMessage);
-                }
-                scope.privateMessage.message = "";
-            };
+           
         }
      };
 });
