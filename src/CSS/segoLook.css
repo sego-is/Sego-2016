@@ -3,3 +3,57 @@
     font-weight: bold;
     font-size: large;
 }
+
+@media screen and (max-width: 480px) {
+    .datepicker {
+        display: none;
+    }
+}
+
+body {
+    font-size: 12px;
+}
+
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+}
+
+.daily-scheduler {
+    display: block;
+    width: 50%;
+    height: 500px;
+    overflow: scroll;
+}
+
+.klukka {
+    font-size: 1.6em;
+}
+
+.header {
+    position: fixed;
+    height: 3.0em;
+    width: 100%;
+    z-index: 2;
+}
+
+.header-logo {
+    font-size: 2.5em;
+}
+
+.main {
+    position: relative;
+    top: 3.0em;
+    left: 0;
+}
+
+.stillingar {
+    font-size: 2em;
+}

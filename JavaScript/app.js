@@ -9,11 +9,10 @@ myApp.config(function($stateProvider) {
         url: '/hello',
         template: '<h3>hello world!</h3>'
     };
-
     var aboutState = {
         name: 'about',
         url: '/about',
-        template: '<h3>Its the UI-Router hello world app!</h3>'
+        templateUrl: '../src/JavaScript/about.html'
     };
 
     $stateProvider.state(helloState);

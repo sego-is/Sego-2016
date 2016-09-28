@@ -23,21 +23,15 @@ angular.module('sego').controller('DailyBookingCtrl', ['$scope', function ($scop
     	'name':'Ostaran' 
     }, { 
     	'id':6,
-    	'name': 'Mandalana' 
+    	'name': 'Mandalana'
     }];
     $scope.booking = [];
 }])
-.directive('openSettings', function() {
+.directive('openOwner', function() {
 	return {
         restrict: 'E',
-        templateUrl: 'views/settings.html',
+        templateUrl: 'src/HTML/owner.html',
         transclude: true,
-        scope: {
-            userInfo: '=info',
-            closeSettings: '&onQuit'
-        },
-        link: function(scope, element, attrs) {
-           
-        }
+        scope: false,
      };
 });

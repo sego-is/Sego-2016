@@ -26,6 +26,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Einar Ágúst Árnason, Stefán Ingi Daníelsson, Guðjðon Pétursson, Ólafur Ívar Jónsson",
+  "author": "Einar Ágúst Árnason, Stefán Ingi Daníelsson, Guðjon Pétursson, Ólafur Ívar Jónsson",
   "license": "MIT"
 }

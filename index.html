@@ -5,97 +5,37 @@
     <script src="node_modules/angular-animate/angular-animate.js"></script>
     <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
     <script src="ui-bootstrap-tpls-2.1.3.min.js"></script>
-    <script src="JavaScript/datepickerctrl.js"></script>
-    <script src="JavaScript/dailybookingctrl.js"></script>
-    <script src="JavaScript/navbarctrl.js"></script>
+    <script src="src/JavaScript/datepickerctrl.js"></script>
+    <script src="src/JavaScript/dailybookingctrl.js"></script>
+    <script src="src/JavaScript/navbarctrl.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/CSS/segoLook.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-
-<style>
-  @media screen and (max-width: 480px) {
-      .datepicker {
-          display: none;
-      }
-  }
-  body {
-    font-size: 12px; 
-  }
-  .full button span {
-    background-color: limegreen;
-    border-radius: 32px;
-    color: black;
-  }
-  .partially button span {
-    background-color: orange;
-    border-radius: 32px;
-    color: black;
-  }
-  .daily-scheduler {
-    display: block;
-    width: 50%;
-    height: 500px;
-    overflow: scroll;
-  }
-  .klukka {
-    font-size: 1.6em;
-  }
-  .header {
-    position: fixed;
-    height: 3.0em;
-    width: 100%;
-    z-index: 2;
-  }
-  .header-logo {
-    font-size: 2.5em;
-  }
-  .main {
-    position: relative;
-    top: 3.0em;
-    left: 0;
-  }
-  .stillingar {
-    font-size: 2em;
-  }
-  .settings {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-top: 100px;
-    width: 500px;
-    height: 200px;
-    background-color: gray;
-    border: 1px solid black; 
-    border-radius: 1em;
-    z-index: 10;
-  }
-</style>
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="navbarCtrl">
   <nav class="navbar navbar-default">
-  <div class="container-fluid" ng-controller="navbarCtrl">
+    <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">SEGO</a>
-    </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">SEGO</a>
+      </div>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a ng-click="openSettings()"><i class="fa fa-cog stillingar"></i></a></li>
-      </ul>
-        <div ng-include="templateURL"></div>
-  </div><!-- /.container-fluid -->
-</nav>
-
-
+        <ul class="nav navbar-nav navbar-right">
+          <li><a ng-click="openOwner()"><i class="fa fa-cog stillingar"></i></a></li>
+        </ul>
+      </div><!-- /.container-fluid -->
+    <div ng-include="showOwner ? templateURL : 0"></div>
+  </nav>
 
   <div class="row main">
      <div class="col-xs-8 main-daily">
@@ -108,7 +48,7 @@
           </tr>
           <tr ng-repeat="b in bookings">
             <td>8:00</td>
-            <td id="simon"></td>
+            <td class="simon"></td>
             <td id="johanna"></td>
             <td id="frikka" ng-click="open()">0</td>
             <td id="simon"></td>
