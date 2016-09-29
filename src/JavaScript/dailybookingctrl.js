@@ -30,7 +30,7 @@ angular.module('sego').controller('DailyBookingCtrl', ['$scope', function ($scop
 .directive('openOwner', function() {
 	return {
         restrict: 'E',
-        templateUrl: 'src/HTML/owner.html',
+        templateUrl: 'src/HTML/ownerView.html',
         transclude: true,
         scope: false,
      };
