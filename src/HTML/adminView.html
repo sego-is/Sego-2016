@@ -1,0 +1,134 @@
+<!-- EIGANDA(VIEW) -->
+
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css">
+
+<style>
+    body {
+        font-size: 12px;
+    }
+    .eigandi {
+        position: relative;
+        background-color: rgba(254,1,1,0);
+        z-index: 10;
+    }
+    .eigandi table, th , td  {
+        border-collapse: collapse;
+        padding: 5px;
+    }
+    .eigandi-form-nyrklippari {
+        padding: 3em;
+    }
+    a {
+        color: black;
+    }
+    thead {
+
+        font-size: 0.8em;
+    }
+    .eigandi-listiafklippurum {
+
+    }
+
+
+</style>
+
+<div class="container-fluid eigandi">
+
+    <div class="row">
+        <div class="col-xs-8 well well-lg">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>
+                        <div class="pull-left">Hárgreiðslustofur</div>
+                    </th>
+                    <th>Símanúmer</th>
+                    <th><div class="pull-right">
+                        <a href="" class="eigandi-addHairdresser"><i style="color: lawngreen;" class="glyphicon glyphicon-plus"></i></a>
+
+                    </div></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="theFirst col-xs-4">Hárfaktorý</td>
+                    <td>5692250</td>
+                    <td>
+                        <div class="pull-right">
+                            <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a ng-click=""><i style="color:green;" class="glyphicon glyphicon-play"></i></a>
+                            <a ng-click=""><i style="color:dimgray" class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>Gullbrá og björninn</td>
+                    <td>5887788</td>
+                    <td>
+                        <div class="pull-right">
+                            <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a ng-click=""><i style="color:green;" class="glyphicon glyphicon-play"></i></a>
+                            <a ng-click=""><i style="color:dimgray" class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>Toni & Guy</td>
+                    <td>8005000</td>
+                    <td>
+                        <div class="pull-right">
+                            <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a ng-click=""><i style="color:yellow;" class="glyphicon glyphicon-pause"></i></a>
+                            <a ng-click=""><i style="color:dimgray" class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                        <td>Kaplo</td>
+                        <td>7726254</td>
+                        <td>
+                            <div class="pull-right">
+                                <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+                                <a ng-click=""><i style="color:yellow;" class="glyphicon glyphicon-pause"></i></a>
+                                <a ng-click=""><i style="color:dimgray" class="glyphicon glyphicon-trash"></i></a>
+                            </div>
+                        </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 well well-lg">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="sr-only" for="inputHarstofa">Hárgreiðslustofa</label>
+                    <input type="name" class="form-control" id="inputHarstofa" placeholder="Hárgreiðslustofa">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="inputTengiliður">Tengiliður</label>
+                    <input type="name" class="form-control" id="inputTengiliður" placeholder="Tengiliður">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="inputSimanumer">Símanúmer</label>
+                    <input type="tel" class="form-control" id="inputSimanumer" placeholder="Símanúmer">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="inputNetpostur">Netpóstur</label>
+                    <input type="email" class="form-control" id="inputNetpostur" placeholder="Netpóstur">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="inputGagnagrunn">Gagnagrunnur</label>
+                    <input type="name" class="form-control" id="inputGagnagrunn" placeholder="Gagnagrunnur">
+                </div>
+                <div class="pull-right"><button type="submit" class="btn btn-default">Bæta við</button></div>
+            </form>
+        </div>
+    </div>
+    <div class="col-xs-3"></div>
+</div>
