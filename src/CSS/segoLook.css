@@ -52,6 +52,20 @@ body {
     font-size: 2em;
 }
 
+.logOff {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.customers{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.glyphicon.glyphicon-cog {
+    font-size: 2em;
+}
+
 .test {
-    border: 2px solid red;
+    border: 1px solid red;
 }
