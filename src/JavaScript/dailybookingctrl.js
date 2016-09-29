@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 angular.module('sego').controller('DailyBookingCtrl', ['$scope', function ($scope) {
     $scope.open = function() {

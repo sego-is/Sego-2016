@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 angular.module('sego').controller('navbarCtrl', ['$scope', function ($scope) {
 	$scope.showOwner = 0;
@@ -8,7 +8,7 @@ angular.module('sego').controller('navbarCtrl', ['$scope', function ($scope) {
 			$scope.showOwner = 1;
 		}
 		else {
-			$scope.showOwner = 0
+			$scope.showOwner = 0;
 		}
 
 	};

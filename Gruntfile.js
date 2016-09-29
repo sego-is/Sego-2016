@@ -44,8 +44,8 @@ module.exports = function ( grunt ) {
         },
         jshint: {
             all: [
-                'src/js/*.js',
-                '!src/js/socket.io.min.js', /* Thessi file er uglified og þar af leiðandi generatar endalaust af villum */
+                'src/JavaScript/*.js',
+                '!src/JavaScript/socket.io.min.js', /* Thessi file er uglified og þar af leiðandi generatar endalaust af villum */
             ],
             gruntfile: [
                 'Gruntfile.js'
@@ -60,6 +60,7 @@ module.exports = function ( grunt ) {
                 eqnull: true,
                 node:   true,
                 undef:  true,
+                esnext: true,
                 globals: {
                     _:       false,
                     jQuery:  false,
