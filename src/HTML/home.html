@@ -1,51 +1,364 @@
-<div class="container-fluid">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid" ng-controller="navbarCtrl">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button"
-                        class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1"
-                        aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
 
-                </button>
-                <a class="navbar-brand" href="#">SEGO</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Biðlisti view" content="">
+    <meta name="Guðjón" content="">
+
+    <title>Biðlisti</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /* Style to reverse the caret icon from pointing downwards to upwards */
+        .caret.caret-up {
+            border-top-width: 0;
+            border-bottom: 4px solid #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid" ng-controller="navbarCtrl">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button"
+                            class="navbar-toggle collapsed"
+                            data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1"
+                            aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">SEGO</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/Sego-2016/src/HTML/verdSkra.html" class="glyphicon glyphicon-eur" aria-hidden="true">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Sego-2016/src/HTML/ownerView.html" class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#" class="list-group-item" aria-label="Left Align">
+                                        <h5 class="list-group-item-heading"> <span class="glyphicon glyphicon-user" aria-hidden="true">  Kalli </h5>
+                                        <p class="list-group-item-text"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 8993715 <span class="glyphicon glyphicon-pencil" aria-label="Left Align">
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="list-group-item" aria-label="Left Align">
+                                        <h5 class="list-group-item-heading"> <span class="glyphicon glyphicon-user" aria-hidden="true">  Einar </h5>
+                                        <p class="list-group-item-text"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 8993715 <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="list-group-item" aria-label="Left Align">
+                                        <h5 class="list-group-item-heading"> <span class="glyphicon glyphicon-user" aria-hidden="true">  John </h5>
+                                        <p class="list-group-item-text"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 8993715 <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="list-group-item" aria-label="Left Align">
+                                        <h5 class="list-group-item-heading"> <span class="glyphicon glyphicon-user" aria-hidden="true">  Sandra </h5>
+                                        <p class="list-group-item-text"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 8993715 <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li>
+                            <a href="#" class="logOff">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                 </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+
+    <div class="panel panel">
+        <div class="panel-heading clearfix">
+            <h1 class="panel pull-left" > Föstudagur, 30. September  2016</h1>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <div ng-controller="DailyBookingCtrl">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+                            <td ng-repeat="x in names" >{{ x.name }}</td>
+                        </tr>
+                        <tr ng-repeat="b in bookings">
+                            <td>8:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka" ng-click="open()">frikka</td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>9:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>10:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>11:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>13:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>14:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>15:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>16:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>21:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>22:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>23:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" class="customers">
-                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="logOff">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                        </a>
-                    </li>
-                   <!-- <li class="dropdown">
-                        <a href="#"
-                           class="dropdown-toggle"
-                           data-toggle="dropdown"
-                           role="button"
-                           aria-haspopup="true"
-                           aria-expanded="false">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Stillingar</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Útskrá</a></li>
-                        </ul>
-                    </li>-->
-                </ul>
-             </div>
-        </div><!-- /.container-fluid -->
-    </nav>
-</div>
+            <div class="col-md-2">
+                <div ng-controller="datepickerCtrl">
+                    <div style="display:inline-block; min-height:290px;">
+                        <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+                    </div>
+                    <!--
+                    <hr />
+                    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="setDate(2009, 7, 24)">2009-08-24</button>
+                    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button>
+                    -->
+                </div>
+            <!-- datepicker end -->
+             <!--   <h2> Biðlisti </h2>
+                <ul class="list-group">
+                    <a href="#" class="list-group-item ">
+                        <h4 class="list-group-item-heading"> Kalli </h4>
+                        <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
+                    </a>
+
+                    <a href="#" class="list-group-item ">
+                        <h4 class="list-group-item-heading"> Sif </h4>
+                        <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
+                    </a>
+
+
+                    <a href="#" class="list-group-item ">
+                        <h4 class="list-group-item-heading"> Sandra </h4>
+                        <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
+                    </a>
+
+                    <a href="#" class="list-group-item ">
+                        <h4 class="list-group-item-heading"> jón </h4>
+                        <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
+                    </a>
+                </ul>-->
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Biðlisti sem er B krafa
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default">1</button>
+        <div class="dropdown pull-right">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li>
+                    <a href="#" class="list-group-item" aria-label="Left Align">
+                        <h5 class="list-group-item-heading"> <span class="glyphicon glyphicon-user" aria-hidden="true">  Kalli </h5>
+                        <p class="list-group-item-text"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 8993715 <span class="glyphicon glyphicon-pencil" aria-label="Left Align">
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item" aria-label="Left Align">
+                        <h5 class="list-group-item-heading"> <span class="glyphicon glyphicon-user" aria-hidden="true">  Einar </h5>
+                        <p class="list-group-item-text"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 8993715 <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item" aria-label="Left Align">
+                        <h5 class="list-group-item-heading"> <span class="glyphicon glyphicon-user" aria-hidden="true">  John </h5>
+                        <p class="list-group-item-text"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 8993715 <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item" aria-label="Left Align">
+                        <h5 class="list-group-item-heading"> <span class="glyphicon glyphicon-user" aria-hidden="true">  Sandra </h5>
+                        <p class="list-group-item-text"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"> 8993715 <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+-->
+
+
+
+
+    <script>
+        $(document).ready(function(){
+            $(".dropdown").on("hide.bs.dropdown", function(){
+                $(".btn").html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="caret"></span>');
+            });
+            $(".dropdown").on("show.bs.dropdown", function(){
+                $(".btn").html('<span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret caret-up"></span>');
+            });
+        });
+    </script>
+</body>
+</html>
