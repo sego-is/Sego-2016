@@ -11,7 +11,5 @@ node {
 
 	sh 'git status'
 
-	sh 'npm install'
-
-	sh 'grunt'
+	echo "Búið"
 }
