@@ -1,15 +1,11 @@
 node {
 	stage 'Stage Checkout'
 
-	checkout scm
+    echo "START!!"
 
-	echo "blabla"
-	
-	sh 'git pull origin master'
+	sh 'npm install'
 
-	echo "hallo heimur"
+	sh 'grunt'
 
-	sh 'git status'
-
-	echo "Búið"
+	echo "DONE!!"
 }
