@@ -1,11 +1,15 @@
 node {
 	stage 'Stage Checkout'
 
-    echo "START!!"
+	checkout scm
+
+	echo "blabla"
 
 	sh 'npm install'
 
+	echo "hallo heimur"
+
 	sh 'grunt'
 
-	echo "DONE!!"
+	echo "Búið"
 }
