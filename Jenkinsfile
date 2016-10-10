@@ -1,4 +1,4 @@
-node {
+node('node)' {
 	stage 'Stage Checkout'
 
 	    checkout scm
