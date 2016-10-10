@@ -5,5 +5,5 @@ node {
 
 	stage 'build'
 
-        echo "Búið"
+        echo "Every thing is awesome"
 }
