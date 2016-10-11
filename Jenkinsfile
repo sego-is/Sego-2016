@@ -11,7 +11,7 @@ node {
 
 			env.NODE_ENV = "test"
 
-			print "Environment will be : ${env.NODE_ENV}"
+			print "Environment will be : ${env.NODE_ENV} on ${ITEM_ROOTDIR}"
 
         	sh '/usr/local/bin/node -v'
         	sh '/usr/local/bin/npm -v'
