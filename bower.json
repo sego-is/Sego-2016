@@ -1,0 +1,30 @@
+{
+  "name": "sego",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "^1.4.0",
+    "bootstrap": "^3.2.0",
+    "angular-animate": "^1.4.0",
+    "angular-route": "^1.4.0",
+    "angular-sanitize": "^1.4.0",
+    "auth0-lock": "^10.4.0",
+    "angular-lock": "^1.0.2",
+    "angular-jwt": "^0.1.5",
+    "angular-bootstrap": "^2.1.4",
+    "font-awesome": "fontawesome#^4.6.3"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.0"
+  },
+  "appPath": "app",
+  "moduleName": "segoApp",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}
