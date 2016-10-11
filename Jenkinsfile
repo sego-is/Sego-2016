@@ -1,9 +1,25 @@
 node {
-	stage 'Stage Checkout'
 
-	    checkout scm
+	currentBuild.result = "SUCCESS"
 
-	stage 'build'
+	try {
+		stage 'Stage Checkout'
 
-        sh /usr/local/bin/node -v
+	    	checkout scm
+
+		stage 'Test'
+
+			env.NODE_ENV = "test"
+
+			print "Environment will be : ${env.NODE_ENV} on ${env.ITEM_ROOTDIR}"
+
+        	sh 'node -v'
+        	sh 'npm --version'
+
+	}
+	catch (err) {
+		currentBuild.result = "FAILURE"
+		throw err
+	}
+	
 }
