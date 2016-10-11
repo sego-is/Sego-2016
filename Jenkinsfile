@@ -5,5 +5,5 @@ node {
 
 	stage 'build'
 
-        echo "Every thing is awesome"
+        sh /usr/local/bin/node -v
 }
