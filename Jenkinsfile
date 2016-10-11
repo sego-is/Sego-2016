@@ -7,11 +7,11 @@ node {
 
 	    	checkout scm
 
-		stage 'Test'
+		stage 'Build'
 
-			env.NODE_ENV = "test"
+			env.NODE_ENV = "Build"
 
-			print "Environment will be : ${env.NODE_ENV} on ${env.ITEM_ROOTDIR}"
+			print "Environment will be : ${env.NODE_ENV}"
 
         	sh 'node -v'
         	sh 'npm -v'
