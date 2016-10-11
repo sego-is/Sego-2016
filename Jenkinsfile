@@ -13,8 +13,8 @@ node {
 
 			print "Environment will be : ${env.NODE_ENV} on ${env.ITEM_ROOTDIR}"
 
-        	sh '/usr/local/bin/node -v'
-        	sh '/usr/local/bin/npm -v'
+        	sh 'node -v'
+        	sh 'npm -v'
 
 	}
 	catch (err) {
