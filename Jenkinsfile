@@ -15,6 +15,8 @@ node {
 
         	sh 'node -v'
         	sh 'npm -v'
+        	sh 'npm install'
+        	sh 'grunt'
 
 	}
 	catch (err) {
