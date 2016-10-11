@@ -13,13 +13,13 @@ node {
 
 			print "Environment will be : ${env.NODE_ENV} on ${env.ITEM_ROOTDIR}"
 
-        	sh 'node -v'
-        	sh 'npm --version'
+        	sh '/usr/local/bin/node -v'
+        	sh '/usr/local/lib/node_modules/npm/bin npm -v'
 
 	}
 	catch (err) {
 		currentBuild.result = "FAILURE"
 		throw err
 	}
-	
+
 }
