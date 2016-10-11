@@ -1,9 +1,14 @@
 'use strict';
 
-angular.module('sego').controller('DailyBookingCtrl', ['$scope', function ($scope) {
-    $scope.open = function() {
-      console.log("rassgat");
-    };
+/**
+ * @ngdoc function
+ * @name segoEnnOgAfturApp.controller:AboutCtrl
+ * @description
+ * # AboutCtrl
+ * Controller of the segoEnnOgAfturApp
+ */
+angular.module('segoApp')
+  .controller('HomeCtrl', ['$scope', function ($scope) {
     const start_time = 7, end_time = 23;
 
     $scope.names = [ { 
@@ -26,12 +31,4 @@ angular.module('sego').controller('DailyBookingCtrl', ['$scope', function ($scop
     	'name': 'Mandalana'
     }];
     $scope.booking = [];
-}])
-.directive('openOwner', function() {
-	return {
-        restrict: 'E',
-        templateUrl: 'src/HTML/ownerView.html',
-        transclude: true,
-        scope: false,
-     };
-});
+  }]);

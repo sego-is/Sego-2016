@@ -1,0 +1,206 @@
+<div class="panel panel">
+        <div class="panel-heading clearfix">
+            <h1 class="panel pull-left" > Föstudagur, 30. September  2016</h1>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+                            <td ng-repeat="x in names" >{{ x.name }}</td>
+                        </tr>
+                        <tr ng-repeat="b in bookings">
+                            <td>8:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka" ng-click="open()">frikka</td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>9:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>10:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>11:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>13:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>14:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>15:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>16:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>21:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>22:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                        <tr>
+                            <td>23:00</td>
+                            <td id="simon"></td>
+                            <td id="johanna"></td>
+                            <td id="frikka"></td>
+                            <td id="simon"></td>
+                            <td id="gurry"></td>
+                            <td id="hanna"></td>
+                        </tr>
+                    </table>
+            </div>
+            <div class="col-md-2">
+                <div ng-controller="datepickerCtrl">
+                    <div style="display:inline-block; min-height:290px; width: 100%;">
+                        <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+                    </div>
+                    <!--
+                    <hr />
+                    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="setDate(2009, 7, 24)">2009-08-24</button>
+                    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button>
+                    -->
+                </div>
+            <!-- datepicker end -->
+             <!--   <h2> Biðlisti </h2>
+                <ul class="list-group">
+                    <a href="#" class="list-group-item ">
+                        <h4 class="list-group-item-heading"> Kalli </h4>
+                        <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
+                    </a>
+
+                    <a href="#" class="list-group-item ">
+                        <h4 class="list-group-item-heading"> Sif </h4>
+                        <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
+                    </a>
+
+
+                    <a href="#" class="list-group-item ">
+                        <h4 class="list-group-item-heading"> Sandra </h4>
+                        <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
+                    </a>
+
+                    <a href="#" class="list-group-item ">
+                        <h4 class="list-group-item-heading"> jón </h4>
+                        <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
+                    </a>
+                </ul>-->
+            </div>
+            <div class="col-md-2 bidlisti-haldari"></div>
+                </div>
+                
+            </div>
+    
+        </div>
+    </div>

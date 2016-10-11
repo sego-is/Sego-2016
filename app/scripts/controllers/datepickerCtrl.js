@@ -1,5 +1,4 @@
-angular.module('sego', ['ngAnimate', 'ngSanitize', 'ui.bootstrap']);
-angular.module('sego').controller('datepickerCtrl', function ($scope) {
+angular.module('segoApp').controller('datepickerCtrl', function ($scope) {
   $scope.today = function() {
     $scope.dt = new Date();
   };
