@@ -14,7 +14,7 @@ node {
 			print "Environment will be : ${env.NODE_ENV} on ${env.ITEM_ROOTDIR}"
 
         	sh '/usr/local/bin/node -v'
-        	sh '/usr/local/lib/node_modules/npm/bin npm -v'
+        	sh '/usr/local/lib/node_modules/npm/bin/npm -v'
 
 	}
 	catch (err) {
