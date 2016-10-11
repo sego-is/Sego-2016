@@ -6,4 +6,5 @@ node {
 	stage 'build'
 
         sh '/usr/local/bin/node -v'
+        sh '/usr/local/bin/npm install'
 }
