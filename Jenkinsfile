@@ -13,7 +13,6 @@ node {
 
 			print "Environment will be : ${env.NODE_ENV}"
 
-        	sh 'node -v'
         	sh 'npm  install'
 	}
 	catch (err) {
