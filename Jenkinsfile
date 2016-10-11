@@ -13,7 +13,9 @@ node {
 
 			print "Environment will be : ${env.NODE_ENV}"
 
-        	sh 'npm  install'
+        	sh '/usr/local/bin/node -v'
+        	sh '/usr/local/bin/npm -v'
+
 	}
 	catch (err) {
 		currentBuild.result = "FAILURE"
