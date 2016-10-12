@@ -22,11 +22,11 @@ node {
         	sh 'npm prune'
         	sh 'rm -rf node_modules'
 
-        	mail body: 'Project Build Successful',
+        	/*mail body: 'Project Build Successful',
         		from: 'einaragusta@gmail.com',
         		replyTo: 'einara12@ru.is',
         		subject: 'Project build successful',
-        		to: 'stefand12@ru.is'
+        		to: ''*/
 	}
 	catch (err) {
 		currentBuild.result = "FAILURE"
