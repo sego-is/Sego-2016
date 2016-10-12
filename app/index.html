@@ -51,17 +51,39 @@
                       </ul>
                       <ul class="nav navbar-nav pull-right" ng-if="isAuthenticated">
                           <li>
-                            <button type="button" class="btn btn-link btn-lg" ng-click="opnaGlugga('verdlisti')"><span class="fa fa-usd" aria-hidden="true"></span></button>
+                            <button type="button"
+                                    class="btn btn-link btn-lg"
+                                    ng-click="opnaGlugga('verdlisti')"
+                                    data-toggle="tooltip"
+                                    data-placement="auto"
+                                    title="Verðlisti">
+                              <span class="fa fa-usd" aria-hidden="true"></span>
+                            </button>
                           </li>
                           <li>
-                              <button type="button" class="btn btn-link btn-lg" ng-click="opnaGlugga('stillingar')"><span class="fa fa-cogs" aria-hidden="true"></span></button>
+                              <button type="button"
+                                      class="btn btn-link btn-lg"
+                                      ng-click="opnaGlugga('stillingar')"
+                                      data-toggle="tooltip"
+                                      data-placement="auto"
+                                      title="Stillingar"><span class="fa fa-cogs" aria-hidden="true"></span></button>
                           </li>
                           <li>
-                              <button type="button" class="btn btn-link btn-lg" ng-click="opnaGlugga('vidskiptavinir')"><span class="fa fa-users" aria-hidden="true"></span></button>
+                              <button type="button"
+                                      class="btn btn-link btn-lg"
+                                      ng-click="opnaGlugga('vidskiptavinir')"
+                                      data-toggle="tooltip"
+                                      data-placement="auto"
+                                      title="Viðskiptavinir"><span class="fa fa-users" aria-hidden="true"></span></button>
                               <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
                           </li>
                           <li>
-                              <button type="button" class="btn btn-link btn-lg" ng-click="authService.logout()"><span class="fa fa-sign-out" aria-hidden="true"></span></button>
+                              <button type="button"
+                                      class="btn btn-link btn-lg"
+                                      ng-click="authService.logout()"
+                                      data-toggle="tooltip"
+                                      data-placement="auto"
+                                      title="Útskrá"><span class="fa fa-sign-out" aria-hidden="true"></span></button>
                           </li>
                       </ul>
                 </div>

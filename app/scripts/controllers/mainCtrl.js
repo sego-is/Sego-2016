@@ -21,6 +21,7 @@ angular.module('segoApp')
 
     $scope.waitingList = {};
 
+    $('[data-toggle="tooltip"]').tooltip();
     /*
       Would be better to include this in stillingar directive
     */
