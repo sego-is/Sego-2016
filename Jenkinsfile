@@ -13,11 +13,20 @@ node {
 
 			print "Environment will be : ${env.NODE_ENV}"
 
-        	sh 'node -v'
-        	sh 'npm -v'
         	sh 'npm install'
         	sh 'bower install'
 
+        stage 'Cleanup'
+
+        	print "prune and cleanup"
+        	sh 'npm prune'
+        	sh 'rm -rf node_modules'
+
+        	mail body: 'Project Build Successful',
+        		from: 'einaragusta@gmail.com',
+        		replyTo: 'einara12@ru.is',
+        		subject: 'Project build successful',
+        		to: 'stefand12@ru.is'
 	}
 	catch (err) {
 		currentBuild.result = "FAILURE"
