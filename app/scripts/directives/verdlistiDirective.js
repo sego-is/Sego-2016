@@ -6,7 +6,16 @@
     .module('segoApp')
     .directive('verdlisti', function() {
     	return {
-        	templateUrl: '../../views/verdlisti.html'
+    		restrict: 'E',
+    		scope: {
+    			lokaGlugga: '&close'
+    		},
+        	templateUrl: '../../views/verdlisti.html',
+        	link: function(scope, element, attrs) {
+        		scope.closeWindow = function() {
+        			scope.lokaGlugga();
+        		}
+        	}
         };
     });
 })();

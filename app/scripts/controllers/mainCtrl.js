@@ -35,32 +35,22 @@ angular.module('segoApp')
     	'pass': 'rasstippibrjosthommi'
     };
 
-    let verdlistiOpinn = false;
-    let btnStillingar = false;
-    let btnVidskiptavinir = false;
-
     $scope.lokaGlugga = function() {
       state.scope.$destroy();
       $('.skilaboda-haldari').empty();
       document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
       $scope.gluggiOpinn = false;
-      verdlistiOpinn = false;
-      btnStillingar = false;
-      btnVidskiptavinir = false;
     };
 
+    
     $scope.btnVerdlisti = function() {
-      if (!$scope.gluggiOpinn || btnStillingar || btnVidskiptavinir) {
+      if (!$scope.gluggiOpinn) {
         document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
-        btnStillingar = false;
-        btnVidskiptavinir = false;
         state.scope = $scope.$new();
-        var compiledDirective = $compile('<verdlisti class="skilabod"></verdlisti>');
+        var compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
         var directiveElement = compiledDirective(state.scope);
         $('.skilaboda-haldari').append(directiveElement);
         $scope.gluggiOpinn = true;
-        verdlistiOpinn = true;
-        console.log("verðlisti " + verdlistiOpinn + " stillingar " + btnStillingar + " viðskiptavinir " + btnVidskiptavinir);
       }
     };
 
