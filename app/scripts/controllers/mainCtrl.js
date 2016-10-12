@@ -39,8 +39,19 @@ angular.module('segoApp')
     let btnStillingar = false;
     let btnVidskiptavinir = false;
 
+    $scope.lokaGlugga = function() {
+      state.scope.$destroy();
+      $('.skilaboda-haldari').empty();
+      document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
+      $scope.gluggiOpinn = false;
+      verdlistiOpinn = false;
+      btnStillingar = false;
+      btnVidskiptavinir = false;
+    };
+
     $scope.btnVerdlisti = function() {
       if (!$scope.gluggiOpinn || btnStillingar || btnVidskiptavinir) {
+        document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
         btnStillingar = false;
         btnVidskiptavinir = false;
         state.scope = $scope.$new();
@@ -49,13 +60,6 @@ angular.module('segoApp')
         $('.skilaboda-haldari').append(directiveElement);
         $scope.gluggiOpinn = true;
         verdlistiOpinn = true;
-        console.log("verðlisti " + verdlistiOpinn + " stillingar " + btnStillingar + " viðskiptavinir " + btnVidskiptavinir);
-      }
-      else {
-        state.scope.$destroy();
-        $('.skilaboda-haldari').empty();
-        $scope.gluggiOpinn = false;
-        verdlistiOpinn = false;
         console.log("verðlisti " + verdlistiOpinn + " stillingar " + btnStillingar + " viðskiptavinir " + btnVidskiptavinir);
       }
     };
@@ -71,12 +75,6 @@ angular.module('segoApp')
         $scope.gluggiOpinn = true;
         btnStillingar = true;
       }
-      else {
-        state.scope.$destroy();
-        $('.skilaboda-haldari').empty();
-        $scope.gluggiOpinn = false;
-        btnStillingar = false;
-      }
     };
 
     $scope.btnVidskiptavinir = function() {
@@ -90,13 +88,6 @@ angular.module('segoApp')
         $scope.gluggiOpinn = true;
         btnVidskiptavinir = true;
       }
-      else {
-        state.scope.$destroy();
-        $('.skilaboda-haldari').empty();
-        $scope.gluggiOpinn = false;
-        btnVidskiptavinir = false;
-      }
     };
-
   }]);
 })();
