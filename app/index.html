@@ -24,8 +24,9 @@
 
     <!-- Add your site or application content here -->
     <div class="skilaboda-haldari"></div>
+
     <nav class="navbar navbar-default navbar-fixed-top" ng-controller="MainCtrl">
-        <div class="container">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button"
@@ -38,33 +39,34 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home">SEGO</a>
+                <a class="navbar-brand" rel="home" href="home" >SEGO</a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right" ng-if="!isAuthenticated">
-                    <li>
-                     <button type="button" class="btn btn-default btn-lg" ng-click="authService.login()"><span class="fa fa-sign-in" aria-hidden="true"></span></button>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right" ng-if="isAuthenticated">
-                    <li>
-                        <button type="button" class="btn btn-default btn-lg" ng-click="btnVerdlisti()"><span class="fa fa-usd" aria-hidden="true"></span></button>
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-default btn-lg" ng-click="btnStillingar()"><span class="fa fa-cogs" aria-hidden="true"></span></button>
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-default btn-lg" ng-click="btnVidskiptavinir()"><span class="fa fa-users" aria-hidden="true"></span></button>
-                            <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-default btn-lg" ng-click="authService.logout()"><span class="fa fa-sign-out" aria-hidden="true"></span></button>
-                        </li>
-                    </ul>
-                 </div>
-            </div><!-- /.container-fluid -->
 
-        </nav>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav navbar-right" ng-if="!isAuthenticated">
+                          <li>
+                            <button type="button" class="btn btn-link btn-lg" ng-click="authService.login()"><span class="fa fa-sign-in" aria-hidden="true"></span></button>
+                          </li>
+                      </ul>
+                      <ul class="nav navbar-nav pull-right" ng-if="isAuthenticated">
+                          <li>
+                            <button type="button" class="btn btn-link btn-lg" ng-click="btnVerdlisti()"><span class="fa fa-usd" aria-hidden="true"></span></button>
+                          </li>
+                          <li>
+                              <button type="button" class="btn btn-link btn-lg" ng-click="btnStillingar()"><span class="fa fa-cogs" aria-hidden="true"></span></button>
+                          </li>
+                          <li>
+                              <button type="button" class="btn btn-link btn-lg" ng-click="btnVidskiptavinir()"><span class="fa fa-users" aria-hidden="true"></span></button>
+                              <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
+                          </li>
+                          <li>
+                              <button type="button" class="btn btn-link btn-lg" ng-click="authService.logout()"><span class="fa fa-sign-out" aria-hidden="true"></span></button>
+                          </li>
+                      </ul>
+                </div>
+        </div>
+      <!-- /.container-fluid -->
+    </nav>
     </div>
     <div class="container main-view">
         <div ng-view></div>
