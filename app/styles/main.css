@@ -77,17 +77,17 @@ body {
 
 .skilabod {
   position: absolute;
-  width: 100%;
-  /*height: 100%;*/
+  width: 50%;
+  height: 70%;
   z-index: 20;
-  top: 25%;
-  /*left: 50%;*/
-  margin: 0px 0 0 0px;
-  padding: 40px;
+  top: 10%;
+  right: 25%;
+  padding: 1% 5% 5% 5%;
   background: white;
   border: 1px solid black;
-  border-radius: 6px 0 0 6px;
-  opacity: 1;
+  border-radius: 6px 6px 6px 6px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -111,4 +111,9 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+
+}
+
+.test {
+  border: 1px solid red;
 }
