@@ -274,38 +274,38 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
-
-    imagemin: {
+    cssmin: {
       dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/images'
-        }]
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css'
+          ]
+        }
       }
     },
+    //uglify: {
+    //  dist: {
+    //    files: {
+    //      '<%= yeoman.dist %>/scripts/scripts.js': [
+    //        '<%= yeoman.dist %>/scripts/scripts.js'
+    //      ]
+    //    }
+    //  }
+    //},
+    concat: {
+      dist: {}
+    },
+
+    //imagemin: {
+    //  dist: {
+    //    files: [{
+    //      expand: true,
+    //      cwd: '<%= yeoman.app %>/images',
+    //      src: '{,*/}*.{png,jpg,jpeg,gif}',
+    //      dest: '<%= yeoman.dist %>/images'
+    //    }]
+    //  }
+    //},
 
     svgmin: {
       dist: {
@@ -318,28 +318,28 @@ module.exports = function (grunt) {
       }
     },
 
-    htmlmin: {
-      dist: {
-        options: {
-          collapseWhitespace: true,
-          conservativeCollapse: true,
-          collapseBooleanAttributes: true,
-          removeCommentsFromCDATA: true
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.dist %>',
-          src: ['*.html'],
-          dest: '<%= yeoman.dist %>'
-        }]
-      }
-    },
+    //htmlmin: {
+    //  dist: {
+    //    options: {
+    //      collapseWhitespace: true,
+    //      conservativeCollapse: true,
+    //      collapseBooleanAttributes: true,
+    //      removeCommentsFromCDATA: true
+    //    },
+    //    files: [{
+    //      expand: true,
+    //      cwd: '<%= yeoman.dist %>',
+    //      src: ['*.html', '<%= yeoman.app %>/views/*.html'],
+    //      dest: '<%= yeoman.dist %>'
+    //    }]
+    //  }
+    //},
 
     ngtemplates: {
       dist: {
         options: {
           module: 'segoApp',
-          htmlmin: '<%= htmlmin.dist.options %>',
+          //htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
@@ -392,6 +392,11 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/components-font-awesome/',
+          src: 'fonts/*',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -399,6 +404,12 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      views: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/views',
+        dest: 'dist/views/',
+        src: '{,*/}*.html'
       }
     },
 
@@ -412,7 +423,8 @@ module.exports = function (grunt) {
       ],
       dist: [
         'copy:styles',
-        'imagemin',
+        'copy:views',
+        //'imagemin',
         'svgmin'
       ]
     },
@@ -470,8 +482,8 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
-    'usemin',
-    'htmlmin'
+    'usemin'
+    //'htmlmin'
   ]);
 
   grunt.registerTask('default', [

@@ -1,14 +1,9 @@
 (function() {
-
   'use strict';
 
   angular
     .module('segoApp')
-    .service('authService', authService);
-
-  authService.$inject = ['$rootScope', '$location', 'lock', 'authManager'];
-
-  function authService($rootScope, $location, lock, authManager) {
+    .service('authService', ['$rootScope', '$location', 'lock', 'authManager', function ($rootScope, $location, lock, authManager) {
 
     var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
     var authenticated = false;
@@ -57,5 +52,5 @@
       registerAuthenticationListener: registerAuthenticationListener,
       auth: auth
     };
-  }
+  }]);
 })();

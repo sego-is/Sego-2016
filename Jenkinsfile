@@ -15,12 +15,15 @@ node {
 
         	sh 'npm install'
         	sh 'bower install'
+        	sh 'grunt build'
+        	sh 'mv dist /opt/app'
 
         stage 'Cleanup'
 
         	print "prune and cleanup"
         	sh 'npm prune'
         	sh 'rm -rf node_modules'
+        	sh 'grunt clean'
 
         	mail body: 'Project Build Successful',
         		from: 'einaragusta@gmail.com',

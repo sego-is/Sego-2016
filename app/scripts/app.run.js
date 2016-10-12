@@ -4,7 +4,7 @@
 
   angular
     .module('segoApp')
-    .run(function($rootScope, $location, authService, authManager, lock) {
+    .run(['$rootScope', '$location', 'authService', 'authManager', 'lock', function($rootScope, $location, authService, authManager, lock) {
       
       // Intercept the hash that comes back from authentication
       // to ensure the `authenticated` event fires
@@ -32,8 +32,9 @@
       // http://erraticdev.blogspot.is/2015/10/angular-ngroute-routing-authorization.html
       // logging helper
       function getPath(route) {
-          if (!!route && typeof(route.originalPath) === "string")
-              return "'" + route.originalPath + "'";
+          if (!!route && typeof(route.originalPath) === "string") {
+            return "'" + route.originalPath + "'";
+          }   
           return "[unknown route, using otherwise]";
       }
             
@@ -73,5 +74,5 @@
       $rootScope.$on("$routeChangeSuccess", function(evt, to, from){
           console.log("Route change success from", getPath(from), "to", getPath(to));
       });
-    });
+    }]);
 })();
