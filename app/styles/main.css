@@ -126,3 +126,18 @@ body {
 .container-fluid-fullSego {
   margin-top: 4em;
 }
+
+dagatal th {
+  padding: 0.2em;
+  border-bottom: 1px solid gray;
+  width: 2em;
+}
+
+dagatal tr {
+  width: 2em;
+  height: 2em;
+}
+
+dagatal tfoot {
+
+}
