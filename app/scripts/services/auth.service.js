@@ -19,6 +19,7 @@
       localStorage.removeItem('profile');
       authManager.unauthenticate();
       userProfile = {};
+      $location.path('/');
       authenticated = false;
     }
 

@@ -65,7 +65,7 @@
       $rootScope.$on("$routeChangeError", function(evt, to, from, error){
           console.log("Route change ERROR from", getPath(from), "to", getPath(to), error);
           if (error instanceof AuthorizationError) {
-            console.log("Redirecting to main");
+            console.log("Redirecting to main", error);
             $location.path("/").search("returnTo", to.originalPath);
           }
       });
