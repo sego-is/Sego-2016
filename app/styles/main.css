@@ -73,6 +73,7 @@ body {
 }
 
 .main-view {
+
   margin-top: 4em;
 }
 
@@ -114,11 +115,15 @@ body {
   }
 
 }
-
+/* Allt nýtt fyrir neðan þetta*/
 .test {
   border: 1px solid red;
 }
 
 .takki {
   position: relative;
+}
+/*til að hafa full veiw yfir main*/
+.container-fluid-fullSego {
+  margin-top: 4em;
 }

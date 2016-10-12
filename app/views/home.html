@@ -1,10 +1,8 @@
-<div class="panel panel">
-        <div class="panel-heading clearfix">
-            <h1 class="panel pull-left" > Föstudagur, 30. September  2016</h1>
 
-        </div>
-    </div>
 
+<div ng-controller="datepickerCtrl">
+  <H1><em>{{dt | date:'fullDate' }}</em></H1>
+</div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
@@ -159,19 +157,19 @@
                         </tr>
                     </table>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div ng-controller="datepickerCtrl">
+
                     <div style="display:inline-block; min-height:290px; width: 100%;">
                         <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
                     </div>
-                    <!--
-                    <hr />
                     <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
                     <button type="button" class="btn btn-sm btn-default" ng-click="setDate(2009, 7, 24)">2009-08-24</button>
                     <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
                     <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button>
-                    -->
+
                 </div>
+            </div>
             <!-- datepicker end -->
              <!--   <h2> Biðlisti </h2>
                 <ul class="list-group">
@@ -196,11 +194,6 @@
                         <p class="list-group-item-text"> Kemst mill 13 og 15 </p>
                     </a>
                 </ul>-->
-            </div>
-            <div class="col-md-2 bidlisti-haldari"></div>
-                </div>
-                
-            </div>
-    
         </div>
     </div>
+</div>
