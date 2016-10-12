@@ -11,8 +11,13 @@
  */
 angular.module('segoApp')
   .controller('MainCtrl', ['$scope', '$compile', function ($scope, $compile) {
-    const state = {};
-    $scope.gluggiOpinn = false;
+    const state = {
+      'scope': 0,
+      'openView': 0,
+      'isOpen': false
+    };
+
+    $scope.gluggiOpinn = state.isOpen;
 
     $scope.waitingList = {};
 
@@ -39,45 +44,35 @@ angular.module('segoApp')
       state.scope.$destroy();
       $('.skilaboda-haldari').empty();
       document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
-      $scope.gluggiOpinn = false;
+      state.isOpen = false;
+      state.openView = 0;
     };
 
-    
-    $scope.btnVerdlisti = function() {
-      if (!$scope.gluggiOpinn) {
-        document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
-        state.scope = $scope.$new();
-        var compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
-        var directiveElement = compiledDirective(state.scope);
-        $('.skilaboda-haldari').append(directiveElement);
-        $scope.gluggiOpinn = true;
-      }
-    };
-
-    $scope.btnStillingar = function() {
-      if (!$scope.gluggiOpinn || verdlistiOpinn || btnVidskiptavinir) {
-        verdlistiOpinn = false;
-        btnVidskiptavinir = false;
-        state.scope = $scope.$new();
-        var compiledDirective = $compile('<stillingar class="skilabod"></stillingar>');
-        var directiveElement = compiledDirective(state.scope);
-        $('.skilaboda-haldari').append(directiveElement);
-        $scope.gluggiOpinn = true;
-        btnStillingar = true;
-      }
-    };
-
-    $scope.btnVidskiptavinir = function() {
-      if (!$scope.gluggiOpinn || btnStillingar || verdlistiOpinn) {
-        verdlistiOpinn = false;
-        btnStillingar = false;
-        state.scope = $scope.$new();
-        var compiledDirective = $compile('<vidskiptavinir class="skilabod"></vidskiptavinir>');
-        var directiveElement = compiledDirective(state.scope);
-        $('.skilaboda-haldari').append(directiveElement);
-        $scope.gluggiOpinn = true;
-        btnVidskiptavinir = true;
-      }
+    $scope.opnaGlugga = function(gluggi) {
+        if (!state.isOpen || state.openView !== gluggi) {
+          document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
+          state.scope = $scope.$new();
+          var compiledDirective;
+          switch (gluggi) {
+            case "verdlisti":
+              state.openView = gluggi;
+              compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
+              break;
+            case "stillingar":
+              state.openView = gluggi;
+              compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
+              break;
+            case "vidskiptavinir":
+              state.openView = gluggi;
+              compiledDirective = $compile('<vidskiptavinir class="skilabod" close="lokaGlugga()"></vidskiptavinir>');
+              break;
+          }
+          state.isOpen = true;
+          var directiveElement = compiledDirective(state.scope);
+          $('.skilaboda-haldari').append(directiveElement);
+        } else if (state.openView === gluggi){
+          $scope.lokaGlugga();
+        }
     };
   }]);
 })();

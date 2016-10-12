@@ -6,7 +6,7 @@
     .module('segoApp')
     .directive('stillingar', function() {
     	return {
-        	restrict: 'E',
+        restrict: 'E',
     		scope: {
     			lokaGlugga: '&close'
     		},
@@ -14,7 +14,7 @@
         	link: function(scope, element, attrs) {
         		scope.closeWindow = function() {
         			scope.lokaGlugga();
-        		}
+        		};
         	}
         };
     });
