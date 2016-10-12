@@ -17,7 +17,7 @@ node {
         	sh 'bower install'
         	sh 'grunt build'
                 sh 'mv dist html'
-        	sh 'mv html /opt/app'
+        	sh 'cp -RT html /opt/app'
 
         stage 'Cleanup'
 
