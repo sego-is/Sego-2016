@@ -14,7 +14,7 @@
         	link: function(scope, element, attrs) {
         		scope.closeWindow = function() {
         			scope.lokaGlugga();
-        		}
+        		};
         	}
         };
     });
