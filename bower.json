@@ -1,5 +1,5 @@
 {
-  "name": "segoapp",
+  "name": "segoApp",
   "version": "0.0.0",
   "dependencies": {
     "angular": "^1.4.0",
