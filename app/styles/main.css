@@ -141,3 +141,16 @@ dagatal tr {
 dagatal tfoot {
 
 }
+
+.verdskra {
+
+  text-align: center;
+}
+
+.tooltip > .tooltip-inner {
+  background-color: #efefef;
+  color: #000000;
+  border: 1px solid black;
+  padding: 3px;
+  font-size: 1em;
+}

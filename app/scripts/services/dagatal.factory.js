@@ -13,7 +13,7 @@
     	
     	var dagurinn = lastDayOfLastMonth.getDay();
     	console.log(lastDayOfLastMonth.getDate());
-    	console.log(lastDayOfLastMonth.getDay());
+    	console.log(dagurinn);
     	console.log(dayToday.getDate());
     	
 
@@ -47,19 +47,24 @@
 
 
         var dagatalid = [];
-
+        
         for (i = 0; i < WEEK_IN_MONTH; i++) {
             for (j = 0; j < DAYS_IN_WEEK; j++) {
             	if (i === 0) {
-            		 if (((j+1) === dagurinn)) {
-
+            		 if ((j+1) === dagurinn) {
+            		 	dagatalid.push(dagurinn);
+            		 	dagurinn = 1;
             		 }
-            		 else {
+            		 else if ((j+1) > dagurinn) {
+            		 	dagatalid.push(dagurinn);
+            		 	dagurinn += 1;
+            		 }else {
             		 	
             		 }
             	}
                 else {
-                	dagatalid.push(i+j);
+					dagatalid.push(dagurinn);
+            		dagurinn += 1;
                 }
         	} 	
     	};

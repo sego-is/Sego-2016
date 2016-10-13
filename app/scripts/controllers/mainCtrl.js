@@ -11,7 +11,7 @@
  */
 angular.module('segoApp')
   .controller('MainCtrl', ['$scope', '$compile', 'dagatalFactory', function ($scope, $compile, dagatalFactory) {
-    const state = {
+    var state = {
       'scope': 0,
       'openView': 0,
       'isOpen': false
@@ -25,6 +25,7 @@ angular.module('segoApp')
 
     $scope.waitingList = {};
 
+    $('[data-toggle="tooltip"]').tooltip();
     /*
       Would be better to include this in stillingar directive
     */
