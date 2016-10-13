@@ -5,7 +5,7 @@ node {
 	try {
 		stage 'Stage Checkout'
 
-	    	/*checkout scm*/
+	    	checkout scm
 
 		stage 'Build'
 
