@@ -10,7 +10,7 @@
  * Controller of the segoEnnOgAfturApp
  */
 angular.module('segoApp')
-  .controller('MainCtrl', ['$scope', '$compile', 'dagatalFactory', function ($scope, $compile, dagatalFactory) {
+  .controller('MainCtrl', ['$scope', '$compile',  function ($scope, $compile) {
     var state = {
       'scope': 0,
       'openView': 0,
@@ -18,7 +18,7 @@ angular.module('segoApp')
     };
 
     $scope.gluggiOpinn = state.isOpen;
-
+    
     $scope.valinnDagur = {
       'iDag': new Date()
     };

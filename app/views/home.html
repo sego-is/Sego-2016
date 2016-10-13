@@ -1,9 +1,10 @@
 
 
-<div ng-controller="datepickerCtrl">
-  <H1><em>{{dt | date:'fullDate' }}</em></H1>
-</div>
+
     <div class="container-fluid">
+        <div class="row">
+            <h1>{{ dagurinnIdag }}</h1>
+        </div>
         <div class="row">
             <div class="col-md-8">
                     <table class="table table-bordered">
@@ -159,18 +160,6 @@
             </div>
             <div class="col-md-4">
                 <dagatal i-dag="valinnDagur.iDag"></dagatal>
-                <!--
-                <div ng-controller="datepickerCtrl">
-
-                    <div style="display:inline-block; min-height:290px; width: 100%;">
-                        <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
-                    <button type="button" class="btn btn-sm btn-default" ng-click="setDate(2009, 7, 24)">2009-08-24</button>
-                    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
-                    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button>
-
-                </div>-->
             </div>
         </div>
     </div>
