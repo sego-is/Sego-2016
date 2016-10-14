@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('segoEnnOgAfturApp'));
+  beforeEach(module('segoApp'));
 
   var MainCtrl,
     scope;
@@ -17,7 +17,12 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainCtrl.awesomeThings.length).toBe(3);
+  it('should attach a boolean of if windowOpen to the scope, should be false', function () {
+    expect(scope.gluggiOpinn).toBe(false);
+  });
+  
+  it('should change boolean value of windowOpen to true', function () {
+      
+    expect(scope.gluggiOpinn).toBe(false);
   });
 });

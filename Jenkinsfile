@@ -17,7 +17,11 @@ node {
         	sh 'bower install'
         	sh 'grunt build'
         	sh 'cp -RT dist /opt/app/html'
-
+        
+        stage 'Test'
+        
+            sh 'grunt test'
+            
         stage 'Cleanup'
 
         	print "prune and cleanup"

@@ -37,8 +37,10 @@
                     'short': 'lau',
                     'full': 'laugardagur'
                 }];   
-        		scope.valinnDags = function(a) {
-        			scope.dagsetning = new Date(a.year, a.month, a.day);
+        		scope.btnVeljaDagsetningu = function(a) {
+                    console.log(a);
+                    dagatalFactory.breytaDagsetningu(a);
+        			//scope.dagsetning = new Date(a.year, a.month, a.day);
         		};
         	}
         };
