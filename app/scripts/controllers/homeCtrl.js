@@ -11,6 +11,10 @@
     angular.module('segoApp')
       .controller('HomeCtrl', ['$scope', function ($scope) {
 
+        $scope.open = function () {
+          console.log("opna glugga");
+        };
+
         $scope.names = [ {
         	'id':1,
         	'name':'Einar'
