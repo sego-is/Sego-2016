@@ -39,6 +39,7 @@
                 }];   
         		scope.btnVeljaDagsetningu = function(a) {
                     console.log(a);
+                    dagatalFactory.breytaDagsetningu(a);
         			//scope.dagsetning = new Date(a.year, a.month, a.day);
         		};
         	}

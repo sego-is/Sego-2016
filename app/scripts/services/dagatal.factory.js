@@ -7,8 +7,25 @@
         
         var i, j, WEEK_IN_MONTH = 6, DAYS_IN_WEEK = 7;
         var dagatalid = [];
+        var dayToday = new Date();
         
-    	var dayToday = new Date();
+        var options = {
+            today: new Date(),
+            selectedYear: 0,
+            selectedMonth: 0,
+            selectedDate: 0,
+            selectedDay: 0
+        }
+        
+        function refreshOptions() {
+            options.selectedMonth = dayToday.getMonth();
+    	   options.selectedDate = dayToday.getDate();
+            options.selectedYear = dayToday.getFullYear();
+            options.selectedDay = dayToday.getDay();
+        }
+        refreshOptions();
+       
+    	console.log(options);
     	
         var lastDayOfLastMonth = new Date();
     	lastDayOfLastMonth.setDate(lastDayOfLastMonth.getDate() - dayToday.getDate());
@@ -16,10 +33,7 @@
     	var dayNumberOfWeek = lastDayOfLastMonth.getDay();
         var lastDateOfLastMonthANDtmp = lastDayOfLastMonth.getDate();
         
-        var selectedMonth = dayToday.getMonth();
-    	var selectedDate = dayToday.getDate();
-        var selectedYear = dayToday.getFullYear();
-        var selectedDay = dayToday.getDay();
+
         
  		var months = [
              {'full': 'janúar','dagar':31},{'full': 'febrúar','dagar':28},{'full': 'mars','dagar':31},{'full': 'apríl','dagar':30},
@@ -52,7 +66,7 @@
             		 }
             	}
                 else {
-                    if (lastDateOfLastMonthANDtmp > months[selectedMonth].dagar) {
+                    if (lastDateOfLastMonthANDtmp > months[options.selectedMonth].dagar) {
                         lastDateOfLastMonthANDtmp = 1;
                     }
                     dagatalid.push(lastDateOfLastMonthANDtmp);
@@ -63,9 +77,14 @@
 
     	return {
     		dagatal: function() {
+                
     			return dagatalid;
     		},
-            dagsetning: " " + dagar[selectedDay-1].full +  " " + selectedDate + ". " + months[selectedMonth].full + ""
+            dagsetning: " " + dagar[options.selectedDay-1].full +  " " + options.selectedDate + ". " + months[options.selectedMonth].full + "",
+            breytaDagsetningu: function(a) {
+                dayToday.setDate(a);
+                refreshOptions();
+            }
     	}
 
     }]);
