@@ -9,12 +9,8 @@
      * Controller of the segoEnnOgAfturApp
      */
     angular.module('segoApp')
-      .controller('HomeCtrl', ['$scope', function ($scope) {
-
-        $scope.open = function () {
-          console.log("opna glugga");
-        };
-
+      .controller('HomeCtrl', ['$scope', 'dagatalFactory', function ($scope, dagatalFactory) {
+        $scope.dagurinnIdag = dagatalFactory.dagsetning;
         $scope.names = [ {
         	'id':1,
         	'name':'Einar'

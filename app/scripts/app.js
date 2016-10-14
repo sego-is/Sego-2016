@@ -51,7 +51,7 @@ angular
         templateUrl: '../views/home.html',
         controller: 'HomeCtrl',
         controllerAs: 'home',
-        authorize: true /* TRUE */
+        authorize: false /* TRUE */
       })
       .otherwise({
         redirectTo: '/'

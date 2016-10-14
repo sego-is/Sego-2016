@@ -10,14 +10,18 @@
  * Controller of the segoEnnOgAfturApp
  */
 angular.module('segoApp')
-  .controller('MainCtrl', ['$scope', '$compile', function ($scope, $compile) {
-    const state = {
+  .controller('MainCtrl', ['$scope', '$compile',  function ($scope, $compile) {
+    var state = {
       'scope': 0,
       'openView': 0,
       'isOpen': false
     };
 
     $scope.gluggiOpinn = state.isOpen;
+    
+    $scope.valinnDagur = {
+      'iDag': new Date()
+    };
 
     $scope.waitingList = {};
 
@@ -75,5 +79,6 @@ angular.module('segoApp')
           $scope.lokaGlugga();
         }
     };
+
   }]);
 })();
