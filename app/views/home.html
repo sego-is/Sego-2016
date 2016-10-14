@@ -11,14 +11,9 @@
                             <td class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
                             <td ng-repeat="x in names" >{{ x.name }}</td>
                         </tr>
-                        <tr ng-repeat="b in bookings">
+                        <tr>
                             <td>8:00</td>
-                            <td id="simon"></td>
-                            <td id="johanna"></td>
-                            <td id="frikka" ng-click="open()">frikka</td>
-                            <td id="simon"></td>
-                            <td id="gurry"></td>
-                            <td id="hanna"></td>
+                            <td ng-repeat="b in bookings" ng-click="open()">{{b.name}}</td>
                         </tr>
                         <tr>
                             <td>9:00</td>

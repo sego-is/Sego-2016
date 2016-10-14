@@ -1,125 +1,169 @@
 <table class="table table-striped">
   <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
-    <thead>
-        <tr>
-            <th>
-                <div class="pull-left">Viðskiptavinir</div>
-            </th>
-            <th>Símanúmer</th>
-            <th>
-                <div class="pull-right">
-                    <button href="" class="eigandi-editPriceList"><i class="glyphicon glyphicon-usd"></i></button>
-                    <button class="eigandi-addHairdresser" ng-click="!stillingar.addKlippara"><i class="glyphicon glyphicon-plus"></i></button>
-                </div></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-if="vidskiptavinir.addCustomer">
-            <td colspan="3">
-                <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="sr-only" for="inputKlippari">Nafn</label>
-                    <input type="name" class="form-control" id="inputKlippari" placeholder="Nafn">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="inputSimanumer">Símanúmer</label>
-                    <input type="tel" class="form-control" id="inputSimanumer" placeholder="Símanúmer">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="inputNetpostur">Netpóstur</label>
-                    <input type="email" class="form-control" id="inputNetpostur" placeholder="Netpóstur">
-                </div>
-                <div class="pull-right"><button type="submit" class="btn btn-default">Bæta við</button></div>
-            </form>
-            </td>
-        </tr>
-        <tr>
-            <td class="theFirst col-xs-4">Einar Ormslev</td>
-            <td>5692250</td>
-            <td>
-                <div class="pull-right">
-                    <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-                    <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-                </div>
-            </td>
-        </tr>
-        <tr>
+  <thead>
+  <tr>
+    <th>
+      <div class="pull-left">Viðskiptavinir</div>
+    </th>
+    <th>Símanúmer</th>
+    <th>
+      <div class="pull-right">
+        <button href="" class="eigandi-editPriceList"><i class="glyphicon glyphicon-usd"></i></button>
+        <button class="eigandi-addHairdresser" ng-click="!stillingar.addKlippara"><i
+          class="glyphicon glyphicon-plus"></i></button>
+      </div>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <div>
+  <tr ng-if="vidskiptavinir.addCustomer">
+    <td colspan="3">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="sr-only" for="inputKlippari">Nafn</label>
+          <input type="name" class="form-control" id="inputKlippari" placeholder="Nafn">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="inputSimanumer">Símanúmer</label>
+          <input type="tel" class="form-control" id="inputSimanumer" placeholder="Símanúmer">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="inputNetpostur">Netpóstur</label>
+          <input type="email" class="form-control" id="inputNetpostur" placeholder="Netpóstur">
+        </div>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-default">Bæta við</button>
+        </div>
+      </form>
+    </td>
+  </tr>
+    <!------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------->
+    <tr data-toggle="collapse" data-target=".demo1">
+      <td>Hillary Clinton</td>
+      <td>9112</td>
+      <td>
+        <div class="pull-right">
+          <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+          <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="hiddenRow">
+        <div class="collapse demo1">Bandaríkin 14</div>
+      </td>
+      <td class="hiddenRow">
+        <div class="collapse demo1">hillary@lewinsky.com</div>
+      </td>
+      <td class="hiddenRow">
+        <div class="collapse demo1">eitthvað</div>
+      </td>
+      <td class="hiddenRow">
+        <div class="collapse demo1">kannski</div>
+      </td>
+    </tr>
 
-                <td>Sigurður Þór Árnason</td>
-                <td>6650204</td>
-                <td>
-                    <div class="pull-right">
-                    <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-                    <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-                    </div>
-                </td>
-        </tr>
-        <tr>
+    <tr data-toggle="collapse" data-target=".demo2">
+      <td>Donald trump</td>
+      <td>911</td>
+      <td>
+        <div class="pull-right">
+          <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+          <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="hiddenRow">
+        <div class="collapse demo2">Bandaríkin 7</div>
+      </td>
+      <td class="hiddenRow">
+        <div class="collapse demo2">trump@drumpf.com</div>
+      </td>
+    </tr>
+    <!------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------->
+  <tr>
+    <td>Sigurður Þór Árnason</td>
+    <td>6650204</td>
+    <td>
+      <div class="pull-right">
+        <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+        <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+      </div>
+    </td>
+  </tr>
+  <tr>
 
-                <td>Guðríður Stefánsdóttir</td>
-                <td>6985455</td>
-                <td>
-                    <div class="pull-right">
-                        <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-                        <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-                    </div>
-                </td>
-        </tr>
-        <tr>
-            <div class="pull-right">
-            <td>Kaplo</td>
-            <td>7726254</td>
-            <td>
-                <div class="pull-right">
-                    <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-                    <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="theFirst col-xs-4">Einar Ormslev</td>
-            <td>8450512</td>
-            <td>
-                <div class="pull-right">
-                    <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-                    <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-                </div>
-            </td>
-        </tr>
-        <tr>
+    <td>Guðríður Stefánsdóttir</td>
+    <td>6985455</td>
+    <td>
+      <div class="pull-right">
+        <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+        <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <div class="pull-right">
+      <td>Kaplo</td>
+      <td>7726254</td>
+      <td>
+        <div class="pull-right">
+          <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+          <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+        </div>
+      </td>
+      </div>
+  </tr>
+  <tr>
+    <td class="theFirst col-xs-4">Einar Ormslev</td>
+    <td>8450512</td>
+    <td>
+      <div class="pull-right">
+        <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+        <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+      </div>
+    </td>
+  </tr>
+  <tr>
 
-            <td>Sigurður Þór Árnason</td>
-            <td>8421205</td>
-            <td>
-                <div class="pull-right">
-                    <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-                    <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-                </div>
-            </td>
-        </tr>
-        <tr>
+    <td>Sigurður Þór Árnason</td>
+    <td>8421205</td>
+    <td>
+      <div class="pull-right">
+        <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+        <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+      </div>
+    </td>
+  </tr>
+  <tr>
 
-            <td>Guðríður Stefánsdóttir</td>
-            <td>6608757</td>
-            <td>
-                <div class="pull-right">
-                    <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-                    <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <div class="pull-right">
-                <td>Kaplo</td>
-                <td>6654521</td>
-                <td>
-                    <div class="pull-right">
-                        <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-                        <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-                    </div>
-                </td>
-        </tr>
-
-
-        </tbody>
-    </table>
+    <td>Guðríður Stefánsdóttir</td>
+    <td>6608757</td>
+    <td>
+      <div class="pull-right">
+        <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+        <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <div class="pull-right">
+      <td>Kaplo</td>
+      <td>6654521</td>
+      <td>
+        <div class="pull-right">
+          <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+          <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+        </div>
+      </td>
+    </div>
+  </tr>
+  </div>
+  </tbody>
+</table>

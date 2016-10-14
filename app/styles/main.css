@@ -54,7 +54,7 @@ body {
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
+  margin-left: 25%;
 }
 .marketing p + h4 {
   margin-top: 28px;
@@ -143,14 +143,9 @@ dagatal tfoot {
 }
 
 .verdskra {
-
   text-align: center;
 }
 
-.tooltip > .tooltip-inner {
-  background-color: #efefef;
-  color: #000000;
-  border: 1px solid black;
-  padding: 3px;
-  font-size: 1em;
+.hiddenRow {
+  padding: 0 !important;
 }

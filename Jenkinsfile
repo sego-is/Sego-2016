@@ -23,7 +23,7 @@ node {
         	print "prune and cleanup"
         	sh 'npm prune'
         	sh 'rm -rf node_modules'
-        	sh 'grunt clean'
+        	/*sh 'grunt clean'*/
 
         	/*
         	mail body: 'Project Build Successful',
