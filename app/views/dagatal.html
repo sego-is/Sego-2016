@@ -9,7 +9,7 @@
 	<tr ng-repeat="i in [0, 1, 2, 3, 4, 5]"> <!-- X 6 -->
 		<td><!-- # of week--></td>
 		<td ng-repeat="j in [0, 1, 2, 3, 4, 5, 6]">
-			<button ng-click="btnVeljaDagsetningu(dags[j+(i*7)])" class="btn btn-link">{{ dags[j+(i*7)] }}</button>
+			<button ng-click="btnVeljaDagsetningu(dags[j+(i*7)], i)" class="btn btn-link">{{ dags[j+(i*7)] }}</button>
 		</td>
 	</tr>
 </tbody>

@@ -16,9 +16,6 @@
                 scope.dags = dagatalFactory.dagatal;
 
                 scope.dagar = [{
-                    'short': 'sun',
-                    'full': 'sunnudagur'
-                },{
                     'short': 'mán',
                     'full': 'mánudagur'
                 },{
@@ -36,11 +33,28 @@
                 },{
                     'short': 'lau',
                     'full': 'laugardagur'
-                }];   
-        		scope.btnVeljaDagsetningu = function(a) {
-                    console.log(a);
+                },{
+                    'short': 'sun',
+                    'full': 'sunnudagur'
+                }];
+
+                scope.$on('dagatal-breytast', function(e, a) {
+                    scope.dags = dagatalFactory.dagatal;
+                    console.log('hmm breytast..');
+                });
+
+        		scope.btnVeljaDagsetningu = function(a, b) {
+                    if (b === 0) {
+                        if (a > 7) {
+                            dagatalFactory.breytaMan(-1);
+                        }
+                    }
+                    if (b === 5) {
+                        if (a < 8) {
+                            dagatalFactory.breytaMan(1);
+                        }
+                    }
                     dagatalFactory.breytaDagsetningu(a);
-        			//scope.dagsetning = new Date(a.year, a.month, a.day);
         		};
         	}
         };

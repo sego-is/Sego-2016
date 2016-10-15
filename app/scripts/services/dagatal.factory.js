@@ -22,11 +22,10 @@
             options.selectedDate = dayToday.getDate();
             options.selectedYear = dayToday.getFullYear();
             options.selectedDay = dayToday.getDay();
-            console.log(options);
+            $rootScope.$broadcast('breyta-dagsetningu');
         }
         refreshOptions();
        
-    	console.log(options);
     	
         var lastDayOfLastMonth = new Date();
     	lastDayOfLastMonth.setDate(lastDayOfLastMonth.getDate() - dayToday.getDate());
@@ -42,7 +41,6 @@
              {'full': 'september','dagar':30},{'full': 'október','dagar':31},{'full': 'nóvember','dagar':30},{'full': 'desember','dagar':31}];
         
         var dagar = [
-
             {'short': 'mán','full': 'mánudagur'},
             {'short': 'þri','full': 'þriðjudagur'},
             {'short': 'mið','full': 'miðvikudagur'},
@@ -51,40 +49,48 @@
             {'short': 'lau','full': 'laugardagur'},
             {'short': 'sun','full': 'sunnudagur'}];                   
         
-        
-        for (i = 0; i < WEEK_IN_MONTH; i++) {
-            for (j = 0; j < DAYS_IN_WEEK; j++) {
-            	if (i === 0) {
-            		 if ((j+1) === dayNumberOfWeek) {
-            		 	dagatalid.push(lastDateOfLastMonthANDtmp);
-            		 	lastDateOfLastMonthANDtmp = 1;
-            		 }
-            		 else if ((j+1) > dayNumberOfWeek) {
-            		 	dagatalid.push(lastDateOfLastMonthANDtmp);
-            		 	lastDateOfLastMonthANDtmp += 1;
-            		 }else {
-                        dagatalid.push(lastDateOfLastMonthANDtmp-dayNumberOfWeek+j+1);
-            		 }
-            	}
-                else {
-                    if (lastDateOfLastMonthANDtmp > months[options.selectedMonth].dagar) {
-                        lastDateOfLastMonthANDtmp = 1;
+        function createMonth() {
+            for (i = 0; i < WEEK_IN_MONTH; i++) {
+                for (j = 0; j < DAYS_IN_WEEK; j++) {
+                	if (i === 0) {
+                		 if ((j+1) === dayNumberOfWeek) {
+                		 	dagatalid.push(lastDateOfLastMonthANDtmp);
+                		 	lastDateOfLastMonthANDtmp = 1;
+                		 }
+                		 else if ((j+1) > dayNumberOfWeek) {
+                		 	dagatalid.push(lastDateOfLastMonthANDtmp);
+                		 	lastDateOfLastMonthANDtmp += 1;
+                		 }else {
+                            dagatalid.push(lastDateOfLastMonthANDtmp-dayNumberOfWeek+j+1);
+                		 }
+                	}
+                    else {
+                        if (lastDateOfLastMonthANDtmp > months[options.selectedMonth].dagar) {
+                            lastDateOfLastMonthANDtmp = 1;
+                        }
+                        dagatalid.push(lastDateOfLastMonthANDtmp);
+                        lastDateOfLastMonthANDtmp += 1;
                     }
-                    dagatalid.push(lastDateOfLastMonthANDtmp);
-                    lastDateOfLastMonthANDtmp += 1;
-                }
-        	} 	
-    	};
-
+            	} 	
+        	};
+            $rootScope.$broadcast('breyta-dagatal');
+        }
+        createMonth();
     	return {
     		dagatal: dagatalid,
             dagsetning: function() {
-                return " " + dagar[options.selectedDay-1].full +  " " + options.selectedDate + ". " + months[options.selectedMonth].full + "";
+                return " " + dagar[options.selectedDay].full +  " " + options.selectedDate + ". " + months[options.selectedMonth].full + "";
             },
             breytaDagsetningu: function(a) {
                 dayToday.setDate(a);
                 refreshOptions();
-                $rootScope.$broadcast('breyta-dagsetningu');
+                
+            },
+            breytaMan: function(a) {
+                dayToday.setMonth(options.selectedMonth+a);
+                refreshOptions();
+                createMonth();
+                
             }
     	}
 
