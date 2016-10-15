@@ -11,6 +11,11 @@
     angular.module('segoApp')
       .controller('HomeCtrl', ['$scope', 'dagatalFactory', function ($scope, dagatalFactory) {
         $scope.dagurinnIdag = dagatalFactory.dagsetning;
+
+        $scope.openBooking = function () {
+          console.log("bóka");
+        };
+
         $scope.names = [ {
         	'id':1,
         	'name':'Einar'

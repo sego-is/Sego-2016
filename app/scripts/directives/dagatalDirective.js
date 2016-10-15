@@ -17,26 +17,26 @@
 
                 scope.dagar = [{
                     'short': 'sun',
-                    'full': 'sunnudagur'
+                    'full': 'Sunnudagur'
                 },{
                     'short': 'mán',
-                    'full': 'mánudagur'
+                    'full': 'Mánudagur'
                 },{
                     'short': 'þri',
-                    'full': 'þriðjudagur'
+                    'full': 'Þriðjudagur'
                 },{
                     'short': 'mið',
-                    'full': 'miðvikudagur'
+                    'full': 'Miðvikudagur'
                 },{
                     'short': 'fim',
-                    'full': 'fimmtudagur'
+                    'full': 'Fimmtudagur'
                 },{
                     'short': 'fös',
-                    'full': 'föstudagur'
+                    'full': 'Föstudagur'
                 },{
                     'short': 'lau',
-                    'full': 'laugardagur'
-                }];   
+                    'full': 'Laugardagur'
+                }];
         		scope.btnVeljaDagsetningu = function(a) {
                     console.log(a);
                     dagatalFactory.breytaDagsetningu(a);
