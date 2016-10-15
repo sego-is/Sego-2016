@@ -10,9 +10,13 @@
      */
     angular.module('segoApp')
       .controller('HomeCtrl', ['$scope', 'dagatalFactory', function ($scope, dagatalFactory) {
-        
+
+        $scope.openBooking = function () {
+          console.log("bóka");
+        };
+
         $scope.dagurinnIdag = dagatalFactory.dagsetning();
-        $scope.names = [ { 
+        $scope.names = [ {
         	'id':1,
         	'name':'Einar'
         }, {
@@ -50,8 +54,15 @@
           'time': '13:00',
           'name': 'Mandalana'
         }];
+        
         $scope.$on('breyta-dagsetningu', function(e, a) {
           $scope.dagurinnIdag = dagatalFactory.dagsetning();
         });
+        /*
+        $scope.$on('dagatal-breytast', function(e, a) {
+          $scope.dags = dagatalFactory.dagatal;
+          console.log('hmm breytast..');
+        });
+*/
       }]);
 })();

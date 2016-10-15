@@ -4,7 +4,7 @@
 
   angular
     .module('segoApp')
-    .directive('dagatal',['dagatalFactory', function(dagatalFactory) {
+    .directive('dagatal',['dagatalFactory', '$rootScope', function(dagatalFactory, $rootScope) {
     	return {
         	restrict: 'E',
     		scope: {
@@ -15,21 +15,28 @@
 
                 scope.dags = dagatalFactory.dagatal;
 
+                scope.stillingar = {
+                    'ar': dagatalFactory.getAr(),
+                    'man': dagatalFactory.getMan(),
+                    'dags': dagatalFactory.getDags()
+
+                };
+
                 scope.dagar = [{
                     'short': 'mán',
-                    'full': 'mánudagur'
+                    'full': 'Mánudagur'
                 },{
                     'short': 'þri',
-                    'full': 'þriðjudagur'
+                    'full': 'Þriðjudagur'
                 },{
                     'short': 'mið',
-                    'full': 'miðvikudagur'
+                    'full': 'Miðvikudagur'
                 },{
                     'short': 'fim',
-                    'full': 'fimmtudagur'
+                    'full': 'Fimmtudagur'
                 },{
                     'short': 'fös',
-                    'full': 'föstudagur'
+                    'full': 'Föstudagur'
                 },{
                     'short': 'lau',
                     'full': 'laugardagur'
@@ -38,24 +45,26 @@
                     'full': 'sunnudagur'
                 }];
 
-                scope.$on('dagatal-breytast', function(e, a) {
+                function changeMonth(a) {
+                    dagatalFactory.breytaMan(a);
+                    dagatalFactory.uppfaera();
                     scope.dags = dagatalFactory.dagatal;
-                    console.log('hmm breytast..');
-                });
+                };
 
         		scope.btnVeljaDagsetningu = function(a, b) {
                     if (b === 0) {
                         if (a > 7) {
-                            dagatalFactory.breytaMan(-1);
+                            changeMonth(-1);
                         }
                     }
                     if (b === 5) {
                         if (a < 8) {
-                            dagatalFactory.breytaMan(1);
+                            changeMonth(1);
                         }
                     }
                     dagatalFactory.breytaDagsetningu(a);
-        		};
+                    $rootScope.$broadcast('breyta-dagsetningu');
+                };
         	}
         };
     }]);
