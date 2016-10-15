@@ -13,7 +13,7 @@
         	templateUrl: '../../views/dagatal.html',
         	link: function(scope, element, attrs) {
 
-                scope.dags = dagatalFactory.dagatal();
+                scope.dags = dagatalFactory.dagatal;
 
                 scope.dagar = [{
                     'short': 'sun',

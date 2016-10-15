@@ -19,9 +19,10 @@
         
         function refreshOptions() {
             options.selectedMonth = dayToday.getMonth();
-    	   options.selectedDate = dayToday.getDate();
+            options.selectedDate = dayToday.getDate();
             options.selectedYear = dayToday.getFullYear();
             options.selectedDay = dayToday.getDay();
+            console.log(options);
         }
         refreshOptions();
        
@@ -76,14 +77,14 @@
     	};
 
     	return {
-    		dagatal: function() {
-                
-    			return dagatalid;
-    		},
-            dagsetning: " " + dagar[options.selectedDay-1].full +  " " + options.selectedDate + ". " + months[options.selectedMonth].full + "",
+    		dagatal: dagatalid,
+            dagsetning: function() {
+                return " " + dagar[options.selectedDay-1].full +  " " + options.selectedDate + ". " + months[options.selectedMonth].full + "";
+            },
             breytaDagsetningu: function(a) {
                 dayToday.setDate(a);
                 refreshOptions();
+                $rootScope.$broadcast('breyta-dagsetningu');
             }
     	}
 

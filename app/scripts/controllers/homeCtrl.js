@@ -10,7 +10,8 @@
      */
     angular.module('segoApp')
       .controller('HomeCtrl', ['$scope', 'dagatalFactory', function ($scope, dagatalFactory) {
-        $scope.dagurinnIdag = dagatalFactory.dagsetning;
+        
+        $scope.dagurinnIdag = dagatalFactory.dagsetning();
         $scope.names = [ { 
         	'id':1,
         	'name':'Einar'
@@ -49,5 +50,8 @@
           'time': '13:00',
           'name': 'Mandalana'
         }];
+        $scope.$on('breyta-dagsetningu', function(e, a) {
+          $scope.dagurinnIdag = dagatalFactory.dagsetning();
+        });
       }]);
 })();
