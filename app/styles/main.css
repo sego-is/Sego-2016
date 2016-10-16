@@ -150,3 +150,25 @@ dagatal tfoot {
   padding: 0 !important;
 }
 
+.inputField {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.stadfestaTakki {
+  color: green;
+}
+
+.stadfestaTakki:hover {
+  cursor: pointer;
+  text-shadow: 0 0 10px green;
+}
+
+.haettaVidTakki {
+  color: red;
+}
+
+.haettaVidTakki:hover {
+  cursor: pointer;
+  text-shadow: 0 0 10px red;
+}

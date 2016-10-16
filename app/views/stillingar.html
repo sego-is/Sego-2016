@@ -1,56 +1,7 @@
 <!-- EIGANDA(VIEW) -->
 
-
-
-<style>
-	body {
-		font-size: 12px;
-	}
-	.eigandi {
-	position: relative;
-	background-color: rgba(254,1,1,0);
-	z-index: 10;
-	}
-	.eigandi table, th , td  {
-	border-collapse: collapse;
-	padding: 5px;
-	}
-	.eigandi-form-nyrklippari {
-		padding: 3em;
-	}
-	a {
-		color: black;
-	}
-	thead {
-
-		font-size: 0.8em;
-	}
-	.eigandi-listiafklippurum {
-
-	}
-
-
-</style>
-
 <div class="container-fluid eigandi">
   <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
-	<div class="row" ng-if="">
-		<table class="table table-striped">
-			<thead>
-			<tr>
-				<td>Þjónusta</td>
-				<td>verð</td>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td>klipping</td>
-				<td>3.500 kr <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a></td>
-
-			</tr>
-			</tbody>
-		</table>
-	</div>
 	<div class="row">
 	<div class="col-xs-12 eigandi-listaafklippurum">
 	<table class="table table-striped">
@@ -70,19 +21,24 @@
 		<tr ng-if="stillingar.addKlippara">
 			<td colspan="3">
 				<form class="form-horizontal">
-				<div class="form-group">
-					<label class="sr-only" for="inputKlippari">Nafn</label>
-					<input type="name" class="form-control" id="inputKlippari" placeholder="Nafn">
+				<div class="form-group col-xs-11">
+					<label class="sr-only" for="inputKlippari"></label>
+					<input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn">
 				</div>
-				<div class="form-group">
-					<label class="sr-only" for="inputSimanumer">Netpóstur</label>
-					<input type="tel" class="form-control" id="inputSimanumer" placeholder="Símanúmer">
+				<div class="form-group col-xs-11">
+					<label class="sr-only" for="inputSimanumer"></label>
+					<input type="tel" class="form-control inputField" id="inputSimanumer" placeholder="Símanúmer">
 				</div>
-				<div class="form-group">
-					<label class="sr-only" for="inputNetpostur">Netpóstur</label>
-					<input type="email" class="form-control" id="inputNetpostur" placeholder="Netpóstur">
+          <div class="pull-right col-xs-1">
+            <i class="fa fa-times fa-2x haettaVidTakki" aria-hidden="true"></i>
+          </div>
+				<div class="form-group col-xs-11">
+					<label class="sr-only" for="inputNetpostur"></label>
+					<input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur">
 				</div>
-				<div class="pull-right"><button type="submit" class="btn btn-default">Bæta við</button></div>
+        <div class="pull-right col-xs-1">
+          <i class="fa fa-plus fa-2x stadfestaTakki" aria-hidden="true"></i>
+        </div>
 			</form>
 			</td>
 		</tr>
