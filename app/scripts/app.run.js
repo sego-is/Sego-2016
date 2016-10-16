@@ -41,25 +41,19 @@
       $rootScope.$on("$routeChangeStart", function(evt, to, from){
         console.log("Route change start from", getPath(from), "to", getPath(to));
         if (to.authorize === true) {
-
-          to.resolve = to.resolve || {};
-          if (!to.resolve.authorizationResolver) {
-            to.resolve.authorizationResolver = function(authService) {
-              if (authService.auth()) {
+            if (authService.auth()) {
                 $location.path('/home');
-              }
-              else {
+            }
+            else {
                 $location.path('/');
-              }
+            }
 /*
               console.log("Resolving authorization.");
               console.log("authService.userProfile:", authService.userProfile);
               return authService.login();
 */
-            };
           }
           
-        }
       });
             
       $rootScope.$on("$routeChangeError", function(evt, to, from, error){
