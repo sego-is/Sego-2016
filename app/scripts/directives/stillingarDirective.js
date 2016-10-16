@@ -15,6 +15,14 @@
         		scope.closeWindow = function() {
         			scope.lokaGlugga();
         		};
+                
+                scope.stillingar = {
+                    addKlippara: false
+                };
+                
+                scope.toggleKlippara = function() {
+                    scope.stillingar.addKlippara = !scope.stillingar.addKlippara;
+                }
         	}
         };
     });

@@ -9,8 +9,8 @@
           <td class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></td>
           <td ng-repeat="x in names">{{ x.name }}</td>
         </tr>
-        <tr>
-          <td>8:00</td>
+        <tr ng-repeat="t in times">
+          <td>{{ t }}</td>
           <td ng-repeat="b in bookings" ng-click="openBooking()">{{b.name}}</td>
         </tr>
         <tr>
@@ -150,8 +150,15 @@
         </tr>
       </table>
     </div>
+    <!--
     <div class="col-md-4">
       <dagatal i-dag="valinnDagur.iDag"></dagatal>
+    </div>
+    -->
+    <div class="col-md-4" ng-controller="DatepickerCtrl">
+        <div style="display:inline-block; min-height:290px;">
+        <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+        </div>
     </div>
   </div>
 </div>

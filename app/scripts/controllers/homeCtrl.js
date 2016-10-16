@@ -14,8 +14,15 @@
         $scope.openBooking = function () {
           console.log("bóka");
         };
-
-        $scope.dagurinnIdag = dagatalFactory.dagsetning();
+        
+        $scope.stillingar = {
+            'upphafsTimi': '07:00',
+            'endaTima': '01:00',
+            'lotan': '00:15'
+        };
+        
+        $scope.times = ['07:00', '07:15', '07:30'];
+        
         $scope.names = [ {
         	'id':1,
         	'name':'Einar'
@@ -35,6 +42,7 @@
         	'id':6,
         	'name': 'Mandalana'
         }];
+        
         $scope.bookings = [ {
           'time': '8:00',
           'name':'Einar'
@@ -55,14 +63,9 @@
           'name': 'Mandalana'
         }];
         
-        $scope.$on('breyta-dagsetningu', function(e, a) {
-          $scope.dagurinnIdag = dagatalFactory.dagsetning();
+        $scope.$on('dagsetning', function(e, a) {
+          console.log(a);
+          $scope.dagurinnIdag = dagatalFactory.dagsetning(a.getDay(), a.getDate(), a.getMonth());
         });
-        /*
-        $scope.$on('dagatal-breytast', function(e, a) {
-          $scope.dags = dagatalFactory.dagatal;
-          console.log('hmm breytast..');
-        });
-*/
       }]);
 })();
