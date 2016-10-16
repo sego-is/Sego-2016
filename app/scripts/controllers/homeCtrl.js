@@ -22,6 +22,9 @@
         };
         
         $scope.times = ['07:00', '07:15', '07:30'];
+        function initTimes() {
+            
+        };
         
         $scope.names = [ {
         	'id':1,

@@ -22,7 +22,6 @@ describe('Controller: MainCtrl', function () {
   });
   
   it('should change boolean value of windowOpen to true', function () {
-      
     expect(scope.gluggiOpinn).toBe(false);
   });
 });
