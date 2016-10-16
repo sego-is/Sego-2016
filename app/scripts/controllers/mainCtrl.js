@@ -1,59 +1,59 @@
-(function() {
+(function () {
 
-'use strict';
+  'use strict';
 
-/**
- * @ngdoc function
- * @name segoEnnOgAfturApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the segoEnnOgAfturApp
- */
-angular.module('segoApp')
-  .controller('MainCtrl', ['$scope', '$compile',  function ($scope, $compile) {
-    var state = {
-      'scope': 0,
-      'openView': 0,
-      'isOpen': false
-    };
+  /**
+   * @ngdoc function
+   * @name segoEnnOgAfturApp.controller:MainCtrl
+   * @description
+   * # MainCtrl
+   * Controller of the segoEnnOgAfturApp
+   */
+  angular.module('segoApp')
+    .controller('MainCtrl', ['$scope', '$compile', function ($scope, $compile) {
+      var state = {
+        'scope': 0,
+        'openView': 0,
+        'isOpen': false
+      };
 
-    $scope.gluggiOpinn = state.isOpen;
-    
-    $scope.valinnDagur = {
-      'iDag': new Date()
-    };
+      $scope.gluggiOpinn = state.isOpen;
 
-    $scope.waitingList = {};
+      $scope.valinnDagur = {
+        'iDag': new Date()
+      };
 
-    $('[data-toggle="tooltip"]').tooltip();
-    /*
-      Would be better to include this in stillingar directive
-    */
-    $scope.stillingar = {
-      'addKlippara': false,
-    	'admin': false
-    };
-    $scope.toggleKlippara = function() {
-      $scope.stillingar.addKlippara = !$scope.stillingar.addKlippara;
-    };
-    /* END  ST*/
-    $scope.vidskiptavinir = {
-      'addCustomer': false
-    };
+      $scope.waitingList = {};
 
-    $scope.ownerView = {
-    	'pass': 'rasstippibrjosthommi'
-    };
+      $('[data-toggle="tooltip"]').tooltip();
+      /*
+       Would be better to include this in stillingar directive
+       */
+      $scope.stillingar = {
+        'addKlippara': false,
+        'admin': false
+      };
+      $scope.toggleKlippara = function () {
+        $scope.stillingar.addKlippara = !$scope.stillingar.addKlippara;
+      };
+      /* END  ST*/
+      $scope.vidskiptavinir = {
+        'addCustomer': false
+      };
 
-    $scope.lokaGlugga = function() {
-      state.scope.$destroy();
-      $('.skilaboda-haldari').empty();
-      document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
-      state.isOpen = false;
-      state.openView = 0;
-    };
+      $scope.ownerView = {
+        'pass': 'rasstippibrjosthommi'
+      };
 
-    $scope.opnaGlugga = function(gluggi) {
+      $scope.lokaGlugga = function () {
+        state.scope.$destroy();
+        $('.skilaboda-haldari').empty();
+        document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
+        state.isOpen = false;
+        state.openView = 0;
+      };
+
+      $scope.opnaGlugga = function (gluggi) {
         if (!state.isOpen || state.openView !== gluggi) {
           document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
           state.scope = $scope.$new();
@@ -75,10 +75,10 @@ angular.module('segoApp')
           state.isOpen = true;
           var directiveElement = compiledDirective(state.scope);
           $('.skilaboda-haldari').append(directiveElement);
-        } else if (state.openView === gluggi){
+        } else if (state.openView === gluggi) {
           $scope.lokaGlugga();
         }
-    };
+      };
 
-  }]);
+    }]);
 })();
