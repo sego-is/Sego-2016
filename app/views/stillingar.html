@@ -1,139 +1,167 @@
 <!-- EIGANDA(VIEW) -->
 
 <div class="container-fluid eigandi">
-  <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
-	<div class="row">
-	<div class="col-xs-12 eigandi-listaafklippurum">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>
-					<div class="pull-left">Klipparar</div>
-				</th>
-				<th>Símanúmer</th>
-				<th><div class="pull-right">
-					<button href="" class="eigandi-editPriceList"><i class="glyphicon glyphicon-usd"></i></button>
-					<button class="eigandi-addHairdresser" ng-click="toggleKlippara()"><i class="glyphicon glyphicon-plus"></i></button>
-				</div></th>
-			</tr>
-		</thead>
-		<tbody>
-		<tr ng-if="stillingar.addKlippara">
-			<td colspan="3">
-				<form class="form-horizontal">
-				<div class="form-group col-xs-11">
-					<label class="sr-only" for="inputKlippari"></label>
-					<input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn">
-				</div>
-				<div class="form-group col-xs-11">
-					<label class="sr-only" for="inputSimanumer"></label>
-					<input type="tel" class="form-control inputField" id="inputSimanumer" placeholder="Símanúmer">
-				</div>
-          <div class="pull-right col-xs-1">
-            <i class="fa fa-times fa-2x haettaVidTakki" aria-hidden="true"></i>
+  <button type="button"
+          class="close takki"
+          ng-click="closeWindow()"
+          data-toggle="tooltip"
+          data-placement="auto"
+          title="Loka glugga">&times;</button>
+  <div class="row">
+    <div class="col-xs-12 eigandi-listaafklippurum">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>
+            <div class="pull-left">Klipparar</div>
+          </th>
+          <th>Símanúmer</th>
+          <th>
+            <div class="pull-right">
+              <button href=""
+                      class="eigandi-editPriceList"
+                      data-toggle="tooltip"
+                      data-placement="auto"
+                      title="Breyta verðlista">
+                <i class="glyphicon glyphicon-usd"></i>
+              </button>
+              <button class="eigandi-addHairdresser"
+                      ng-click="toggleKlippara()"
+                      data-toggle="tooltip"
+                      data-placement="auto"
+                      title="Bæta við klippara">
+                <i class="glyphicon glyphicon-plus"></i>
+              </button>
+            </div>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-if="stillingar.addKlippara">
+          <td colspan="3">
+            <p>Bæta við klippara</p>
+            <form class="form-horizontal">
+              <div class="form-group col-xs-11">
+                <label class="sr-only" for="inputKlippari"></label>
+                <input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn">
+              </div>
+              <div class="form-group col-xs-11">
+                <label class="sr-only" for="inputSimanumer"></label>
+                <input type="tel" class="form-control inputField" id="inputSimanumer" placeholder="Símanúmer">
+              </div>
+              <div class="pull-right col-xs-1">
+                <i class="fa fa-times fa-2x haettaVidTakki"
+                   aria-hidden="true"
+                   data-toggle="tooltip"
+                   data-placement="auto"
+                   title="Hætta við"></i>
+              </div>
+              <div class="form-group col-xs-11">
+                <label class="sr-only" for="inputNetpostur"></label>
+                <input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur">
+              </div>
+              <div class="pull-right col-xs-1">
+                <i class="fa fa-plus fa-2x stadfestaTakki"
+                   aria-hidden="true"
+                   data-toggle="tooltip"
+                   data-placement="auto"
+                   title="Staðfesta"></i>
+              </div>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td class="theFirst col-xs-4">Einar Ormslev</td>
+          <td>5692250</td>
+          <td>
+            <div class="pull-right">
+              <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+              <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+
+          <td>Sigurður Þór Árnason</td>
+          <td>6650204</td>
+          <td>
+            <div class="pull-right">
+              <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+              <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+
+          <td>Guðríður Stefánsdóttir</td>
+          <td>6985455</td>
+          <td>
+            <div class="pull-right">
+              <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+              <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <div class="pull-right">
+            <td>Kaplo</td>
+            <td>7726254</td>
+            <td>
+              <div class="pull-right">
+                <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+                <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+              </div>
+            </td>
+        </tr>
+        <tr>
+          <td class="theFirst col-xs-4">Einar Ormslev</td>
+          <td>8450512</td>
+          <td>
+            <div class="pull-right">
+              <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+              <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+
+          <td>Sigurður Þór Árnason</td>
+          <td>8421205</td>
+          <td>
+            <div class="pull-right">
+              <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+              <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+
+          <td>Guðríður Stefánsdóttir</td>
+          <td>6608757</td>
+          <td>
+            <div class="pull-right">
+              <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+              <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <div class="pull-right">
+            <td>Kaplo</td>
+            <td>6654521</td>
+            <td>
+              <div class="pull-right">
+                <a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+                <a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+              </div>
+            </td>
           </div>
-				<div class="form-group col-xs-11">
-					<label class="sr-only" for="inputNetpostur"></label>
-					<input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur">
-				</div>
-        <div class="pull-right col-xs-1">
-          <i class="fa fa-plus fa-2x stadfestaTakki" aria-hidden="true"></i>
-        </div>
-			</form>
-			</td>
-		</tr>
-		<tr>
-			<td class="theFirst col-xs-4">Einar Ormslev</td>
-			<td>5692250</td>
-			<td>
-				<div class="pull-right">
-					<a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-					<a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-				</div>
-			</td>
-		</tr>
-		<tr>
-
-				<td>Sigurður Þór Árnason</td>
-				<td>6650204</td>
-				<td>
-					<div class="pull-right">
-					<a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-					<a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-					</div>
-				</td>
-		</tr>
-		<tr>
-
-				<td>Guðríður Stefánsdóttir</td>
-				<td>6985455</td>
-				<td>
-					<div class="pull-right">
-						<a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-						<a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-					</div>
-				</td>
-		</tr>
-		<tr>
-			<div class="pull-right">
-			<td>Kaplo</td>
-			<td>7726254</td>
-			<td>
-				<div class="pull-right">
-					<a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-					<a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td class="theFirst col-xs-4">Einar Ormslev</td>
-			<td>8450512</td>
-			<td>
-				<div class="pull-right">
-					<a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-					<a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-				</div>
-			</td>
-		</tr>
-		<tr>
-
-			<td>Sigurður Þór Árnason</td>
-			<td>8421205</td>
-			<td>
-				<div class="pull-right">
-					<a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-					<a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-				</div>
-			</td>
-		</tr>
-		<tr>
-
-			<td>Guðríður Stefánsdóttir</td>
-			<td>6608757</td>
-			<td>
-				<div class="pull-right">
-					<a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-					<a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<div class="pull-right">
-				<td>Kaplo</td>
-				<td>6654521</td>
-				<td>
-					<div class="pull-right">
-						<a ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
-						<a ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-					</div>
-				</td>
-      </div>
-    </tr>
+        </tr>
 
 
-		</tbody>
-	</table>
-	</div>
-	</div>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 </div>
