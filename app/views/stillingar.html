@@ -9,134 +9,138 @@
           title="Loka glugga">&times;</button>
   <div class="row">
     <div class="col-xs-12 eigandi-listaafklippurum">
-      <table class="table table-striped" ng-if="stillingar.klipp">
-        <thead>
-        <tr>
-          <th>
-            <div class="pull-left">Klipparar</div>
-          </th>
-          <th>Símanúmer</th>
-          <th>
-            <div class="pull-right">
-              <button href=""
-                      class="eigandi-editPriceList"
-                      ng-click="toggleVerdskra()"
-                      data-toggle="tooltip"
-                      data-placement="auto"
-                      title="Breyta verðlista">
-                <i class="glyphicon glyphicon-usd"></i>
-              </button>
-              <button class="eigandi-addHairdresser"
-                      ng-click="toggleKlippara()"
-                      data-toggle="tooltip"
-                      data-placement="auto"
-                      title="Bæta við klippara">
-                <i class="glyphicon glyphicon-plus"></i>
-              </button>
-            </div>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <!---------------------------->
-        <!-- Stillingar á klippurum -->
-        <!---------------------------->
-        <tr ng-if="stillingar.addKlippara">
-          <td colspan="3">
-            <p>Bæta við klippara</p>
-            <form class="form-horizontal">
-              <div class="form-group col-xs-11">
-                <label class="sr-only" for="inputKlippari"></label>
-                <input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn">
+      <div ng-if="stillingar.klipp">
+        <div class="col-xs-offset-5">
+          <h4>Klipparar</h4>
+        </div>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>
+              <div class="pull-left">Klipparar</div>
+            </th>
+            <th>Símanúmer</th>
+            <th>
+              <div class="pull-right">
+                <button href=""
+                        class="eigandi-editPriceList"
+                        ng-click="toggleVerdskra()"
+                        data-toggle="tooltip"
+                        data-placement="auto"
+                        title="Breyta verðlista">
+                  <i class="glyphicon glyphicon-usd"></i>
+                </button>
+                <button class="eigandi-addHairdresser"
+                        ng-click="toggleKlippara()"
+                        data-toggle="tooltip"
+                        data-placement="auto"
+                        title="Bæta við klippara">
+                  <i class="glyphicon glyphicon-plus"></i>
+                </button>
               </div>
-              <div class="form-group col-xs-11">
-                <label class="sr-only" for="inputSimanumer"></label>
-                <input type="tel" class="form-control inputField" id="inputSimanumer" placeholder="Símanúmer">
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <!---------------------------->
+          <!-- Stillingar á klippurum -->
+          <!---------------------------->
+          <tr ng-if="stillingar.addKlippara">
+            <td colspan="3">
+              <p>Bæta við klippara</p>
+              <form class="form-horizontal">
+                <div class="form-group col-xs-11">
+                  <label class="sr-only" for="inputKlippari"></label>
+                  <input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn">
+                </div>
+                <div class="form-group col-xs-11">
+                  <label class="sr-only" for="inputSimanumer"></label>
+                  <input type="tel" class="form-control inputField" id="inputSimanumer" placeholder="Símanúmer">
+                </div>
+                <div class="pull-right col-xs-1">
+                  <i class="fa fa-times fa-2x haettaVidTakki"
+                     aria-hidden="true"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Hætta við"></i>
+                </div>
+                <div class="form-group col-xs-11">
+                  <label class="sr-only" for="inputNetpostur"></label>
+                  <input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur">
+                </div>
+                <div class="pull-right col-xs-1">
+                  <i class="fa fa-plus fa-2x stadfestaTakki"
+                     aria-hidden="true"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Staðfesta"></i>
+                </div>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="theFirst col-xs-4">Einar Ormslev</td>
+            <td>5692250</td>
+            <td>
+              <div class="pull-right">
+                <a ng-click="klippTrash()">
+                  <i class="glyphicon glyphicon-trash divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Henda"></i>
+                </a>
+                <a ng-click="klippBreyting()">
+                  <i class="glyphicon glyphicon-pencil divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Breyta"></i>
+                </a>
               </div>
-              <div class="pull-right col-xs-1">
-                <i class="fa fa-times fa-2x haettaVidTakki"
-                   aria-hidden="true"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Hætta við"></i>
-              </div>
-              <div class="form-group col-xs-11">
-                <label class="sr-only" for="inputNetpostur"></label>
-                <input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur">
-              </div>
-              <div class="pull-right col-xs-1">
-                <i class="fa fa-plus fa-2x stadfestaTakki"
-                   aria-hidden="true"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Staðfesta"></i>
-              </div>
-            </form>
-          </td>
-        </tr>
-        <tr>
-          <td class="theFirst col-xs-4">Einar Ormslev</td>
-          <td>5692250</td>
-          <td>
-            <div class="pull-right">
-              <a ng-click="klippTrash()">
-                <i class="glyphicon glyphicon-trash divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Henda"></i>
-              </a>
-              <a ng-click="klippBreyting()">
-                <i class="glyphicon glyphicon-pencil divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Breyta"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr>
+            </td>
+          </tr>
+          <tr>
 
-          <td>Sigurður Þór Árnason</td>
-          <td>6650204</td>
-          <td>
-            <div class="pull-right">
-              <a ng-click="klippTrash()">
-                <i class="glyphicon glyphicon-trash divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Henda"></i>
-              </a>
-              <a ng-click="klippBreyting()">
-                <i class="glyphicon glyphicon-pencil divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Breyta"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr>
+            <td>Sigurður Þór Árnason</td>
+            <td>6650204</td>
+            <td>
+              <div class="pull-right">
+                <a ng-click="klippTrash()">
+                  <i class="glyphicon glyphicon-trash divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Henda"></i>
+                </a>
+                <a ng-click="klippBreyting()">
+                  <i class="glyphicon glyphicon-pencil divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Breyta"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
 
-          <td>Guðríður Stefánsdóttir</td>
-          <td>6985455</td>
-          <td>
-            <div class="pull-right">
-              <a ng-click="klippTrash()">
-                <i class="glyphicon glyphicon-trash divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Henda"></i>
-              </a>
-              <a ng-click="klippBreyting()">
-                <i class="glyphicon glyphicon-pencil divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Breyta"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr>
+            <td>Guðríður Stefánsdóttir</td>
+            <td>6985455</td>
+            <td>
+              <div class="pull-right">
+                <a ng-click="klippTrash()">
+                  <i class="glyphicon glyphicon-trash divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Henda"></i>
+                </a>
+                <a ng-click="klippBreyting()">
+                  <i class="glyphicon glyphicon-pencil divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Breyta"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
             <td>Kaplo</td>
             <td>7726254</td>
             <td>
@@ -155,109 +159,120 @@
                 </a>
               </div>
             </td>
-        </tr>
-        </tbody>
-      </table>
-      <table class="table table-striped"
-             ng-if="stillingar.verd">
-        <thead>
-        <th>Verk</th>
-        <th>Verð</th>
-        <th>
-          <div class="pull-right">
-            <button href=""
-                    class="eigandi-editPriceList"
-                    ng-click="toggleVerdskra()"
-                    data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Breyta verðlista">
-              <i class="glyphicon glyphicon-usd"></i>
-            </button>
-            <button class="eigandi-addHairdresser"
-                    ng-click="toggleKlippara()"
-                    data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Bæta við klippara">
-              <i class="glyphicon glyphicon-plus"></i>
-            </button>
-          </div>
-        </th>
-        </thead>
-        <!------------------------->
-        <!-- Stillingar á verðum -->
-        <!------------------------->
-        <tbody>
-        <tr ng-if="stillingar.addVerd">
-          <td colspan="3">
-            <p>Bæta við verði</p>
-            <form class="form-horizontal">
-              <div class="form-group col-xs-11">
-                <label class="sr-only" for="inputNafnVerk"></label>
-                <input type="name" class="form-control inputField" id="inputNafnVerk" placeholder="Verk">
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div ng-if="stillingar.verd">
+        <div class="col-xs-offset-5">
+          <h4>Verðskrá</h4>
+        </div>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>
+              <div class="pull-left">Verk</div>
+            </th>
+            <th>
+              <div class="pull-left">Verð</div>
+            </th>
+            <th>
+              <div class="pull-right">
+                <button href=""
+                        class="eigandi-editPriceList"
+                        ng-click="toggleVerdskra()"
+                        data-toggle="tooltip"
+                        data-placement="auto"
+                        title="Breyta verðlista">
+                  <i class="glyphicon glyphicon-usd"></i>
+                </button>
+                <button class="eigandi-addHairdresser"
+                        ng-click="toggleKlippara()"
+                        data-toggle="tooltip"
+                        data-placement="auto"
+                        title="Bæta við klippara">
+                  <i class="glyphicon glyphicon-plus"></i>
+                </button>
               </div>
-              <div class="pull-right col-xs-1">
-                <i class="fa fa-times fa-2x haettaVidTakki"
-                   aria-hidden="true"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Hætta við"></i>
+            </th>
+          </tr>
+          </thead>
+          <!------------------------->
+          <!-- Stillingar á verðum -->
+          <!------------------------->
+          <tbody>
+          <tr ng-if="stillingar.addVerd">
+            <td colspan="3">
+              <p>Bæta við verði</p>
+              <form class="form-horizontal">
+                <div class="form-group col-xs-11">
+                  <label class="sr-only" for="inputNafnVerk"></label>
+                  <input type="name" class="form-control inputField" id="inputNafnVerk" placeholder="Verk">
+                </div>
+                <div class="pull-right col-xs-1">
+                  <i class="fa fa-times fa-2x haettaVidTakki"
+                     aria-hidden="true"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Hætta við"></i>
+                </div>
+                <div class="form-group col-xs-11">
+                  <label class="sr-only" for="inputVerd"></label>
+                  <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð">
+                </div>
+                <div class="pull-right col-xs-1">
+                  <i class="fa fa-plus fa-2x stadfestaTakki"
+                     aria-hidden="true"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Staðfesta"></i>
+                </div>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>herraklipping</td>
+            <td>5000 kr</td>
+            <td>
+              <div class="pull-right">
+                <a ng-click="verdTrash()">
+                  <i class="glyphicon glyphicon-trash divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Henda"></i>
+                </a>
+                <a ng-click="verdBreyting()">
+                  <i class="glyphicon glyphicon-pencil divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Breyta"></i>
+                </a>
               </div>
-              <div class="form-group col-xs-11">
-                <label class="sr-only" for="inputVerd"></label>
-                <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð">
+            </td>
+          </tr>
+          <tr>
+            <td>kellingaklipping</td>
+            <td>50000 kr</td>
+            <td>
+              <div class="pull-right">
+                <a ng-click="verdTrash()">
+                  <i class="glyphicon glyphicon-trash divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Henda"></i>
+                </a>
+                <a ng-click="verdBreyting()">
+                  <i class="glyphicon glyphicon-pencil divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Breyta"></i>
+                </a>
               </div>
-              <div class="pull-right col-xs-1">
-                <i class="fa fa-plus fa-2x stadfestaTakki"
-                   aria-hidden="true"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Staðfesta"></i>
-              </div>
-            </form>
-          </td>
-        </tr>
-        <tr>
-          <td>herraklipping</td>
-          <td>5000 kr</td>
-          <td>
-            <div class="pull-right">
-              <a ng-click="verdTrash()">
-                <i class="glyphicon glyphicon-trash divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Henda"></i>
-              </a>
-              <a ng-click="verdBreyting()">
-                <i class="glyphicon glyphicon-pencil divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Breyta"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>kellingaklipping</td>
-          <td>50000 kr</td>
-          <td>
-            <div class="pull-right">
-              <a ng-click="verdTrash()">
-                <i class="glyphicon glyphicon-trash divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Henda"></i>
-              </a>
-              <a ng-click="verdBreyting()">
-                <i class="glyphicon glyphicon-pencil divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Breyta"></i>
-              </a>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

@@ -15,6 +15,18 @@
         		scope.closeWindow = function() {
         			scope.lokaGlugga();
         		};
+
+        		scope.addCustomer = function () {
+              console.log("bæta við nýjum viðskiptavin");
+            };
+
+            scope.hendaVidskiptavin = function () {
+              console.log("henda viðskiptavin");
+            };
+
+            scope.breytaVidskiptavin = function () {
+              console.log("breyta viðskiptavin");
+            };
         	}
         };
     });
