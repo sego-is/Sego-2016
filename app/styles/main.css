@@ -169,3 +169,11 @@ body {
 .athugasemd {
   padding: 0 0 10px 0;
 }
+
+.booking {
+    height: 1em;    
+}
+
+.booking-time p {
+    font-size: 0.8em;    
+}

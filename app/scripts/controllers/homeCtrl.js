@@ -16,7 +16,7 @@
                 console.log("UNDEFINED");
             }
             else {
-                console.log("bóka á ákveðið cell hjá ákveðnum klippara");
+                console.log("bóka hjá " + b.name + " klukkan " + a);
             }
           
         };
@@ -31,7 +31,6 @@
         
         var initTimes = function() {
             var i;
-            console.log(stillingar.upphafsTimi + " : " + stillingar.endaTimi);
             for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
                 $scope.times.push(dagatalFactory.timasetning(i));
             }
@@ -80,6 +79,7 @@
         
         $scope.$on('dagsetning', function(e, a) {
           initTimes();
+          console.log($scope.dt);
           $scope.dagurinnIdag = dagatalFactory.dagsetning(a.getDay(), a.getDate(), a.getMonth());
         });
       }]);

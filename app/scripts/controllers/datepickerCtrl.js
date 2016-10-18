@@ -41,6 +41,7 @@
 
   $scope.setDate = function(year, month, day) {
     $scope.dt = new Date(year, month, day);
+    console.log('setDate');
     $scope.$emit('dagsetning', $scope.dt);
   };
 

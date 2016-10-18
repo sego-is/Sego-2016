@@ -20,7 +20,7 @@ describe('Controller: MainCtrl', function () {
   it('should attach a boolean of if windowOpen to the scope, should be false', function () {
     expect(scope.gluggiOpinn).toBe(false);
   });
-  
+
   it('should change boolean value of windowOpen to true', function () {
     expect(scope.gluggiOpinn).toBe(false);
   });
