@@ -11,20 +11,32 @@
     angular.module('segoApp')
       .controller('HomeCtrl', ['$scope', 'dagatalFactory', function ($scope, dagatalFactory) {
 
-        $scope.openBooking = function () {
-          console.log("bóka");
+        $scope.openBooking = function (a, b) {
+            if (a === undefined) {
+                console.log("UNDEFINED");
+            }
+            else {
+                console.log("bóka á ákveðið cell hjá ákveðnum klippara");
+            }
+          
         };
         
-        $scope.stillingar = {
-            'upphafsTimi': '07:00',
-            'endaTima': '01:00',
-            'lotan': '00:15'
+        var stillingar = {
+            upphafsTimi: 3600*7,
+            endaTimi: 3600*22,
+            lotan: 900
         };
         
-        $scope.times = ['07:00', '07:15', '07:30'];
-        function initTimes() {
-            
+        $scope.times = [];
+        
+        var initTimes = function() {
+            var i;
+            console.log(stillingar.upphafsTimi + " : " + stillingar.endaTimi);
+            for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
+                $scope.times.push(dagatalFactory.timasetning(i));
+            }
         };
+        
         
         $scope.names = [ {
         	'id':1,
@@ -67,7 +79,7 @@
         }];
         
         $scope.$on('dagsetning', function(e, a) {
-          console.log(a);
+          initTimes();
           $scope.dagurinnIdag = dagatalFactory.dagsetning(a.getDay(), a.getDate(), a.getMonth());
         });
       }]);

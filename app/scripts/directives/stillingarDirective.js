@@ -24,14 +24,28 @@
             console.log("breyta verði");
           };
 
-          scope.klippTrash = function () {
-            console.log("Henda klippara");
+          scope.klippTrash = function (a) {
+            console.log("Henda klippara", a);
           };
 
           scope.klippBreyting = function () {
             console.log("breyta klippara");
           };
-
+          
+          scope.klipparar = [{
+              'nafn': 'Einar Ormslev',
+              'simi': 5692250
+          },{
+              'nafn': 'Sigurður Þór Árnason',
+              'simi': 6650204
+          },{
+              'nafn': 'Guðríður Stefánsdóttir',
+              'simi': 6985455
+          },{
+              'nafn': 'Kaplo',
+              'simi': 7726254
+          }];
+          
           scope.stillingar = {
             klipp: true,
             verd: false,

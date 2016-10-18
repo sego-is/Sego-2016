@@ -18,10 +18,29 @@
             {'short': 'fös','full': 'föstudagur'},
             {'short': 'lau','full': 'laugardagur'},
             {'short': 'sun','full': 'sunnudagur'}];   
+        
+        function toHHMMSS(a) {
+            var sec_num = parseInt(a, 10); // don't forget the second param
+            var hours   = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
 
+            if (hours   < 10) {hours   = "0"+hours;}
+            if (minutes < 10) {minutes = "0"+minutes;}
+
+            return hours + ":" + minutes + "";
+        }
+        
     	return {
             dagsetning: function(day, date, month) {
                 return " " + dagar[day].full +  " " + date + ". " + months[month].full + "";
+            },
+            timasetning: function(a) {
+                if (a === undefined) {
+                    return toHHMMSS(0)
+                }
+                else {
+                    return toHHMMSS(a);
+                }
             }
     	};
 

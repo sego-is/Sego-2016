@@ -78,74 +78,12 @@
               </form>
             </td>
           </tr>
-          <tr>
-            <td class="theFirst col-xs-4">Einar Ormslev</td>
-            <td>5692250</td>
+          <tr ng-repeat="klippari in klipparar track by $index">
+            <td class="theFirst col-xs-4">{{ klippari.nafn }}</td>
+            <td>{{ klippari.simi }}</td>
             <td>
               <div class="pull-right">
-                <a ng-click="klippTrash()">
-                  <i class="glyphicon glyphicon-trash divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Henda"></i>
-                </a>
-                <a ng-click="klippBreyting()">
-                  <i class="glyphicon glyphicon-pencil divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Breyta"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-
-            <td>Sigurður Þór Árnason</td>
-            <td>6650204</td>
-            <td>
-              <div class="pull-right">
-                <a ng-click="klippTrash()">
-                  <i class="glyphicon glyphicon-trash divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Henda"></i>
-                </a>
-                <a ng-click="klippBreyting()">
-                  <i class="glyphicon glyphicon-pencil divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Breyta"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-
-            <td>Guðríður Stefánsdóttir</td>
-            <td>6985455</td>
-            <td>
-              <div class="pull-right">
-                <a ng-click="klippTrash()">
-                  <i class="glyphicon glyphicon-trash divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Henda"></i>
-                </a>
-                <a ng-click="klippBreyting()">
-                  <i class="glyphicon glyphicon-pencil divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Breyta"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Kaplo</td>
-            <td>7726254</td>
-            <td>
-              <div class="pull-right">
-                <a ng-click="klippTrash()">
+                <a ng-click="klippTrash($index)">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
