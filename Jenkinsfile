@@ -18,6 +18,10 @@ node {
         	sh 'grunt build'
         	sh 'cp -RT dist /opt/app/html'
 
+        stage 'Test'
+
+            /*sh 'grunt test'*/
+
         stage 'Cleanup'
 
         	print "prune and cleanup"
@@ -25,9 +29,6 @@ node {
         	sh 'rm -rf node_modules'
         	/*sh 'grunt clean'*/
 
-         stage 'Test'
-
-            sh 'grunt test'
         	/*
         	mail body: 'Project Build Successful',
         		from: 'einaragusta@gmail.com',
