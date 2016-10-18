@@ -17,18 +17,17 @@ node {
         	sh 'bower install'
         	sh 'grunt build'
         	sh 'cp -RT dist /opt/app/html'
-        
-        stage 'Test'
-        
-            sh 'grunt test'
-            
+
         stage 'Cleanup'
 
         	print "prune and cleanup"
         	sh 'npm prune'
         	sh 'rm -rf node_modules'
-        	/*sh 'grunt clean'*/
+        	sh 'grunt clean'
 
+         stage 'Test'
+
+            sh 'grunt test'
         	/*
         	mail body: 'Project Build Successful',
         		from: 'einaragusta@gmail.com',
