@@ -9,7 +9,7 @@
      * Controller of the segoEnnOgAfturApp
      */
     angular.module('segoApp')
-      .controller('HomeCtrl', ['$scope', 'dagatalFactory', function ($scope, dagatalFactory) {
+      .controller('HomeCtrl', ['$scope', 'dagatalFactory', '$http', function ($scope, dagatalFactory, $http) {
 
         $scope.openBooking = function (a, b) {
             if (a === undefined) {
@@ -18,25 +18,29 @@
             else {
                 console.log("bóka hjá " + b.name + " klukkan " + a);
             }
-          
+
         };
-        
+        $http.get('localhost:6969/api/booking').
+            then(function (response) {
+              console.log("GET RESPONSE:" + response);
+            });
+
         var stillingar = {
             upphafsTimi: 3600*7,
             endaTimi: 3600*22,
             lotan: 900
         };
-        
+
         $scope.times = [];
-        
+
         var initTimes = function() {
             var i;
             for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
                 $scope.times.push(dagatalFactory.timasetning(i));
             }
         };
-        
-        
+
+
         $scope.names = [ {
         	'id':1,
         	'name':'Einar'
@@ -56,7 +60,7 @@
         	'id':6,
         	'name': 'Mandalana'
         }];
-        
+
         $scope.bookings = [ {
           'time': '8:00',
           'name':'Einar'
@@ -76,7 +80,7 @@
           'time': '13:00',
           'name': 'Mandalana'
         }];
-        
+
         $scope.$on('dagsetning', function(e, a) {
           initTimes();
           console.log($scope.dt);
