@@ -21,11 +21,17 @@
 
         };
         
-        $http.get('http://wwww.sego.is:6969/api/booking').then(function (response) {
+ 
+        $http({
+            method: 'GET',
+            url: 'http://wwww.sego.is:6969/api/booking',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+        }}).then(function (response) {
               console.log("RESPONSE:" + response);
-            }, function(err) {
-                console.log("ERROR", JSON.stringify(err));
-            });
+        }, function(err) {
+            console.log("ERROR", JSON.stringify(err));
+        });
 
         var stillingar = {
             upphafsTimi: 3600*7,
