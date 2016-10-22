@@ -45,7 +45,7 @@ angular
       tokenGetter: function() {
         return localStorage.getItem('id_token');
       },
-      whiteListedDomains: ['localhost'],
+      whiteListedDomains: ['www.sego.is', 'localhost'],
       unauthenticatedRedirectPath: '/'
     });
 
