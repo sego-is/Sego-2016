@@ -37,11 +37,11 @@
                 };
 
                 scope.hendaVidskiptavin = function () {
-                console.log("henda viðskiptavin");
+                    console.log("henda viðskiptavin");
                 };
 
                 scope.breytaVidskiptavin = function () {
-                console.log("breyta viðskiptavin");
+                    console.log("breyta viðskiptavin");
                 };
         	}
         };

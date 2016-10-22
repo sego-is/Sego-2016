@@ -7,15 +7,10 @@
 
     var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
     var authenticated = false;
-    var options = {
-          theme: {
-              logo: 'https://commons.wikimedia.org/wiki/File:SEGA_logo.png',
-              primaryColor: 'green'
-          }
-    };
+
     
     function login() {
-      lock.show(options);
+      lock.show();
     }
 
     // Logging out just requires removing the user's

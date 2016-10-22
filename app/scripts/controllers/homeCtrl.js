@@ -20,8 +20,8 @@
             }
 
         };
-        $http.get('localhost:6969/api/booking').
-            then(function (response) {
+        
+        $http.get('dev.sego.is:6969/api/booking').then(function (response) {
               console.log("GET RESPONSE:" + response);
             });
 

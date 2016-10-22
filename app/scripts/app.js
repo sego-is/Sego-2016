@@ -23,7 +23,21 @@ angular
     // Initialization for the Lock widget
     lockProvider.init({
       clientID: 'U4WvYHgktQuwoih8m9VVrqsPmEkxghJT',
-      domain: 'sego.eu.auth0.com'
+      domain: 'sego.eu.auth0.com',
+      options: {
+          theme: {
+              logo: 'http://cdn2-www.playstationlifestyle.net/assets/uploads/2012/10/Sega.jpg',
+              primaryColor: 'white',
+              authButtons: {
+                connectionName: {
+                    displayName: ".Sego.", 
+                    primaryColor: "black", 
+                    foregroundColor: "white", 
+                    icon: "http://cdn1-www.craveonline.com/assets/mandatory/legacy/2016/08/man_file_1112579_horsepoopstartsfire.jpg"
+                }
+                }
+          }  
+      }
     });
 
       // Configuration for angular-jwt
