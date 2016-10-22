@@ -22,7 +22,9 @@
         };
         
         $http.get('http://wwww.sego.is:6969/api/booking').then(function (response) {
-              console.log("GET RESPONSE:" + response);
+              console.log("RESPONSE:" + response);
+            }, function(err) {
+                console.log("ERROR" + err);
             });
 
         var stillingar = {
