@@ -24,7 +24,7 @@
         $http.get('http://wwww.sego.is:6969/api/booking').then(function (response) {
               console.log("RESPONSE:" + response);
             }, function(err) {
-                console.log("ERROR" + JSON.stringify(err));
+                console.log("ERROR", JSON.stringify(err));
             });
 
         var stillingar = {
