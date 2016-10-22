@@ -21,7 +21,7 @@
 
         };
         
-        $http.get('dev.sego.is:6969/api/booking').then(function (response) {
+        $http.get('192.241.158.205:6969/api/booking').then(function (response) {
               console.log("GET RESPONSE:" + response);
             });
 
