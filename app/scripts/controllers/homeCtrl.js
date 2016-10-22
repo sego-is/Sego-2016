@@ -83,7 +83,6 @@
 
         $scope.$on('dagsetning', function(e, a) {
           initTimes();
-          console.log($scope.dt);
           $scope.dagurinnIdag = dagatalFactory.dagsetning(a.getDay(), a.getDate(), a.getMonth());
         });
       }]);
