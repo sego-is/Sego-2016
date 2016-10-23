@@ -39,7 +39,7 @@ angular
           }  
       }
     });
-
+/*
     // Configuration for angular-jwt
     jwtOptionsProvider.config({
       tokenGetter: function() {
@@ -51,8 +51,8 @@ angular
 
     // Add the jwtInterceptor to the array of HTTP interceptors
     // so that JWTs are attached as Authorization headers
-    $httpProvider.interceptors.push('jwtInterceptor');
-    
+    // $httpProvider.interceptors.push('jwtInterceptor');
+*/
     $locationProvider.html5Mode(true);
 
     $routeProvider
