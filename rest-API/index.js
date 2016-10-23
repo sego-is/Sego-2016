@@ -31,13 +31,13 @@
     app.use(allowCrossDomain);
     app.use('/api', api);
 
-
+/*
     app.use(cors({
             'origin': '*',
             'methods': 'GET,PUT,POST,DELETE',
             'preflightContinue': true
     }));
-
+*/
 
     mongoose.connect('mongodb://mongo.sego.is:27017/app');
     mongoose.connection.once('open', function() {
