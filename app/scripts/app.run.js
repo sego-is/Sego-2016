@@ -4,7 +4,12 @@
 
   angular
     .module('segoApp')
-    .run(['$rootScope', '$location', 'authService', 'authManager', 'lock', function($rootScope, $location, authService, authManager, lock) {
+    .run(['$http', '$rootScope', '$location', 'authService', 'authManager', 'lock', function($http, $rootScope, $location, authService, authManager, lock) {
+      
+      // Send this header with any $http request
+      $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+      // Send this header only in post requests.
+      $http.defaults.headers.post['dataType'] = 'json';
       
       // Intercept the hash that comes back from authentication
       // to ensure the `authenticated` event fires
