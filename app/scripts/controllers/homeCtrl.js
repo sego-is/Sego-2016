@@ -22,7 +22,7 @@
       };
 
 
-      /*$http({
+      $http({
         method: 'GET',
         url: 'http://wwww.sego.is:6969/api/booking',
         headers: {
@@ -32,9 +32,9 @@
         console.log("RESPONSE:" + response);
       }, function (err) {
         console.log("ERROR", JSON.stringify(err));
-      });*/
+      });
 
-      var invocation = new XMLHttpRequest();
+      /*var invocation = new XMLHttpRequest();
       var url = 'http://www.sego.is:6969/api/booking';
       function callOtherDomain() {
         if (invocation) {
@@ -42,7 +42,7 @@
           invocation.onreadystatechange = handler;
           invocation.send();
         }
-      }
+      }*/
 
       callOtherDomain();
 
