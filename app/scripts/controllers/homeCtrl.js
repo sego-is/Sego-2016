@@ -34,18 +34,6 @@
             console.log("ERROR", JSON.stringify(err));
         });
 
-      /*var invocation = new XMLHttpRequest();
-      var url = 'http://www.sego.is:6969/api/booking';
-      function callOtherDomain() {
-        if (invocation) {
-          invocation.open('GET', url, true);
-          invocation.onreadystatechange = handler;
-          invocation.send();
-        }
-      }*/
-
-      //callOtherDomain();
-
       var stillingar = {
         upphafsTimi: 3600 * 7,
         endaTimi: 3600 * 22,
