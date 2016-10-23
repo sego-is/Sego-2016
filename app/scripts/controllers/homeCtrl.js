@@ -25,7 +25,8 @@
             url: 'http://wwww.sego.is:6969/api/booking',
             method: 'GET',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
         }}).then(function (response) {
               console.log("RESPONSE:" + response);
         }, function(err) {
