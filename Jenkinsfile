@@ -17,8 +17,7 @@ node {
         	sh 'bower install'
         	sh 'grunt build'
         	sh 'cp -RT dist /opt/app/html'
-            sh 'cp -T rest-API /opt/server'
-            sh '/opt/server/node index.js &'
+            sh 'cp -RT rest-API /opt/server'
 
         stage 'Test'
 
