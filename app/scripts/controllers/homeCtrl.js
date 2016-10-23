@@ -26,7 +26,8 @@
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('id_token')
         }}).then(function (response) {
               console.log("RESPONSE:" + response);
         }, function(err) {
