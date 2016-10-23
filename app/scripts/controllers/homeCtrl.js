@@ -44,7 +44,7 @@
         }
       }*/
 
-      callOtherDomain();
+      //callOtherDomain();
 
       var stillingar = {
         upphafsTimi: 3600 * 7,
