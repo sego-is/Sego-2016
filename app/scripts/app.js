@@ -35,12 +35,12 @@ angular
                     foregroundColor: "white", 
                     icon: "http://cdn1-www.craveonline.com/assets/mandatory/legacy/2016/08/man_file_1112579_horsepoopstartsfire.jpg"
                 }
-                }
+              }
           }  
       }
     });
 
-      // Configuration for angular-jwt
+    // Configuration for angular-jwt
     jwtOptionsProvider.config({
       tokenGetter: function() {
         return localStorage.getItem('id_token');

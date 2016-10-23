@@ -23,8 +23,8 @@
         
  
         $http({
-            method: 'GET',
             url: 'http://wwww.sego.is:6969/api/booking',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
         }}).then(function (response) {
