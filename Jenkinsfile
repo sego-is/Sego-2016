@@ -18,6 +18,7 @@ node {
         	sh 'grunt build'
         	sh 'cp -RT dist /opt/app/html'
             sh 'cp -RT rest-API /opt/server'
+            sh '/opt/server/npm install'
 
         stage 'Test'
 
