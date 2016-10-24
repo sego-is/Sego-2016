@@ -48,3 +48,11 @@ const serviceSchema = mongoose.Schema({
     price: Number
   }]
 });
+
+module.exports = {
+  Person: mongoose.model('persons', personaSchema),
+  Company: mongoose.model('companies', companySchema),
+  Booking: mongoose.model('bookings', bookingsSchema),
+  Customer: mongoose.model('customers', customerSchema),
+  Service: mongoose.model('services', serviceSchema)
+};
