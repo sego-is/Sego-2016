@@ -5,7 +5,10 @@ const schema = mongoose.Schema;
 
 const personaSchema = mongoose.Schema({
   persona_id: String,
-  name: String,
+  name: {
+    type: String,
+    require: true
+  },
   address: String,
   phone: Number,
   image_url: String
@@ -13,7 +16,10 @@ const personaSchema = mongoose.Schema({
 
 const companySchema = mongoose.Schema({
   company_id: String,
-  name: String,
+  name: {
+    type: String,
+    require: true
+  },
   phone: Number,
   address: [String],
   logo_url: String,
@@ -25,7 +31,10 @@ const companySchema = mongoose.Schema({
 
 const bookingsSchema = mongoose.Schema({
   company_id: String,
-  date: Date,
+  date: {
+    type: Date,
+    require: true
+  },
   bookings: [{
     customer_id: String,
     staff_id: String,
@@ -44,7 +53,10 @@ const customerSchema = mongoose.Schema({
 const serviceSchema = mongoose.Schema({
   company_id: String,
   pricelist: [{
-    name: String,
+    name: {
+      type: String,
+      require: true
+    },
     price: Number
   }]
 });
