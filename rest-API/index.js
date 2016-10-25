@@ -12,7 +12,9 @@
   var allowCrossDomain = function (req, res, next) {
     const allowedOrigins = ['http://127.0.0.1:80', 'http://localhost:9000', 'http://www.sego.is', 'http://www.sego.is/home', 'http://192.241.158.205:6969'];
     const origin = req.headers.origin;
+    console.log("ORIGIN outside ", origin);
     if (allowedOrigins.indexOf(origin) > -1) {
+      console.log("ORIGIN inside ", origin);
       res.setHeader('Access-Control-Allow-Origin', origin);
     }
 
