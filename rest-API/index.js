@@ -23,9 +23,11 @@
     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
 
     if ('OPTIONS' === req.method) {
+      console.log("true");
       res.sendStatus(200);
     }
     else {
+      console.log("false");
       next();
     }
   };
