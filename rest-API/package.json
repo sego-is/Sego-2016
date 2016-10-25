@@ -1,5 +1,5 @@
 {
-  "name": "REST sego API",
+  "name": "rest_sego_api",
   "version": "1.0.1",
   "description": "API bokunarkerfi fyrir hargreidslustofur",
   "main": "index.js",
