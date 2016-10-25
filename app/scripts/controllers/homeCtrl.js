@@ -19,14 +19,13 @@
           console.log("bóka hjá " + b.name + " klukkan " + a);
         }
       };
-        
- 
+
+
         $http({
             url: 'http://wwww.sego.is:6969/api/booking',
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('id_token')
         }}).then(function (response) {
               console.log("RESPONSE:" + response);
