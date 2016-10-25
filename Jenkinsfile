@@ -22,7 +22,7 @@ node {
             sh 'cp -RT rest-API /opt/server'
             sh 'echo "stadur"'
             sh 'pwd'
-            sh 'npm install /opt/server/'
+            sh 'npm --prefix /opt/server/ install /opt/server/'
 
         stage 'Test'
 
