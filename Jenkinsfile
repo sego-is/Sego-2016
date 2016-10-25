@@ -12,13 +12,20 @@ node {
 			env.NODE_ENV = "Build"
 
 			print "Environment will be : ${env.NODE_ENV}"
+			    sh 'echo "stadur"'
+			    sh 'pwd'
 
         	sh 'npm install'
         	sh 'bower install'
         	sh 'grunt build'
         	sh 'cp -RT dist /opt/app/html'
-            /*sh 'cp -RT rest-API /opt/server'*/
-            /*sh '/opt/server/npm install'*/
+            /*sh 'cp -RT rest-API /opt/server'
+
+            sh 'cp -RT rest-API /opt/server'
+            sh 'echo "stadur"'
+            sh 'pwd'
+            sh 'npm --prefix /opt/server/ install /opt/server/'*/
+
 
         stage 'Test'
 
