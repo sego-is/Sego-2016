@@ -7,7 +7,9 @@ const personaSchema = mongoose.Schema({
   persona_id: String,
   name: {
     type: String,
-    require: true
+    require: true,
+    maxlength: 50,
+    minlength: 3
   },
   address: String,
   phone: Number,
@@ -18,7 +20,9 @@ const companySchema = mongoose.Schema({
   company_id: String,
   name: {
     type: String,
-    require: true
+    require: true,
+    maxlength: 50,
+    minlength: 1
   },
   phone: Number,
   address: [String],
