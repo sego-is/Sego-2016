@@ -19,12 +19,9 @@ node {
         	sh 'bower install'
         	sh 'grunt build'
         	sh 'cp -RT dist /opt/app/html'
-            /*sh 'cp -RT rest-API /opt/server'
-
             sh 'cp -RT rest-API /opt/server'
-            sh 'echo "stadur"'
-            sh 'pwd'
-            sh 'npm --prefix /opt/server/ install /opt/server/'*/
+            sh 'cp -RT rest-API /opt/server'
+            /*sh 'npm --prefix /opt/server/ install /opt/server/'*/
 
 
         stage 'Test'
