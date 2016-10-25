@@ -34,11 +34,11 @@
   app.use('/api', api);
 
 
-   app.use(cors({
+   /*app.use(cors({
    'origin': '*',
    'methods': 'GET,PUT,POST,DELETE',
    'preflightContinue': true
-   }));
+   }));*/
 
 
   mongoose.connect('mongodb://mongo.sego.is:27017/app');
