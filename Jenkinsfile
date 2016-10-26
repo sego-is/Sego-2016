@@ -19,8 +19,8 @@ node {
         	sh 'bower install'
         	sh 'grunt build'
         	sh 'cp -RT dist /opt/app/html'
-            sh 'cp -RT rest-API /home/sego_dev/sego'
-            sh 'npm --prefix /home/sego_dev/sego install /home/sego_dev/sego'
+            sh 'cp -RT rest-API /opt/server'
+            /*sh 'npm --prefix /opt/server install /opt/server'*/
 
 
         stage 'Test'
