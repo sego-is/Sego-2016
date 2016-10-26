@@ -19,8 +19,8 @@
           console.log("bóka hjá " + b.name + " klukkan " + a);
         }
       };
-        
- 
+
+
         $http({
             url: 'http://wwww.sego.is:6969/api/booking',
             method: 'GET',
