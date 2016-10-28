@@ -9,18 +9,38 @@
    * Controller of the segoEnnOgAfturApp
    */
   angular.module('segoApp')
-    .controller('HomeCtrl', ['$scope', 'dagatalFactory', '$http', function ($scope, dagatalFactory, $http) {
-
-      $scope.openBooking = function (a, b) {
-        if (a === undefined) {
-          console.log("UNDEFINED");
-        }
-        else {
-          console.log("bóka hjá " + b.name + " klukkan " + a);
-        }
-      };
-
-
+    .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', '$http', function ($scope, $compile, dagatalFactory, $http) {
+      
+        // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
+        var booking;
+        
+        $scope.openBooking = function (a, b) {
+            if (a === undefined) {
+            console.log("UNDEFINED");
+            }
+            else {
+                document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
+                booking = $scope.$new();
+                var compiledDirective;
+                $scope.clickOnTimapant = { 
+                    nafn: b,
+                    timi: a  
+                };
+                compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
+                var directiveElement = compiledDirective(booking);
+                $('.skilaboda-haldari').append(directiveElement);
+            }
+        };
+        
+        $scope.lokaBokun = function() {
+                booking.$destroy();
+                $('.skilaboda-haldari').empty();
+                document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
+                console.log("BUTTON_CLICK");
+        };
+        // END OF BOOKING CLICK
+      
+        // CHECK OUT IF PAGE CAN CONNECT TO REST-API
         $http({
             url: 'http://wwww.sego.is:6969/api/booking',
             method: 'GET',
@@ -33,22 +53,24 @@
         }, function(err) {
             console.log("ERROR", JSON.stringify(err));
         });
+        // END OF CHECK
 
-      var stillingar = {
-        upphafsTimi: 3600 * 7,
-        endaTimi: 3600 * 22,
-        lotan: 900
-      };
+        // Initialize the time (clock) in booking for the day
+        var stillingar = {
+            upphafsTimi: 3600 * 7,
+            endaTimi: 3600 * 22,
+            lotan: 900
+        };
 
-      $scope.times = [];
+        $scope.times = [];
 
-      var initTimes = function () {
-        var i;
-        for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
-          $scope.times.push(dagatalFactory.timasetning(i));
-        }
-      };
-
+        var initTimes = function () {
+            var i;
+            for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
+            $scope.times.push(dagatalFactory.timasetning(i));
+            }
+        };
+        // END OF INITIALIZE TIME
 
       $scope.names = [{
         'id': 1,

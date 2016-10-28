@@ -40,7 +40,17 @@
     });
 
     api.post('/booking', bodyParser.json(), (req, res) => {
-       res.status(201).send(req.body);
+        console.log("REQ.BODY:", req.body);
+        const m = new model.Booking(req.body);
+        m.save(function(err, doc) {
+             if (err) {
+                 res.status(500).send(err);
+                 return;
+             }
+             else {
+                 res.status(201).send(doc);
+             }
+        });
     });
 
     api.post('/services', bodyParser.json(), (req, res) => {
