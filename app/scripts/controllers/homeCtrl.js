@@ -25,7 +25,7 @@
                 $scope.clickOnTimapant = { 
                     nafn: b,
                     timi: a,
-                    dags: $scope.dagurinnIdag.getFullYear() + "-" + $scope.dagurinnIdag.getMonth() + "-" + $scope.dagurinnIdag.getDate()
+                    dags: dagatalFactory.dags()
                 };
                 compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
                 var directiveElement = compiledDirective(booking);

@@ -41,6 +41,9 @@
                 else {
                     return toHHMMSS(a);
                 }
+            },
+            dags: function() {
+                return "2016-10-29T00:00:00";
             }
     	};
 
