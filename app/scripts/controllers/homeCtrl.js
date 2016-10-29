@@ -24,7 +24,8 @@
                 var compiledDirective;
                 $scope.clickOnTimapant = { 
                     nafn: b,
-                    timi: a  
+                    timi: a,
+                    dags: $scope.dagurinnIdag.getFullYear() + "-" + $scope.dagurinnIdag.getMonth() + "-" + $scope.dagurinnIdag.getDate()
                 };
                 compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
                 var directiveElement = compiledDirective(booking);
@@ -40,20 +41,7 @@
         };
         // END OF BOOKING CLICK
       
-        // CHECK OUT IF PAGE CAN CONNECT TO REST-API
-        $http({
-            url: 'http://wwww.sego.is:6969/api/booking',
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-        }}).then(function (response) {
-              console.log("RESPONSE:" + response);
-        }, function(err) {
-            console.log("ERROR", JSON.stringify(err));
-        });
-        // END OF CHECK
+        
 
         // Initialize the time (clock) in booking for the day
         var stillingar = {

@@ -40,7 +40,8 @@
     });
 
     api.post('/booking', bodyParser.json(), (req, res) => {
-        console.log("REQ.BODY:", req.body);
+        console.log(req.body);
+        /*
         const m = new model.Booking(req.body);
         m.save(function(err, doc) {
              if (err) {
@@ -50,7 +51,8 @@
              else {
                  res.status(201).send(doc);
              }
-        });
+        });*/
+        res.status(201).send(req.body);
     });
 
     api.post('/services', bodyParser.json(), (req, res) => {
@@ -61,7 +63,7 @@
           return;
         }
         else {
-          res.send(docs);
+          res.send(doc);
         }
       })
     })

@@ -34,7 +34,10 @@ const companySchema = mongoose.Schema({
 });
 
 const bookingsSchema = mongoose.Schema({
-  company_id: String,
+  company_id: {
+      type: String,
+      require: true
+  },
   date: {
     type: Date,
     require: true
@@ -46,11 +49,14 @@ const bookingsSchema = mongoose.Schema({
   }]
 });
 
+bookingsSchema.index({ company_id: 1, date: 1 }, { unique: true });
+
 const customerSchema = mongoose.Schema({
   persona_id: String,
   company_id: String,
   history: [{
-    String
+    date: Date,
+    text: String
   }]
 });
 
