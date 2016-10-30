@@ -62,7 +62,10 @@ const companySchema = mongoose.Schema({
   address:  [String],
   logo_url: String,
   staff: [{
-    persona_id: String,
+    persona_id: {
+        type: String,
+        ref: "Person"
+    },
     role:       Number
   }]
 });

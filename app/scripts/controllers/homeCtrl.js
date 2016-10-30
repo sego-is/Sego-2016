@@ -10,20 +10,22 @@
    */
   angular.module('segoApp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', '$http', function ($scope, $compile, dagatalFactory, $http) {
-      /*
+      
       // GET STAFF FROM COMPANY THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
       $http({
         method: 'GET',
-        url: '/http://wwww.sego.is:6969/api/staffs/' + p.user_id 
+        url: '/http://wwww.sego.is:6969/api/companies/' + p.user_id 
       }).then(function successCallback(response) {
+          console.log("RESPONSE", response);
             // this callback will be called asynchronously
             // when the response is available
-      }, function errorCallback(response) {
+      }, function errorCallback(error) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
+            console.log("ERROR", error);
       });
-      */
+      
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
       var valinnDagur;

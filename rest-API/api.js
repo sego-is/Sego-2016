@@ -97,18 +97,6 @@
       }
     })
   });
-
-  api.get('/staffs/:id', (req, res) => {
-      const id = req.params.id;
-      model.Staff.find({ 'company_id': id }, function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      }
-      else {
-        res.send(docs);
-      }
-    });
-  });
   
   api.post('/companies', bodyParser.json(), (req, res) => {
     
@@ -122,6 +110,20 @@
       }
     });
 
+  });
+  
+  api.get('/companies/:id', (req, res) => {
+      
+      const id = req.params.id;
+      
+      model.Company.find({ "auth_id": id }, function(err, c) {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.send(c);
+        }
+      });
   });
   
   module.exports = api;
