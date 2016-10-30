@@ -49,12 +49,13 @@
                     company_id: backendFactory.getID()
                 }
             }).then(function (response) {
+                scope.staff = response.data;
                 console.log("RESPONSE:", response);
             }).catch(function(err) {
                 console.log("ERROR", JSON.stringify(err));
             }).finally(function() {} );
             // END GETTING HAIRDRESSERS FROM SALOON
-          
+
           scope.closeWindow = function () {
             scope.lokaGlugga();
           };
@@ -89,32 +90,20 @@
               'simi': 7726254
           }];
           
-          scope.stillingar = {
-            klipp: true,
-            verd: false,
-            addKlippara: false,
-            addVerd: false
+          // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
+          scope.state = {
+              verdskra: false,
+              add: false
           };
-
-          scope.toggleKlippara = function () {
-            if(scope.stillingar.verd) {
-              scope.stillingar.klipp = !scope.stillingar.klipp;
-              scope.stillingar.verd = !scope.stillingar.verd;
-              scope.stillingar.addKlippara = false;
-            } else {
-              scope.stillingar.addKlippara = !scope.stillingar.addKlippara;
-            }
+          
+          scope.toggle = function() {
+              scope.state.verdskra = !scope.state.verdskra;
           };
-
-          scope.toggleVerdskra = function () {
-            if(scope.stillingar.klipp) {
-              scope.stillingar.verd = !scope.stillingar.verd;
-              scope.stillingar.klipp = !scope.stillingar.klipp;
-              scope.stillingar.addVerd = false;
-            } else {
-              scope.stillingar.addVerd = !scope.stillingar.addVerd;
-            }
+          
+          scope.add = function() {
+              scope.state.add = !scope.state.add;
           }
+          // END OF TOGGLE
         }
       };
     }]);

@@ -8,34 +8,29 @@
           data-placement="auto"
           title="Loka glugga">&times;</button>
   <div class="row">
-    <div class="col-xs-12 eigandi-listaafklippurum">
-      <div ng-if="stillingar.klipp">
-        <div class="col-xs-offset-5">
-          <h4>Klipparar</h4>
-        </div>
+     <div ng-if="!state.verdskra"  class="col-xs-12">
+        <h3>Klipparar</h3>
         <table class="table table-striped">
           <thead>
           <tr>
             <th>
-              <div class="pull-left">Klipparar</div>
+              <div class="pull-left">Nafn</div>
             </th>
             <th>Símanúmer</th>
+            <th>Hlutverk</th>
             <th>
               <div class="pull-right">
-                <button href=""
-                        class="eigandi-editPriceList"
-                        ng-click="toggleVerdskra()"
+                <button class="eigandi-editPriceList glyphicon glyphicon-usd"
+                        ng-click="toggle()"
                         data-toggle="tooltip"
                         data-placement="auto"
-                        title="Breyta verðlista">
-                  <i class="glyphicon glyphicon-usd"></i>
+                        title="Yfir á verðlista">
                 </button>
-                <button class="eigandi-addHairdresser"
-                        ng-click="toggleKlippara()"
+                <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
+                        ng-click="add()"
                         data-toggle="tooltip"
                         data-placement="auto"
                         title="Bæta við klippara">
-                  <i class="glyphicon glyphicon-plus"></i>
                 </button>
               </div>
             </th>
@@ -45,8 +40,8 @@
           <!---------------------------->
           <!-- Stillingar á klippurum -->
           <!---------------------------->
-          <tr ng-if="stillingar.addKlippara">
-            <td colspan="3">
+          <tr ng-if="!state.verdskra && state.add">
+            <td colspan="4">
               <p>Bæta við klippara</p>
               <form class="form-horizontal">
                 <div class="form-group col-xs-11">
@@ -78,18 +73,19 @@
               </form>
             </td>
           </tr>
-          <tr ng-repeat="klippari in klipparar track by $index">
-            <td class="theFirst col-xs-4">{{ klippari.nafn }}</td>
-            <td>{{ klippari.simi }}</td>
+          <tr ng-repeat="s in staff track by $index">
+            <td class="theFirst col-xs-4">{{ s.name }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.role }}</td>
             <td>
               <div class="pull-right">
-                <a ng-click="klippTrash($index)">
+                <a ng-click="klippTrash(s)">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Henda"></i>
                 </a>
-                <a ng-click="klippBreyting()">
+                <a ng-click="klippBreyting(s)">
                   <i class="glyphicon glyphicon-pencil divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
@@ -101,35 +97,31 @@
           </tbody>
         </table>
       </div>
-      <div ng-if="stillingar.verd">
-        <div class="col-xs-offset-5">
-          <h4>Verðskrá</h4>
-        </div>
+      
+      <div ng-if="state.verdskra" class="col-xs-12">
+        <h3>Verðskrá</h3>
         <table class="table table-striped">
           <thead>
           <tr>
             <th>
-              <div class="pull-left">Verk</div>
+              <div class="pull-left">Þjónusta</div>
             </th>
             <th>
               <div class="pull-left">Verð</div>
             </th>
             <th>
               <div class="pull-right">
-                <button href=""
-                        class="eigandi-editPriceList"
-                        ng-click="toggleVerdskra()"
+                <button class="eigandi-toggle glyphicon glyphicon-user"
+                        ng-click="toggle()"
                         data-toggle="tooltip"
                         data-placement="auto"
-                        title="Breyta verðlista">
-                  <i class="glyphicon glyphicon-usd"></i>
+                        title="Fara yfir á klippara">
                 </button>
-                <button class="eigandi-addHairdresser"
-                        ng-click="toggleKlippara()"
+                <button class="eigandi-addService glyphicon glyphicon-plus"
+                        ng-click="add()"
                         data-toggle="tooltip"
                         data-placement="auto"
-                        title="Bæta við klippara">
-                  <i class="glyphicon glyphicon-plus"></i>
+                        title="Bæta við þjónustu">
                 </button>
               </div>
             </th>
@@ -139,7 +131,7 @@
           <!-- Stillingar á verðum -->
           <!------------------------->
           <tbody>
-          <tr ng-if="stillingar.addVerd">
+          <tr ng-if="state.verdskra && state.add">
             <td colspan="3">
               <p>Bæta við verði</p>
               <form class="form-horizontal">
@@ -213,5 +205,3 @@
       </div>
     </div>
   </div>
-
-</div>
