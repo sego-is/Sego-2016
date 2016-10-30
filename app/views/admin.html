@@ -1,6 +1,18 @@
-<form validate class="simple-form">
-    Nafn: <input type="text" name="nafn" ng-model="company.name">
-    Sími: <input type="tel" name="simi" ng-model="company.phone">
-    
-    <input type="button" ng-click="stadfesta(company)" value="STADFESTA">
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+           <h1>Bæta við hárgreiðslustofu:</h1>
+            <form validate class="simple-form">
+                Nafn: <input type="text" name="nafn" ng-model="company.name">
+                Sími: <input type="tel" name="simi" ng-model="company.phone">
+                
+                <input type="button" ng-click="stadfesta(company)" value="STADFESTA">
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <ul>
+                <li ng-repeat="c in companies">{{ c.name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

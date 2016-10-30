@@ -132,6 +132,18 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
     })
   });
 
+  api.get('/companies', (req, res) => {
+      model.Company.find({}).select("_id name phone").find((err, doc) => {
+          if (err) {
+			res.status(500).send(err);
+			return;
+		}
+		else {
+			res.status(201).send(doc);
+		}
+      });
+  });
+  
   api.post('/companies', bodyParser.json(), (req, res) => {
     
     const c = new model.Company(req.body);
