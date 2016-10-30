@@ -20,8 +20,19 @@
       hungang: 'thvag byfluga'
     });
   });
+  // TMP GET CALL
+  api.get('/persons', (req, res) => {
+      model.Person.find({}, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(docs);
+      }
+    });
+  });
   
-  api.post('/person', bodyParser.json(), (req, res) => {
+  api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
     p.save(function (err, doc) {
       if (err) {
@@ -33,13 +44,13 @@
     })
   });
   
-  api.get('/booking', (req, res) => {
+  api.get('/bookings', (req, res) => {
     res.status(201).json({
       svar: 'tippa svar'
     });
   });
 
-api.post('/booking', bodyParser.json(), (req, res) => {
+api.post('/bookings', bodyParser.json(), (req, res) => {
     let persona;
     model.Person.findOne({"company_id": req.company_id, "name": req.customer_name, "simi": req.customer_simi}, function(err, p) {
             if (err) {

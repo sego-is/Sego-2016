@@ -15,10 +15,11 @@
             
           scope.person = {};
           scope.person.company_id = backendFactory.getID();
+          scope.person.role = 1;
           
           scope.stadfestaStaff = function(s) {
               $http({
-                url: 'http://wwww.sego.is:6969/api/booking',
+                url: 'http://wwww.sego.is:6969/api/bookings',
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

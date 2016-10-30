@@ -9,7 +9,7 @@
         var getRass = function() {
             // CHECK OUT IF PAGE CAN CONNECT TO REST-API
             $http({
-                url: 'http://wwww.sego.is:6969/api/booking',
+                url: 'http://wwww.sego.is:6969/api/bookings',
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -25,7 +25,7 @@
         
         var postBooking = function(p) {
             $http({
-                url: 'http://wwww.sego.is:6969/api/booking',
+                url: 'http://wwww.sego.is:6969/api/bookings',
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
