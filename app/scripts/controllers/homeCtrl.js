@@ -29,24 +29,7 @@
             console.log("ERROR", error);
       });
       
-      // TMP PRUFA
-      $http({
-        method: 'GET',
-        url: 'http://wwww.sego.is:6969/api/persons',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-        }
-      }).then(function successCallback(response) {
-          console.log("RESPONSE PERSONS", response);
-      }, function errorCallback(error) {
-            console.log("ERROR", error);
-      });
-      
-      // TMP PRUFA END
-      
-      
+     
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
       var valinnDagur;
@@ -95,7 +78,7 @@
       };
       // END OF INITIALIZE TIME
 
-      $scope.staff = []; /*{
+       /*{
         'id': 1,
         'name': 'Einar'
       }, {
