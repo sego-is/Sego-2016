@@ -39,7 +39,18 @@
         res.status(500).send(err);
       }
       else {
-        res.send(doc);
+          if (req.body.role === 1) {
+              model.Company.update({ '_id':req.body.company_id }, {
+                  $push: {
+                    "staff": {
+                        "person_id": doc.data._id
+                    }
+                  }
+              }, function (err) {
+                res.status(500).send(err);    
+              });
+          }
+          res.send(doc);
       }
     })
   });

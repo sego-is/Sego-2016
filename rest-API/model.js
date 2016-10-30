@@ -43,7 +43,7 @@ const staffSchema = mongoose.Schema({
       type: String,
       ref: 'Company'  
     }, 
-    _personaId: {
+    _personId: {
       type: Schema.Types.ObjectId,
       ref: 'Person'
     }
@@ -64,11 +64,10 @@ const companySchema = mongoose.Schema({
   address:  [String],
   logo_url: String,
   staff: [{
-    persona_id: {
+    person_id: {
         type: String,
         ref: "Person"
-    },
-    role:       Number
+    }
   }]
 });
 
@@ -83,7 +82,7 @@ const bookingsSchema = mongoose.Schema({
     require: true
   },
   bookings: [{
-    persona_id: {
+    person_id: {
         type: Schema.Types.ObjectId,
         ref: 'Person'
     },
