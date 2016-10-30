@@ -10,55 +10,53 @@
    */
   angular.module('segoApp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', '$http', function ($scope, $compile, dagatalFactory, $http) {
-      
-        // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
-        var booking;
-        
-        $scope.openBooking = function (a, b) {
-            if (a === undefined) {
-            console.log("UNDEFINED");
-            }
-            else {
-                document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
-                booking = $scope.$new();
-                var compiledDirective;
-                $scope.clickOnTimapant = { 
-                    nafn: b,
-                    timi: a,
-                    dags: dagatalFactory.dags()
-                };
-                compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
-                var directiveElement = compiledDirective(booking);
-                $('.skilaboda-haldari').append(directiveElement);
-            }
-        };
-        
-        $scope.lokaBokun = function() {
-                booking.$destroy();
-                $('.skilaboda-haldari').empty();
-                document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
-                console.log("BUTTON_CLICK");
-        };
-        // END OF BOOKING CLICK
-      
-        
 
-        // Initialize the time (clock) in booking for the day
-        var stillingar = {
-            upphafsTimi: 3600 * 7,
-            endaTimi: 3600 * 22,
-            lotan: 900
-        };
+      // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
+      var booking;
 
-        $scope.times = [];
+      $scope.openBooking = function (a, b) {
+        if (a === undefined) {
+          console.log("UNDEFINED");
+        } else {
+          document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
+          booking = $scope.$new();
+          var compiledDirective;
+          $scope.clickOnTimapant = {
+            nafn: b,
+            timi: a,
+            dags: dagatalFactory.dags()
+          };
+          compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
+          var directiveElement = compiledDirective(booking);
+          $('.skilaboda-haldari').append(directiveElement);
+        }
+      };
 
-        var initTimes = function () {
-            var i;
-            for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
-            $scope.times.push(dagatalFactory.timasetning(i));
-            }
-        };
-        // END OF INITIALIZE TIME
+      $scope.lokaBokun = function () {
+        booking.$destroy();
+        $('.skilaboda-haldari').empty();
+        document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
+        console.log("BUTTON_CLICK");
+      };
+      // END OF BOOKING CLICK
+
+
+      // Initialize the time (clock) in booking for the day
+      var stillingar = {
+        upphafsTimi: 3600 * 7,
+        endaTimi:    3600 * 22,
+        lotan:       900
+      };
+
+      $scope.times = [];
+
+      var initTimes = function () {
+        var i;
+        for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
+          $scope.times.push(dagatalFactory.timasetning(i));
+        }
+      };
+      // END OF INITIALIZE TIME
 
       $scope.names = [{
         'id': 1,

@@ -6,46 +6,46 @@ const schema = mongoose.Schema;
 const personaSchema = mongoose.Schema({
   persona_id: String,
   name: {
-    type: String,
-    require: true,
+    type:      String,
+    require:   true,
     maxlength: 50,
     minlength: 3
   },
-  address: String,
-  phone: Number,
+  address:   String,
+  phone:     Number,
   image_url: String
 });
 
 const companySchema = mongoose.Schema({
   company_id: String,
   name: {
-    type: String,
-    require: true,
+    type:      String,
+    require:   true,
     maxlength: 50,
     minlength: 1
   },
-  phone: Number,
-  address: [String],
+  phone:    Number,
+  address:  [String],
   logo_url: String,
   staff: [{
     persona_id: String,
-    role: Number
+    role:       Number
   }]
 });
 
 const bookingsSchema = mongoose.Schema({
   company_id: {
-      type: String,
+      type:    String,
       require: true
   },
   date: {
-    type: Date,
+    type:    Date,
     require: true
   },
   bookings: [{
     customer_id: String,
-    staff_id: String,
-    time: Date
+    staff_id:    String,
+    time:        Date
   }]
 });
 
@@ -64,7 +64,7 @@ const serviceSchema = mongoose.Schema({
   company_id: String,
   pricelist: [{
     name: {
-      type: String,
+      type:    String,
       require: true
     },
     price: Number
@@ -72,9 +72,9 @@ const serviceSchema = mongoose.Schema({
 });
 
 module.exports = {
-  Person: mongoose.model('persons', personaSchema),
-  Company: mongoose.model('companies', companySchema),
-  Booking: mongoose.model('bookings', bookingsSchema),
+  Person:   mongoose.model('persons', personaSchema),
+  Company:  mongoose.model('companies', companySchema),
+  Booking:  mongoose.model('bookings', bookingsSchema),
   Customer: mongoose.model('customers', customerSchema),
-  Service: mongoose.model('services', serviceSchema)
+  Service:  mongoose.model('services', serviceSchema)
 };

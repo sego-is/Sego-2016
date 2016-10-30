@@ -18,8 +18,6 @@
       '$rootScope',
       '$http',
       '$routeParams', function ($scope, $location, $rootScope, $http, $routeParams) {
-
-
       }]);
 })();
 
