@@ -42,17 +42,17 @@ angular
     /*
      // Configuration for angular-jwt
      jwtOptionsProvider.config({
-     tokenGetter: function() {
-     return localStorage.getItem('id_token');
-     },
-     whiteListedDomains: ['www.sego.is', 'localhost'],
-     unauthenticatedRedirectPath: '/'
+        tokenGetter: function() {
+            return localStorage.getItem('id_token');
+        },
+        whiteListedDomains: ['www.sego.is', 'localhost'],
+        unauthenticatedRedirectPath: '/'
      });
-
+*/
      // Add the jwtInterceptor to the array of HTTP interceptors
      // so that JWTs are attached as Authorization headers
      // $httpProvider.interceptors.push('jwtInterceptor');
-     */
+     
     $locationProvider.html5Mode(true);
 
     $routeProvider
@@ -65,13 +65,15 @@ angular
         templateUrl:  '../views/home.html',
         controller:   'HomeCtrl',
         controllerAs: 'home',
-        authorize: true
+        authorize: true,
+        permissions: ["user"]
       })
       .when('/admin', {
         templateUrl:  '../views/admin.html',
         controller:   'AdminCtrl',
         controllerAs: 'admin',
-        authorize: true
+        authorize: true,
+        permissions: ["administration"]
       })
       .otherwise({
         redirectTo: '/'

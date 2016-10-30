@@ -37,5 +37,26 @@
       // Check if user is authorized when trying to access something that need authentication
       // http://erraticdev.blogspot.is/2015/10/angular-ngroute-routing-authorization.html
       // logging helper
+      $rootScope.$on("$routeChangeStart", function(evt, to, from) {
+            // requires authorization?
+            if (to.authorize === true) {
+                if (authService.auth()) {
+                    
+                }
+                else {
+                    $location.path("/");
+                }
+            }
+        });
+ 
+        $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
+            if (error)
+            {
+                // redirect to login with original path we'll be returning back to
+                $location
+                    .path("/")
+                    .search("returnTo", to.originalPath);
+            }
+        });
     }]);
 })();
