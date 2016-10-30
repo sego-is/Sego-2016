@@ -20,25 +20,26 @@
       hungang: 'thvag byfluga'
     });
   });
-
+  
+  api.post('/person', bodyParser.json(), (req, res) => {
+    const p = new model.Person(req.body);
+    p.save(function (err, doc) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(doc);
+      }
+    })
+  });
+  
   api.get('/booking', (req, res) => {
     res.status(201).json({
       svar: 'tippa svar'
     });
   });
 
-  api.get('/services', (req, res) => {
-    model.Service.find({}, function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      }
-      else {
-        res.send(docs);
-      }
-    });
-  });
-
-  api.post('/booking', bodyParser.json(), (req, res) => {
+api.post('/booking', bodyParser.json(), (req, res) => {
     let persona;
     model.Person.findOne({"company_id": req.company_id, "name": req.customer_name, "simi": req.customer_simi}, function(err, p) {
             if (err) {
@@ -85,6 +86,17 @@
      });*/
     res.status(201).send(req.body);
   });
+  
+  api.get('/services', (req, res) => {
+    model.Service.find({}, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(docs);
+      }
+    });
+  });
 
   api.post('/services', bodyParser.json(), (req, res) => {
     const s = new model.Service(req.body);
@@ -97,7 +109,7 @@
       }
     })
   });
-  
+
   api.post('/companies', bodyParser.json(), (req, res) => {
     
     const c = new model.Company(req.body);

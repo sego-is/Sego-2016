@@ -4,7 +4,7 @@
   angular
     .module('segoApp')
     .factory('backendFactory', ['$http', function ($http) {
-       
+        var company_id;
         
         var getRass = function() {
             // CHECK OUT IF PAGE CAN CONNECT TO REST-API
@@ -41,6 +41,12 @@
         };
         
     	return {
+            setID: function(a) {
+                this.company_id = a;    
+            },
+            getID: function() {
+                return this.company_id;
+            },
             getRass: getRass,
             postBooking: postBooking
     	};

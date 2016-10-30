@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const personaSchema = mongoose.Schema({
   _personaId: Schema.Types.ObjectId,
   company_id: {
-      type: String,
+      type: Schema.Types.ObjectId,
       require: true,
       ref: 'Company'
   },
@@ -16,6 +16,7 @@ const personaSchema = mongoose.Schema({
     maxlength: 50,
     minlength: 2
   },
+  email: String,
   address:   String,
   phone: {
       type: Number,
@@ -28,7 +29,8 @@ const personaSchema = mongoose.Schema({
     date: Date,
     text: String
   }],
-  role: {
+  // 0:Customer 1:Staff
+  role: {   
     type: Number,
     require: true
   }

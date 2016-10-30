@@ -9,13 +9,13 @@
           <thead>
         <tr>
           <th class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></th>
-          <th ng-repeat="x in names">{{ x.name }}</th>
+          <th ng-repeat="x in staff">{{ x.name }}</th>
         </tr>
         </thead>
         <tbody>
         <tr class="booking" ng-repeat="t in times track by $index">
           <td class="booking-time"><p ng-if="$index % 2 == 0">{{ t }}</p></td>
-          <td class="booking-cell" ng-repeat="x in names" ng-click="openBooking(t, x)"></td>
+          <td class="booking-cell" ng-repeat="x in staff" ng-click="openBooking(t, x)"></td>
         </tr>
         </tbody>
       </table>

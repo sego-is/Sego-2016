@@ -51,11 +51,11 @@
               <form class="form-horizontal">
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputKlippari"></label>
-                  <input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn">
+                  <input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn" ng-model="person.name">
                 </div>
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputSimanumer"></label>
-                  <input type="tel" class="form-control inputField" id="inputSimanumer" placeholder="Símanúmer">
+                  <input type="tel" class="form-control inputField" id="inputSimanumer" placeholder="Símanúmer" ng-model="person.phone">
                 </div>
                 <div class="pull-right col-xs-1">
                   <i class="fa fa-times fa-2x haettaVidTakki"
@@ -66,14 +66,14 @@
                 </div>
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputNetpostur"></label>
-                  <input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur">
+                  <input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur" ng-model="person.email">
                 </div>
                 <div class="pull-right col-xs-1">
                   <i class="fa fa-plus fa-2x stadfestaTakki"
                      aria-hidden="true"
                      data-toggle="tooltip"
                      data-placement="auto"
-                     title="Staðfesta"></i>
+                     title="Staðfesta" ng-click="stadfestaStaff(person)"></i>
                 </div>
               </form>
             </td>

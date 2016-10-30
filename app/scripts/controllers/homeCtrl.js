@@ -9,20 +9,23 @@
    * Controller of the segoEnnOgAfturApp
    */
   angular.module('segoApp')
-    .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', '$http', function ($scope, $compile, dagatalFactory, $http) {
+    .controller('HomeCtrl', ['$scope', '$compile', '$http', 'dagatalFactory', 'backendFactory', function ($scope, $compile, $http, dagatalFactory, backendFactory) {
       
       // GET STAFF FROM COMPANY THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
       $http({
         method: 'GET',
-        url: '/http://wwww.sego.is:6969/api/companies/' + p.user_id 
+        url: 'http://wwww.sego.is:6969/api/companies/' + p.user_id,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+        }
       }).then(function successCallback(response) {
-          console.log("RESPONSE", response);
-            // this callback will be called asynchronously
-            // when the response is available
+          backendFactory.setID(response.data[0]._id);
+          $scope.staff = response.data[0].staff;
+          console.log("RESPONSE STAFF", response.data[0].staff);
       }, function errorCallback(error) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
             console.log("ERROR", error);
       });
       
@@ -74,7 +77,7 @@
       };
       // END OF INITIALIZE TIME
 
-      $scope.names = [{
+      $scope.staff = []; /*{
         'id': 1,
         'name': 'Einar'
       }, {
@@ -93,7 +96,7 @@
         'id': 6,
         'name': 'Mandalana'
       }];
-
+    */
       $scope.bookings = [{
         'time': '8:00',
         'name': 'Einar'
