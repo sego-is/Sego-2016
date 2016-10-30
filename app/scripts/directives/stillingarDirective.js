@@ -36,26 +36,9 @@
           };
           // END OF CREATING HAIR.. //
           
-          // GET HAIRDRESSER FOR SALOON //
-          $http({
-                url: 'http://wwww.sego.is:6969/api/persons/',
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-                },
-                params: {
-                    company_id: backendFactory.getID()
-                }
-            }).then(function (response) {
-                scope.staff = response.data;
-                console.log("RESPONSE:", response);
-            }).catch(function(err) {
-                console.log("ERROR", JSON.stringify(err));
-            }).finally(function() {} );
-            // END GETTING HAIRDRESSERS FROM SALOON
-
+          scope.staff = backendFactory.getStaff();
+            
+            //
           scope.closeWindow = function () {
             scope.lokaGlugga();
           };
@@ -75,20 +58,6 @@
           scope.klippBreyting = function () {
             console.log("breyta klippara");
           };
-          
-          scope.klipparar = [{
-              'nafn': 'Einar Ormslev',
-              'simi': 5692250
-          },{
-              'nafn': 'Sigurður Þór Árnason',
-              'simi': 6650204
-          },{
-              'nafn': 'Guðríður Stefánsdóttir',
-              'simi': 6985455
-          },{
-              'nafn': 'Kaplo',
-              'simi': 7726254
-          }];
           
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
           scope.state = {

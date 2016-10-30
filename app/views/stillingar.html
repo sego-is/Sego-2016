@@ -1,6 +1,6 @@
 <!-- EIGANDA(VIEW) -->
 
-<div class="container-fluid eigandi">
+<div class="container-fluid eigandi" persmission="['owner']">
   <button type="button"
           class="close takki"
           ng-click="closeWindow()"
@@ -109,6 +109,7 @@
             <th>
               <div class="pull-left">Verð</div>
             </th>
+            <th></th>
             <th>
               <div class="pull-right">
                 <button class="eigandi-toggle glyphicon glyphicon-user"
@@ -132,7 +133,7 @@
           <!------------------------->
           <tbody>
           <tr ng-if="state.verdskra && state.add">
-            <td colspan="3">
+            <td colspan="4">
               <p>Bæta við verði</p>
               <form class="form-horizontal">
                 <div class="form-group col-xs-11">
@@ -160,38 +161,19 @@
               </form>
             </td>
           </tr>
-          <tr>
-            <td>herraklipping</td>
-            <td>5000 kr</td>
+          <tr ng-repeat="s in service">
+            <td>{{ s.name }}</td>
+            <td>{{ s.price }}</td>
+            <td></td>
             <td>
               <div class="pull-right">
-                <a ng-click="verdTrash()">
+                <a ng-click="verdTrash(s)">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Henda"></i>
                 </a>
-                <a ng-click="verdBreyting()">
-                  <i class="glyphicon glyphicon-pencil divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Breyta"></i>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>kellingaklipping</td>
-            <td>50000 kr</td>
-            <td>
-              <div class="pull-right">
-                <a ng-click="verdTrash()">
-                  <i class="glyphicon glyphicon-trash divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Henda"></i>
-                </a>
-                <a ng-click="verdBreyting()">
+                <a ng-click="verdBreyting(s)">
                   <i class="glyphicon glyphicon-pencil divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"

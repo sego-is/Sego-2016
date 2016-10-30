@@ -78,26 +78,6 @@
       };
       // END OF INITIALIZE TIME
 
-       /*{
-        'id': 1,
-        'name': 'Einar'
-      }, {
-        'id': 2,
-        'name': 'Siggi'
-      }, {
-        'id': 3,
-        'name': 'Efro'
-      }, {
-        'id': 4,
-        'name': 'Kaplo'
-      }, {
-        'id': 5,
-        'name': 'Ostaran'
-      }, {
-        'id': 6,
-        'name': 'Mandalana'
-      }];
-    */
       $scope.bookings = [{
         'time': '8:00',
         'name': 'Einar'

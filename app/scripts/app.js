@@ -66,7 +66,7 @@ angular
         controller:   'HomeCtrl',
         controllerAs: 'home',
         authorize: true,
-        permissions: ["user"]
+        permissions: ["user", "owner"]
       })
       .when('/admin', {
         templateUrl:  '../views/admin.html',
