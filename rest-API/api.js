@@ -1,4 +1,5 @@
 (function () {
+    
   'use strict';
 
   const express    = require('express');
@@ -106,10 +107,11 @@
       else {
         res.send(docs);
       }
+    });
   });
   
   api.post('/companies', bodyParser.json(), (req, res) => {
-    /*
+    
     const c = new model.Company(req.body);
     c.save(function (err, doc) {
       if (err) {
@@ -118,9 +120,10 @@
       else {
         res.send(doc);
       }
-      */
-      res.send(req.body);
+    });
+
   });
   
   module.exports = api;
+  
 })();

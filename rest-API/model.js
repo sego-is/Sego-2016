@@ -79,11 +79,11 @@ const bookingsSchema = mongoose.Schema({
   },
   bookings: [{
     persona_id: {
-        type: Schema.Type.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Person'
     },
     staff_id: {
-        type: Schema.Type.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Staff'
     },
     time:   Date
