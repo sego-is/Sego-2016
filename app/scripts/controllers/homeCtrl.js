@@ -10,13 +10,26 @@
    */
   angular.module('segoApp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', '$http', function ($scope, $compile, dagatalFactory, $http) {
-
+      /*
+      // GET STAFF FROM COMPANY THAT WAS CONNECTING //
+      var p = JSON.parse(localStorage.getItem('profile'));
+      $http({
+        method: 'GET',
+        url: '/http://wwww.sego.is:6969/api/staffs/' + p.user_id 
+      }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+      }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+      });
+      */
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
       var valinnDagur;
       
-      $scope.openBooking = function (a, b) {
-        if (a === undefined) {
+      $scope.openBooking = function (t, b) {
+        if (t === undefined) {
           console.log("UNDEFINED");
         } else {
           document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
@@ -24,8 +37,8 @@
           var compiledDirective;
           $scope.clickOnTimapant = {
             nafn: b,
-            timi: a,
-            dags: dagatalFactory.dags(valinnDagur, a)
+            timi: t,
+            dags: dagatalFactory.dags(valinnDagur, t)
           };
           compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
           var directiveElement = compiledDirective(booking);

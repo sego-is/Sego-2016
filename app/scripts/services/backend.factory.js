@@ -4,6 +4,7 @@
   angular
     .module('segoApp')
     .factory('backendFactory', ['$http', function ($http) {
+       
         
         var getRass = function() {
             // CHECK OUT IF PAGE CAN CONNECT TO REST-API
@@ -22,7 +23,7 @@
             // END OF CHECK
         };
         
-        var postRass = function(p) {
+        var postBooking = function(p) {
             $http({
                 url: 'http://wwww.sego.is:6969/api/booking',
                 method: 'POST',
@@ -37,11 +38,11 @@
             }).catch(function(err) {
                 console.log("ERROR", JSON.stringify(err));
             }).finally(function() {} );
-        }
+        };
         
     	return {
             getRass: getRass,
-            postRass: postRass
+            postBooking: postBooking
     	};
 
     }]);

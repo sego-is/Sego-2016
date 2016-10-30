@@ -18,7 +18,7 @@
             
             scope.bokun.timi = scope.objFrom.timi;
             // kannski ad huga ad lengdinni hja mer seinna
-            scope.bokun.klippari = scope.objFrom.nafn.name;
+            scope.bokun.klippari = scope.objFrom.nafn.id;
             
             scope.leave = function() {
                 scope.close();  
@@ -26,12 +26,14 @@
             
             scope.stadfesta = function() {
                 var p = JSON.parse(localStorage.getItem('profile'));
-                backendFactory.postRass({
+                backendFactory.postBooking({
                     user_id: p.user_id,
                     company_id: p.company_id,
                     time: new Date(scope.objFrom.dags),
-                    klippari: scope.bokun.klippari
-                }, function(a) {
+                    staff_id: scope.bokun.klippari,
+                    customer_name:  scope.bokun.customer,
+                    customer_simi: scope.bokun.simi
+                }, function(err, doc) {
                     
                 });
             };

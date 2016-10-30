@@ -67,6 +67,12 @@ angular
         controllerAs: 'home',
         authorize: true
       })
+      .when('/admin', {
+        templateUrl:  '../views/admin.html',
+        controller:   'AdminCtrl',
+        controllerAs: 'admin',
+        authorize: true
+      })
       .otherwise({
         redirectTo: '/'
       });

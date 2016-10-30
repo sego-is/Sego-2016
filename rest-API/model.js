@@ -1,23 +1,57 @@
 'use strict'
 
 const mongoose = require('mongoose');
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const personaSchema = mongoose.Schema({
-  persona_id: String,
+  _personaId: Schema.Types.ObjectId,
+  company_id: {
+      type: String,
+      require: true,
+      ref: 'Company'
+  },
   name: {
     type:      String,
     require:   true,
     maxlength: 50,
-    minlength: 3
+    minlength: 2
   },
   address:   String,
-  phone:     Number,
-  image_url: String
+  phone: {
+      type: Number,
+      require: true,
+      minlength: 7,
+      maxlength: 15
+  },
+  image_url: String,
+  history: [{
+    date: Date,
+    text: String
+  }],
+  role: {
+    type: Number,
+    require: true
+  }
+});
+
+personaSchema.index({ company_id: 1, name: 1, phone: 1 }, { unique: true });
+
+const staffSchema = mongoose.Schema({
+    _companyId: {
+      type: String,
+      ref: 'Company'  
+    }, 
+    _personaId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Person'
+    }
 });
 
 const companySchema = mongoose.Schema({
-  company_id: String,
+  auth_id: {
+      type: String,
+      require: true
+  },
   name: {
     type:      String,
     require:   true,
@@ -36,29 +70,27 @@ const companySchema = mongoose.Schema({
 const bookingsSchema = mongoose.Schema({
   company_id: {
       type:    String,
-      require: true
+      require: true,
+      ref: 'Company'
   },
   date: {
     type:    Date,
     require: true
   },
   bookings: [{
-    customer_id: String,
-    staff_id:    String,
-    time:        Date
+    persona_id: {
+        type: Schema.Type.ObjectId,
+        ref: 'Person'
+    },
+    staff_id: {
+        type: Schema.Type.ObjectId,
+        ref: 'Staff'
+    },
+    time:   Date
   }]
 });
 
 bookingsSchema.index({ company_id: 1, date: 1 }, { unique: true });
-
-const customerSchema = mongoose.Schema({
-  persona_id: String,
-  company_id: String,
-  history: [{
-    date: Date,
-    text: String
-  }]
-});
 
 const serviceSchema = mongoose.Schema({
   company_id: String,
@@ -75,6 +107,6 @@ module.exports = {
   Person:   mongoose.model('persons', personaSchema),
   Company:  mongoose.model('companies', companySchema),
   Booking:  mongoose.model('bookings', bookingsSchema),
-  Customer: mongoose.model('customers', customerSchema),
+  Staff:    mongoose.model('staffs', staffSchema),
   Service:  mongoose.model('services', serviceSchema)
 };

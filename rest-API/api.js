@@ -38,7 +38,39 @@
   });
 
   api.post('/booking', bodyParser.json(), (req, res) => {
-    console.log(req.body);
+    let persona;
+    model.Person.findOne({"company_id": req.company_id, "name": req.customer_name, "simi": req.customer_simi}, function(err, p) {
+            if (err) {
+                console.log(err);
+                persona = null;
+            }
+            else {
+                persona = p;
+            }
+    });
+    if (persona === null) {
+        model.Person.create({ company_id: req.company_id, name: req.customer_name, simi: req.customer_simi }, function(err, p) {
+            if (err) {
+                res.status(500).send(err);
+                return;
+            }
+            else {
+                persona = p;
+            }
+        });
+    }
+    
+    
+    /*
+    model.Booking.update( {"company_id":req.company_id,"date":req.date },
+        {$push: {
+            "bookings": {
+                "customer_id": persona._personaId,
+                "staff_id":    req.staff_id,
+                "time":        req.   
+            }
+        }
+    })*/
     /*
      const m = new model.Booking(req.body);
      m.save(function(err, doc) {
@@ -65,6 +97,30 @@
     })
   });
 
-
+  api.get('/staffs/:id', (req, res) => {
+      const id = req.params.id;
+      model.Staff.find({ 'company_id': id }, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(docs);
+      }
+  });
+  
+  api.post('/companies', bodyParser.json(), (req, res) => {
+    /*
+    const c = new model.Company(req.body);
+    c.save(function (err, doc) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(doc);
+      }
+      */
+      res.send(req.body);
+  });
+  
   module.exports = api;
 })();
