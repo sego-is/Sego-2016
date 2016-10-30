@@ -29,18 +29,10 @@
                 backendFactory.postRass({
                     user_id: p.user_id,
                     company_id: p.company_id,
-                    time: new Date(scope.bokun.timi),
+                    time: new Date(scope.objFrom.dags),
                     klippari: scope.bokun.klippari
-                }, (err, res) => {
-                    if (err) {
-                        console.log('ERROR', JSON.stringify(err));
-                    }
-                    else {
-                        if (res.status === 201) {
-                            console.log("201 - MOTHA Fucka");
-                        }
-                        console.log('res', JSON.stringify(res));
-                    }
+                }, function(a) {
+                    
                 });
             };
             

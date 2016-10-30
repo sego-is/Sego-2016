@@ -13,20 +13,23 @@
       
         // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
         var booking;
+        var valinnDagur;
         
         $scope.openBooking = function (a, b) {
             if (a === undefined) {
             console.log("UNDEFINED");
             }
             else {
+
                 document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
                 booking = $scope.$new();
                 var compiledDirective;
                 $scope.clickOnTimapant = { 
                     nafn: b,
                     timi: a,
-                    dags: dagatalFactory.dags()
+                    dags: dagatalFactory.dags(valinnDagur, a)
                 };
+                console.log($scope.clickOnTimapant.dags);
                 compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
                 var directiveElement = compiledDirective(booking);
                 $('.skilaboda-haldari').append(directiveElement);
@@ -102,6 +105,8 @@
 
       $scope.$on('dagsetning', function (e, a) {
         initTimes();
+        console.log("HERNA NUNA");
+        valinnDagur = a;
         $scope.dagurinnIdag = dagatalFactory.dagsetning(a.getDay(), a.getDate(), a.getMonth());
       });
     }]);

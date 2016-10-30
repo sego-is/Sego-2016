@@ -3,7 +3,7 @@
 
   angular
     .module('segoApp')
-    .factory('dagatalFactory', ['$rootScope', function ($rootScope) {
+    .factory('dagatalFactory', function () {
 
         var months = [
              {'full': 'janúar','dagar':31},{'full': 'febrúar','dagar':28},{'full': 'mars','dagar':31},{'full': 'apríl','dagar':30},
@@ -42,10 +42,20 @@
                     return toHHMMSS(a);
                 }
             },
-            dags: function() {
-                return "2016-10-29T00:00:00";
+            dags: function(d, t) {
+                if (d === undefined || t == undefined) {
+                    d = new Date();
+                    t = "00:00:00";
+                }
+                var month = d.getMonth()+1;
+                var date = d.getDate();
+                
+                if (month < 10) { month = "0" + month; }
+                if (date < 10) { date = "0" + date; }
+                
+                return d.getFullYear() + "-" + month + "-" + date + "T" + t;
             }
     	};
 
-    }]);
+    });
 })();
