@@ -43,7 +43,7 @@
               model.Company.update({ '_id':req.body.company_id }, {
                   $push: {
                     "staff": {
-                        "person_id": doc.data._id
+                        "person_id": doc._id
                     }
                   }
               }, function (err) {
