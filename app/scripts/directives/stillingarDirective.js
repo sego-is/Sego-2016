@@ -13,6 +13,7 @@
         templateUrl: '../../views/stillingar.html',
         link: function (scope, element, attrs) {
             
+            //  CREATE PERSON THAT WILL GET THE ROLE OF HAIRCUTTER OR DRESSER
           scope.person = {};
           scope.person.company_id = backendFactory.getID();
           scope.person.role = 1;
@@ -33,7 +34,26 @@
                 console.log("ERROR", JSON.stringify(err));
             }).finally(function() {} );
           };
+          // END OF CREATING HAIR.. //
           
+          // GET HAIRDRESSER FOR SALOON //
+          $http({
+                url: 'http://wwww.sego.is:6969/api/persons/',
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                },
+                params: {
+                    company_id: backendFactory.getID()
+                }
+            }).then(function (response) {
+                console.log("RESPONSE:", response);
+            }).catch(function(err) {
+                console.log("ERROR", JSON.stringify(err));
+            }).finally(function() {} );
+            // END GETTING HAIRDRESSERS FROM SALOON
           
           scope.closeWindow = function () {
             scope.lokaGlugga();

@@ -32,6 +32,7 @@
     });
   });
   
+  // POST PERSONS, EITHER STAFF OR CUSTOMER
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
     model.Person.create(p, function (err, doc) {
@@ -55,6 +56,18 @@
     })
   });
   
+  // GET ALL HAIRCUTTER WORKING FOR COMPANY WITH ID
+  api.get('/persons:company_id', (req, res) => {
+      model.Person.find({ "company_id": req.params.company_id, "role": 1 }, (err, p) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                res.send(p);
+            }
+      });
+  });
+  
   api.get('/bookings', (req, res) => {
     res.status(201).json({
       svar: 'tippa svar'
@@ -65,7 +78,7 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
     let persona;
     model.Person.findOne({"company_id": req.company_id, "name": req.customer_name, "simi": req.customer_simi}, function(err, p) {
             if (err) {
-                console.log(err);
+                console.log("ERROR IN POST /bookings :", err);
                 persona = null;
             }
             else {
