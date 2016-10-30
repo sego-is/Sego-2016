@@ -19,7 +19,7 @@
           
           scope.stadfestaStaff = function(s) {
               $http({
-                url: 'http://wwww.sego.is:6969/api/bookings',
+                url: 'http://wwww.sego.is:6969/api/persons',
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

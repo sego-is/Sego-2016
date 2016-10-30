@@ -34,7 +34,7 @@
   
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
-    p.save(function (err, doc) {
+    model.Person.create(p, function (err, doc) {
       if (err) {
         res.status(500).send(err);
       }
