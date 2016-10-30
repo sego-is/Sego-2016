@@ -3,7 +3,7 @@
     
     angular.module('segoApp')
       .controller('AdminCtrl', ['$scope', '$http', function ($scope, $http) {
-            let profile = JSON.parse(localStorage.getItem('profile'));
+            var profile = JSON.parse(localStorage.getItem('profile'));
             $scope.company = {};
             $scope.company.auth_id = profile.user_id;
             
