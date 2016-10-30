@@ -141,7 +141,7 @@
                      aria-hidden="true"
                      data-toggle="tooltip"
                      data-placement="auto"
-                     title="Hætta við"></i>
+                     title="Hætta við" ng-click="add()"></i>
                 </div>
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputVerd"></label>
@@ -152,12 +152,12 @@
                      aria-hidden="true"
                      data-toggle="tooltip"
                      data-placement="auto"
-                     title="Staðfesta"></i>
+                     title="Staðfesta" ng-click="stadfestaService(service)"></i>
                 </div>
               </form>
             </td>
           </tr>
-          <tr ng-repeat="s in service">
+          <tr ng-repeat="s in services">
             <td>{{ s.name }}</td>
             <td>{{ s.price }}</td>
             <td></td>

@@ -67,7 +67,8 @@ const companySchema = mongoose.Schema({
     person_id: {
         type: String,
         ref: "Person"
-    }
+    },
+    name: String
   }]
 });
 

@@ -19,12 +19,30 @@
           scope.person.role = 1;
           
           scope.stadfestaStaff = function(s) {
-              backendFactory.postPerson(s);
+              backendFactory.postPerson(s).then(function(res) {
+                  scope.staff.push(res.data);
+              }, function(err) {
+                  console.log("ERROR getStaf(): ", err);
+              });
           };
           // END OF CREATING HAIR.. //
           
-          scope.staff;
-          scope.service;
+          // CREATING SERVICE
+          scope.service = {}
+          scope.service.company_id = backendFactory.getID();
+          
+          scope.stadfestaService = function(s) {
+              backendFactory.postService(s).then(function(res) {
+                  scope.services.push(res.data);
+              }, function(err) {
+                  console.log("ERROR getStaf(): ", err);
+              });
+          }
+          // END OF CREATE SERVICE
+          
+          // GET ALL STAFF AND SERVICE FOR SALOON
+          scope.staff = [];
+          scope.services = [];
           
           getStaff();
           getService();
@@ -39,14 +57,14 @@
           
           function getService() {
               backendFactory.getService().then(function(res) {
-                   scope.service = res.data;
+                   scope.services = res.data;
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });
           };
-         
+         // END OF GETTING U/S
           
-            //
+            
           scope.closeWindow = function () {
             scope.lokaGlugga();
           };

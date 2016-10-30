@@ -17,7 +17,6 @@
         }
         
         backendFactory.getService = function() {
-            // CHECK OUT IF PAGE CAN CONNECT TO REST-API
             return $http({
                 url: 'http://wwww.sego.is:6969/api/services',
                 method: 'GET',
@@ -25,8 +24,11 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-            }});
-            // END OF CHECK
+                },
+                params: {
+                    company_id: company_id
+                }
+            });
         };
         
         // GET HAIRDRESSER FOR SALOON //
@@ -72,6 +74,19 @@
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
                 },
                 data: p
+            });
+        };
+        
+        backendFactory.postService = function(s) { 
+            return $http({
+                url: 'http://wwww.sego.is:6969/api/services',
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                },
+                data: s
             });
         };
         

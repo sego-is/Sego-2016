@@ -44,7 +44,8 @@
               model.Company.update({ '_id':req.body.company_id }, {
                   $push: {
                     "staff": {
-                        "person_id": doc._id
+                        "person_id": doc._id,
+                        "name": doc.name
                     }
                   }
               }, function (err) {
@@ -132,9 +133,31 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
       }
     });
   });
-
+  
+  api.get('/services/:company_id', (req, res) => {
+      const id = req.params.company_id;
+      model.Service.find({ _id: id }, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(docs);
+      }
+    });
+  });
+  
   api.post('/services', bodyParser.json(), (req, res) => {
     const s = new model.Service(req.body);
+    model.Service.update({ '_id':req.body.company_id }, {
+                  $push: {
+                    "pricelist": {
+                        "name": doc._id,
+                        "price": 
+                    }
+                  }
+              }, function (err) {
+                res.status(500).send(err);    
+              });
     s.save(function (err, doc) {
       if (err) {
         res.status(500).send(err);
