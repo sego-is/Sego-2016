@@ -42,8 +42,7 @@
           <!---------------------------->
           <tr ng-if="!state.verdskra && state.add">
             <td colspan="4">
-              <p>Bæta við klippara</p>
-              <form class="form-horizontal">
+               <form class="form-horizontal">
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputKlippari"></label>
                   <input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn" ng-model="person.name">
@@ -57,7 +56,7 @@
                      aria-hidden="true"
                      data-toggle="tooltip"
                      data-placement="auto"
-                     title="Hætta við"></i>
+                     title="Hætta við" ng-click="add()"></i>
                 </div>
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputNetpostur"></label>
@@ -106,9 +105,7 @@
             <th>
               <div class="pull-left">Þjónusta</div>
             </th>
-            <th>
-              <div class="pull-left">Verð</div>
-            </th>
+            <th>Verð</th>
             <th></th>
             <th>
               <div class="pull-right">
@@ -134,14 +131,13 @@
           <tbody>
           <tr ng-if="state.verdskra && state.add">
             <td colspan="4">
-              <p>Bæta við verði</p>
               <form class="form-horizontal">
                 <div class="form-group col-xs-11">
-                  <label class="sr-only" for="inputNafnVerk"></label>
-                  <input type="name" class="form-control inputField" id="inputNafnVerk" placeholder="Verk">
+                  <label class="sr-only" for="Þjónusta"></label>
+                  <input type="name" class="form-control inputField" id="inputÞjónusta" placeholder="Þjónusta" ng-model="service.name">
                 </div>
                 <div class="pull-right col-xs-1">
-                  <i class="fa fa-times fa-2x haettaVidTakki"
+                  <i class="fa fa-times fa-2x haettaVidTakki pull-right col-xs-1"
                      aria-hidden="true"
                      data-toggle="tooltip"
                      data-placement="auto"
@@ -149,7 +145,7 @@
                 </div>
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputVerd"></label>
-                  <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð">
+                  <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð" ng-model="service.price">
                 </div>
                 <div class="pull-right col-xs-1">
                   <i class="fa fa-plus fa-2x stadfestaTakki"

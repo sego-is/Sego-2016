@@ -19,25 +19,33 @@
           scope.person.role = 1;
           
           scope.stadfestaStaff = function(s) {
-              $http({
-                url: 'http://wwww.sego.is:6969/api/persons',
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-                },
-                data: s
-            }).then(function (response) {
-                console.log("RESPONSE:", response);
-            }).catch(function(err) {
-                console.log("ERROR", JSON.stringify(err));
-            }).finally(function() {} );
+              backendFactory.postPerson(s);
           };
           // END OF CREATING HAIR.. //
           
-          scope.staff = backendFactory.getStaff();
-            
+          scope.staff;
+          scope.service;
+          
+          getStaff();
+          getService();
+          
+          function getStaff() {
+              backendFactory.getStaff().then(function(res) {
+                  scope.staff = res.data;
+              }, function(err) {
+                  console.log("ERROR getStaf(): ", err);
+              });
+          };
+          
+          function getService() {
+              backendFactory.getService().then(function(res) {
+                   scope.service = res.data;
+              }, function(err) {
+                  console.log("ERROR getService(): ", err);
+              });
+          };
+         
+          
             //
           scope.closeWindow = function () {
             scope.lokaGlugga();
