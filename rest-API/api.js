@@ -148,11 +148,11 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
   
   api.post('/services', bodyParser.json(), (req, res) => {
     const s = new model.Service(req.body);
-    model.Service.update({ '_id':req.body.company_id }, {
+    model.Service.update({ '_id': req.body.company_id }, {
                   $push: {
                     "pricelist": {
-                        "name": doc._id,
-                        "price": doc.price 
+                        "name": req.body.name,
+                        "price": req.body.price 
                     }
                   }
               }, function (err) {
