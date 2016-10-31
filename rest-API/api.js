@@ -34,17 +34,9 @@
 
   //DELETE PERSON
   api.delete('/persons/:id', (req, res) => {
-    var id = req.params.id;
-    var pers = model.Person.filter(r => r.id === id)[0];
 
-    if(!pers) {
-      return res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-/*
-    console.log("delete id " + id);
-    model.Person.remove({ "auth_id": id }, function(err, c) {
+    console.log("delete id " + req.params.id);
+    model.Person.remove({ "_personaId": req.params.id }, function(err, c) {
       if (err) {
         console.log("err ", c);
         res.status(500).send(err);
@@ -53,7 +45,7 @@
         console.log("success ", c);
         res.send(c);
       }
-    });*/
+    });
   });
 
   // POST PERSONS, EITHER STAFF OR CUSTOMER
