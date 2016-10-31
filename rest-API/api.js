@@ -32,6 +32,7 @@
     });
   });
   
+  // POST PERSONS, EITHER STAFF OR CUSTOMER
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
     model.Person.create(p, function (err, doc) {
@@ -43,7 +44,8 @@
               model.Company.update({ '_id':req.body.company_id }, {
                   $push: {
                     "staff": {
-                        "person_id": doc._id
+                        "person_id": doc._id,
+                        "name": doc.name
                     }
                   }
               }, function (err) {
@@ -53,6 +55,18 @@
           res.send(doc);
       }
     })
+  });
+  
+  // GET ALL HAIRCUTTER WORKING FOR COMPANY WITH ID
+  api.get('/persons:company_id', (req, res) => {
+      model.Person.find({ "company_id": req.params.company_id, "role": 1 }, (err, p) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                res.send(p);
+            }
+      });
   });
   
   api.get('/bookings', (req, res) => {
@@ -65,7 +79,7 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
     let persona;
     model.Person.findOne({"company_id": req.company_id, "name": req.customer_name, "simi": req.customer_simi}, function(err, p) {
             if (err) {
-                console.log(err);
+                console.log("ERROR IN POST /bookings :", err);
                 persona = null;
             }
             else {
@@ -119,9 +133,31 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
       }
     });
   });
-
+  
+  api.get('/services/:company_id', (req, res) => {
+      const id = req.params.company_id;
+      model.Service.find({ _id: id }, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(docs);
+      }
+    });
+  });
+  
   api.post('/services', bodyParser.json(), (req, res) => {
     const s = new model.Service(req.body);
+    model.Service.update({ '_id': req.body.company_id }, {
+                  $push: {
+                    "pricelist": {
+                        "name": req.body.name,
+                        "price": req.body.price 
+                    }
+                  }
+              }, function (err) {
+                res.status(500).send(err);    
+              });
     s.save(function (err, doc) {
       if (err) {
         res.status(500).send(err);
@@ -132,6 +168,18 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
     })
   });
 
+  api.get('/companies', (req, res) => {
+      model.Company.find({}).select("_id name phone").find((err, doc) => {
+          if (err) {
+			res.status(500).send(err);
+			return;
+		}
+		else {
+			res.status(201).send(doc);
+		}
+      });
+  });
+  
   api.post('/companies', bodyParser.json(), (req, res) => {
     
     const c = new model.Company(req.body);

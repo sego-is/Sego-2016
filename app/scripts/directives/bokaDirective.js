@@ -34,7 +34,13 @@
                     customer_name:  scope.bokun.customer,
                     customer_simi: scope.bokun.simi
                 }, function(err, doc) {
-                    
+                    if (err) {
+                        console.log("CB scope.stafesta() - err: ", err);    
+                    }
+                    else {
+                        console.log("CB scope.stafesta() - doc: ", doc);
+                    }
+                   
                 });
             };
             

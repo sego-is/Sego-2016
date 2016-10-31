@@ -26,23 +26,9 @@
       $scope.waitingList = {};
 
       $('[data-toggle="tooltip"]').tooltip();
-      /*
-       Would be better to include this in stillingar directive
-       */
-      $scope.stillingar = {
-        'addKlippara': false,
-        'admin': false
-      };
-      $scope.toggleKlippara = function () {
-        $scope.stillingar.addKlippara = !$scope.stillingar.addKlippara;
-      };
-      /* END  ST*/
+
       $scope.vidskiptavinir = {
         'addCustomer': false
-      };
-
-      $scope.ownerView = {
-        'pass': 'rasstippibrjosthommi'
       };
 
       $scope.lokaGlugga = function () {

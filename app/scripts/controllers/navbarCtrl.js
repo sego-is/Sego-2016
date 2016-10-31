@@ -12,12 +12,9 @@
    * Controller of the segoApp
    */
   angular.module('segoApp')
-    .controller('navbarCtrl', [
-      '$scope',
-      '$location',
-      '$rootScope',
-      '$http',
-      '$routeParams', function ($scope, $location, $rootScope, $http, $routeParams) {
+    .controller('navbarCtrl', ['$scope', 'authService', function ($scope, authService) {
+        $scope.isLoggedIn - authService.auth();
+        
       }]);
 })();
 

@@ -4,27 +4,55 @@
   angular
     .module('segoApp')
     .factory('backendFactory', ['$http', function ($http) {
-        var company_id;
         
-        var getRass = function() {
-            // CHECK OUT IF PAGE CAN CONNECT TO REST-API
-            $http({
-                url: 'http://wwww.sego.is:6969/api/bookings',
+        var company_id = null;
+        var backendFactory = {};
+        
+        backendFactory.setID = function(id) {
+            company_id = id;
+        }
+        
+        backendFactory.getID = function() {
+            return company_id;
+        }
+        
+        backendFactory.getService = function() {
+            return $http({
+                url: 'http://wwww.sego.is:6969/api/services',
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-            }}).then(function (response) {
-                console.log("RESPONSE:", response);
-            }, function(err) {
-                console.log("ERROR", JSON.stringify(err));
+                },
+                params: {
+                    company_id: company_id
+                }
             });
-            // END OF CHECK
         };
         
-        var postBooking = function(p) {
-            $http({
+        // GET HAIRDRESSER FOR SALOON //
+        backendFactory.getStaff = function() {
+            if (company_id != null) {
+                return $http({
+                    url: 'http://wwww.sego.is:6969/api/persons/',
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                    },
+                    params: {
+                        company_id: company_id
+                    }
+                });
+            }
+        }
+        
+            // END GETTING HAIRDRESSERS FROM SALOON
+ 
+        backendFactory.postBooking = function(p) {
+            return $http({
                 url: 'http://wwww.sego.is:6969/api/bookings',
                 method: 'POST',
                 headers: {
@@ -33,23 +61,36 @@
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
                 },
                 data: p
-            }).then(function (response) {
-                console.log("RESPONSE:", response);
-            }).catch(function(err) {
-                console.log("ERROR", JSON.stringify(err));
-            }).finally(function() {} );
+            });
         };
         
-    	return {
-            setID: function(a) {
-                this.company_id = a;    
-            },
-            getID: function() {
-                return this.company_id;
-            },
-            getRass: getRass,
-            postBooking: postBooking
-    	};
+        backendFactory.postPerson = function(p) { 
+            return $http({
+                url: 'http://wwww.sego.is:6969/api/persons',
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                },
+                data: p
+            });
+        };
+        
+        backendFactory.postService = function(s) { 
+            return $http({
+                url: 'http://wwww.sego.is:6969/api/services',
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                },
+                data: s
+            });
+        };
+        
+        return backendFactory;
 
     }]);
 })();

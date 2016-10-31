@@ -13,28 +13,58 @@
         templateUrl: '../../views/stillingar.html',
         link: function (scope, element, attrs) {
             
+            //  CREATE PERSON THAT WILL GET THE ROLE OF HAIRCUTTER OR DRESSER
           scope.person = {};
           scope.person.company_id = backendFactory.getID();
           scope.person.role = 1;
           
           scope.stadfestaStaff = function(s) {
-              $http({
-                url: 'http://wwww.sego.is:6969/api/persons',
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-                },
-                data: s
-            }).then(function (response) {
-                console.log("RESPONSE:", response);
-            }).catch(function(err) {
-                console.log("ERROR", JSON.stringify(err));
-            }).finally(function() {} );
+              backendFactory.postPerson(s).then(function(res) {
+                  scope.staff.push(res.data);
+              }, function(err) {
+                  console.log("ERROR getStaf(): ", err);
+              });
+          };
+          // END OF CREATING HAIR.. //
+          
+          // CREATING SERVICE
+          scope.service = {}
+          scope.service.company_id = backendFactory.getID();
+          
+          scope.stadfestaService = function(s) {
+              backendFactory.postService(s).then(function(res) {
+                  scope.services.push(res.data);
+              }, function(err) {
+                  console.log("ERROR getStaf(): ", err);
+              });
+          }
+          // END OF CREATE SERVICE
+          
+          // GET ALL STAFF AND SERVICE FOR SALOON
+          scope.staff = [];
+          scope.services = [];
+          
+          getStaff();
+          getService();
+          
+          function getStaff() {
+              backendFactory.getStaff().then(function(res) {
+                  scope.staff = res.data;
+              }, function(err) {
+                  console.log("ERROR getStaf(): ", err);
+              });
           };
           
+          function getService() {
+              backendFactory.getService().then(function(res) {
+                   scope.services = res.data;
+              }, function(err) {
+                  console.log("ERROR getService(): ", err);
+              });
+          };
+         // END OF GETTING U/S
           
+            
           scope.closeWindow = function () {
             scope.lokaGlugga();
           };
@@ -55,46 +85,20 @@
             console.log("breyta klippara");
           };
           
-          scope.klipparar = [{
-              'nafn': 'Einar Ormslev',
-              'simi': 5692250
-          },{
-              'nafn': 'Sigurður Þór Árnason',
-              'simi': 6650204
-          },{
-              'nafn': 'Guðríður Stefánsdóttir',
-              'simi': 6985455
-          },{
-              'nafn': 'Kaplo',
-              'simi': 7726254
-          }];
+          // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
+          scope.state = {
+              verdskra: false,
+              add: false
+          };
           
-          scope.stillingar = {
-            klipp: true,
-            verd: false,
-            addKlippara: false,
-            addVerd: false
+          scope.toggle = function() {
+              scope.state.verdskra = !scope.state.verdskra;
           };
-
-          scope.toggleKlippara = function () {
-            if(scope.stillingar.verd) {
-              scope.stillingar.klipp = !scope.stillingar.klipp;
-              scope.stillingar.verd = !scope.stillingar.verd;
-              scope.stillingar.addKlippara = false;
-            } else {
-              scope.stillingar.addKlippara = !scope.stillingar.addKlippara;
-            }
-          };
-
-          scope.toggleVerdskra = function () {
-            if(scope.stillingar.klipp) {
-              scope.stillingar.verd = !scope.stillingar.verd;
-              scope.stillingar.klipp = !scope.stillingar.klipp;
-              scope.stillingar.addVerd = false;
-            } else {
-              scope.stillingar.addVerd = !scope.stillingar.addVerd;
-            }
+          
+          scope.add = function() {
+              scope.state.add = !scope.state.add;
           }
+          // END OF TOGGLE
         }
       };
     }]);

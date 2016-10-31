@@ -1,6 +1,78 @@
-<form validate class="simple-form">
-    Nafn: <input type="text" name="nafn" ng-model="company.name">
-    Sími: <input type="tel" name="simi" ng-model="company.phone">
-    
-    <input type="button" ng-click="stadfesta(company)" value="STADFESTA">
-</form>
+<div class="container" permissions="['administration']">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Bæta við hárgreiðslustofu:</h3>
+            <form>
+                <div class="form-group">
+                    <label for="name">Nafn:</label>
+                    <input type="text" name="nafn" ng-model="company.name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Sími:</label>
+                    <input type="tel" name="simi" ng-model="company.phone">
+                </div>
+                <input type="button" ng-click="addCompany(company)" value="STADFESTA">
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Hárgreiðslustofur í kerfinu</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Hárgreiðslustofa</th>
+                        <th>Sími</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="c in companies">
+                        <td>{{ c.name }}</td>
+                        <td>{{ c.phone }}</td>
+                        <td></td>
+                    </tr>    
+                </tbody>
+             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Bæta við notanda</h3>
+            <form>
+                <div class="form-group">
+                    <label for="name">Nafn:</label>
+                    <input type="text" name="name" ng-model="user.name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Sími:</label>
+                    <input type="tel" name="phone" ng-model="user.phone">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Netfang:</label>
+                    <input type="tel" name="email" ng-model="user.email">
+                </div>
+                <input type="button" ng-click="addUser(user)" value="STADFESTA">
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Notendur í kerfinu</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Notendur</th>
+                        <th>Sími</th>
+                        <th>Netfang</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="u in users">
+                        <td>{{ u.name }}</td>
+                        <td>{{ u.phone }}</td>
+                        <td>{{ u.email }}</td>
+                        <td></td>
+                    </tr>    
+                </tbody>
+             </table>
+        </div>
+    </div>
+</div>
