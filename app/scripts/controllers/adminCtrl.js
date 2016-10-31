@@ -88,7 +88,7 @@
         $scope.deleteUser = function(u) {
           console.log("DELETE USER ", u);
           $http({
-            url: 'http://wwww.sego.is:6969/api/persons/:' + u,
+            url: 'http://wwww.sego.is:6969/api/persons',
             method: 'DELETE',
             headers: {
               'Accept': 'application/json',
@@ -103,6 +103,5 @@
             console.log("ERROR", JSON.stringify(err));
           }).finally(function() {} );
         };
-
       }]);
 })();

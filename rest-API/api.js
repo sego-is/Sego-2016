@@ -33,16 +33,16 @@
   });
 
   //DELETE PERSON
-  api.delete('/persons/:id', (req, res) => {
+  api.delete('/persons', (req, res) => {
 
     console.log("delete id " + req.params.id);
-    model.Person.remove({ "_personaId": req.params.id }, function(err, c) {
+    model.Person.delete({ "_personaId": req.params.id }, function(err, c) {
       if (err) {
         console.log("err ", c);
         res.status(500).send(err);
       }
       else {
-        console.log("success ", c);
+        console.log("success ");
         res.send(c);
       }
     });
