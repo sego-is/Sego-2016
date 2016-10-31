@@ -34,19 +34,15 @@
 
   //DELETE PERSON
   api.delete('/persons:id', (req, res) => {
+    var id = req.params.id;
+    var pers = persons.filter(r => r.id === id)[0];
 
-    return model.Person.findIndex(req.params.id, function (err, pers) {
-      return pers.remove(function (err) {
-        if(!err) {
-          console.log("removed");
-          return res.send('');
-        } else {
-          console.log(err);
-        }
-      })
-    })
-
-    /*const id = req.params.id;
+    if(!pers) {
+      return res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+/*
     console.log("delete id " + id);
     model.Person.remove({ "auth_id": id }, function(err, c) {
       if (err) {
