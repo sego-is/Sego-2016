@@ -33,9 +33,9 @@
   });
 
   //DELETE PERSON
-  api.delete('/persons:id', (req, res) => {
+  api.delete('/persons/:id', (req, res) => {
     var id = req.params.id;
-    var pers = persons.filter(r => r.id === id)[0];
+    var pers = model.Person.filter(r => r.id === id)[0];
 
     if(!pers) {
       return res.sendStatus(404);
