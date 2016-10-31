@@ -152,7 +152,7 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
                   $push: {
                     "pricelist": {
                         "name": doc._id,
-                        "price": 
+                        "price": doc.price 
                     }
                   }
               }, function (err) {
