@@ -97,6 +97,7 @@
             },
             data: u
           }).then(function (response) {
+            console.log("ARRAY OF USERS ", $scope.users);
             console.log("RESPONSE:", response);
           }).catch(function(err) {
             console.log("ERROR", JSON.stringify(err));

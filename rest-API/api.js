@@ -35,9 +35,20 @@
   //DELETE PERSON
   api.delete('/persons:id', (req, res) => {
 
-    const id = req.params.id;
-console.log("delete id " + id);
-    model.Person.delete({ "auth_id": id }, function(err, c) {
+    return model.Person.findIndex(req.params.id, function (err, pers) {
+      return model.Person.remove(function (err) {
+        if(!err) {
+          console.log("removed");
+          return res.send('');
+        } else {
+          console.log(err);
+        }
+      })
+    })
+
+    /*const id = req.params.id;
+    console.log("delete id " + id);
+    model.Person.remove({ "auth_id": id }, function(err, c) {
       if (err) {
         console.log("err ", c);
         res.status(500).send(err);
@@ -46,7 +57,7 @@ console.log("delete id " + id);
         console.log("success ", c);
         res.send(c);
       }
-    });
+    });*/
   });
 
   // POST PERSONS, EITHER STAFF OR CUSTOMER

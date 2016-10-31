@@ -77,3 +77,15 @@
         </div>
     </div>
 </div>
+app.delete('/api/products/:id', function (req, res){
+return ProductModel.findById(req.params.id, function (err, product) {
+return product.remove(function (err) {
+if (!err) {
+console.log("removed");
+return res.send('');
+} else {
+console.log(err);
+}
+});
+});
+});
