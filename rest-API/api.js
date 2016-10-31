@@ -33,8 +33,8 @@
   });
 
   //DELETE PERSON
-  api.delete('/persons/:_id', (req, res) => {
-    var id = req.params._id;
+  api.delete('/persons?id', (req, res) => {
+    var id = req.params.id;
     console.log("delete id " + id);
     model.Person.remove({ "_personaId": id }, function(err, c) {
       if (err) {
