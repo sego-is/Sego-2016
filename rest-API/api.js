@@ -1,5 +1,5 @@
 (function () {
-    
+
   'use strict';
 
   const express    = require('express');
@@ -31,7 +31,24 @@
       }
     });
   });
-  
+
+  //DELETE PERSON
+  api.delete('/persons:id', (req, res) => {
+
+    const id = req.params.id;
+
+    model.Person.find({ "auth_id": id }, function(err, c) {
+      if (err) {
+        console.log("err ", c);
+        res.status(500).send(err);
+      }
+      else {
+        console.log("success ", c);
+        res.send(c);
+      }
+    });
+  });
+
   // POST PERSONS, EITHER STAFF OR CUSTOMER
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
@@ -49,14 +66,14 @@
                     }
                   }
               }, function (err) {
-                res.status(500).send(err);    
+                res.status(500).send(err);
               });
           }
           res.send(doc);
       }
     })
   });
-  
+
   // GET ALL HAIRCUTTER WORKING FOR COMPANY WITH ID
   api.get('/persons:company_id', (req, res) => {
       model.Person.find({ "company_id": req.params.company_id, "role": 1 }, (err, p) => {
@@ -68,7 +85,7 @@
             }
       });
   });
-  
+
   api.get('/bookings', (req, res) => {
     res.status(201).json({
       svar: 'tippa svar'
@@ -97,15 +114,15 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
             }
         });
     }
-    
-    
+
+
     /*
     model.Booking.update( {"company_id":req.company_id,"date":req.date },
         {$push: {
             "bookings": {
                 "customer_id": persona._personaId,
                 "staff_id":    req.staff_id,
-                "time":        req.   
+                "time":        req.
             }
         }
     })*/
@@ -122,7 +139,7 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
      });*/
     res.status(201).send(req.body);
   });
-  
+
   api.get('/services', (req, res) => {
     model.Service.find({}, function (err, docs) {
       if (err) {
@@ -133,7 +150,7 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
       }
     });
   });
-  
+
   api.get('/services/:company_id', (req, res) => {
       const id = req.params.company_id;
       model.Service.find({ _id: id }, function (err, docs) {
@@ -145,18 +162,18 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
       }
     });
   });
-  
+
   api.post('/services', bodyParser.json(), (req, res) => {
     const s = new model.Service(req.body);
     model.Service.update({ '_id': req.body.company_id }, {
                   $push: {
                     "pricelist": {
                         "name": req.body.name,
-                        "price": req.body.price 
+                        "price": req.body.price
                     }
                   }
               }, function (err) {
-                res.status(500).send(err);    
+                res.status(500).send(err);
               });
     s.save(function (err, doc) {
       if (err) {
@@ -179,9 +196,9 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
 		}
       });
   });
-  
+
   api.post('/companies', bodyParser.json(), (req, res) => {
-    
+
     const c = new model.Company(req.body);
     c.save(function (err, doc) {
       if (err) {
@@ -193,11 +210,11 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
     });
 
   });
-  
+
   api.get('/companies/:id', (req, res) => {
-      
+
       const id = req.params.id;
-      
+
       model.Company.find({ "auth_id": id }, function(err, c) {
         if (err) {
             res.status(500).send(err);
@@ -207,7 +224,8 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
         }
       });
   });
-  
+
+
   module.exports = api;
-  
+
 })();
