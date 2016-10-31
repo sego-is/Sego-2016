@@ -36,8 +36,8 @@
   api.delete('/persons:id', (req, res) => {
 
     const id = req.params.id;
-
-    model.Person.find({ "auth_id": id }, function(err, c) {
+console.log("delete id " + id);
+    model.Person.delete({ "auth_id": id }, function(err, c) {
       if (err) {
         console.log("err ", c);
         res.status(500).send(err);
