@@ -36,7 +36,7 @@
   api.delete('/persons:id', (req, res) => {
 
     return model.Person.findIndex(req.params.id, function (err, pers) {
-      return model.Person.remove(function (err) {
+      return pers.remove(function (err) {
         if(!err) {
           console.log("removed");
           return res.send('');
