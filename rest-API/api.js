@@ -33,10 +33,10 @@
   });
 
   //DELETE PERSON
-  api.delete('/persons', (req, res) => {
-    var id = req.params.id;
+  api.delete('/persons/:_id', (req, res) => {
+    var id = req.params._id;
     console.log("delete id " + id);
-    model.Person.findByIdAndUpdate(id, {delete: { "_personaId": id }}, function(err, c) {
+    model.Person.remove({ "_personaId": id }, function(err, c) {
       if (err) {
         console.log("err ", c);
         res.status(500).send(err);

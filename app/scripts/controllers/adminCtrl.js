@@ -88,14 +88,8 @@
         $scope.deleteUser = function(u) {
           console.log("DELETE USER ", u);
           $http({
-            url: 'http://wwww.sego.is:6969/api/persons',
-            method: 'DELETE',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-            },
-            data: u
+            url: 'http://wwww.sego.is:6969/api/persons/_' + u,
+            method: 'DELETE'
           }).then(function (response) {
             console.log("ARRAY OF USERS ", $scope.users);
             console.log("RESPONSE:", response);
