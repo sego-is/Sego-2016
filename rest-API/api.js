@@ -34,9 +34,9 @@
 
   //DELETE PERSON
   api.delete('/persons/:id', (req, res) => {
-    var id = req.params.id;
+    var id = req.params._id;
     console.log("delete id " + id);
-    model.Person.remove({ "id": id }, function(err, c) {
+    model.Person.remove({ "_id": id }, function(err, c) {
       if (err) {
         console.log("err ", c);
         res.status(500).send(err);
