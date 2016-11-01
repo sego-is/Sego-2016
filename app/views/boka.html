@@ -1,10 +1,12 @@
 <div class="container">
-    <p>Klippari: {{ bokun.klippari }}</p>
-    <p>Tími: {{ bokun.timi }}</p>
-    <form validate class="simple-form">
+  <p>Klippari: {{ bokun.klippari }}</p>
+  <p>Tími: {{ bokun.timi }}</p>
+  <form validate class="simple-form">
     Nafn: <input type="text" name="nafn" ng-model="bokun.customer">
     Sími: <input type="tel" name="simi" ng-model="bokun.simi">
-    
+    Aðgerð: <input type="text" name="adgerd" ng-model="bokun.adgerd">
+
     <input type="button" ng-click="leave()" value="Hætta við">
     <input type="button" ng-click="stadfesta(bokun)" value="STADFESTA">
+  </form>
 </div>

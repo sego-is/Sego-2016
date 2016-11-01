@@ -4,8 +4,8 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-        
-      <table class="table table-hover">
+
+      <table class="table table-hover table-bordered">
           <thead>
         <tr>
           <th class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></th>
@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="booking" ng-repeat="t in times track by $index">
+        <tr class="booking" ng-repeat="t in times track by $index ">
           <td class="booking-time"><p ng-if="$index % 2 == 0">{{ t }}</p></td>
           <td class="booking-cell" ng-repeat="x in staff" ng-click="openBooking(t, x)"></td>
         </tr>

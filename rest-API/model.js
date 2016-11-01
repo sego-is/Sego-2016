@@ -1,28 +1,28 @@
-'use strict'
+'use strict';
 
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Schema   = mongoose.Schema;
 
-const personaSchema = mongoose.Schema({
+const personaSchema = Schema({
   _personaId: Schema.Types.ObjectId,
   company_id: {
-      type: Schema.Types.ObjectId,
-      require: true,
-      ref: 'Company'
+    type:    Schema.Types.ObjectId,
+    require: true,
+    ref:     'Company'
   },
   name: {
-    type:      String,
+    type: String,
     require:   true,
     maxlength: 50,
     minlength: 2
   },
   email: String,
-  address:   String,
+  address: String,
   phone: {
-      type: Number,
-      require: true,
-      minlength: 7,
-      maxlength: 15
+    type: Number,
+    require:   true,
+    minlength: 7,
+    maxlength: 15
   },
   image_url: String,
   history: [{
@@ -30,29 +30,29 @@ const personaSchema = mongoose.Schema({
     text: String
   }],
   // 0:Customer 1:Staff
-  role: {   
-    type: Number,
+  role: {
+    type:    Number,
     require: true
   }
 });
 
-personaSchema.index({ company_id: 1, name: 1, phone: 1 }, { unique: true });
+personaSchema.index({company_id: 1, name: 1, phone: 1}, {unique: true});
 
-const staffSchema = mongoose.Schema({
-    _companyId: {
-      type: String,
-      ref: 'Company'  
-    }, 
-    _personId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Person'
-    }
+const staffSchema = Schema({
+  _companyId: {
+    type: String,
+    ref:  'Company'
+  },
+  _personId: {
+    type: Schema.Types.ObjectId,
+    ref:  'Person'
+  }
 });
 
-const companySchema = mongoose.Schema({
+const companySchema = Schema({
   auth_id: {
-      type: String,
-      require: true
+    type:    String,
+    require: true
   },
   name: {
     type:      String,
@@ -60,23 +60,23 @@ const companySchema = mongoose.Schema({
     maxlength: 50,
     minlength: 1
   },
-  phone:    Number,
+  phone: Number,
   address:  [String],
   logo_url: String,
   staff: [{
     person_id: {
-        type: String,
-        ref: "Person"
+      type: String,
+      ref:  "Person"
     },
     name: String
   }]
 });
 
-const bookingsSchema = mongoose.Schema({
+const bookingsSchema = Schema({
   company_id: {
-      type:    String,
-      require: true,
-      ref: 'Company'
+    type:    String,
+    require: true,
+    ref:     'Company'
   },
   date: {
     type:    Date,
@@ -84,20 +84,20 @@ const bookingsSchema = mongoose.Schema({
   },
   bookings: [{
     person_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Person'
+      type: Schema.Types.ObjectId,
+      ref:  'Person'
     },
     staff_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Staff'
+      type: Schema.Types.ObjectId,
+      ref:  'Staff'
     },
-    time:   Date
+    time: Date
   }]
 });
 
-bookingsSchema.index({ company_id: 1, date: 1 }, { unique: true });
+bookingsSchema.index({company_id: 1, date: 1}, {unique: true});
 
-const serviceSchema = mongoose.Schema({
+const serviceSchema = Schema({
   company_id: String,
   pricelist: [{
     name: {
@@ -109,9 +109,9 @@ const serviceSchema = mongoose.Schema({
 });
 
 module.exports = {
-  Person:   mongoose.model('persons', personaSchema),
-  Company:  mongoose.model('companies', companySchema),
-  Booking:  mongoose.model('bookings', bookingsSchema),
-  Staff:    mongoose.model('staffs', staffSchema),
-  Service:  mongoose.model('services', serviceSchema)
+  Person:  mongoose.model('persons', personaSchema),
+  Company: mongoose.model('companies', companySchema),
+  Booking: mongoose.model('bookings', bookingsSchema),
+  Staff:   mongoose.model('staffs', staffSchema),
+  Service: mongoose.model('services', serviceSchema)
 };
