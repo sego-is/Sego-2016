@@ -152,7 +152,7 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
 
   api.get('/services/:company_id', (req, res) => {
       const id = req.params.company_id;
-      model.Service.find({ _id: id }, function (err, docs) {
+      model.Service.find({ company_id: id }, function (err, docs) {
       if (err) {
         res.status(500).send(err);
       }

@@ -77,6 +77,20 @@
             });
         };
         
+        backendFactory.getService = function() {
+            return $http({
+                method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                    },
+                    params: {
+                        company_id: company_id
+                    }
+            });    
+        };
+        
         backendFactory.postService = function(s) { 
             return $http({
                 url: 'http://wwww.sego.is:6969/api/services',
