@@ -21,6 +21,7 @@ node {
         	sh 'cp -RT dist /opt/app/html'
             sh 'cp -RT rest-API /opt/server'
             /*sh 'npm --prefix /opt/server install /opt/server'*/
+            sh 'node /opt/server/index'
 
         stage 'Test'
 
