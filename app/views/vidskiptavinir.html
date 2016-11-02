@@ -3,9 +3,9 @@
     <button type="button" class="skilabod-xHorn pull-right" ng-click="closeWindow()">&times;</button>
 </div>
 <table class="table table-striped">
-  
+
   <div class="col-xs-offset-5">
-    
+
   </div>
   <thead>
     <th>Nafn</th>
@@ -13,7 +13,7 @@
     <th>
       <div class="pull-right">
         <button class="eigandi-addHairdresser"
-                ng-click="addCustomer()"
+                ng-click="addCust()"
                 data-toggle="tooltip"
                 data-placement="auto"
                 title="Bæta við">
@@ -24,23 +24,37 @@
   </thead>
   <tbody>
   <div>
-  <tr ng-if="vidskiptavinir.addCustomer">
+  <tr ng-if="addCus">
     <td colspan="3">
       <form class="form-horizontal">
         <div class="form-group">
-          <label class="sr-only" for="inputKlippari">Nafn</label>
-          <input type="name" class="form-control" id="inputKlippari" placeholder="Nafn">
+          <label class="sr-only" for="name">Nafn</label>
+          <input type="text"
+                 class="form-control"
+                 name="name"
+                 ng-model="person.name"
+                 placeholder="Nafn">
         </div>
         <div class="form-group">
-          <label class="sr-only" for="inputSimanumer">Símanúmer</label>
-          <input type="tel" class="form-control" id="inputSimanumer" placeholder="Símanúmer">
+          <label class="sr-only" for="phone">Sími</label>
+          <input type="text"
+                 class="form-control"
+                 name="phone"
+                 ng-model="person.phone"
+                 placeholder="Sími">
         </div>
         <div class="form-group">
-          <label class="sr-only" for="inputNetpostur">Netpóstur</label>
-          <input type="email" class="form-control" id="inputNetpostur" placeholder="Netpóstur">
+          <label class="sr-only" for="email">Netfang</label>
+          <input type="text"
+                 class="form-control"
+                 name="email"
+                 ng-model="person.email"
+                 placeholder="Netfang">
         </div>
         <div class="pull-right">
-          <button type="submit" class="btn btn-default">Bæta við</button>
+          <button type="submit"
+                  class="btn btn-default"
+                  ng-click="addCustomer(person)">Bæta við</button>
         </div>
       </form>
     </td>
@@ -83,221 +97,6 @@
       </td>
       <td class="hiddenRow" colspan="3">
         <div ng-repeat="ath in vinur.Athugasemdir"class="collapse demo1 athugasemd"> {{ ath }}</div>
-      </td>
-    </tr>   
-    </tr>
-    <tr data-toggle="collapse" data-target=".demo2">
-      <td>Arnfinnur Geirsson</td>
-      <td>5684715</td>
-
-      <td>
-        <div class="pull-right">
-          <a ng-click="klippTrash()">
-            <i class="glyphicon glyphicon-trash divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Henda"></i>
-          </a>
-          <a ng-click="klippBreyting()">
-            <i class="glyphicon glyphicon-pencil divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Breyta"></i>
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo2">Netfang:</div></td>
-      <td class="hiddenRow"  colspan="2">
-        <div class="collapse demo2">finnur@gmail.com</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo2">Heimilisfang:</div></td>
-      <td class="hiddenRow" colspan="2">
-        <div class="collapse demo2">Brávallargata 7</div>
-      </td>
-    </tr>
-    <td class="hiddenRow" colspan="3">
-      <div class="collapse demo2">Athugasemd:</div>
-    </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow" colspan="3">
-        <div class="collapse demo2 athugasemd">Vill láta gæla við sig meðan á klippingu stendur</div>
-      </td>
-    </tr>
-
-    <tr data-toggle="collapse" data-target=".demo3">
-      <td>Sólveig Jensína Guðbjartsdóttir</td>
-      <td>8676464</td>
-
-      <td>
-        <div class="pull-right">
-          <a ng-click="klippTrash()">
-            <i class="glyphicon glyphicon-trash divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Henda"></i>
-          </a>
-          <a ng-click="klippBreyting()">
-            <i class="glyphicon glyphicon-pencil divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Breyta"></i>
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo3">Netfang:</div></td>
-      <td class="hiddenRow"  colspan="2">
-        <div class="collapse demo3">solla@siminn.com</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo3">Heimilisfang:</div></td>
-      <td class="hiddenRow" colspan="2">
-        <div class="collapse demo3">Engihjalli 1</div>
-      </td>
-    </tr>
-    <td class="hiddenRow" colspan="3">
-      <div class="collapse demo3">Athugasemd:</div>
-    </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow" colspan="3">
-        <div class="collapse demo3 athugasemd">Blátt hár</div>
-      </td>
-    </tr>
-
-    <tr data-toggle="collapse" data-target=".demo4">
-      <td>Brenda Cavalier</td>
-      <td>5656565</td>
-
-      <td>
-        <div class="pull-right">
-          <a ng-click="klippTrash()">
-            <i class="glyphicon glyphicon-trash divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Henda"></i>
-          </a>
-          <a ng-click="klippBreyting()">
-            <i class="glyphicon glyphicon-pencil divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Breyta"></i>
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo4">Netfang:</div></td>
-      <td class="hiddenRow"  colspan="2">
-        <div class="collapse demo4">brenda@mail.com</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo4">Heimilisfang:</div></td>
-      <td class="hiddenRow" colspan="2">
-        <div class="collapse demo4">Frakkastígur 4</div>
-      </td>
-    </tr>
-    <td class="hiddenRow" colspan="3">
-      <div class="collapse demo4">Athugasemd:</div>
-    </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow" colspan="3">
-        <div class="collapse demo4 athugasemd">Skemmtileg stelpa með skallabletti</div>
-      </td>
-    </tr>
-
-    <tr data-toggle="collapse" data-target=".demo5">
-      <td>Borghildur Bogadóttir</td>
-      <td>8965431</td>
-
-      <td>
-        <div class="pull-right">
-          <a ng-click="klippTrash()">
-            <i class="glyphicon glyphicon-trash divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Henda"></i>
-          </a>
-          <a ng-click="klippBreyting()">
-            <i class="glyphicon glyphicon-pencil divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Breyta"></i>
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo5">Netfang:</div></td>
-      <td class="hiddenRow" colspan="2">
-        <div class="collapse demo5">bogga@gmail.com</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo5">Heimilisfang:</div></td>
-      <td class="hiddenRow" colspan="2">
-        <div class="collapse demo5">Borgarholtstíg 58</div>
-      </td>
-    </tr>
-    <td class="hiddenRow" colspan="3">
-      <div class="collapse demo5">Athugasemd:</div>
-    </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow" colspan="3">
-        <div class="collapse demo5 athugasemd">Mikil flasa nota flösusjampó</div>
-      </td>
-    </tr>
-
-    <tr data-toggle="collapse" data-target=".demo6">
-      <td>Guðjón Pétursson</td>
-      <td>5646461</td>
-
-      <td>
-        <div class="pull-right">
-          <a ng-click="hendaViskiptavin()">
-            <i class="glyphicon glyphicon-trash divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Henda"></i>
-          </a>
-          <a ng-click="breytaVidskiptavin()">
-            <i class="glyphicon glyphicon-pencil divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Breyta"></i>
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo6">Netfang:</div></td>
-      <td class="hiddenRow"  colspan="2">
-        <div class="collapse demo6">gudjon12@ru.is</div>
-      </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow"><div class="collapse demo6">Heimilisfang:</div></td>
-      <td class="hiddenRow" colspan="2">
-        <div class="collapse demo6">Fjarskanistan</div>
-      </td>
-    </tr>
-    <td class="hiddenRow" colspan="3">
-      <div class="collapse demo6">Athugasemd:</div>
-    </td>
-    </tr>
-    <tr>
-      <td class="hiddenRow" colspan="3">
-        <div class="collapse demo6 athugasemd">Næst vill hann bleikt hár</div>
       </td>
     </tr>
   </div>

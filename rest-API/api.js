@@ -99,7 +99,7 @@
     }, function (err, p) {
       if (!err) {
         persona = p;
-        console.logP("PERSONA P !err", p);
+        console.log("PERSONA P !err", p);
       } else {
         console.log("ERROR IN POST /bookings :", err);
         persona = null;
@@ -112,11 +112,11 @@
         simi: req.customer_simi
       }, function (err, p) {
         if (err) {
-          console.logP("PERSONA P err");
+          console.log("PERSONA P err");
           res.status(500).send(err);
         } else {
           persona = p;
-          console.logP("PERSONA P", p);
+          console.log("PERSONA P", p);
         }
       })}
     });
