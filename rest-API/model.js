@@ -114,6 +114,6 @@ module.exports = {
   Person:  mongoose.model('persons', personaSchema),
   Company: mongoose.model('companies', companySchema),
   Booking: mongoose.model('bookings', bookingsSchema),
-  Staff:   mongoose.model('staffs', staffSchema),
+  /* Staff:   mongoose.model('staffs', staffSchema), */
   Service: mongoose.model('services', serviceSchema)
 };
