@@ -114,8 +114,6 @@
         }
       });
     }
-
-
     /*
      model.Booking.update( {"company_id":req.company_id,"date":req.date },
      {$push: {
@@ -162,7 +160,7 @@
   });
 
   api.post('/services', bodyParser.json(), (req, res) => {
-    const s = new model.Service(req.body);
+    //const s = new model.Service(req.body);
     model.Service.update({ '_id': req.body.company_id }, 
         { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
         { safe: true, upsert: true }, function (err, doc) {
@@ -174,7 +172,19 @@
         }
     });
   });
-
+  
+  //DELETE PERSON
+  api.delete('/services', (req, res) => {
+    var id = req.params.id;
+    model.Service.remove({"_id": id}, function (err, c) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(c);
+      }
+    });
+  });
+  
   api.get('/companies', (req, res) => {
     model.Company.find({}).select("_id name phone").find((err, doc) => {
       if (err) {
