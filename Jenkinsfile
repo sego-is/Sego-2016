@@ -12,8 +12,6 @@ node {
 			env.NODE_ENV = "Build"
 
 			print "Environment will be : ${env.NODE_ENV}"
-			    sh 'echo "stadur"'
-			    sh 'pwd'
 
         	sh 'npm install'
         	sh 'bower install'
@@ -23,7 +21,6 @@ node {
             /*sh 'npm --prefix /opt/server install /opt/server'*/
 
         stage 'Test'
-
             /*sh 'grunt test'*/
 
         stage 'Cleanup'
@@ -45,5 +42,4 @@ node {
 		currentBuild.result = "FAILURE"
 		throw err
 	}
-
 }
