@@ -4,10 +4,15 @@
     angular.module('segoApp')
       .controller('AdminCtrl', ['$scope', 'backendFactory', function ($scope, backendFactory) {
             var profile = JSON.parse(localStorage.getItem('profile'));
+            $scope.editCompany = [];
             
             // GET ALL COMPANIES //
             backendFactory.getCompanies().then(function (response) {
                 $scope.companies = response.data;
+                var i;
+                for (i = 0; i < $scope.companies.length; i++) {
+                    $scope.editCompany.push(false);
+                }
                 console.log("RESPONSE:", response);
             }).catch(function(err) {
                 console.log("ERROR", JSON.stringify(err));
@@ -25,7 +30,6 @@
 
             // CREATING NEW COMPANY
             $scope.company = {};
-            $scope.company.auth_id = profile.user_id;
 
             $scope.addCompany = function(c) {
                 backendFactory.postCompany(c).then(function (response) {
@@ -40,7 +44,7 @@
             $scope.user = {};
 
             $scope.addUser = function(u) {
-               backendFactory.postPerson.then(function (response) {
+               backendFactory.postPerson(p).then(function (response) {
                 console.log("RESPONSE:", response);
             }).catch(function(err) {
                 console.log("ERROR", JSON.stringify(err));
@@ -58,6 +62,12 @@
                 }).catch(function(err) {
                     console.log("ERROR", JSON.stringify(err));
                 }).finally(function() {} );
+            };
+            // END OF DELETE USER
+            
+            $scope.toggleEditCompany = function(i) {
+                console.log('toggleEditCompany', $scope.editCompany[i]);
+                $scope.editCompany[i] = !$scope.editCompany[i];
             };
       }]);
 })();

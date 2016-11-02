@@ -5,7 +5,7 @@
     .module('segoApp')
     .factory('backendFactory', ['$http', function ($http) {
         
-        var company_id = null;
+        var company_id = null; // THIS IS _id from MongoDB not auth_id //
         var backendFactory = {};
         
         backendFactory.setID = function(id) {
@@ -113,6 +113,10 @@
                     }
                 });
             }
+            else {
+                
+            }
+            
         };
         // END OF PERSON, AND CUSTOMERS AND STAFF 
  

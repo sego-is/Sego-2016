@@ -37,7 +37,8 @@ const personaSchema = Schema({
 });
 
 personaSchema.index({company_id: 1, name: 1, phone: 1}, {unique: true});
-
+/*
+ * Something Shitty that will never been used.. or whatever.
 const staffSchema = Schema({
   _companyId: {
     type: String,
@@ -48,11 +49,12 @@ const staffSchema = Schema({
     ref:  'Person'
   }
 });
-
+*/
 const companySchema = Schema({
   auth_id: {
     type:    String,
-    require: true
+    require: true,
+    unique: true
   },
   name: {
     type:      String,

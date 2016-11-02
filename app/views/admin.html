@@ -11,6 +11,10 @@
                     <label for="phone">Sími:</label>
                     <input type="tel" name="simi" ng-model="company.phone">
                 </div>
+                <div class="form-group">
+                    <label for="auth_id">AuthID:</label>
+                    <input type="text" name="auth_id" ng-model="company.auth_id">
+                </div>
                 <input type="button" ng-click="addCompany(company)" value="STADFESTA">
             </form>
         </div>
@@ -25,10 +29,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="c in companies">
+                    <tr ng-repeat="c in companies track by $index">
                         <td>{{ c.name }}</td>
                         <td>{{ c.phone }}</td>
-                        <td></td>
+                        <td><button class="btn" ng-click="toggleEditCompany($index)">EDIT</button></td>
                     </tr>
                 </tbody>
              </table>

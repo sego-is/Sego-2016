@@ -186,7 +186,7 @@
   });
   
   api.get('/companies', (req, res) => {
-    model.Company.find({}).select("_id name phone").find((err, doc) => {
+    model.Company.find({}).select("_id name phone auth_id").find((err, doc) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -207,8 +207,7 @@
   });
 
   api.get('/companies/:id', (req, res) => {
-    const id = req.params.id;
-    model.Company.find({"auth_id": id}, function (err, c) {
+    model.Company.find({auth_id: req.params.id}, function (err, c) {
       if (err) {
         res.status(500).send(err);
       } else {
