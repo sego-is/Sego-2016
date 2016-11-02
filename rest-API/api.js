@@ -99,11 +99,12 @@
     }, function (err, p) {
       if (!err) {
         persona = p;
+        console.logP("PERSONA P !err", p);
       } else {
         console.log("ERROR IN POST /bookings :", err);
         persona = null;
       }
-    });
+
     if (persona === null) {
       model.Person.create({
         company_id: req.company_id,
@@ -111,12 +112,14 @@
         simi: req.customer_simi
       }, function (err, p) {
         if (err) {
+          console.logP("PERSONA P err");
           res.status(500).send(err);
         } else {
           persona = p;
+          console.logP("PERSONA P", p);
         }
-      });
-    }
+      })}
+    });
     /*
      model.Booking.update( {"company_id":req.company_id,"date":req.date },
      {$push: {
@@ -138,7 +141,7 @@
      res.status(201).send(doc);
      }
      });*/
-    res.status(201).send(req.body);
+    //res.status(201).send(req.body);
   });
 
   api.get('/services', (req, res) => {
