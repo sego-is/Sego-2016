@@ -38,7 +38,7 @@ const personaSchema = Schema({
 
 personaSchema.index({company_id: 1, name: 1, phone: 1}, {unique: true});
 /*
- * Something Shitty that will never been used.. or whatever.
+ * Something Shitty that will never be used.. or whatever.
 const staffSchema = Schema({
   _companyId: {
     type: String,

@@ -30,10 +30,12 @@
 
             // CREATING NEW COMPANY
             $scope.company = {};
+            $scope.company.staff = [];
 
             $scope.addCompany = function(c) {
                 backendFactory.postCompany(c).then(function (response) {
                     console.log("RESPONSE:", response);
+                    
                 }).catch(function(err) {
                     console.log("ERROR", JSON.stringify(err));
                 }).finally(function() {} );

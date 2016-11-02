@@ -161,6 +161,19 @@
 
   api.post('/services', bodyParser.json(), (req, res) => {
     //const s = new model.Service(req.body);
+    model.Service.findOne({ '_id': req.body.company_id }, function(err, docs) {
+        if (err) {
+            
+        }
+        else {
+            if (docs === null) {
+                
+            }
+            else {
+                
+            }
+        }
+    })
     model.Service.update({ '_id': req.body.company_id }, 
         { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
         { safe: true, upsert: true }, function (err, doc) {
@@ -186,7 +199,7 @@
   });
   
   api.get('/companies', (req, res) => {
-    model.Company.find({}).select("_id name phone auth_id").find((err, doc) => {
+    model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
       if (err) {
         res.status(500).send(err);
       } else {
