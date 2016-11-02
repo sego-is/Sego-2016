@@ -17,7 +17,7 @@
       backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
           backendFactory.setID(response.data[0]._id);
           $scope.staff = response.data[0].staff;
-          console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0].staff);
+          console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
       }, function errorCallback(error) {
             console.log("ERROR", error);
       });

@@ -22,7 +22,7 @@
               backendFactory.postPerson(s).then(function(res) {
                   scope.staff.push(res.data);
               }, function(err) {
-                  console.log("ERROR getStaf(): ", err);
+                  console.log("ERROR stadfestaStaff(): ", err);
               });
           };
           // END OF CREATING HAIR.. //
