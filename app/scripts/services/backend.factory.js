@@ -105,6 +105,21 @@
             });
         };
         
+        backendFactory.delService = function(i) {
+            return $http({
+                url: 'http://wwww.sego.is:6969/api/services',
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                },
+                params: {
+                    id: i._id
+                }
+            });
+        };
+        
         return backendFactory;
 
     }]);

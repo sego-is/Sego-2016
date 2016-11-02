@@ -34,8 +34,9 @@
           scope.stadfestaService = function(s) {
               backendFactory.postService(s).then(function(res) {
                   scope.services.push(res.data);
+                  console.log('stadfestaService(),', res.data);
               }, function(err) {
-                  console.log("ERROR getStaf(): ", err);
+                  console.log("ERROR stadfestaService(): ", err);
               });
           }
           // END OF CREATE SERVICE
@@ -69,8 +70,12 @@
             scope.lokaGlugga();
           };
 
-          scope.verdTrash = function () {
-            console.log("Henda verði");
+          scope.verdTrash = function (p) {
+            backendFactory.delService(p).then(function(res) {
+                console.log('Response', res);
+            }, function (err) {
+                console.log('ERROR', err);
+            });
           };
 
           scope.verdBreyting = function () {

@@ -173,10 +173,10 @@
     });
   });
   
-  //DELETE PERSON
+  // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID 
+  // NOT WISE TO HAVE THIS FUNCTION/REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
   api.delete('/services', (req, res) => {
-    var id = req.params.id;
-    model.Service.remove({"_id": id}, function (err, c) {
+    model.Service.remove({ '_id': req.params.id }, function (err, c) {
       if (err) {
         res.status(500).send(err);
       } else {
