@@ -13,6 +13,7 @@
       
       // GET STAFF FROM COMPANY THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
+      console.log("P: GET COMPANY", p);
       $http({
         method: 'GET',
         url: 'http://wwww.sego.is:6969/api/companies/' + p.user_id,

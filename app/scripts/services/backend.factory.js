@@ -79,6 +79,7 @@
         
         backendFactory.getService = function() {
             return $http({
+                url: 'http://wwww.sego.is:6969/api/services',
                 method: 'GET',
                     headers: {
                         'Accept': 'application/json',

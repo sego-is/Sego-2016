@@ -164,24 +164,16 @@ api.post('/bookings', bodyParser.json(), (req, res) => {
 
   api.post('/services', bodyParser.json(), (req, res) => {
     const s = new model.Service(req.body);
-    model.Service.update({ '_id': req.body.company_id }, {
-                  $push: {
-                    "pricelist": {
-                        "name": req.body.name,
-                        "price": req.body.price
-                    }
-                  }
-              }, function (err) {
-                res.status(500).send(err);
-              });
-    s.save(function (err, doc) {
-      if (err) {
-        res.status(500).send(err);
-      }
-      else {
-        res.send(doc);
-      }
-    })
+    model.Service.update({ '_id': req.body.company_id }, 
+        { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
+        { safe: true, upsert: true }, function (err, doc) {
+          if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.send(doc);
+        }
+    });
   });
 
   api.get('/companies', (req, res) => {

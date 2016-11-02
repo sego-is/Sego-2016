@@ -4,7 +4,7 @@
 
   angular
     .module('segoApp')
-    .directive('verdlisti', function() {
+    .directive('verdlisti', ['backendFactory', function(backendFactory) {
     	return {
     		restrict: 'E',
     		scope: {
@@ -12,10 +12,15 @@
     		},
         	templateUrl: '../../views/verdlisti.html',
         	link: function(scope, element, attrs) {
+              backendFactory.getService().then(function(res) {
+                  console.log(res.data);
+              }, function(err) {
+                  console.log("ERROR getStaf(): ", err);
+              });
         		scope.closeWindow = function() {
         			scope.lokaGlugga();
         		};
         	}
         };
-    });
+    }]);
 })();
