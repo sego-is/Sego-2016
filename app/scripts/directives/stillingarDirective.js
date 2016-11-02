@@ -70,8 +70,10 @@
             scope.lokaGlugga();
           };
 
-          scope.verdTrash = function (p) {
-            backendFactory.delService(p).then(function(res) {
+          scope.verdTrash = function (p, index) {
+            backendFactory.delService(p._id).then(function(res) {
+                console.log('index', index);
+                scope.services.splice(index, 1);
                 console.log('Response', res);
             }, function (err) {
                 console.log('ERROR', err);

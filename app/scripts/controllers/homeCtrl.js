@@ -9,20 +9,11 @@
    * Controller of the segoEnnOgAfturApp
    */
   angular.module('segoApp')
-    .controller('HomeCtrl', ['$scope', '$compile', '$http', 'dagatalFactory', 'backendFactory', function ($scope, $compile, $http, dagatalFactory, backendFactory) {
+    .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
       
-      // GET STAFF FROM COMPANY THAT WAS CONNECTING //
+      // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
-      console.log("P: GET COMPANY", p);
-      $http({
-        method: 'GET',
-        url: 'http://wwww.sego.is:6969/api/companies/' + p.user_id,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-        }
-      }).then(function successCallback(response) {
+      backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
           backendFactory.setID(response.data[0]._id);
           $scope.staff = response.data[0].staff;
           console.log("RESPONSE STAFF", response.data[0].staff);
