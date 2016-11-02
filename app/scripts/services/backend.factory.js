@@ -83,20 +83,7 @@
             });
         };
         
-        backendFactory.deletePerson = function(pid) {
-            return $http({
-                    url: 'http://wwww.sego.is:6969/api/persons/',
-                    method: 'DELETE',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-                    },
-                    params: {
-                        id: pid
-                    }
-            });
-        };
+       
         
         backendFactory.getStaff = function() {
             if (company_id != null) {
@@ -165,9 +152,21 @@
             });
         };
         
+        backendFactory.deletePerson = function(pid) {
+            return $http({
+                    url: 'http://wwww.sego.is:6969/api/persons/' + pid,
+                    method: 'DELETE',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                    }
+            });
+        };
+        
         backendFactory.delService = function(i) {
             return $http({
-                url: 'http://wwww.sego.is:6969/api/services',
+                url: 'http://wwww.sego.is:6969/api/services/' + i._id + '/' + i.company_id,
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
@@ -175,7 +174,8 @@
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
                 },
                 params: {
-                    id: i
+                    _id: i._id,
+                    company_id: i.company_id
                 }
             });
         };

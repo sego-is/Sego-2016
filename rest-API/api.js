@@ -20,6 +20,7 @@
       hungang: 'thvag byfluga'
     });
   });
+  
   // TMP GET CALL
   api.get('/persons', (req, res) => {
     model.Person.find({}, function (err, docs) {
@@ -189,7 +190,8 @@
   // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID 
   // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
   api.delete('/services', (req, res) => {
-    model.Service.find({ _id: req.params.id }).remove( function (err, c) {
+      console.log(req.params);
+      model.Service.find({ _id: req.params.id, company_id: req.params.company_id }).remove( function (err, c) {
       if (err) {
         res.status(500).send(err);
       } else {

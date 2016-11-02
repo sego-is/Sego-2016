@@ -13,7 +13,7 @@
         templateUrl: '../../views/stillingar.html',
         link: function (scope, element, attrs) {
             
-            //  CREATE PERSON THAT WILL GET THE ROLE OF HAIRCUTTER OR DRESSER
+          // CREATE PERSON THAT WILL GET THE ROLE OF HAIRCUTTER OR DRESSER
           scope.person = {};
           scope.person.company_id = backendFactory.getID();
           scope.person.role = 1;
@@ -59,6 +59,7 @@
           function getService() {
               backendFactory.getService().then(function(res) {
                    scope.services = res.data;
+                   console.log("SERVICE", scope.services);
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });
