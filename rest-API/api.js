@@ -174,9 +174,9 @@
   });
   
   // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID 
-  // NOT WISE TO HAVE THIS FUNCTION/REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
+  // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
   api.delete('/services', (req, res) => {
-    model.Service.remove({ '_id': req.params.id }, function (err, c) {
+    model.Service.find({ _id: req.params.id }).remove( function (err, c) {
       if (err) {
         res.status(500).send(err);
       } else {
