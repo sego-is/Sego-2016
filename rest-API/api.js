@@ -36,9 +36,9 @@
   api.delete('/persons/:id', (req, res) => {
     var id = req.params.id;
     console.log("delete id " + id);
-    var persona = model.Person.find({"_id": id});
+    var persona = model.Person.findById({"_id": id});
     console.log("Persona sem eyða skal ", persona);
-    model.Person.remove({"_id": id}, function (err, c) {
+    /*model.Person.remove({"_id": id}, function (err, c) {
       if (err) {
         console.log("err ", c);
         res.status(500).send(err);
@@ -46,7 +46,7 @@
         console.log("success ");
         res.send(c);
       }
-    });
+    });*/
   });
 
   // POST PERSONS, EITHER STAFF OR CUSTOMER

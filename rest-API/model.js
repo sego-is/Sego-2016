@@ -16,7 +16,7 @@ const personaSchema = Schema({
     maxlength: 50,
     minlength: 2
   },
-  email: String,
+  email:   String,
   address: String,
   phone: {
     type: Number,
