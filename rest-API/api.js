@@ -35,9 +35,15 @@
   //DELETE PERSON
   api.delete('/persons/:id', (req, res) => {
     var id = req.params.id;
-    console.log("delete id " + id);
-    var persona = model.Person.findById({"_id": id});
-    console.log("Persona sem eyða skal ", persona);
+    model.Person.findByIdAndRemove(id, function(err, p) {
+        var response = {
+           messages: "Vona tókst að eyða honum",
+           id: id
+        };
+        
+        res.send(response);
+    });
+    
     /*model.Person.remove({"_id": id}, function (err, c) {
       if (err) {
         console.log("err ", c);
