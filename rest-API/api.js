@@ -202,11 +202,11 @@
   // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
   api.delete('/services', (req, res) => {
       console.log(req.params);
-      model.Service.find({ _id: req.params.id, company_id: req.params.company_id }).remove( function (err, c) {
+      model.Service.findByIdAndRemove(req.params.id, function (err, c) {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.send(c);
+        res.send("BEEN DELETED");
       }
     });
   });
