@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const personaSchema = Schema({
-  _personaId: Schema.Types.ObjectId,
   company_id: {
     type:    Schema.Types.ObjectId,
     require: true,
@@ -67,7 +66,7 @@ const companySchema = Schema({
   logo_url: String,
   staff: [{
     person_id: {
-      type: String,
+      type: Schema.Types.ObjectId,
       ref:  "Person"
     },
     name: String
@@ -109,6 +108,8 @@ const serviceSchema = Schema({
     price: Number
   }]
 });
+
+serviceSchema.index({ company_id: 1, _id: 1 }, { unique: true });
 
 module.exports = {
   Person:  mongoose.model('persons', personaSchema),

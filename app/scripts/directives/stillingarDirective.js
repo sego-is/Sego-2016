@@ -43,7 +43,7 @@
           
           // GET ALL STAFF AND SERVICE FOR SALOON
           scope.staff = [];
-          scope.services = [];
+          //scope.services = [];
           
           getStaff();
           getService();
@@ -72,7 +72,7 @@
           };
 
           scope.verdTrash = function (p, index) {
-            backendFactory.delService(p._id).then(function(res) {
+            backendFactory.deleteService(p).then(function(res) {
                 console.log('index', index);
                 scope.services.splice(index, 1);
                 console.log('Response', res);

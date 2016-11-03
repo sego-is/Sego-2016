@@ -152,19 +152,22 @@
 
       backendFactory.deletePerson = function (pid) {
         return $http({
-          url: 'http://wwww.sego.is:6969/api/persons/' + pid,
+          url: 'http://wwww.sego.is:6969/api/persons/',
           method: 'DELETE',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: {
+              id: pid
           }
         });
       };
 
-      backendFactory.deleteService = function (i) {
+      backendFactory.deleteService = function (s) {
         return $http({
-          url: 'http://wwww.sego.is:6969/api/services/' + i._id + '/' + i.company_id,
+          url: 'http://wwww.sego.is:6969/api/services/',
           method: 'DELETE',
           headers: {
             'Accept': 'application/json',
@@ -172,8 +175,8 @@
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
           params: {
-            _id: i._id,
-            company_id: i.company_id
+            id: s.id,
+            cid: s.cid
           }
         });
       };
