@@ -4,8 +4,9 @@
   angular
     .module('segoApp')
     .service('authService', ['$rootScope', '$location', 'lock', 'authManager', function ($rootScope, $location, lock, authManager) {
-
-    var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
+    
+           
+    var userProfile = localStorage.getItem('profile') || {};
     var authenticated = false;
 
     
