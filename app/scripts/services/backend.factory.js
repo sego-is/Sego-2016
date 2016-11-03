@@ -166,7 +166,7 @@
         
         backendFactory.delService = function(i) {
             return $http({
-                url: 'http://wwww.sego.is:6969/api/services/' + i._id + '/' + i.company_id,
+                url: 'http://wwww.sego.is:6969/api/services/',
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',
