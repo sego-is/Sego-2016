@@ -20,7 +20,7 @@
       hungang: 'thvag byfluga'
     });
   });
-  
+
   // TMP GET CALL
   api.get('/persons', (req, res) => {
     model.Person.find({}, function (err, docs) {
@@ -36,7 +36,9 @@
   api.delete('/persons/:id', (req, res) => {
     var id = req.params.id;
     console.log("delete id " + id);
-    model.Person.remove({"_id": id}, function (err, c) {
+    var persona = model.Person.findById({"_id": id});
+    console.log("Persona sem eyða skal ", persona);
+    /*model.Person.remove({"_id": id}, function (err, c) {
       if (err) {
         console.log("err ", c);
         res.status(500).send(err);
@@ -44,7 +46,7 @@
         console.log("success ");
         res.send(c);
       }
-    });
+    });*/
   });
 
   // POST PERSONS, EITHER STAFF OR CUSTOMER
@@ -97,11 +99,12 @@
     }, function (err, p) {
       if (!err) {
         persona = p;
+        console.log("PERSONA P !err", p);
       } else {
         console.log("ERROR IN POST /bookings :", err);
         persona = null;
       }
-    });
+
     if (persona === null) {
       model.Person.create({
         company_id: req.company_id,
@@ -109,12 +112,14 @@
         simi: req.customer_simi
       }, function (err, p) {
         if (err) {
+          console.log("PERSONA P err");
           res.status(500).send(err);
         } else {
           persona = p;
+          console.log("PERSONA P", p);
         }
-      });
-    }
+      })}
+    });
     /*
      model.Booking.update( {"company_id":req.company_id,"date":req.date },
      {$push: {
@@ -136,7 +141,7 @@
      res.status(201).send(doc);
      }
      });*/
-    res.status(201).send(req.body);
+    //res.status(201).send(req.body);
   });
 
   api.get('/services', (req, res) => {
@@ -164,18 +169,18 @@
     //const s = new model.Service(req.body);
     model.Service.findOne({ '_id': req.body.company_id }, function(err, docs) {
         if (err) {
-            
+
         }
         else {
             if (docs === null) {
-                
+
             }
             else {
-                
+
             }
         }
     })
-    model.Service.update({ '_id': req.body.company_id }, 
+    model.Service.update({ '_id': req.body.company_id },
         { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
@@ -186,8 +191,8 @@
         }
     });
   });
-  
-  // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID 
+
+  // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
   // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
   api.delete('/services', (req, res) => {
       console.log(req.params);
@@ -199,7 +204,7 @@
       }
     });
   });
-  
+
   api.get('/companies', (req, res) => {
     model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
       if (err) {

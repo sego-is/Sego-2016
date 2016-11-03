@@ -65,6 +65,7 @@
                         <th>Notendur</th>
                         <th>Sími</th>
                         <th>Netfang</th>
+                        <th>role</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -73,11 +74,11 @@
                         <td>{{ u.name }}</td>
                         <td>{{ u.phone }}</td>
                         <td>{{ u.email }}</td>
+                        <td>{{ u.role }}</td>
                         <td><button ng-click="deleteUser(u._id)" value="eyða">eyða</button></td>
                     </tr>
                 </tbody>
              </table>
-
         </div>
     </div>
 </div>
