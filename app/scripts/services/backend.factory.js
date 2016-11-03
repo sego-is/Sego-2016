@@ -109,7 +109,7 @@
       // BOOKING REST CALLS
       backendFactory.postBooking = function (p) {
         return $http({
-          url: 'http://wwww.sego.is:6969/api/bookings',
+          url: 'http://wwww.sego.is:6969/api/bookings/',
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -124,7 +124,7 @@
       // SERVICE REST CALLS
       backendFactory.getService = function () {
         return $http({
-          url: 'http://wwww.sego.is:6969/api/services',
+          url: 'http://wwww.sego.is:6969/api/services/',
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -139,7 +139,7 @@
 
       backendFactory.postService = function (s) {
         return $http({
-          url: 'http://wwww.sego.is:6969/api/services',
+          url: 'http://wwww.sego.is:6969/api/services/',
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -166,15 +166,16 @@
       };
 
       backendFactory.deleteService = function (s) {
+          console.log("S:DELETE:", s);
         return $http({
-          url: 'http://wwww.sego.is:6969/api/services/',
+          url: 'http://wwww.sego.is:6969/api/services/' + s.id,
           method: 'DELETE',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
-          params: {
+          data: {
             id: s.id,
             cid: s.cid
           }

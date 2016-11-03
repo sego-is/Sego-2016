@@ -34,7 +34,7 @@
 
   //DELETE PERSON
   api.delete('/persons/:id', (req, res) => {
-    var id = req.params.id;
+    var id = req.body.id;
     model.Person.findByIdAndRemove(id, function(err, p) {
         var response = {
            messages: "Vona tókst að eyða honum",
@@ -80,7 +80,7 @@
   });
 
   // GET ALL HAIRCUTTER WORKING FOR COMPANY WITH ID
-  api.get('/persons:company_id', (req, res) => {
+  api.get('/persons/:company_id', (req, res) => {
     model.Person.find({"company_id": req.params.company_id, "role": 1}, (err, p) => {
       if (!err) {
         res.send(p);
@@ -200,9 +200,9 @@
 
   // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
   // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
-  api.delete('/services', (req, res) => {
-      console.log(req.params);
-      model.Service.remove({ _id : req.params.id, company_id: req.params.cid }, function (err) {
+  api.delete('/services/:id', (req, res) => {
+      console.log(req.params.id);
+      model.Service.remove({ _id : model.ObjectId(req.params.id) }, function (err) {
       // model.Service.findByIdAndRemove(req.params.id, function (err, c) {
         if (err) {
             res.status(500).send(err);

@@ -3,7 +3,6 @@
 
     angular.module('segoApp')
       .controller('AdminCtrl', ['$scope', 'backendFactory', function ($scope, backendFactory) {
-            var profile = JSON.parse(localStorage.getItem('profile'));
             $scope.editCompany = [];
             
             // GET ALL COMPANIES //
