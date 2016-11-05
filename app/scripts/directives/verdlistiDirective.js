@@ -11,9 +11,9 @@
     			lokaGlugga: '&close'
     		},
         	templateUrl: '../../views/verdlisti.html',
-        	link: function(scope, element, attrs) {
+        	link: function(scope) {
               backendFactory.getService().then(function(res) {
-                  console.log(res.data);
+                  scope.pricelist = res.data[0].pricelist;
               }, function(err) {
                   console.log("ERROR getStaf(): ", err);
               });
