@@ -171,7 +171,40 @@
           }
         });
       };
-
+      
+      backendFactory.deleteFromPricelist = function(p) {
+           return $http({
+                url: 'http://wwww.sego.is:6969/api/services/pricelist/',
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                },
+                    data: {
+                        service: p,
+                        cid: this.ID()
+                    }
+             });
+      };
+      
+      backendFactory.deleteFromStaff = function(s) {
+          return $http({
+                url: 'http://wwww.sego.is:6969/api/companies/staff/',
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                },
+                    data: {
+                        staff: s,
+                        cid: this.ID()
+                    }
+          });
+      };
+      
+      
       backendFactory.deleteService = function (s) {
           console.log("S:DELETE:", s);
         return $http({

@@ -212,10 +212,24 @@
     });
   });
   
-  api.post('/services/tmpRestCall/', bodyParser.json(), (req, res) => {
+  api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
       model.Service.update({ '_id': data.cid },
         { $pull: { "pricelist": { _id: data.service._id } } },
+        { safe: true, upsert: true }, function (err, doc) {
+          if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.send('HAS BEEN DELETED')
+        }
+    });
+  });
+  
+  api.delete('/companies/staff/', bodyParser.json(), (req, res) => {
+      var data = req.body;
+      model.Companies.update({ '_id': data.cid },
+        { $pull: { "staff": { _id: data.staff._id } } },
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
             res.status(500).send(err);

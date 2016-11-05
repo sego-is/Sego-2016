@@ -78,7 +78,7 @@
             <td>{{ s.role }}</td>
             <td>
               <div class="pull-right">
-                <a ng-click="klippTrash(s)">
+                <a ng-click="klippTrash(s, $index)">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
@@ -163,7 +163,7 @@
             <td></td>
             <td>
               <div class="pull-right">
-                <a ng-click="verdTrash(p)">
+                <a ng-click="verdTrash(p, $index)">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
