@@ -173,7 +173,7 @@
       backendFactory.deleteFromStaff = function(s) {
           return $http({
                 url: 'http://wwww.sego.is:6969/api/companies/staff/',
-                method: 'DELETE',
+                method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',

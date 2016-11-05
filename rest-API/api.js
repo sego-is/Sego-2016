@@ -179,12 +179,10 @@
               }
             }}, function (err) {
                 if (err) {
-                    console.log("ERROR:500");
                     res.status(500).send(err);
                 }
                 else {
-                    console.log("STAFF/PERSONA:ADDED");
-                    res.send("STAFF/PERSONA BEEN ADDED");
+                    res.send(doc);
                 }
           });
         }
@@ -224,7 +222,7 @@
     });
   });
   
-  api.delete('/companies/staff/', bodyParser.json(), (req, res) => {
+  api.post('/companies/staff/', bodyParser.json(), (req, res) => {
       var data = req.body;
       model.Companies.update({ '_id': data.cid },
         { $pull: { "staff": { _id: data.staff._id } } },

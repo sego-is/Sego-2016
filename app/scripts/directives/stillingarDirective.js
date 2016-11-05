@@ -20,6 +20,7 @@
           
           scope.stadfestaStaff = function(s) {
               backendFactory.postPerson(s).then(function(res) {
+                  console.log("PUSH-STAFF: ", res.data);
                   scope.staff.push(res.data);
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
@@ -69,7 +70,7 @@
           scope.verdTrash = function (p, index) {
             console.log("Henda ur Pricelist", p);
             backendFactory.deleteFromPricelist(p).then(function successCallback(response) {
-                scope.services.splice(index, 1);
+                scope.pricelist.splice(index, 1);
              }, function errorCallback(error) {
 
              });
