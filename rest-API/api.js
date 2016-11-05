@@ -201,17 +201,31 @@
   // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
   // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
   api.delete('/services/:id', (req, res) => {
-      console.log(req.params.id);
-      model.Service.remove({ _id : model.ObjectId(req.params.id) }, function (err) {
-      // model.Service.findByIdAndRemove(req.params.id, function (err, c) {
+      var id = req.params.id;
+       // model.Service.remove({ _id : model.ObjectId(req.params.id) }, function (err) {
+      model.Service.findByIdAndRemove(id, function (err, c) {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.send("BEEN DELETED");
+            res.send('BEEN DELETED');
         }
     });
   });
-
+  
+  api.delete('/services/tmpRestCall', (req, res) => {
+      var _id = req.params.id;
+      model.Service.pricelist.id(_id).remove();
+      model.Service.save((err) => {
+          if (err) {
+              res.status(500).send(err);
+          }
+          else {
+              res.send('HAS BEEN DELETED')
+          }
+      });
+  });
+  
+  
   api.get('/companies', (req, res) => {
     model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
       if (err) {
