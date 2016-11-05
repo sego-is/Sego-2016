@@ -33,6 +33,11 @@
                         <td>{{ c.name }}</td>
                         <td>{{ c.phone }}</td>
                         <td><button class="btn" ng-click="toggleEditCompany($index)">EDIT</button></td>
+                        <tr ng-repeat="s in c.staff track by $index">
+                            <td>s.name</td>
+                            <td>s._id</td>
+                            <td></td>
+                        </tr>
                     </tr>
                 </tbody>
              </table>
@@ -73,6 +78,29 @@
                     <tr ng-repeat="u in users">
                         <td>{{ u.name }}</td>
                         <td>{{ u.phone }}</td>
+                        <td>{{ u.email }}</td>
+                        <td>{{ u.role }}</td>
+                        <td><button ng-click="deleteUser(u._id)" value="eyða">eyða</button></td>
+                    </tr>
+                </tbody>
+             </table>
+        </div>
+        <div class="col-md-6">
+            <h3>Klipparar í kerfinu undir starfsfólk fyrirtækis</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Notendur</th>
+                        <th>Sími</th>
+                        <th>Netfang</th>
+                        <th>role</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="u in users">
+                        <td>{{ u.name }}</td>
+                        <td>{{ u._id }}</td>
                         <td>{{ u.email }}</td>
                         <td>{{ u.role }}</td>
                         <td><button ng-click="deleteUser(u._id)" value="eyða">eyða</button></td>

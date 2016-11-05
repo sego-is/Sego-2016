@@ -54,7 +54,7 @@
           
           function getService() {
               backendFactory.getService().then(function(res) {
-                   scope.services = res.data[0].pricelist;
+                   scope.pricelist = res.data[0].pricelist;
                    console.log("SERVICE", scope.services);
               }, function(err) {
                   console.log("ERROR getService(): ", err);
@@ -67,7 +67,8 @@
             scope.lokaGlugga();
           };
 
-          scope.verdTrash = function (p, index) {
+          scope.verdTrash = function (p) {
+            /*
             backendFactory.deleteService(p).then(function(res) {
                 console.log('index', index);
                 scope.services.splice(index, 1);
@@ -75,14 +76,33 @@
             }, function (err) {
                 console.log('ERROR', err);
             });
+            */
+            console.log("Henda ur Pricelist", p);
+            $http({
+                url: 'http://wwww.sego.is:6969/api/services/tmpRestCall/',
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                },
+                    data: {
+                        service: p,
+                        cid: backendFactory.ID()
+                    }
+             }).then(function successCallback(response) {
+
+             }, function errorCallback(error) {
+
+             });
           };
 
           scope.verdBreyting = function () {
             console.log("breyta verði");
           };
 
-          scope.klippTrash = function (a) {
-            console.log("Henda klippara", a);
+          scope.klippTrash = function (a, cid) {
+           
           };
 
           scope.klippBreyting = function () {

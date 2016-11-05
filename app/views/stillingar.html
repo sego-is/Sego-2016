@@ -157,13 +157,13 @@
               </form>
             </td>
           </tr>
-          <tr ng-repeat="s in services track by $index">
-            <td>{{ s.name }}</td>
-            <td>{{ s.price }}</td>
-            <td>{{ s.pricelist.name }}</td>
+          <tr ng-repeat="p in pricelist track by $index">
+            <td>{{ p.name }}</td>
+            <td>{{ p.price }}</td>
+            <td></td>
             <td>
               <div class="pull-right">
-                <a ng-click="verdTrash(s, $index)">
+                <a ng-click="verdTrash(p)">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"

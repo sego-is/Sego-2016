@@ -212,9 +212,11 @@
     });
   });
   
-  api.delete('/services/tmpRestCall', (req, res) => {
-      var _id = req.params.id;
-      model.Service.pricelist.id(_id).remove();
+  api.post('/services/tmpRestCall/', bodyParser.json(), (req, res) => {
+      var data = req.body;
+      var tmpModel = model.Service.findById(data.cid);
+      tmpModel.pricelist.id(data.service._id).remove();
+      console.log("DATA: ", data);
       model.Service.save((err) => {
           if (err) {
               res.status(500).send(err);
@@ -222,7 +224,7 @@
           else {
               res.send('HAS BEEN DELETED')
           }
-      });
+      });    
   });
   
   
