@@ -20,9 +20,7 @@
       var p = JSON.parse(localStorage.getItem('profile'));
       console.log('p.user_id:', p.user_id);
       backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
-          backendFactory.setID(response.data[0]._id);
-          backendFactory.setStaff(response.data[0].staff);
-          
+          backendFactory.set(response.data[0]._id, response.data[0].staff);
           console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
       }, function errorCallback(error) {
             console.log("ERROR", error);

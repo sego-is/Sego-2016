@@ -10,8 +10,9 @@
       
       var backendFactory = {};
 
-      backendFactory.setID = function (id) {
+      backendFactory.set = function (id, stf) {
         company_id = id;
+        staff = stf;
       }
 
       backendFactory.getID = function () {
@@ -84,10 +85,8 @@
           data: p
         });
       };
-
-
+      
       backendFactory.getStaff = function () {
-          return 
         if (company_id != null) {
           return $http({
             url: 'http://wwww.sego.is:6969/api/persons/',
@@ -103,7 +102,7 @@
           });
         }
         else {
-
+            
         }
       };
       // END OF PERSON, AND CUSTOMERS AND STAFF

@@ -58,7 +58,7 @@
           
           function getService() {
               backendFactory.getService().then(function(res) {
-                   scope.services = res.data;
+                   scope.services = res.data[0].pricelist;
                    console.log("SERVICE", scope.services);
               }, function(err) {
                   console.log("ERROR getService(): ", err);
