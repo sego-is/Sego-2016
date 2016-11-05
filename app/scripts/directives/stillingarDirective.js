@@ -33,8 +33,7 @@
           
           scope.stadfestaService = function(s) {
               backendFactory.postService(s).then(function(res) {
-                  scope.services.push(res.data);
-                  console.log('stadfestaService(),', res.data);
+                  scope.pricelist.push(res.data);
               }, function(err) {
                   console.log("ERROR stadfestaService(): ", err);
               });
@@ -55,7 +54,7 @@
           function getService() {
               backendFactory.getService().then(function(res) {
                    scope.pricelist = res.data[0].pricelist;
-                   console.log("SERVICE", scope.services);
+                   console.log("pricelist", scope.pricelist);
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });

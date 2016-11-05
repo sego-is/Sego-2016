@@ -26,7 +26,7 @@
       // COMPANY REST CALLS
       backendFactory.getCompanies = function () {
         return $http({
-          url: 'http://wwww.sego.is:6969/api/companies',
+          url: 'http://wwww.sego.is:6969/api/companies/',
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -53,7 +53,7 @@
 
       backendFactory.postCompany = function (c) {
         return $http({
-          url: 'http://wwww.sego.is:6969/api/companies',
+          url: 'http://wwww.sego.is:6969/api/companies/',
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -67,7 +67,7 @@
       // PERSON REST CALLS / BOTH FOR CUSTOMERS AND STAFF //
       backendFactory.getPersons = function () {
         return $http({
-          url: 'http://wwww.sego.is:6969/api/persons',
+          url: 'http://wwww.sego.is:6969/api/persons/',
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -77,39 +77,7 @@
         });
       };
 
-      backendFactory.postPerson = function (p) {
-        return $http({
-          url: 'http://wwww.sego.is:6969/api/persons',
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-          },
-          data: p
-        });
-      };
-      /*
-      backendFactory.getStaff = function () {
-        if (_company != null) {
-          return $http({
-            url: 'http://wwww.sego.is:6969/api/persons/',
-            method: 'GET',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-            },
-            params: {
-              company_id: _company._id
-            }
-          });
-        }
-        else {
-            
-        }
-      };
-      */
+     
       // END OF PERSON, AND CUSTOMERS AND STAFF
 
 
@@ -157,6 +125,20 @@
         });
       };
 
+
+      backendFactory.postPerson = function (p) {
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/persons/',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: p
+        });
+      };
+      
       backendFactory.deletePerson = function (pid) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/persons/',
@@ -181,10 +163,10 @@
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
                 },
-                    data: {
-                        service: p,
-                        cid: this.ID()
-                    }
+                data: {
+                    service: p,
+                    cid: this.ID()
+                }
              });
       };
       
@@ -197,16 +179,15 @@
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
                 },
-                    data: {
-                        staff: s,
-                        cid: this.ID()
-                    }
+                data: {
+                    staff: s,
+                    cid: this.ID()
+                }
           });
       };
       
       
       backendFactory.deleteService = function (s) {
-          console.log("S:DELETE:", s);
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/' + s._id,
           method: 'DELETE',

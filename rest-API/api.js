@@ -56,28 +56,7 @@
   });
 
   // POST PERSONS, EITHER STAFF OR CUSTOMER
-  api.post('/persons', bodyParser.json(), (req, res) => {
-    const p = new model.Person(req.body);
-    model.Person.create(p, function (err, doc) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        if (req.body.role === 1) {
-          model.Company.update({'_id': req.body.company_id}, {
-            $push: {
-              "staff": {
-                "person_id": doc._id,
-                "name": doc.name
-              }
-            }
-          }, function (err) {
-            res.status(500).send(err);
-          });
-        }
-        res.send(doc);
-      }
-    })
-  });
+  
 
   // GET ALL HAIRCUTTER WORKING FOR COMPANY WITH ID
   api.get('/persons/:company_id', (req, res) => {
@@ -173,19 +152,6 @@
 
   api.post('/services', bodyParser.json(), (req, res) => {
     //const s = new model.Service(req.body);
-    model.Service.findOne({ '_id': req.body.company_id }, function(err, docs) {
-        if (err) {
-
-        }
-        else {
-            if (docs === null) {
-
-            }
-            else {
-
-            }
-        }
-    })
     model.Service.update({ '_id': req.body.company_id },
         { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
         { safe: true, upsert: true }, function (err, doc) {
@@ -196,6 +162,32 @@
             res.send(doc);
         }
     });
+  });
+  
+  api.post('/persons', bodyParser.json(), (req, res) => {
+    const p = new model.Person(req.body);
+    model.Person.create(p, function (err, doc) {
+      if (err) {
+        res.status(500).send(err);
+      } 
+      else {
+        if (req.body.role === 1) {
+          model.Company.update({'_id': req.body.company_id}, {
+            $push: { "staff": {
+                "person_id": doc._id,
+                "name": doc.name
+              }
+            }}, function (err) {
+                res.status(500).send(err);
+          });
+          res.send("STAFF/PERSONA BEEN ADDED");
+        }
+        else {
+            res.send("PERSONA BEEN ADDED");
+        }
+        
+      }
+    })
   });
 
   // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
