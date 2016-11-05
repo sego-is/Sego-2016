@@ -214,17 +214,16 @@
   
   api.post('/services/tmpRestCall/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      var tmpModel = model.Service.findById(data.cid);
-      tmpModel.pricelist.id(data.service._id).remove();
-      console.log("DATA: ", data);
-      model.Service.save((err) => {
+      model.Service.update({ '_id': data.cid },
+        { $pull: { "pricelist": { _id: data.service._id } } },
+        { safe: true, upsert: true }, function (err, doc) {
           if (err) {
-              res.status(500).send(err);
-          }
-          else {
-              res.send('HAS BEEN DELETED')
-          }
-      });    
+            res.status(500).send(err);
+        }
+        else {
+            res.send('HAS BEEN DELETED')
+        }
+    });
   });
   
   
