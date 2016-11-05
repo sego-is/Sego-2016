@@ -10,12 +10,12 @@
    */
   angular.module('segoApp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
-      
+
       function update() {
           $scope.staff = backendFactory.Staff();
       }
       update();
-      
+
       // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
       console.log('p.user_id:', p.user_id);
@@ -26,12 +26,12 @@
       }, function errorCallback(error) {
             console.log("ERROR", error);
       });
-      
-     
+
+
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
       var valinnDagur;
-      
+
       $scope.openBooking = function (t, b) {
         if (t === undefined) {
           console.log("UNDEFINED");
@@ -77,23 +77,23 @@
       // END OF INITIALIZE TIME
 
       $scope.bookings = [{
-        'time': '8:00',
-        'name': 'Einar'
+        'time': '08:00',
+        'name': 'Einar Agúst Árnason'
       }, {
-        'time': '9:00',
-        'name': 'Siggi'
+        'time': '09:00',
+        'name': 'Guðmundur Benediktsson'
       }, {
         'time': '10:00',
-        'name': 'Efro'
+        'name': 'Guðmundur Benediktsson'
       }, {
         'time': '11:00',
-        'name': 'Kaplo'
+        'name': 'Einar Agúst Árnason'
       }, {
         'time': '12:00',
-        'name': 'Ostaran'
+        'name': 'Einar Agúst Árnason'
       }, {
-        'time': '13:00',
-        'name': 'Mandalana'
+        'time': '11:30',
+        'name': 'Einar Agúst Árnason'
       }];
 
       $scope.$on('dagsetning', function (e, a) {

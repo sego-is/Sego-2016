@@ -15,8 +15,9 @@
         <tbody>
         <tr class="booking" ng-repeat="t in times track by $index ">
           <td class="booking-time" attr="t"><p ng-if="$index % 2 == 0">{{ t }}</p></td>
-          <td class="booking-cell" ng-repeat="x in staff" ng-click="openBooking(t, x)"><!--       --></td>
-        </tr>
+          <td class="booking-cell" ng-repeat="x in staff" ng-click="openBooking(t, x)"><!--       -->
+            <p ng-if="t == bookings[$index].time && x.name == bookings[$index].name"> {{ bookings[$index].name }}</p>
+          </td>
         </tbody>
       </table>
     </div>

@@ -5,24 +5,9 @@
     <h1 class="verdskra"> Verðskrá </h1>
 
     <ul class="list-group">
-      <li class="list-group-item ">
-        <h4 class="list-group-item-heading"> Klipping </h4>
-        <p class="list-group-item-text"> 5000 Kr.</p>
-      </li>
-
-      <li class="list-group-item ">
-        <h4 class="list-group-item-heading"> Litun </h4>
-        <p class="list-group-item-text"> 35 Kr. </p>
-      </li>
-
-      <li class="list-group-item ">
-        <h4 class="list-group-item-heading"> Strípur </h4>
-        <p class="list-group-item-text"> 3482 Kr. </p>
-      </li>
-
-      <li class="list-group-item ">
-        <h4 class="list-group-item-heading"> Hár þvottur </h4>
-        <p class="list-group-item-text"> 4245 Kr. </p>
+      <li  ng-repeat="p in pricelist" class="list-group-item ">
+        <h4 class="list-group-item-heading"> {{ p.name }} </h4>
+        <p class="list-group-item-text"> {{ p.price }} kr.</p>
       </li>
     </ul>
   </div>
