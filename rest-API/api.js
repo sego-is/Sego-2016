@@ -70,6 +70,9 @@
   });
 
   api.get('/bookings', (req, res) => {
+      // RADA EFTIR TIMA OG NAFNI OG KLIPPARA
+      // SAEKJA PERSONU OBJECT AF CUSTOMER
+      // 
     res.status(201).json({
       svar: 'tippa svar'
     });
