@@ -76,13 +76,18 @@
              });
           };
 
+          scope.edit = [];
+          scope.breyta = function (i) {
+            scope.edit[i] = !scope.edit[i];
+          };
+
           scope.verdBreyting = function (p, index) {
-            console.log("breyta verði");
-            backendFactory.editPricelist(p).then (function successCallBack(respone) {
+            console.log("nytt verð ", JSON.stringify(p) + " i " + index);
+            /*backendFactory.editPricelist(p).then (function successCallBack(respone) {
               scope.pricelist.Set(p);
             }, function errorCallback(error) {
 
-            });
+            });*/
           };
 
           scope.klippTrash = function (a, index) {

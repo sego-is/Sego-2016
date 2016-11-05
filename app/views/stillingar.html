@@ -45,7 +45,11 @@
                <form class="form-horizontal">
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputKlippari"></label>
-                  <input type="name" class="form-control inputField" id="inputKlippari" placeholder="Nafn" ng-model="person.name">
+                  <input type="name"
+                         class="form-control inputField"
+                         id="inputKlippari"
+                         placeholder="Nafn"
+                         ng-model="person.name">
                 </div>
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputSimanumer"></label>
@@ -158,22 +162,49 @@
             </td>
           </tr>
           <tr ng-repeat="p in pricelist track by $index">
-            <td>{{ p.name }}</td>
-            <td>{{ p.price }}</td>
+            <td ng-show="!edit[$index]">{{ p.name }}</td>
+            <td ng-show="!edit[$index]">{{ p.price }}</td>
+            <td ng-show="edit[$index]">
+              <input type="text"
+                     placeholder="{{ p.name }}"
+                     ng-model="p.name">
+            </td>
+            <td ng-show="edit[$index]">
+              <input type="text"
+                     placeholder="{{ p.price }}"
+                     ng-model="p.price">
+            </td>
             <td></td>
             <td>
               <div class="pull-right">
-                <a ng-click="verdTrash(p, $index)">
+                <a ng-click="verdTrash(p, $index)"
+                   ng-show="!edit[$index]">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Henda"></i>
                 </a>
-                <a ng-click="verdBreyting(p, $index)">
+                <a ng-click="breyta($index)"
+                   ng-show="edit[$index]">
+                  <i class="glyphicon glyphicon-remove divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Hætta við"></i>
+                </a>
+                <!--a ng-click="verdBreyting(p, $index)"-->
+                <a ng-click="breyta($index)"
+                   ng-show="!edit[$index]">
                   <i class="glyphicon glyphicon-pencil divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Breyta"></i>
+                </a>
+                <a ng-click="breyta($index); verdBreyting(p, $index)"
+                   ng-show="edit[$index]">
+                  <i class="glyphicon glyphicon-ok divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Staðfesta"></i>
                 </a>
               </div>
             </td>
