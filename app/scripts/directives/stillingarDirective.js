@@ -4,7 +4,7 @@
 
   angular
     .module('segoApp')
-    .directive('stillingar', ['$http','backendFactory', function ($http, backendFactory) {
+    .directive('stillingar', ['$http', 'backendFactory', function ($http, backendFactory) {
       return {
         restrict: 'E',
         scope: {
@@ -15,7 +15,7 @@
             
           // CREATE PERSON THAT WILL GET THE ROLE OF HAIRCUTTER OR DRESSER
           scope.person = {};
-          scope.person.company_id = backendFactory.getID();
+          scope.person.company_id = backendFactory.ID();
           scope.person.role = 1;
           
           scope.stadfestaStaff = function(s) {
@@ -29,7 +29,7 @@
           
           // CREATING SERVICE
           scope.service = {}
-          scope.service.company_id = backendFactory.getID();
+          scope.service.company_id = backendFactory.ID();
           
           scope.stadfestaService = function(s) {
               backendFactory.postService(s).then(function(res) {
@@ -49,11 +49,7 @@
           getService();
           
           function getStaff() {
-              backendFactory.getStaff().then(function(res) {
-                  scope.staff = res.data;
-              }, function(err) {
-                  console.log("ERROR getStaf(): ", err);
-              });
+              scope.staff = backendFactory.Staff();
           };
           
           function getService() {

@@ -14,7 +14,7 @@
         link: function (scope, element, attrs) {
 
           scope.person = {};
-          scope.person.company_id = backendFactory.getID();
+          scope.person.company_id = backendFactory.ID();
           scope.person.role = 0;
 
           scope.closeWindow = function () {

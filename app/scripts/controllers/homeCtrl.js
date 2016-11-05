@@ -12,7 +12,7 @@
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
       
       function update() {
-          $scope.staff = backendFactory.getStaff();
+          $scope.staff = backendFactory.Staff();
       }
       update();
       
@@ -20,8 +20,9 @@
       var p = JSON.parse(localStorage.getItem('profile'));
       console.log('p.user_id:', p.user_id);
       backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
-          backendFactory.set(response.data[0]._id, response.data[0].staff);
-          console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
+          backendFactory.set(response.data[0]);
+          console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);1
+          update();
       }, function errorCallback(error) {
             console.log("ERROR", error);
       });

@@ -5,20 +5,24 @@
     .module('segoApp')
     .factory('backendFactory', ['$http', function ($http) {
 
-      var company_id = null; // THIS IS _id from MongoDB not auth_id //
-      var staff = [];
+      var _company = null; // THIS IS _id from MongoDB not auth_id //
       
       var backendFactory = {};
 
-      backendFactory.set = function (id, stf) {
-        company_id = id;
-        staff = stf;
+      backendFactory.set = function (company) {
+        _company = company;
       }
 
-      backendFactory.getID = function () {
-        return company_id;
+      backendFactory.ID = function () {
+        return _company._id;
       }
-
+      
+      backendFactory.Staff = function() {
+          if (_company != null) {
+            return _company.staff;
+          }
+      }
+      
       // COMPANY REST CALLS
       backendFactory.getCompanies = function () {
         return $http({
@@ -87,7 +91,7 @@
       };
       
       backendFactory.getStaff = function () {
-        if (company_id != null) {
+        if (_company != null) {
           return $http({
             url: 'http://wwww.sego.is:6969/api/persons/',
             method: 'GET',
@@ -97,7 +101,7 @@
               'Authorization': 'Bearer ' + localStorage.getItem('id_token')
             },
             params: {
-              company_id: company_id
+              company_id: _company._id
             }
           });
         }
@@ -134,7 +138,7 @@
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
           params: {
-            company_id: company_id
+            company_id: _company._id
           }
         });
       };
