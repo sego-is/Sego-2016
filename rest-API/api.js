@@ -40,10 +40,10 @@
            messages: "Vona tókst að eyða honum",
            id: id
         };
-        
+
         res.send(response);
     });
-    
+
     /*model.Person.remove({"_id": id}, function (err, c) {
       if (err) {
         console.log("err ", c);
@@ -56,7 +56,7 @@
   });
 
   // POST PERSONS, EITHER STAFF OR CUSTOMER
-  
+
 
   // GET ALL HAIRCUTTER WORKING FOR COMPANY WITH ID
   api.get('/persons/:company_id', (req, res) => {
@@ -163,13 +163,13 @@
         }
     });
   });
-  
+
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
     model.Person.create(p, function (err, doc) {
       if (err) {
         res.status(500).send(err);
-      } 
+      }
       else {
         if (req.body.role === 1) {
           model.Company.update({'_id': req.body.company_id}, {
@@ -189,7 +189,7 @@
         else {
             res.send("PERSONA BEEN ADDED");
         }
-        
+
       }
     })
   });
@@ -207,7 +207,7 @@
         }
     });
   });
-  
+
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
       model.Service.update({ '_id': data.cid },
@@ -221,7 +221,21 @@
         }
     });
   });
-  
+
+  api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
+    var data = req.body;
+    model.Service.update({ '_id': data.cid },
+      { $push: { "pricelist": { _id: data.service._id } } },
+      { safe: true, upsert: true }, function (err, doc) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          res.send('HAS BEEN DELETED')
+        }
+      });
+  });
+
   api.post('/companies/staff/', bodyParser.json(), (req, res) => {
       var data = req.body;
       model.Company.update({ '_id': data.cid },
@@ -235,8 +249,8 @@
         }
     });
   });
-  
-  
+
+
   api.get('/companies', (req, res) => {
     model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
       if (err) {

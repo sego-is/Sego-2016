@@ -6,7 +6,7 @@
     .factory('backendFactory', ['$http', function ($http) {
 
       var _company = null; // THIS IS COMPANY COLLECTION FROM DB //
-      
+
       var backendFactory = {};
 
       backendFactory.set = function (company) {
@@ -16,13 +16,13 @@
       backendFactory.ID = function () {
         return _company._id;
       }
-      
-      backendFactory.Staff = function() {
-          if (_company != null) {
-            return _company.staff;
-          }
+
+      backendFactory.Staff = function () {
+        if (_company != null) {
+          return _company.staff;
+        }
       }
-      
+
       // COMPANY REST CALLS
       backendFactory.getCompanies = function () {
         return $http({
@@ -77,7 +77,7 @@
         });
       };
 
-     
+
       // END OF PERSON, AND CUSTOMERS AND STAFF
 
 
@@ -138,7 +138,7 @@
           data: p
         });
       };
-      
+
       backendFactory.deletePerson = function (pid) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/persons/',
@@ -149,44 +149,62 @@
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
           data: {
-              id: pid
+            id: pid
           }
         });
       };
-      
-      backendFactory.deleteFromPricelist = function(p) {
-           return $http({
-                url: 'http://wwww.sego.is:6969/api/services/pricelist/',
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-                },
-                data: {
-                    service: p,
-                    cid: this.ID()
-                }
-             });
+
+      backendFactory.deleteFromPricelist = function (p) {
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/services/pricelist/',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: {
+            service: p,
+            cid: this.ID()
+          }
+        });
       };
-      
-      backendFactory.deleteFromStaff = function(s) {
-          return $http({
-                url: 'http://wwww.sego.is:6969/api/companies/staff/',
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-                },
-                data: {
-                    staff: s,
-                    cid: this.ID()
-                }
-          });
+
+      backendFactory.editPricelist = function(p) {
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/services/editPricelist/',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: {
+            service: p,
+            cid: this.ID()
+          }
+        })
+      }
+
+      backendFactory.deleteFromStaff = function (s) {
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/companies/staff/',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: {
+            staff: s,
+            cid: this.ID()
+          }
+        });
       };
-      
-      
+
+
+
+
       backendFactory.deleteService = function (s) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/' + s._id,
