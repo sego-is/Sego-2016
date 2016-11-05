@@ -178,9 +178,15 @@
                 "name": doc.name
               }
             }}, function (err) {
-                res.status(500).send(err);
+                if (err) {
+                    console.log("ERROR:500");
+                    res.status(500).send(err);
+                }
+                else {
+                    console.log("STAFF/PERSONA:ADDED");
+                    res.send("STAFF/PERSONA BEEN ADDED");
+                }
           });
-          res.send("STAFF/PERSONA BEEN ADDED");
         }
         else {
             res.send("PERSONA BEEN ADDED");
