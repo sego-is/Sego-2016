@@ -224,7 +224,7 @@
   
   api.post('/companies/staff/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Companies.update({ '_id': data.cid },
+      model.Company.update({ '_id': data.cid },
         { $pull: { "staff": { _id: data.staff._id } } },
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
