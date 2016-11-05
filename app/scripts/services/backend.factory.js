@@ -6,6 +6,8 @@
     .factory('backendFactory', ['$http', function ($http) {
 
       var company_id = null; // THIS IS _id from MongoDB not auth_id //
+      var staff = [];
+      
       var backendFactory = {};
 
       backendFactory.setID = function (id) {
@@ -85,6 +87,7 @@
 
 
       backendFactory.getStaff = function () {
+          return 
         if (company_id != null) {
           return $http({
             url: 'http://wwww.sego.is:6969/api/persons/',
@@ -168,7 +171,7 @@
       backendFactory.deleteService = function (s) {
           console.log("S:DELETE:", s);
         return $http({
-          url: 'http://wwww.sego.is:6969/api/services/' + s.id,
+          url: 'http://wwww.sego.is:6969/api/services/' + s._id,
           method: 'DELETE',
           headers: {
             'Accept': 'application/json',
@@ -176,7 +179,7 @@
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
           data: {
-            id: s.id,
+            id: s._id,
             cid: s.cid
           }
         });
