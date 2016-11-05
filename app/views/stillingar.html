@@ -77,22 +77,53 @@
             </td>
           </tr>
           <tr ng-repeat="s in staff track by $index">
-            <td class="theFirst col-xs-4">{{ s.name }}</td>
-            <td>{{ s.phone }}</td>
-            <td>{{ s.role }}</td>
+            <td ng-show="!edit[$index]" class="theFirst col-xs-4">{{ s.name }}</td>
+            <td ng-show="!edit[$index]">{{ s.phone }}</td>
+            <td ng-show="!edit[$index]">{{ s.role }}</td>
+            <td ng-show="edit[$index]">
+              <input type="text"
+                     placeholder="{{ s.name }}"
+                     ng-model="s.name">
+            </td>
+            <td ng-show="edit[$index]">
+              <input type="text"
+                     placeholder="{{ s.phone }}"
+                     ng-model="s.name">
+            </td>
+            <td ng-show="edit[$index]">
+              <input type="text"
+                     placeholder="{{ s.role }}"
+                     ng-model="s.name">
+            </td>
             <td>
               <div class="pull-right">
-                <a ng-click="klippTrash(s, $index)">
+                <a ng-click="klippTrash(s, $index)"
+                   ng-show="!edit[$index]">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Henda"></i>
                 </a>
-                <a ng-click="klippBreyting(s)">
+                <a ng-click="breyta($index)"
+                   ng-show="edit[$index]">
+                  <i class="glyphicon glyphicon-remove divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Hætta við"></i>
+                </a>
+                <a ng-click="breyta($index)"
+                   ng-show="!edit[$index]">
                   <i class="glyphicon glyphicon-pencil divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Breyta"></i>
+                </a>
+                <a ng-click="klippBreyting(s, $index); breyta($index)"
+                   ng-show="edit[$index]">
+                  <i class="glyphicon glyphicon-ok divTakki"
+                     data-toggle="tooltip"
+                     data-placement="auto"
+                     title="Staðfesta"></i>
                 </a>
               </div>
             </td>

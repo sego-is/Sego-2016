@@ -99,10 +99,8 @@
             });
           };
 
-          scope.klippBreyting = function () {
-            console.log("breyta klippara");
-
-
+          scope.klippBreyting = function (s, index) {
+            console.log("Breyttur klippari ", JSON.stringify(s) + " i " + index);
           };
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
@@ -113,6 +111,7 @@
 
           scope.toggle = function() {
               scope.state.verdskra = !scope.state.verdskra;
+              scope.edit = [];
           };
 
           scope.add = function() {
