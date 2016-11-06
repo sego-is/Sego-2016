@@ -76,13 +76,18 @@
              });
           };
 
+          scope.edit = [];
+          scope.breyta = function (i) {
+            scope.edit[i] = !scope.edit[i];
+          };
+
           scope.verdBreyting = function (p, index) {
-            console.log("breyta verði");
-            backendFactory.editPricelist(p).then (function successCallBack(respone) {
+            console.log("nytt verð ", JSON.stringify(p) + " i " + index);
+            /*backendFactory.editPricelist(p).then (function successCallBack(respone) {
               scope.pricelist.Set(p);
             }, function errorCallback(error) {
 
-            });
+            });*/
           };
 
           scope.klippTrash = function (a, index) {
@@ -94,10 +99,8 @@
             });
           };
 
-          scope.klippBreyting = function () {
-            console.log("breyta klippara");
-
-
+          scope.klippBreyting = function (s, index) {
+            console.log("Breyttur klippari ", JSON.stringify(s) + " i " + index);
           };
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
@@ -108,6 +111,7 @@
 
           scope.toggle = function() {
               scope.state.verdskra = !scope.state.verdskra;
+              scope.edit = [];
           };
 
           scope.add = function() {

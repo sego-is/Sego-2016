@@ -227,6 +227,7 @@
 
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
+    console.log("req.body ", data);
     model.Service.update({ '_id': data.cid },
       { $push: { "pricelist": { _id: data.service._id } } },
       { safe: true, upsert: true }, function (err, doc) {
