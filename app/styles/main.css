@@ -224,3 +224,15 @@ body {
   padding-left: 15px;
 }
 
+.vidskiptavinir {
+  background-color: #7a43b6;
+  color: white;
+  font-size: 30px;
+  font-family: Gadugi, sans-serif;
+  padding-top: 5px;
+  height: 55px;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 0px 0px 6px 6px;
+}
