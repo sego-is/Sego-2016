@@ -50,7 +50,7 @@
 
           function getStaff() {
               scope.staff = backendFactory.Staff();
-          };
+          }
 
           function getService() {
               backendFactory.getService().then(function(res) {
@@ -59,7 +59,7 @@
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });
-          };
+          }
          // END OF GETTING U/S
 
 
@@ -84,12 +84,13 @@
 
           scope.verdBreyting = function (p, index) {
             console.log("nytt verð ", JSON.stringify(p) + " i " + index);
-            backendFactory.editPricelist(p).then (function successCallBack(response) {
+            backendFactory.editPricelist(p).then(function successCallBack(response) {
               console.log("RESPONSE", response);
               //scope.pricelist[index] = p;
             }, function errorCallback(error) {
 
             });
+          };
 
           scope.verdBreyting = function(v) {
               scope.editVerd = v;
