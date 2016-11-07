@@ -65,14 +65,14 @@ angular
         templateUrl:  '../views/home.html',
         controller:   'HomeCtrl',
         controllerAs: 'home',
-        authorize: false,
+        authorize: true,
         permissions: ["user", "owner"]
       })
       .when('/admin', {
         templateUrl:  '../views/admin.html',
         controller:   'AdminCtrl',
         controllerAs: 'admin',
-        authorize: false,
+        authorize: true,
         permissions: ["administration"]
       })
       .otherwise({

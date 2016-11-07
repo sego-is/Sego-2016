@@ -93,13 +93,14 @@ body {
   height: 70%;
   top: 10%;
   right: 25%;
-  /*padding: 1% 5% 5% 5%;*/
+  /*padding: 1% 5% 5% 5%;
   background: white;
-  /*border: 1px solid black;*/
+  /*border: 1px solid black;
   border-radius: 6px 6px 6px 6px;
   overflow-y: scroll;
   overflow-x: hidden;
-  z-index: 3;*/
+  z-index: 3;
+  */
 }
 
 .skilabod-xHorn {
@@ -129,14 +130,6 @@ body {
   }
 }
 
-<<<<<<< HEAD
-=======
-.eigandi table td, th {
-    width: 25%;
-    height: 1.1em;
-}
-
->>>>>>> 2f0d34588c1d1b815dd0bf6ffd58e065877d50ed
 @media screen and (max-width: 960px) {
     .skilabod {
         position: absolute;
