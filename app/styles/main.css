@@ -93,9 +93,9 @@ body {
   height: 70%;
   top: 10%;
   right: 25%;
-  padding: 1% 5% 5% 5%;
+  /*padding: 1% 5% 5% 5%;*/
   background: white;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   border-radius: 6px 6px 6px 6px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -111,7 +111,7 @@ body {
     max-width: 730px;
   }
 
-  
+
   /* Remove the padding we set earlier */
   .header,
   .marketing,
@@ -129,11 +129,19 @@ body {
   }
 }
 
+<<<<<<< HEAD
+=======
+.eigandi table td, th {
+    width: 25%;
+    height: 1.1em;
+}
+
+>>>>>>> 2f0d34588c1d1b815dd0bf6ffd58e065877d50ed
 @media screen and (max-width: 960px) {
     .skilabod {
         position: absolute;
         left: 0;
-        top: 2em;
+        top: 3em;
         width: 100%;
         height: 90%;
     }
@@ -145,15 +153,34 @@ body {
 
 .takki {
   position: relative;
+  top: 7px;
 }
 /*til að hafa full veiw yfir main*/
 .container-fluid-fullSego {
   margin-top: 4em;
 }
 
+.hausverdskra {
+  background-color: #7a43b6;
+  color: white;
+  font-size: 30px;
+  font-family: Gadugi, sans-serif;
+  padding-top: 5px;
+  height: 55px;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 0px 0px 6px 6px;
+}
 
-.verdskra {
-  text-align: center;
+.close {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.list-group-item-heading {
+  color: black;
+  font-weight: bold;
 }
 
 .hiddenRow {
@@ -192,7 +219,7 @@ body {
 }
 
 .booking {
-    height: 1em;    
+    height: 1em;
 }
 
 .booking-time {
@@ -202,7 +229,31 @@ body {
 }
 
 .booking-time p {
-    font-size: 0.8em;    
+    font-size: 0.8em;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-header {
+  background-color: #7a43b6;
+  margin-left: 10px;
+  border-radius: 20px 20px 20px 20px;
+  padding-left: 15px;
+}
+
+.vidskiptavinir {
+  background-color: #7a43b6;
+  color: white;
+  font-size: 30px;
+  font-family: Gadugi, sans-serif;
+  padding-top: 5px;
+  height: 55px;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 0px 0px 6px 6px;
 }
 
 .skilabod-x {

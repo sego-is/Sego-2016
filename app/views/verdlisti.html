@@ -1,10 +1,19 @@
+<<<<<<< HEAD
   <div class="row">
     <button type="button" class="close takki pull-right" ng-click="closeWindow()">&times;</button>
   </div>
   <h1 class="verdskra"> Verðskrá </h1>
   <div class="row">   
+=======
+<div class="container">
+
+  <div class="col-xs-12">
+    <div class="hausverdskra"> VERÐSKRÁ
+      <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
+    </div>
+>>>>>>> 2f0d34588c1d1b815dd0bf6ffd58e065877d50ed
     <ul class="list-group">
-      <li  ng-repeat="p in pricelist" class="list-group-item ">
+      <li ng-repeat="p in pricelist" class="list-group-item ">
         <h4 class="list-group-item-heading"> {{ p.name }} </h4>
         <p class="list-group-item-text"> {{ p.price }} kr.</p>
       </li>
