@@ -63,7 +63,22 @@
           data: c
         });
       }
-
+      
+      backendFactory.getStaff = function() {
+        return $http({
+          method: 'GET',
+          url: 'http://wwww.sego.is:6969/api/persons/',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          params: {
+            company_id: this.ID()
+          }
+        });  
+      };
+      
       // PERSON REST CALLS / BOTH FOR CUSTOMERS AND STAFF //
       backendFactory.getPersons = function () {
         return $http({
@@ -202,8 +217,8 @@
         });
       };
 
-
-
+      
+      
 
       backendFactory.deleteService = function (s) {
         return $http({

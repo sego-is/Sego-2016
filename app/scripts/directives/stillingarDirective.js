@@ -50,6 +50,12 @@
 
           function getStaff() {
               scope.staff = backendFactory.Staff();
+              backendFactory.getStaff().then(function(res) {
+                  console.log("RES getStaff()", res);
+              }, function(err) {
+                  console.log("RERR", err);
+              });
+              
           };
 
           function getService() {

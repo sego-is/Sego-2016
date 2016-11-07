@@ -25,6 +25,7 @@
           <td class="booking-cell" ng-repeat="x in staff" ng-click="openBooking(t, x)"><!--       -->
             <p ng-if="t == bookings[$index].time && x.name == bookings[$index].name"> {{ bookings[$index].name }}</p>
           </td>
+        </tr>
         </tbody>
       </table>
   </div>
