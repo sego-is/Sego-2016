@@ -1,9 +1,8 @@
-<div class="container">
-
-  <div class="col-xs-10">
-    <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
-    <h1 class="verdskra"> Verðskrá </h1>
-
+  <div class="row">
+    <button type="button" class="close takki pull-right" ng-click="closeWindow()">&times;</button>
+  </div>
+  <h1 class="verdskra"> Verðskrá </h1>
+  <div class="row">   
     <ul class="list-group">
       <li  ng-repeat="p in pricelist" class="list-group-item ">
         <h4 class="list-group-item-heading"> {{ p.name }} </h4>
@@ -11,4 +10,3 @@
       </li>
     </ul>
   </div>
-</div>

@@ -18,7 +18,8 @@
             {'short': 'fim','full': 'fimmtudagur'},
             {'short': 'fös','full': 'föstudagur'},
             {'short': 'lau','full': 'laugardagur'}];
-
+        
+        var dagsetningValinn = new Date();
         
         function toHHMMSS(a) {
             var sec_num = parseInt(a, 10); // don't forget the second param
@@ -32,7 +33,20 @@
         
     	return {
             dagsetning: function(day, date, month) {
-                return " " + dagar[day].full +  " " + date + ". " + months[month].full + "";
+                if (day === undefined) {
+                    return " " + dagar[dagsetningValinn.getDay()].full +  " " + dagsetningValinn.getDate() + ". " + months[dagsetningValinn.getMonth()].full + "";
+                }
+                else {
+                    return " " + dagar[day].full +  " " + date + ". " + months[month].full + "";
+                }
+            },
+            aMorgun: function() {
+                dagsetningValinn.setDate(dagsetningValinn.getDate() + 1);
+                return this.dagsetning(dagsetningValinn.getDay(), dagsetningValinn.getDate(), dagsetningValinn.getMonth());
+            },
+            iGaer: function() {
+                dagsetningValinn.setDate(dagsetningValinn.getDate() - 1);
+                return this.dagsetning(dagsetningValinn.getDay(), dagsetningValinn.getDate(), dagsetningValinn.getMonth());
             },
             timasetning: function(a) {
                 if (a === undefined) {

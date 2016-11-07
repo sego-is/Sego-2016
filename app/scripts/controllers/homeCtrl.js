@@ -11,11 +11,37 @@
   angular.module('segoApp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
 
+      // Initialize the time (clock) in booking for the day
+      var stillingar = {
+        upphafsTimi: 3600 * 7,
+        endaTimi:    3600 * 22,
+        lotan:       900
+      };
+
+      $scope.times = [];
+
+      var initTimes = function () {
+        var i;
+        for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
+          $scope.times.push(dagatalFactory.timasetning(i));
+        }
+      };
+      // END OF INITIALIZE TIME
+      
       function update() {
           $scope.staff = backendFactory.Staff();
+          $scope.dagurinnIdag = dagatalFactory.dagsetning();
+          initTimes();
       }
       update();
-
+      
+      $scope.prev = function() {
+          $scope.dagurinnIdag = dagatalFactory.iGaer();
+      };
+      
+      $scope.next = function() {
+          $scope.dagurinnIdag = dagatalFactory.aMorgun();
+      };
       // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
       console.log('p.user_id:', p.user_id);
@@ -59,22 +85,7 @@
       // END OF BOOKING CLICK
 
 
-      // Initialize the time (clock) in booking for the day
-      var stillingar = {
-        upphafsTimi: 3600 * 7,
-        endaTimi:    3600 * 22,
-        lotan:       900
-      };
 
-      $scope.times = [];
-
-      var initTimes = function () {
-        var i;
-        for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
-          $scope.times.push(dagatalFactory.timasetning(i));
-        }
-      };
-      // END OF INITIALIZE TIME
 
       $scope.bookings = [{
         'time': '08:00',
@@ -95,11 +106,5 @@
         'time': '11:30',
         'name': 'Einar Agúst Árnason'
       }];
-
-      $scope.$on('dagsetning', function (e, a) {
-        initTimes();
-        valinnDagur = a;
-        $scope.dagurinnIdag = dagatalFactory.dagsetning(a.getDay(), a.getDate(), a.getMonth());
-      });
     }]);
 })();

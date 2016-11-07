@@ -31,7 +31,8 @@ const personaSchema = Schema({
   // 0:Customer 1:Staff
   role: {
     type:    Number,
-    require: true
+    require: true,
+    default: 0
   }
 });
 
@@ -90,7 +91,7 @@ const bookingsSchema = Schema({
     },
     staff_id: {
       type: Schema.Types.ObjectId,
-      ref:  'Staff'
+      ref:  'Person'
     },
     time: Date
   }]

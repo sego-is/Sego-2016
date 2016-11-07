@@ -7,6 +7,7 @@
 
 body {
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
 }
 
@@ -77,6 +78,16 @@ body {
 }
 
 .skilabod {
+    position: absolute;
+    margin: 5.0em auto;
+    padding: 1%;
+    width: 40%;
+    right: 30%;
+    background: white;
+    -webkit-transition: all 5s ease-in-out;
+    -moz-transition: all duration ease-in-out;
+    transition: all duration ease-in-out;
+    /*
   position: absolute;
   width: 50%;
   height: 70%;
@@ -88,7 +99,7 @@ body {
   border-radius: 6px 6px 6px 6px;
   overflow-y: scroll;
   overflow-x: hidden;
-  z-index: 3;
+  z-index: 3;*/
 }
 
 .skilabod-xHorn {
@@ -116,15 +127,7 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
-
 }
-
-
-.eigandi table td, th {
-    width: 25%;
-    height: 1.1em;
-}
-
 
 @media screen and (max-width: 960px) {
     .skilabod {
@@ -192,6 +195,18 @@ body {
     height: 1em;    
 }
 
+.booking-time {
+    height: 1em;
+    width: 0.5em;
+    margin: 0.5em auto; 
+}
+
 .booking-time p {
     font-size: 0.8em;    
+}
+
+.skilabod-x {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
