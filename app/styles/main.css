@@ -213,4 +213,13 @@ body {
     font-size: 0.8em;
 }
 
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-header {
+  background-color: #7a43b6;
+  margin-left: 10px;
+  border-radius: 20px 20px 20px 20px;
+}
 
