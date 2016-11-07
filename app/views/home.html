@@ -3,12 +3,20 @@
 </div>
 
 <div class="container-fluid" ng-show="!loadingData">
-  <div class="row">
-    <h1>{{ dagurinnIdag }}</h1>
+  <div class="row btn-group">
+      <div class="col-md-2 pull-left">
+         <button class="btn btn-primary btn-block" ng-click="prev()"> &lt;</button>
+      </div>
+      <div class="col-md-8 center">
+        <button type="button" class="btn btn-primary btn-block">{{ dagurinnIdag }}</button>
+        </div>
+    <div class="col-md-2 pull-right">
+         <button class="btn btn-primary btn-block" ng-click="next()">  &gt;</button>
+      </div>
+>>>>>>> e4fb2cad843fad16d5201e31ea252f8d73ce21a7
   </div>
   <div class="row">
-    <div class="col-md-8">
-
+      <div class="col-md-8">
       <table class="table table-hover table-bordered">
           <thead>
         <tr>
@@ -24,16 +32,12 @@
           </td>
         </tbody>
       </table>
-    </div>
-    <!--
+  </div>
     <div class="col-md-4">
-      <dagatal i-dag="valinnDagur.iDag"></dagatal>
-    </div>
-    -->
-    <div class="col-md-4" ng-controller="DatepickerCtrl">
-        <div style="display:inline-block; min-height:290px;">
-        <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+        <div ng-controller="DatepickerCtrl" style="display:inline-block; min-height:290px;">
+            <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
         </div>
     </div>
+
   </div>
 </div>

@@ -60,6 +60,20 @@
 
   // GET ALL HAIRCUTTER WORKING FOR COMPANY WITH ID
   api.get('/persons/:company_id', (req, res) => {
+     model.Company.findById(req.params.company_id).populate('staff.person_id').run( (err, doc) => {
+         if (err) {
+             res.status(500).send(err);
+         }
+         else {
+             res.send(doc);
+         }
+     });
+     
+     
+     
+     
+     
+     /*
     model.Person.find({"company_id": req.params.company_id, "role": 1}, (err, p) => {
       if (!err) {
         res.send(p);
@@ -67,9 +81,14 @@
         res.status(500).send(err);
       }
     });
-  });
-
+ 
+*/
+ });
+ 
   api.get('/bookings', (req, res) => {
+      // RADA EFTIR TIMA OG NAFNI OG KLIPPARA
+      // SAEKJA PERSONU OBJECT AF CUSTOMER
+      // 
     res.status(201).json({
       svar: 'tippa svar'
     });
@@ -225,7 +244,6 @@
   //BREYTA VERÐI Í VERÐLISTA ATH update
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
-    console.log("req.body ", data);
     model.Service.update({ '_id': data.cid },
       { $push: { "pricelist": { _id: data.service._id } } },
       { safe: true, upsert: true }, function (err, doc) {

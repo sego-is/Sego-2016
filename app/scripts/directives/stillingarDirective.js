@@ -67,8 +67,9 @@
             scope.lokaGlugga();
           };
 
+
+
           scope.verdTrash = function (p, index) {
-            console.log("Henda ur Pricelist", p);
             backendFactory.deleteFromPricelist(p).then(function successCallback(response) {
                 scope.pricelist.splice(index, 1);
              }, function errorCallback(error) {
@@ -89,10 +90,13 @@
             }, function errorCallback(error) {
 
             });
+
+          scope.verdBreyting = function(v) {
+              scope.editVerd = v;
+              scope.state.edit = true;
           };
 
           scope.klippTrash = function (a, index) {
-            console.log("Henda ur saff", a);
             backendFactory.deleteFromStaff(a).then(function successCallback(response) {
                 scope.staff.splice(index, 1);
             }, function errorCallback(error) {
@@ -100,14 +104,17 @@
             });
           };
 
-          scope.klippBreyting = function (s, index) {
-            console.log("Breyttur klippari ", JSON.stringify(s) + " i " + index);
+          scope.klippBreyting = function (k) {
+            scope.editUser = k;
+            scope.state.edit = true;
           };
+
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
           scope.state = {
               verdskra: false,
-              add: false
+              add: false,
+              edit: false
           };
 
           scope.toggle = function() {

@@ -1,25 +1,29 @@
 <!-- EIGANDA(VIEW) -->
-
-<div class="container-fluid eigandi" persmission="['owner']">
-  <button type="button"
-          class="close takki"
+<div class="row skilabod-haus">
+    <ul style="list-style-type:none;margin:0;padding:0;">
+        <li> Stillingar</li>
+           
+        <li class="pull-left"><button type="button"
+          class="close takki skilabod-x"
           ng-click="closeWindow()"
           data-toggle="tooltip"
           data-placement="auto"
-          title="Loka glugga">&times;</button>
+          title="Loka glugga">&times;</button></li>
+    </ul>
+</div>
+          <!---------------------------->
+          <!-- Stillingar á klippurum -->
+          <!---------------------------->
   <div class="row">
      <div ng-if="!state.verdskra"  class="col-xs-12">
         <h3>Klipparar</h3>
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>
-              <div class="pull-left">Nafn</div>
-            </th>
+            <th><div class="pull-left">Nafn</div></th>
             <th>Símanúmer</th>
             <th>Hlutverk</th>
-            <th>
-              <div class="pull-right">
+            <th><div class="pull-right">
                 <button class="eigandi-editPriceList glyphicon glyphicon-usd"
                         ng-click="toggle()"
                         data-toggle="tooltip"
@@ -32,14 +36,48 @@
                         data-placement="auto"
                         title="Bæta við klippara">
                 </button>
-              </div>
-            </th>
+              </div></th>
           </tr>
           </thead>
           <tbody>
-          <!---------------------------->
-          <!-- Stillingar á klippurum -->
-          <!---------------------------->
+              <!-- EDIT KLIPPARA -->
+              <tr ng-if="!state.verdskra && state.edit">
+                  <td colspan="4">
+                      <form>
+                        <div class="form-group row">
+                        <label for="inputName3" class="col-sm-2 col-form-label">Nafn</label>
+                        <div class="col-sm-10">
+                            <input type="name" class="form-control" id="inputName3" placeholder="Nafn" ng-model="editUser.name">
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Netfang</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Netfang" ng-model="editUser.email">
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="inputPhone3" class="col-sm-2 col-form-label">Símanúmer</label>
+                        <div class="col-sm-10">
+                            <input type="phone" class="form-control" id="inputPhone3" placeholder="Símanúmer" ng-model="editUser.phone">
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="inputPhone3" class="col-sm-2 col-form-label">Heimilisfang</label>
+                        <div class="col-sm-10">
+                            <input type="phone" class="form-control" id="inputPhone3" placeholder="Heimilisfang" ng-model="editUser.address">
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10 pull-right">
+                            <button type="submit" class="btn btn-primary" ng-click="state.edit = false">Hætta við</button>
+                            <button type="submit" class="btn btn-primary" ng-click="updateKlippara(editUser)">Uppfæra</button>
+                        </div>
+                        </div>
+                    </form>
+                  </td>
+              </tr>
+          
           <tr ng-if="!state.verdskra && state.add">
             <td colspan="4">
                <form class="form-horizontal">
@@ -77,53 +115,22 @@
             </td>
           </tr>
           <tr ng-repeat="s in staff track by $index">
-            <td ng-show="!edit[$index]" class="theFirst col-xs-4">{{ s.name }}</td>
-            <td ng-show="!edit[$index]">{{ s.phone }}</td>
-            <td ng-show="!edit[$index]">{{ s.role }}</td>
-            <td ng-show="edit[$index]">
-              <input type="text"
-                     placeholder="{{ s.name }}"
-                     ng-model="s.name">
-            </td>
-            <td ng-show="edit[$index]">
-              <input type="text"
-                     placeholder="{{ s.phone }}"
-                     ng-model="s.name">
-            </td>
-            <td ng-show="edit[$index]">
-              <input type="text"
-                     placeholder="{{ s.role }}"
-                     ng-model="s.name">
-            </td>
-            <td>
+            <td class="theFirst col-xs-4">{{ s.name }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.role }}</td>
+              <td>
               <div class="pull-right">
-                <a ng-click="klippTrash(s, $index)"
-                   ng-show="!edit[$index]">
+                <a ng-click="klippTrash(s, $index)">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Henda"></i>
                 </a>
-                <a ng-click="breyta($index)"
-                   ng-show="edit[$index]">
-                  <i class="glyphicon glyphicon-remove divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Hætta við"></i>
-                </a>
-                <a ng-click="breyta($index)"
-                   ng-show="!edit[$index]">
+                <a ng-click="klippBreyting(s)"">
                   <i class="glyphicon glyphicon-pencil divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Breyta"></i>
-                </a>
-                <a ng-click="klippBreyting(s, $index); breyta($index)"
-                   ng-show="edit[$index]">
-                  <i class="glyphicon glyphicon-ok divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Staðfesta"></i>
                 </a>
               </div>
             </td>
@@ -131,7 +138,9 @@
           </tbody>
         </table>
       </div>
-
+          <!------------------------->
+          <!-- Stillingar á verðum -->
+          <!------------------------->
       <div ng-if="state.verdskra" class="col-xs-12">
         <h3>Verðskrá</h3>
         <table class="table table-striped">
@@ -160,16 +169,38 @@
             </th>
           </tr>
           </thead>
-          <!------------------------->
-          <!-- Stillingar á verðum -->
-          <!------------------------->
           <tbody>
+              <!-- EDIT KLIPPARA -->
+              <tr ng-if="state.verdskra && state.edit">
+                  <td colspan="4">
+                      <form>
+                        <div class="form-group row">
+                        <label for="inputName3" class="col-sm-2 col-form-label">Nafn</label>
+                        <div class="col-sm-10">
+                            <input type="name" class="form-control" id="inputName3" placeholder="Nafn" ng-model="editVerd.name">
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="inputPrice3" class="col-sm-2 col-form-label">Verð</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputPrice3" placeholder="Verð" ng-model="editVerd.price">
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10 pull-right">
+                            <button type="submit" class="btn btn-primary" ng-click="state.edit = false">Hætta við</button>
+                            <button type="submit" class="btn btn-primary" ng-click="updateKlippara(editUser)">Uppfæra</button>
+                        </div>
+                        </div>
+                    </form>
+                  </td>
+              </tr>
           <tr ng-if="state.verdskra && state.add">
             <td colspan="4">
               <form class="form-horizontal">
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="Þjónusta"></label>
-                  <input type="name" class="form-control inputField" id="inputÞjónusta" placeholder="Þjónusta" ng-model="service.name">
+                  <input type="name" class="form-control inputField" id="inputÞjónusta" placeholder="Þjónusta" ng-model="editVerd.name">
                 </div>
                 <div class="pull-right col-xs-1">
                   <i class="fa fa-times fa-2x haettaVidTakki pull-right col-xs-1"
@@ -180,62 +211,35 @@
                 </div>
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputVerd"></label>
-                  <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð" ng-model="service.price">
+                  <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð" ng-model="editVerd.price">
                 </div>
                 <div class="pull-right col-xs-1">
                   <i class="fa fa-plus fa-2x stadfestaTakki"
                      aria-hidden="true"
                      data-toggle="tooltip"
                      data-placement="auto"
-                     title="Staðfesta" ng-click="stadfestaService(service)"></i>
+                     title="Staðfesta" ng-click="stadfestaVerd(editVerd)"></i>
                 </div>
               </form>
             </td>
           </tr>
           <tr ng-repeat="p in pricelist track by $index">
-            <td ng-show="!edit[$index]">{{ p.name }}</td>
-            <td ng-show="!edit[$index]">{{ p.price }}</td>
-            <td ng-show="edit[$index]">
-              <input type="text"
-                     placeholder="{{ p.name }}"
-                     ng-model="p.name">
-            </td>
-            <td ng-show="edit[$index]">
-              <input type="text"
-                     placeholder="{{ p.price }}"
-                     ng-model="p.price">
-            </td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.price }}</td>         
             <td></td>
             <td>
               <div class="pull-right">
-                <a ng-click="verdTrash(p, $index)"
-                   ng-show="!edit[$index]">
+                <a ng-click="verdTrash(p, $index)">
                   <i class="glyphicon glyphicon-trash divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Henda"></i>
                 </a>
-                <a ng-click="breyta($index)"
-                   ng-show="edit[$index]">
-                  <i class="glyphicon glyphicon-remove divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Hætta við"></i>
-                </a>
-                <!--a ng-click="verdBreyting(p, $index)"-->
-                <a ng-click="breyta($index)"
-                   ng-show="!edit[$index]">
+                <a ng-click="verdBreyting(p)" href="#editing">
                   <i class="glyphicon glyphicon-pencil divTakki"
                      data-toggle="tooltip"
                      data-placement="auto"
                      title="Breyta"></i>
-                </a>
-                <a ng-click="breyta($index); verdBreyting(p, $index)"
-                   ng-show="edit[$index]">
-                  <i class="glyphicon glyphicon-ok divTakki"
-                     data-toggle="tooltip"
-                     data-placement="auto"
-                     title="Staðfesta"></i>
                 </a>
               </div>
             </td>
