@@ -29,7 +29,7 @@
           // END OF CREATING HAIR.. //
 
           // CREATING SERVICE
-          scope.service = {}
+          scope.service = {};
           scope.service.company_id = backendFactory.ID();
 
           scope.stadfestaService = function(s) {
@@ -38,7 +38,7 @@
               }, function(err) {
                   console.log("ERROR stadfestaService(): ", err);
               });
-          }
+          };
           // END OF CREATE SERVICE
 
           // GET ALL STAFF AND SERVICE FOR SALOON
@@ -65,16 +65,16 @@
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });
-          };
+          }
          // END OF GETTING U/S
 
 
           scope.closeWindow = function () {
             scope.lokaGlugga();
           };
-          
-         
-          
+
+
+
           scope.verdTrash = function (p, index) {
             backendFactory.deleteFromPricelist(p).then(function successCallback(response) {
                 scope.pricelist.splice(index, 1);
@@ -83,11 +83,26 @@
              });
           };
 
+          scope.edit = [];
+          scope.breyta = function (i) {
+            scope.edit[i] = !scope.edit[i];
+          };
+
+          scope.verdBreyting = function (p, index) {
+            console.log("nytt verð ", JSON.stringify(p) + " i " + index);
+            backendFactory.editPricelist(p).then(function successCallBack(response) {
+              console.log("RESPONSE", response);
+              //scope.pricelist[index] = p;
+            }, function errorCallback(error) {
+
+            });
+          };
+
           scope.verdBreyting = function(v) {
               scope.editVerd = v;
               scope.state.edit = true;
           };
-          
+
           scope.klippTrash = function (a, index) {
             backendFactory.deleteFromStaff(a).then(function successCallback(response) {
                 scope.staff.splice(index, 1);
@@ -100,7 +115,7 @@
             scope.editUser = k;
             scope.state.edit = true;
           };
-          
+
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
           scope.state = {

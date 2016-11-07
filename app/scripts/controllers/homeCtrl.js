@@ -27,21 +27,24 @@
         }
       };
       // END OF INITIALIZE TIME
-      
+
       function update() {
           $scope.staff = backendFactory.Staff();
           $scope.dagurinnIdag = dagatalFactory.dagsetning();
           initTimes();
       }
       update();
-      
+
+      $scope.loadingData = true;
+
       $scope.prev = function() {
           $scope.dagurinnIdag = dagatalFactory.iGaer();
       };
-      
+
       $scope.next = function() {
           $scope.dagurinnIdag = dagatalFactory.aMorgun();
       };
+
       // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
       console.log('p.user_id:', p.user_id);
@@ -49,6 +52,7 @@
           backendFactory.set(response.data[0]);
           console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);1
           update();
+        $scope.loadingData = false;
       }, function errorCallback(error) {
             console.log("ERROR", error);
       });
