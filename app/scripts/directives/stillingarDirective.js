@@ -29,7 +29,7 @@
           // END OF CREATING HAIR.. //
 
           // CREATING SERVICE
-          scope.service = {}
+          scope.service = {};
           scope.service.company_id = backendFactory.ID();
 
           scope.stadfestaService = function(s) {
@@ -38,7 +38,7 @@
               }, function(err) {
                   console.log("ERROR stadfestaService(): ", err);
               });
-          }
+          };
           // END OF CREATE SERVICE
 
           // GET ALL STAFF AND SERVICE FOR SALOON
@@ -83,11 +83,12 @@
 
           scope.verdBreyting = function (p, index) {
             console.log("nytt verð ", JSON.stringify(p) + " i " + index);
-            /*backendFactory.editPricelist(p).then (function successCallBack(respone) {
-              scope.pricelist.Set(p);
+            backendFactory.editPricelist(p).then (function successCallBack(response) {
+              console.log("RESPONSE", response);
+              //scope.pricelist[index] = p;
             }, function errorCallback(error) {
 
-            });*/
+            });
           };
 
           scope.klippTrash = function (a, index) {

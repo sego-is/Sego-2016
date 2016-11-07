@@ -222,6 +222,7 @@
     });
   });
 
+  //BREYTA VERÐI Í VERÐLISTA ATH update
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
     console.log("req.body ", data);

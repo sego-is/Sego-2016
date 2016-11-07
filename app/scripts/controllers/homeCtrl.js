@@ -16,6 +16,8 @@
       }
       update();
 
+      $scope.loadingData = true;
+
       // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
       console.log('p.user_id:', p.user_id);
@@ -23,6 +25,7 @@
           backendFactory.set(response.data[0]);
           console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);1
           update();
+        $scope.loadingData = false;
       }, function errorCallback(error) {
             console.log("ERROR", error);
       });

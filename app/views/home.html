@@ -1,4 +1,8 @@
-<div class="container-fluid">
+<div class="col-xs-12" ng-show="loadingData">
+  <p>HLEÐUR INN GÖGNUM ALVEG 'A MILLJ'ON</p>
+</div>
+
+<div class="container-fluid" ng-show="!loadingData">
   <div class="row">
     <h1>{{ dagurinnIdag }}</h1>
   </div>
