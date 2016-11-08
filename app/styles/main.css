@@ -70,7 +70,6 @@ body {
   width: 100%;
   visibility: hidden;
   z-index: 2;
-  border-radius: 5px;
 }
 
 .main-view {
@@ -164,9 +163,13 @@ verdlisti.skilabod {
   padding: 0;
 }
 
-.hausverdskra, .content > div, .footer {
+.hausverdskra, .footer {
   background-color: #7a43b6;
   width: 100%;
+}
+
+.content {
+
 }
 
 .hausverdskra {
