@@ -32,11 +32,12 @@
           scope.service = {};
           scope.service.company_id = backendFactory.ID();
 
-          scope.stadfestaService = function(s) {
+          scope.stadfestaPrice = function(s) {
               backendFactory.postService(s).then(function(res) {
                   scope.pricelist.push(res.data);
+                  console.log("stadfestaPrice:", res.data);
               }, function(err) {
-                  console.log("ERROR stadfestaService(): ", err);
+                  console.log("ERROR stadfestaPrice(): ", err);
               });
           };
           // END OF CREATE SERVICE
@@ -88,21 +89,21 @@
             scope.edit[i] = !scope.edit[i];
           };
 
-          scope.verdBreyting = function (p, index) {
-            console.log("nytt verð ", JSON.stringify(p) + " i " + index);
-            backendFactory.editPricelist(p).then(function successCallBack(response) {
-              console.log("RESPONSE", response);
-              //scope.pricelist[index] = p;
+          scope.verdBreyting = function (p) {
+            scope.editVerd = p;
+            scope.state.edit = true;
+            console.log("nytt verð ", JSON.stringify(p));
+          };
+          
+          scope.updatePrice = function() {
+              backendFactory.editPricelist(scope.editVerd).then(function successCallBack(response) {
+                console.log("RESPONSE", response);
             }, function errorCallback(error) {
-
+                    console.log("ERRROR", error);
             });
-          };
-
-          scope.verdBreyting = function(v) {
-              scope.editVerd = v;
-              scope.state.edit = true;
-          };
-
+          }
+          
+            
           scope.klippTrash = function (a, index) {
             backendFactory.deleteFromStaff(a).then(function successCallback(response) {
                 scope.staff.splice(index, 1);

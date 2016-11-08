@@ -4,7 +4,7 @@
   angular
     .module('segoApp')
     .factory('backendFactory', ['$http', function ($http) {
-
+      var CONST_AUTH_ID = "auth0|5820e94df92ca3261c626f35";
       var _company = null; // THIS IS COMPANY COLLECTION FROM DB //
 
       var backendFactory = {};
@@ -46,7 +46,7 @@
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
           params: {
-            id: c
+            id: CONST_AUTH_ID
           }
         });
       }
@@ -122,7 +122,7 @@
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
           params: {
-            company_id: _company._id
+            company_id: this.ID()
           }
         });
       };

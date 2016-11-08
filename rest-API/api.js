@@ -294,7 +294,7 @@
   });
 
   api.get('/companies/:id', (req, res) => {
-    model.Company.find({auth_id: req.params.id}, function (err, c) {
+    model.Company.find({ auth_id: req.params.id }, function (err, c) {
       if (err) {
         res.status(500).send(err);
       } else {

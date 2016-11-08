@@ -170,7 +170,7 @@
           </tr>
           </thead>
           <tbody>
-              <!-- EDIT KLIPPARA -->
+              <!-- EDIT VERDSKRA -->
               <tr ng-if="state.verdskra && state.edit">
                   <td colspan="4">
                       <form>
@@ -189,18 +189,19 @@
                         <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10 pull-right">
                             <button type="submit" class="btn btn-primary" ng-click="state.edit = false">Hætta við</button>
-                            <button type="submit" class="btn btn-primary" ng-click="updateKlippara(editUser)">Uppfæra</button>
+                            <button type="submit" class="btn btn-primary" ng-click="updatePrice()">Uppfæra</button>
                         </div>
                         </div>
                     </form>
                   </td>
               </tr>
+              <!-- Verdskra add -->
           <tr ng-if="state.verdskra && state.add">
             <td colspan="4">
               <form class="form-horizontal">
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="Þjónusta"></label>
-                  <input type="name" class="form-control inputField" id="inputÞjónusta" placeholder="Þjónusta" ng-model="editVerd.name">
+                  <input type="name" class="form-control inputField" id="inputÞjónusta" placeholder="Þjónusta" ng-model="service.name">
                 </div>
                 <div class="pull-right col-xs-1">
                   <i class="fa fa-times fa-2x haettaVidTakki pull-right col-xs-1"
@@ -211,14 +212,14 @@
                 </div>
                 <div class="form-group col-xs-11">
                   <label class="sr-only" for="inputVerd"></label>
-                  <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð" ng-model="editVerd.price">
+                  <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð" ng-model="service.price">
                 </div>
                 <div class="pull-right col-xs-1">
                   <i class="fa fa-plus fa-2x stadfestaTakki"
                      aria-hidden="true"
                      data-toggle="tooltip"
                      data-placement="auto"
-                     title="Staðfesta" ng-click="stadfestaVerd(editVerd)"></i>
+                     title="Staðfesta" ng-click="stadfestaPrice(service)"></i>
                 </div>
               </form>
             </td>
