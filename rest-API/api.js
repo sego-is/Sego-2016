@@ -244,6 +244,8 @@
   //BREYTA VERÐI Í VERÐLISTA ATH update
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
+    console.log("data:, /service/editPricelist/", data);
+    
     model.Service.findOneAndUpdate(
         { 'company_id': data.cid, 'pricelist._id': data.service._id },
         { $set: { 'name': data.service.name, 'pricelist': data.service.price } },

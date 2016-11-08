@@ -20,7 +20,7 @@
 
           scope.stadfestaStaff = function(s) {
               backendFactory.postPerson(s).then(function(res) {
-                  console.log("PUSH-STAFF: ", res.data);
+                  scope.state.add = false;
                   scope.staff.push(res.data);
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
@@ -34,8 +34,9 @@
 
           scope.stadfestaPrice = function(s) {
               backendFactory.postService(s).then(function(res) {
+                  console.log(res.data);
                   scope.pricelist.push(res.data);
-                  console.log("stadfestaPrice:", res.data);
+                  scope.state.add = false;
               }, function(err) {
                   console.log("ERROR stadfestaPrice(): ", err);
               });
@@ -84,11 +85,6 @@
              });
           };
 
-          scope.edit = [];
-          scope.breyta = function (i) {
-            scope.edit[i] = !scope.edit[i];
-          };
-
           scope.verdBreyting = function (p) {
             scope.editVerd = p;
             scope.state.edit = true;
@@ -96,7 +92,9 @@
           };
           
           scope.updatePrice = function() {
+              console.log("scope.editVerd", scope.editVerd);
               backendFactory.editPricelist(scope.editVerd).then(function successCallBack(response) {
+                scope.state.edit = false;
                 console.log("RESPONSE", response);
             }, function errorCallback(error) {
                     console.log("ERRROR", error);
