@@ -1,113 +1,104 @@
-<div class="container">
-  <div class="col-xs-12">
-    <div class="vidskiptavinir"> VIÐSKIPTAVINIR
-      <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
-    </div>
-    <table class="table table-striped">
-
-      <div class="col-xs-offset-5">
-
-      </div>
-      <thead>
-      <th>Nafn</th>
-      <th>Símanúmer</th>
-      <th>
-        <div class="pull-right">
-          <button class="eigandi-addHairdresser"
-                  ng-click="addCust()"
-                  data-toggle="tooltip"
-                  data-placement="auto"
-                  title="Bæta við">
-            <i class="glyphicon glyphicon-plus"></i>
-          </button>
-        </div>
-      </th>
-      </thead>
-      <tbody>
-      <div>
-        <tr ng-if="addCus">
-          <td colspan="3">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label class="sr-only" for="name">Nafn</label>
-                <input type="text"
-                       class="form-control"
-                       name="name"
-                       ng-model="person.name"
-                       placeholder="Nafn">
-              </div>
-              <div class="form-group">
-                <label class="sr-only" for="phone">Sími</label>
-                <input type="text"
-                       class="form-control"
-                       name="phone"
-                       ng-model="person.phone"
-                       placeholder="Sími">
-              </div>
-              <div class="form-group">
-                <label class="sr-only" for="email">Netfang</label>
-                <input type="text"
-                       class="form-control"
-                       name="email"
-                       ng-model="person.email"
-                       placeholder="Netfang">
-              </div>
-              <div class="pull-right">
-                <button type="submit"
-                        class="btn btn-default"
-                        ng-click="addCustomer(person)">Bæta við
-                </button>
-              </div>
-            </form>
-          </td>
-        </tr>
-        <!------------------------------------------------------------------------------------------->
-        <!-------------------------          Viðskiptavinir          -------------------------------->
-        <!------------------------------------------------------------------------------------------->
-        <tr ng-repeat="vinur in vidskiptavinir track by $index" data-toggle="collapse" data-target=".demo1">
-          <td>{{ vinur.nafn }}</td>
-          <td>{{ vinur.simi }}</td>
-          <td>
-            <div class="pull-right">
-              <a ng-click="klippTrash()">
-                <i class="glyphicon glyphicon-trash divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Henda"></i>
-              </a>
-              <a ng-click="klippBreyting()">
-                <i class="glyphicon glyphicon-pencil divTakki"
-                   data-toggle="tooltip"
-                   data-placement="auto"
-                   title="Breyta"></i>
-              </a>
-            </div>
-          </td>
-        <tr>
-          <td class="hiddenRow">
-            <div class="collapse demo1">Netfang:</div>
-          </td>
-          <td class="hiddenRow" colspan="2">
-            <div class="collapse demo1">{{ vinur.netfang }}</div>
-          </td>
-        </tr>
-        <tr>
-          <td class="hiddenRow">
-            <div class="collapse demo1">Heimilisfang:</div>
-          </td>
-          <td class="hiddenRow" colspan="2">
-            <div class="collapse demo1">{{ vinur.heimilisfang }}</div>
-          </td>
-          <td class="hiddenRow" colspan="3">
-            <div class="collapse demo1">Athugasemd:</div>
-          </td>
-          <td class="hiddenRow" colspan="3">
-            <div ng-repeat="ath in vinur.Athugasemdir" class="collapse demo1 athugasemd"> {{ ath }}</div>
-          </td>
-        </tr>
-      </div>
-      </tbody>
-    </table>
-  </div>
+<div class="row header">
+    <h4 class="pull-left">Viðskiptavinir</h4>
+    <button type="button" class="skilabod-xHorn pull-right" ng-click="closeWindow()">&times;</button>
 </div>
+<table class="table table-striped">
 
+  <div class="col-xs-offset-5">
+
+  </div>
+  <thead>
+    <th>Nafn</th>
+    <th>Símanúmer</th>
+    <th>
+      <div class="pull-right">
+        <button class="eigandi-addHairdresser"
+                ng-click="addCust()"
+                data-toggle="tooltip"
+                data-placement="auto"
+                title="Bæta við">
+          <i class="glyphicon glyphicon-plus"></i>
+        </button>
+      </div>
+    </th>
+  </thead>
+  <tbody>
+  <div>
+  <tr ng-if="addCus">
+    <td colspan="3">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="sr-only" for="name">Nafn</label>
+          <input type="text"
+                 class="form-control"
+                 name="name"
+                 ng-model="person.name"
+                 placeholder="Nafn">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="phone">Sími</label>
+          <input type="text"
+                 class="form-control"
+                 name="phone"
+                 ng-model="person.phone"
+                 placeholder="Sími">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="email">Netfang</label>
+          <input type="text"
+                 class="form-control"
+                 name="email"
+                 ng-model="person.email"
+                 placeholder="Netfang">
+        </div>
+        <div class="pull-right">
+          <button type="submit"
+                  class="btn btn-default"
+                  ng-click="addCustomer(person)">Bæta við</button>
+        </div>
+      </form>
+    </td>
+  </tr>
+    <!------------------------------------------------------------------------------------------->
+    <!-------------------------          Viðskiptavinir          -------------------------------->
+    <!------------------------------------------------------------------------------------------->
+    <tr ng-repeat="vinur in vidskiptavinir track by $index" data-toggle="collapse" data-target=".demo1" >
+      <td>{{ vinur.nafn }}</td>
+      <td>{{ vinur.simi }}</td>
+      <td>
+        <div class="pull-right">
+          <a ng-click="klippTrash()">
+            <i class="glyphicon glyphicon-trash divTakki"
+               data-toggle="tooltip"
+               data-placement="auto"
+               title="Henda"></i>
+          </a>
+          <a ng-click="klippBreyting()">
+            <i class="glyphicon glyphicon-pencil divTakki"
+               data-toggle="tooltip"
+               data-placement="auto"
+               title="Breyta"></i>
+          </a>
+        </div>
+    </td>
+    <tr>
+      <td class="hiddenRow"><div class="collapse demo1">Netfang:</div></td>
+      <td class="hiddenRow"  colspan="2">
+        <div class="collapse demo1">{{ vinur.netfang }}</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="hiddenRow"><div class="collapse demo1">Heimilisfang:</div></td>
+      <td class="hiddenRow" colspan="2">
+        <div class="collapse demo1">{{ vinur.heimilisfang }}</div>
+      </td>
+      <td class="hiddenRow" colspan="3">
+        <div class="collapse demo1">Athugasemd:</div>
+      </td>
+      <td class="hiddenRow" colspan="3">
+        <div ng-repeat="ath in vinur.Athugasemdir"class="collapse demo1 athugasemd"> {{ ath }}</div>
+      </td>
+    </tr>
+  </div>
+  </tbody>
+</table>
