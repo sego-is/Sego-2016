@@ -244,15 +244,17 @@
   //BREYTA VERÐI Í VERÐLISTA ATH update
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
+    console.log("data:, /service/editPricelist/", data);
+    
     model.Service.findOneAndUpdate(
         { 'company_id': data.cid, 'pricelist._id': data.service._id },
-        { $set: { 'name': data.service.name, 'pricelist': data.service.price } },
+       { 'name': data.service.name, 'pricelist': data.service.price },
         { safe: true, upsert: true }, function (err, doc) {
             if (err) {
                 res.status(500).send(err);
             }
             else {
-                res.send('HAS BEEN UPDATEd ', doc);
+                res.send(doc);
             }
       });
   });
@@ -294,7 +296,7 @@
   });
 
   api.get('/companies/:id', (req, res) => {
-    model.Company.find({auth_id: req.params.id}, function (err, c) {
+    model.Company.find({ auth_id: req.params.id }, function (err, c) {
       if (err) {
         res.status(500).send(err);
       } else {

@@ -19,6 +19,25 @@
             {'short': 'fös','full': 'föstudagur'},
             {'short': 'lau','full': 'laugardagur'}];
         
+        // Initialize the time (clock) in booking for the day
+      var stillingar = {
+        upphafsTimi: 3600 * 7,
+        endaTimi:    3600 * 22,
+        lotan:       900
+      };
+
+      var times = [];
+
+      var initTimes = function () {
+        var i;
+        for (i = stillingar.upphafsTimi; i <= stillingar.endaTimi; i += stillingar.lotan) {
+          times.push(toHHMMSS(i));
+        }
+      };
+      initTimes();
+      
+      // END OF INITIALIZE TIME
+      
         var dagsetningValinn = new Date();
         
         function toHHMMSS(a) {
@@ -54,6 +73,14 @@
                 }
                 else {
                     return toHHMMSS(a);
+                }
+            },
+            timabokanir: function(lota) {
+                if (lota === undefined) {
+                    return times;
+                }
+                else {
+                    // STYTTA EDA LENGJA I LOTU
                 }
             },
             dags: function(d, t) {

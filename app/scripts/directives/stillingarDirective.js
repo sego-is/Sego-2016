@@ -20,7 +20,7 @@
 
           scope.stadfestaStaff = function(s) {
               backendFactory.postPerson(s).then(function(res) {
-                  console.log("PUSH-STAFF: ", res.data);
+                  scope.state.add = false;
                   scope.staff.push(res.data);
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
@@ -32,11 +32,13 @@
           scope.service = {};
           scope.service.company_id = backendFactory.ID();
 
-          scope.stadfestaService = function(s) {
+          scope.stadfestaPrice = function(s) {
               backendFactory.postService(s).then(function(res) {
+                  console.log(res.data);
                   scope.pricelist.push(res.data);
+                  scope.state.add = false;
               }, function(err) {
-                  console.log("ERROR stadfestaService(): ", err);
+                  console.log("ERROR stadfestaPrice(): ", err);
               });
           };
           // END OF CREATE SERVICE
@@ -83,26 +85,23 @@
              });
           };
 
-          scope.edit = [];
-          scope.breyta = function (i) {
-            scope.edit[i] = !scope.edit[i];
+          scope.verdBreyting = function (p) {
+            scope.editVerd = p;
+            scope.state.edit = true;
+            console.log("nytt verð ", JSON.stringify(p));
           };
-
-          scope.verdBreyting = function (p, index) {
-            console.log("nytt verð ", JSON.stringify(p) + " i " + index);
-            backendFactory.editPricelist(p).then(function successCallBack(response) {
-              console.log("RESPONSE", response);
-              //scope.pricelist[index] = p;
+          
+          scope.updatePrice = function() {
+              console.log("scope.editVerd", scope.editVerd);
+              backendFactory.editPricelist(scope.editVerd).then(function successCallBack(response) {
+                scope.state.edit = false;
+                console.log("RESPONSE", response);
             }, function errorCallback(error) {
-
+                    console.log("ERRROR", error);
             });
-          };
-
-          scope.verdBreyting = function(v) {
-              scope.editVerd = v;
-              scope.state.edit = true;
-          };
-
+          }
+          
+            
           scope.klippTrash = function (a, index) {
             backendFactory.deleteFromStaff(a).then(function successCallback(response) {
                 scope.staff.splice(index, 1);
