@@ -1,8 +1,8 @@
-<!-- EIGANDA(VIEW) -->
+<!-- EIGANDA(VIEW)
 <div class="row skilabod-haus">
     <ul style="list-style-type:none;margin:0;padding:0;">
         <li> Stillingar</li>
-           
+
         <li class="pull-left"><button type="button"
           class="close takki skilabod-x"
           ng-click="closeWindow()"
@@ -10,13 +10,16 @@
           data-placement="auto"
           title="Loka glugga">&times;</button></li>
     </ul>
-</div>
+</div>-->
           <!---------------------------->
           <!-- Stillingar á klippurum -->
           <!---------------------------->
   <div class="row">
      <div ng-if="!state.verdskra"  class="col-xs-12">
-        <h3>Klipparar</h3>
+        <div class="hausstillingar">KLIPPARAR
+          <i class="fa fa-cut" style="font-size: 30px"; color: black></i>
+          <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
+          </div>
         <table class="table table-striped">
           <thead>
           <tr>
@@ -77,7 +80,7 @@
                     </form>
                   </td>
               </tr>
-          
+
           <tr ng-if="!state.verdskra && state.add">
             <td colspan="4">
                <form class="form-horizontal">
@@ -225,7 +228,7 @@
           </tr>
           <tr ng-repeat="p in pricelist track by $index">
             <td>{{ p.name }}</td>
-            <td>{{ p.price }}</td>         
+            <td>{{ p.price }}</td>
             <td></td>
             <td>
               <div class="pull-right">

@@ -160,19 +160,16 @@ body {
 }
 
 verdlisti.skilabod {
-  padding: 0;
+  padding: 0px;
 }
 
-.hausverdskra, .footer {
-  background-color: #7a43b6;
-  width: 100%;
-}
-
-.content {
-
+stillingar.skilabod {
+  padding: 0px;
 }
 
 .hausverdskra {
+  background-color: #7a43b6;
+  width: 100%;
   color: white;
   font-size: 30px;
   font-family: Gadugi, sans-serif;
@@ -184,6 +181,8 @@ verdlisti.skilabod {
 }
 
 .footer {
+  background-color: #7a43b6;
+  width: 100%;
   color: white;
   font-size: 18px;
   font-family: Gadugi, sans-serif;
@@ -198,9 +197,27 @@ verdlisti.skilabod {
   opacity: 1;
 }
 
+.hausstillingar {
+  background-color: #7a43b6;
+  width: 100%;
+  color: white;
+  font-size: 30px;
+  font-family: Gadugi, sans-serif;
+  padding-top: 5px;
+  height: 55px;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 .list-group-item-heading {
   color: black;
   font-weight: bold;
+}
+
+.content {
+  height: 600px;
+  overflow-y: auto;
 }
 
 footer {
