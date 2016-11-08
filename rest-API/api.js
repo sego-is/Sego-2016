@@ -252,7 +252,7 @@
                 res.status(500).send(err);
             }
             else {
-                res.send('HAS BEEN UPDATEd ', doc);
+                res.send(doc);
             }
       });
   });
