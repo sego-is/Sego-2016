@@ -1,16 +1,5 @@
 <!-- EIGANDA(VIEW)
-<div class="row skilabod-haus">
-    <ul style="list-style-type:none;margin:0;padding:0;">
-        <li> Stillingar</li>
 
-        <li class="pull-left"><button type="button"
-          class="close takki skilabod-x"
-          ng-click="closeWindow()"
-          data-toggle="tooltip"
-          data-placement="auto"
-          title="Loka glugga">&times;</button></li>
-    </ul>
-</div>-->
 <!---------------------------->
 <!-- Stillingar á klippurum -->
 <!---------------------------->
@@ -99,9 +88,19 @@
                    placeholder="Nafn"
                    ng-model="person.name">
           </div>
+          <div class="pull-right col-xs-1">
+            <i class="fa fa-plus fa-2x stadfestaTakki"
+               aria-hidden="true"
+               data-toggle="tooltip"
+               data-placement="auto"
+               title="Staðfesta" ng-click="stadfestaStaff(person)"></i>
+          </div>
           <div class="form-group col-xs-11">
             <label class="sr-only" for="inputSimanumer"></label>
-            <input type="tel" class="form-control inputField" id="inputSimanumer" placeholder="Símanúmer"
+            <input type="tel"
+                   class="form-control inputField"
+                   id="inputSimanumer"
+                   placeholder="Símanúmer"
                    ng-model="person.phone">
           </div>
           <div class="pull-right col-xs-1">
@@ -115,13 +114,6 @@
             <label class="sr-only" for="inputNetpostur"></label>
             <input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur"
                    ng-model="person.email">
-          </div>
-          <div class="pull-right col-xs-1">
-            <i class="fa fa-plus fa-2x stadfestaTakki"
-               aria-hidden="true"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Staðfesta" ng-click="stadfestaStaff(person)"></i>
           </div>
         </form>
       </td>
@@ -156,7 +148,7 @@
 <!------------------------->
 <div ng-if="state.verdskra" class="col-xs-12">
   <div class="hausverdskra">VERÐLISTI
-    <i class="fa fa-dollar" style="font-size: 30px" ; color: black></i>
+    <i class="fa fa-dollar" style="font-size: 30px"></i>
     <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
   </div>
   <table class="table table-striped">
@@ -221,11 +213,11 @@
                    ng-model="service.name">
           </div>
           <div class="pull-right col-xs-1">
-            <i class="fa fa-times fa-2x haettaVidTakki"
+            <i class="fa fa-plus fa-2x stadfestaTakki"
                aria-hidden="true"
                data-toggle="tooltip"
                data-placement="auto"
-               title="Hætta við" ng-click="add()"></i>
+               title="Staðfesta" ng-click="stadfestaPrice(service)"></i>
           </div>
           <div class="form-group col-xs-11">
             <label class="sr-only" for="inputVerd"></label>
@@ -233,11 +225,11 @@
                    ng-model="service.price">
           </div>
           <div class="pull-right col-xs-1">
-            <i class="fa fa-plus fa-2x stadfestaTakki"
+            <i class="fa fa-times fa-2x haettaVidTakki"
                aria-hidden="true"
                data-toggle="tooltip"
                data-placement="auto"
-               title="Staðfesta" ng-click="stadfestaPrice(service)"></i>
+               title="Hætta við" ng-click="add()"></i>
           </div>
         </form>
       </td>

@@ -167,6 +167,10 @@ stillingar.skilabod {
   padding: 0px;
 }
 
+vidskiptavinir.skilabod {
+  padding: 0px;
+}
+
 .hausverdskra {
   background-color: #7a43b6;
   width: 100%;
@@ -199,6 +203,19 @@ stillingar.skilabod {
 
 /* Stillingar, klipparar og verðlisti*/
 .hausstillingar {
+  background-color: #7a43b6;
+  width: 100%;
+  color: white;
+  font-size: 30px;
+  font-family: Gadugi, sans-serif;
+  padding-top: 5px;
+  height: 55px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* Viðskiptavinir */
+.hausvidskiptavinir {
   background-color: #7a43b6;
   width: 100%;
   color: white;
