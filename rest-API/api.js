@@ -182,7 +182,9 @@
         }
     });
   });
+  
 
+  
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
     model.Person.create(p, function (err, doc) {
@@ -227,6 +229,18 @@
     });
   });
   
+  api.put('services/:company_id', (req, res) => {
+      var data = req.body;
+      model.Service.update({ 'company_id': req.params.company_id, 'pricelist._id': data._id }, req.body, (err, doc) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.send('HAS BEEN UPDATED')
+        }
+    });
+  });
+  
   // DELETE specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
@@ -246,10 +260,7 @@
     var data = req.body;
     console.log("data:, /service/editPricelist/", data);
     
-    model.Service.findOneAndUpdate({ 'company_id': data.company_id, 'pricelist._id': data._id },
-    { "pricelist.name": data.name, "pricelist.price": data.price },
-    { upsert: false },
-     function (err, doc) {
+    model.Service.findOneAndUpdate({ 'company_id': data.company_id, 'pricelist._id': data._id }, req.body, (err, doc) => {
             if (err) {
                 res.status(500).send(err);
             }
