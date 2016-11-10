@@ -170,7 +170,7 @@
   });
 
   api.post('/services', bodyParser.json(), (req, res) => {
-    //const s = new model.Service(req.body);
+    const s = new model.Service(req.body);
     model.Service.update({ '_id': req.body.company_id },
         { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
         { safe: true, upsert: true }, function (err, doc) {

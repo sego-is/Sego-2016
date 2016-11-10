@@ -1,21 +1,14 @@
 <!-- EIGANDA(VIEW) -->
-<div class="row skilabod-haus">
-    <ul style="list-style-type:none;margin:0;padding:0;">
-        <li> Stillingar</li>
-           
-        <li class="pull-left"><button type="button"
-          class="close takki skilabod-x"
-          ng-click="closeWindow()"
-          data-toggle="tooltip"
-          data-placement="auto"
-          title="Loka glugga">&times;</button></li>
-    </ul>
-</div>
+<div class="col-xs-12">
+  <div class="hausverdskra">Stillingar
+    <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
+  </div>
+
           <!---------------------------->
           <!-- Stillingar á klippurum -->
           <!---------------------------->
-  <div class="row">
-     <div ng-if="!state.verdskra"  class="col-xs-12">
+  <div class="content">
+     <div ng-if="!state.verdskra">
         <h3>Klipparar</h3>
         <table class="table table-striped">
           <thead>
@@ -249,4 +242,7 @@
         </table>
       </div>
     </div>
+    
   </div>
+  <div class="footer"><center>SEGO</center></div>
+</div>

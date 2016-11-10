@@ -34,9 +34,9 @@
 
           scope.stadfestaPrice = function(s) {
               backendFactory.postService(s).then(function(res) {
-                  console.log(res.data);
                   scope.pricelist.push(res.data);
                   scope.state.add = false;
+                  console.log("stadfestaPrice:", res.data);
               }, function(err) {
                   console.log("ERROR stadfestaPrice(): ", err);
               });
@@ -92,7 +92,6 @@
           };
           
           scope.updatePrice = function() {
-              console.log("scope.editVerd", scope.editVerd);
               backendFactory.editPricelist(scope.editVerd).then(function successCallBack(response) {
                 scope.state.edit = false;
                 console.log("RESPONSE", response);
