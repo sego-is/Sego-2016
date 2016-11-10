@@ -1,21 +1,19 @@
-<div class="row skilabod-haus">
-    <button type="button"
-          class="close takki skilabod-x"
-          ng-click="closeWindow()"
-          data-toggle="tooltip"
-          data-placement="auto"
-          title="Loka glugga">&times;</button>
-          <h2 class="skilabod-titill pull-left">Bóka tíma</h2>
-</div>
-<div class="well">
-  <p>Klippari: {{ bokun.klippari }}</p>
-  <p>Tími: {{ bokun.timi }}</p>
-  <form validate class="simple-form">
-    Nafn: <input type="text" name="nafn" ng-model="bokun.customer">
-    Sími: <input type="tel" name="simi" ng-model="bokun.simi">
-    Aðgerð: <input type="text" name="adgerd" ng-model="bokun.adgerd">
+<div class="col-xs-12">
+  <div class="hausboka">BÓKA TÍMA
+    <i class="fa fa-book" style="font-size:30px" ; color: white></i>
+    <button type="button" class="close takki" ng-click="leave()">&times;</button>
+  </div>
+  <div class="well">
+    <p>Klippari: {{ bokun.klippari }}</p>
+    <p>Tími: {{ bokun.timi }}</p>
+    <form validate class="simple-form">
+      Nafn: <input type="text" name="nafn" ng-model="bokun.customer">
+      Sími: <input type="tel" name="simi" ng-model="bokun.simi">
+      Aðgerð: <input type="text" name="adgerd" ng-model="bokun.adgerd">
 
-    <input type="button" ng-click="leave()" value="Hætta við">
-    <input type="button" ng-click="stadfesta(bokun)" value="STADFESTA">
-  </form>
+      <input type="button" ng-click="leave()" value="Hætta við">
+      <input type="button" ng-click="stadfesta(bokun)" value="STADFESTA">
+    </form>
+  </div>
+  <div class="footer">SEGO</div>
 </div>

@@ -26,7 +26,7 @@ angular
       domain: 'sego.eu.auth0.com',
       options: {
         theme: {
-          logo: 'http://cdn2-www.playstationlifestyle.net/assets/uploads/2012/10/Sega.jpg',
+          logo: 'http://cdn.firespring.com/images/90349557-f83b-4af1-a134-ef1b43293823.png',//'http://cdn2-www.playstationlifestyle.net/assets/uploads/2012/10/Sega.jpg',
           primaryColor: 'white',
           authButtons: {
             connectionName: {
@@ -52,7 +52,7 @@ angular
      // Add the jwtInterceptor to the array of HTTP interceptors
      // so that JWTs are attached as Authorization headers
      // $httpProvider.interceptors.push('jwtInterceptor');
-     
+
     $locationProvider.html5Mode(true);
 
     $routeProvider
