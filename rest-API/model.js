@@ -76,7 +76,7 @@ const companySchema = Schema({
 
 const bookingsSchema = Schema({
   company_id: {
-    type:    String,
+    type:    Schema.Types.ObjectId,
     require: true,
     ref:     'Company'
   },
