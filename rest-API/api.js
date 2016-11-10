@@ -170,7 +170,7 @@
   });
 
   api.post('/services', bodyParser.json(), (req, res) => {
-    //const s = new model.Service(req.body);
+    const s = new model.Service(req.body);
     model.Service.update({ '_id': req.body.company_id },
         { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
         { safe: true, upsert: true }, function (err, doc) {
@@ -182,7 +182,9 @@
         }
     });
   });
+  
 
+  
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
     model.Person.create(p, function (err, doc) {
@@ -226,7 +228,20 @@
         }
     });
   });
-
+  
+  api.put('services/:company_id', (req, res) => {
+      var data = req.body;
+      model.Service.update({ 'company_id': req.params.company_id, 'pricelist._id': data._id }, req.body, (err, doc) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.send('HAS BEEN UPDATED')
+        }
+    });
+  });
+  
+  // DELETE specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
       model.Service.update({ '_id': data.cid },
@@ -241,15 +256,11 @@
     });
   });
 
-  //BREYTA VERÐI Í VERÐLISTA ATH update
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
     console.log("data:, /service/editPricelist/", data);
     
-    model.Service.findOneAndUpdate(
-        { 'company_id': data.cid, 'pricelist._id': data.service._id },
-       { 'name': data.service.name, 'pricelist': data.service.price },
-        { safe: true, upsert: true }, function (err, doc) {
+    model.Service.findOneAndUpdate({ 'company_id': data.company_id, 'pricelist._id': data._id }, req.body, (err, doc) => {
             if (err) {
                 res.status(500).send(err);
             }

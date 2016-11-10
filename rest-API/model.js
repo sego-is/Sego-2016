@@ -76,7 +76,7 @@ const companySchema = Schema({
 
 const bookingsSchema = Schema({
   company_id: {
-    type:    String,
+    type:    Schema.Types.ObjectId,
     require: true,
     ref:     'Company'
   },
@@ -100,7 +100,11 @@ const bookingsSchema = Schema({
 bookingsSchema.index({company_id: 1, date: 1}, {unique: true});
 
 const serviceSchema = Schema({
-  company_id: String,
+  company_id: {
+    type:    Schema.Types.ObjectId,
+    require: true,
+    ref:     'Company'
+  },
   pricelist: [{
     name: {
       type:    String,

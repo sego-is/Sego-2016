@@ -229,6 +229,22 @@ vidskiptavinir.skilabod {
   padding-right: 12px;
 }
 
+.hausboka {
+  background-color: #7a43b6;
+  width: 100%;
+  color: white;
+  font-size: 30px;
+  font-family: Gadugi, sans-serif;
+  padding-top: 5px;
+  height: 55px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+boka.skilabod {
+  padding: 0px;
+}
+
 .list-group-item-heading {
   color: black;
   font-weight: bold;
