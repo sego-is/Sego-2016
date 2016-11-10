@@ -242,20 +242,19 @@
     });
   });
 
-  //BREYTA VERÐI Í VERÐLISTA ATH findOne i stad findOneAndUpdate, nuna update
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
     console.log("data:, /service/editPricelist/", data);
     
-    model.Service.update({ 'company_id': data.cid, 'pricelist._id': data.service._id },
-    { $set: { "pricelist.name": data.service.name, "pricelist.price": data.service.price } },
+    model.Service.findOneAndUpdate({ 'company_id': data.company_id, 'pricelist._id': data._id },
+    { "pricelist.name": data.name, "pricelist.price": data.price },
     { upsert: false },
      function (err, doc) {
             if (err) {
                 res.status(500).send(err);
             }
             else {
-                res.send(doc);d
+                res.send(doc);
             }
       });
   });

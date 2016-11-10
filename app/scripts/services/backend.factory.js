@@ -186,6 +186,7 @@
       };
 
       backendFactory.editPricelist = function(p) {
+        p.company_id = this.ID();
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/editPricelist/',
           method: 'POST',
@@ -194,11 +195,8 @@
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
-          data: {
-            service: p,
-            cid: this.ID()
-          }
-        })
+          data: p
+        });
       }
 
       backendFactory.deleteFromStaff = function (s) {
