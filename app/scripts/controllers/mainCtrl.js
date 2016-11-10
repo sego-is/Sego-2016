@@ -53,7 +53,6 @@
               compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
               break;
             case "stillingar":
-              console.log("STILLINGAR :D");
               state.openView = gluggi;
               compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
               break;

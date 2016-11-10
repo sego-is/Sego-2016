@@ -14,6 +14,7 @@
             $scope.dt = new Date();
             $scope.$emit('dagsetning', $scope.dt);
         };
+        console.log("tveir ", $scope.today());
         $scope.today();
 
         $scope.clear = function() {
@@ -25,6 +26,8 @@
             minDate: new Date(),
             showWeeks: true
         };
+
+        console.log("OPTIONS ", $scope.options);
 
   // Disable weekend selection
   function disabled(data) {
@@ -61,8 +64,10 @@
   ];
 
   function getDayClass(data) {
+
     var date = data.date,
       mode = data.mode;
+    //console.log("88", data);
     if (mode === 'day') {
       var dayToCheck = new Date(date).setHours(0,0,0,0);
 
@@ -78,5 +83,5 @@
     return '';
   }
       }]);
-      
+
 })();

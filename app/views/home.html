@@ -1,5 +1,5 @@
-<div class="col-xs-12" ng-show="loadingData">
-  <p>HLEÐUR INN GÖGNUM ALVEG 'A MILLJ'ON</p>
+<div class="loading" ng-show="loadingData">
+  <img src="http://imgwallpaper.com/loading-animations-overview/purple/animations/original-purple-loading-circles-large.gif" alt="">
 </div>
 
 <div class="container-fluid" ng-show="!loadingData">
@@ -34,8 +34,11 @@
       </table>
   </div>
     <div class="col-md-4">
-        <div ng-controller="DatepickerCtrl" style="display:inline-block; min-height:290px;">
-            <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+        <div ng-controller="DatepickerCtrl"
+             style="display:inline-block; min-height:290px;">
+            <div uib-datepicker
+                 ng-model="dt" class="well well-sm"
+                 datepicker-options="options"></div>
         </div>
     </div>
 

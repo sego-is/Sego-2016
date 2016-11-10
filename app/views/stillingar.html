@@ -4,10 +4,14 @@
 <!-- Stillingar á klippurum -->
 <!---------------------------->
 
-<div ng-if="!state.verdskra" class="col-xs-12">
+<div ng-if="!state.verdskra"
+     class="col-xs-12">
   <div class="hausstillingar">KLIPPARAR
-    <i class="fa fa-cut" style="font-size: 30px"></i>
-    <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
+    <i class="fa fa-cut"
+       style="font-size: 30px"></i>
+    <button type="button"
+            class="close takki"
+            ng-click="closeWindow()">&times;</button>
   </div>
   <table class="table table-striped">
     <thead>
@@ -41,36 +45,57 @@
       <td colspan="4">
         <form>
           <div class="form-group row">
-            <label for="inputName3" class="col-sm-2 col-form-label">Nafn</label>
+            <label for="inputName3"
+                   class="col-sm-2 col-form-label">Nafn</label>
             <div class="col-sm-10">
-              <input type="name" class="form-control" id="inputName3" placeholder="Nafn" ng-model="editUser.name">
+              <input type="text"
+                     class="form-control"
+                     id="inputName3"
+                     placeholder="Nafn"
+                     ng-model="editUser.name">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Netfang</label>
+            <label for="inputEmail3"
+                   class="col-sm-2 col-form-label">Netfang</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Netfang"
+              <input type="email"
+                     class="form-control"
+                     id="inputEmail3"
+                     placeholder="Netfang"
                      ng-model="editUser.email">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPhone3" class="col-sm-2 col-form-label">Símanúmer</label>
+            <label for="inputPhone3"
+                   class="col-sm-2 col-form-label">Símanúmer</label>
             <div class="col-sm-10">
-              <input type="phone" class="form-control" id="inputPhone3" placeholder="Símanúmer"
+              <input type="phone"
+                     class="form-control"
+                     id="inputPhone3"
+                     placeholder="Símanúmer"
                      ng-model="editUser.phone">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPhone3" class="col-sm-2 col-form-label">Heimilisfang</label>
+            <label for="inputPhone3"
+                   class="col-sm-2 col-form-label">Heimilisfang</label>
             <div class="col-sm-10">
-              <input type="phone" class="form-control" id="inputPhone3" placeholder="Heimilisfang"
+              <input type="phone"
+                     class="form-control"
+                     id="inputPhone3"
+                     placeholder="Heimilisfang"
                      ng-model="editUser.address">
             </div>
           </div>
           <div class="form-group row">
             <div class="offset-sm-2 col-sm-10 pull-right">
-              <button type="submit" class="btn btn-primary" ng-click="state.edit = false">Hætta við</button>
-              <button type="submit" class="btn btn-primary" ng-click="updateKlippara(editUser)">Uppfæra</button>
+              <button type="submit"
+                      class="btn btn-primary"
+                      ng-click="state.edit = false">Hætta við</button>
+              <button type="submit"
+                      class="btn btn-primary"
+                      ng-click="updateKlippara(editUser)">Uppfæra</button>
             </div>
           </div>
         </form>
@@ -81,7 +106,8 @@
       <td colspan="4">
         <form class="form-horizontal">
           <div class="form-group col-xs-11">
-            <label class="sr-only" for="inputKlippari"></label>
+            <label class="sr-only"
+                   for="inputKlippari"></label>
             <input type="name"
                    class="form-control inputField"
                    id="inputKlippari"
@@ -93,10 +119,12 @@
                aria-hidden="true"
                data-toggle="tooltip"
                data-placement="auto"
-               title="Staðfesta" ng-click="stadfestaStaff(person)"></i>
+               title="Staðfesta"
+               ng-click="stadfestaStaff(person)"></i>
           </div>
           <div class="form-group col-xs-11">
-            <label class="sr-only" for="inputSimanumer"></label>
+            <label class="sr-only"
+                   for="inputSimanumer"></label>
             <input type="tel"
                    class="form-control inputField"
                    id="inputSimanumer"
@@ -108,11 +136,16 @@
                aria-hidden="true"
                data-toggle="tooltip"
                data-placement="auto"
-               title="Hætta við" ng-click="add()"></i>
+               title="Hætta við"
+               ng-click="add()"></i>
           </div>
           <div class="form-group col-xs-11">
-            <label class="sr-only" for="inputNetpostur"></label>
-            <input type="email" class="form-control inputField" id="inputNetpostur" placeholder="Netpóstur"
+            <label class="sr-only"
+                   for="inputNetpostur"></label>
+            <input type="email"
+                   class="form-control inputField"
+                   id="inputNetpostur"
+                   placeholder="Netpóstur"
                    ng-model="person.email">
           </div>
         </form>
@@ -146,10 +179,14 @@
 <!------------------------->
 <!-- Stillingar á verðum -->
 <!------------------------->
-<div ng-if="state.verdskra" class="col-xs-12">
+<div ng-if="state.verdskra"
+     class="col-xs-12">
   <div class="hausverdskra">VERÐLISTI
-    <i class="fa fa-dollar" style="font-size: 30px"></i>
-    <button type="button" class="close takki" ng-click="closeWindow()">&times;</button>
+    <i class="fa fa-dollar"
+       style="font-size: 30px"></i>
+    <button type="button"
+            class="close takki"
+            ng-click="closeWindow()">&times;</button>
   </div>
   <table class="table table-striped">
     <thead>
@@ -178,26 +215,40 @@
     </thead>
     <tbody>
     <!-- EDIT VERDSKRA -->
-    <tr ng-if="state.verdskra && state.edit" id="editing">
+    <tr ng-if="state.verdskra && state.edit"
+        id="editing">
       <td colspan="4">
         <form>
           <div class="form-group row">
-            <label for="inputName3" class="col-sm-2 col-form-label">Nafn</label>
+            <label for="inputName3"
+                   class="col-sm-2 col-form-label">Nafn</label>
             <div class="col-sm-10">
-              <input type="name" class="form-control" id="inputName3" placeholder="Nafn" ng-model="editVerd.name">
+              <input type="name"
+                     class="form-control"
+                     id="inputName3"
+                     placeholder="Nafn"
+                     ng-model="editVerd.name">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPrice3" class="col-sm-2 col-form-label">Verð</label>
+            <label for="inputPrice3"
+                   class="col-sm-2 col-form-label">Verð</label>
             <div class="col-sm-10">
-              <input type="number" class="form-control" id="inputPrice3" placeholder="Verð"
+              <input type="number"
+                     class="form-control"
+                     id="inputPrice3"
+                     placeholder="Verð"
                      ng-model="editVerd.price">
             </div>
           </div>
           <div class="form-group row">
             <div class="offset-sm-2 col-sm-10 pull-right">
-              <button type="submit" class="btn btn-primary" ng-click="state.edit = false">Hætta við</button>
-              <button type="submit" class="btn btn-primary" ng-click="updatePrice()">Uppfæra</button>
+              <button type="submit"
+                      class="btn btn-primary"
+                      ng-click="state.edit = false">Hætta við</button>
+              <button type="submit"
+                      class="btn btn-primary"
+                      ng-click="updatePrice()">Uppfæra</button>
             </div>
           </div>
         </form>
@@ -208,8 +259,12 @@
       <td colspan="4">
         <form class="form-horizontal">
           <div class="form-group col-xs-11">
-            <label class="sr-only" for="Þjónusta"></label>
-            <input type="name" class="form-control inputField" id="inputÞjónusta" placeholder="Þjónusta"
+            <label class="sr-only"
+                   for="Þjónusta"></label>
+            <input type="name"
+                   class="form-control inputField"
+                   id="inputÞjónusta"
+                   placeholder="Þjónusta"
                    ng-model="service.name">
           </div>
           <div class="pull-right col-xs-1">
@@ -217,11 +272,16 @@
                aria-hidden="true"
                data-toggle="tooltip"
                data-placement="auto"
-               title="Staðfesta" ng-click="stadfestaPrice(service)"></i>
+               title="Staðfesta"
+               ng-click="stadfestaPrice(service)"></i>
           </div>
           <div class="form-group col-xs-11">
-            <label class="sr-only" for="inputVerd"></label>
-            <input type="tel" class="form-control inputField" id="inputVerd" placeholder="Verð"
+            <label class="sr-only"
+                   for="inputVerd"></label>
+            <input type="tel"
+                   class="form-control inputField"
+                   id="inputVerd"
+                   placeholder="Verð"
                    ng-model="service.price">
           </div>
           <div class="pull-right col-xs-1">
@@ -229,7 +289,8 @@
                aria-hidden="true"
                data-toggle="tooltip"
                data-placement="auto"
-               title="Hætta við" ng-click="add()"></i>
+               title="Hætta við"
+               ng-click="add()"></i>
           </div>
         </form>
       </td>
@@ -246,7 +307,8 @@
                data-placement="auto"
                title="Henda"></i>
           </a>
-          <a ng-click="verdBreyting(p)" href="#editing">
+          <a ng-click="verdBreyting(p)"
+             href="#editing">
             <i class="glyphicon glyphicon-pencil divTakki"
                data-toggle="tooltip"
                data-placement="auto"

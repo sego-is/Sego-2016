@@ -181,6 +181,7 @@ vidskiptavinir.skilabod {
   height: 55px;
   padding-left: 12px;
   padding-right: 12px;
+  border-radius: 15px 15px 0 0;
 }
 
 .footer {
@@ -194,6 +195,7 @@ vidskiptavinir.skilabod {
   padding-top: 3px;
   border-top-width: 0;
   text-align: center;
+  border-radius: 0 0 5px 5px;
 }
 
 .close {
@@ -327,4 +329,13 @@ footer p {
     position: absolute;
     top: 0;
     right: 0;
+}
+/*
+padding-top
+padding-right
+padding-bottom
+padding-left
+*/
+.loading {
+  padding: 15% 60% 50% 40%;
 }
