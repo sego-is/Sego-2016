@@ -11,6 +11,10 @@ body {
   font-size: 12px;
 }
 
+body.jumbotron #page-header-wrapper {
+  display: none !important;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -47,6 +51,7 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  padding: 0px;
 }
 .jumbotron .btn {
   font-size: 21px;
@@ -156,7 +161,7 @@ body {
 .col-xs-12 {
   padding-left: 0;
   padding-right: 0;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
 }
 
 verdlisti.skilabod {
@@ -171,7 +176,11 @@ vidskiptavinir.skilabod {
   padding: 0px;
 }
 
-.hausverdskra {
+boka.skilabod {
+  padding: 0px;
+}
+
+.haus {
   background-color: #7a43b6;
   width: 100%;
   color: white;
@@ -181,7 +190,6 @@ vidskiptavinir.skilabod {
   height: 55px;
   padding-left: 12px;
   padding-right: 12px;
-  border-radius: 15px 15px 0 0;
 }
 
 .footer {
@@ -195,54 +203,11 @@ vidskiptavinir.skilabod {
   padding-top: 3px;
   border-top-width: 0;
   text-align: center;
-  border-radius: 0 0 5px 5px;
 }
 
 .close {
   color: #ffffff;
   opacity: 1;
-}
-
-/* Stillingar, klipparar og verðlisti*/
-.hausstillingar {
-  background-color: #7a43b6;
-  width: 100%;
-  color: white;
-  font-size: 30px;
-  font-family: Gadugi, sans-serif;
-  padding-top: 5px;
-  height: 55px;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-/* Viðskiptavinir */
-.hausvidskiptavinir {
-  background-color: #7a43b6;
-  width: 100%;
-  color: white;
-  font-size: 30px;
-  font-family: Gadugi, sans-serif;
-  padding-top: 5px;
-  height: 55px;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-.hausboka {
-  background-color: #7a43b6;
-  width: 100%;
-  color: white;
-  font-size: 30px;
-  font-family: Gadugi, sans-serif;
-  padding-top: 5px;
-  height: 55px;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-boka.skilabod {
-  padding: 0px;
 }
 
 .list-group-item-heading {
@@ -324,7 +289,6 @@ footer p {
 .navbar-header {
   background-color: #7a43b6;
   margin-left: 10px;
-  border-radius: 20px 20px 20px 20px;
   padding-left: 15px;
 }
 
@@ -338,7 +302,6 @@ footer p {
   margin-bottom: 10px;
   padding-left: 12px;
   padding-right: 12px;
-  border-radius: 0px 0px 6px 6px;
 }
 
 .skilabod-x {
