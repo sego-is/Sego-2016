@@ -229,9 +229,14 @@
     });
   });
   
-  api.put('/services/', bodyParser.json(), (req, res) => {
+  api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.update({ 'company_id': data.company_id, 'pricelist._id': data._id }, req.body, (err, doc) => {
+      model.Service.findById({ 'company_id': data.company_id, 'pricelist._id': data._id }, {
+        '$set': {
+            'pricelist.$.name': data.name,
+            'pricelist.$.price': data.price
+        }}, (err, doc) => {
+          
         if (err) {
             res.status(500).send(err);
         }
@@ -258,6 +263,10 @@
 
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
+    return model.Service.findOne(data.company_id, function(err, doc) {
+        doc.pricelist.id(data._id).
+    });
+    /*
     console.log("data:, /service/editPricelist/", data);
     model.Service.update({ 'company_id': data.company_id, 'pricelist._id': data._id }, {
         '$set': {
@@ -271,6 +280,7 @@
                 res.send("tokst");
             }
       });
+      */
   });
 
   api.post('/companies/staff/', bodyParser.json(), (req, res) => {

@@ -4,7 +4,6 @@
   angular
     .module('segoApp')
     .factory('backendFactory', ['$http', function ($http) {
-      var CONST_AUTH_ID = "auth0|5820e94df92ca3261c626f35";
       var _company = null; // THIS IS COMPANY COLLECTION FROM DB //
 
       var backendFactory = {};
@@ -46,7 +45,7 @@
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
           params: {
-            id: CONST_AUTH_ID
+            id: c
           }
         });
       }
@@ -100,7 +99,7 @@
       backendFactory.postBooking = function (p) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/',
-          method: 'POST',
+          method: 'PUT',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -186,9 +185,10 @@
       };
 
       backendFactory.editPricelist = function(p) {
-        /*p.company_id = this.ID();*/
+        console.log("OBJECT_SENT_I_EDITPRICELIST:", p);
+        p.company_id = this.ID();
         return $http({
-          url: 'http://wwww.sego.is:6969/api/services/' + this.ID(),
+          url: 'http://wwww.sego.is:6969/api/services/pricelist',
           method: 'PUT',
           headers: {
             'Accept': 'application/json',

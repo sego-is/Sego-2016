@@ -114,7 +114,7 @@ const serviceSchema = Schema({
   }]
 });
 
-serviceSchema.index({ company_id: 1, _id: 1 }, { unique: true });
+serviceSchema.index({ company_id: 1 }, { unique: true });
 
 module.exports = {
   Person:  mongoose.model('persons', personaSchema),
