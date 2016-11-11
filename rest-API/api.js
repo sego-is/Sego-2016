@@ -231,12 +231,7 @@
   
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.findById({ 'company_id': data.company_id, 'pricelist._id': model.ObjectId(data._id) }, {
-        '$set': {
-            'pricelist.$.name': data.name,
-            'pricelist.$.price': data.price
-        }}, (err, doc) => {
-          
+      model.Service.find({ 'company_id': data.company_id, 'pricelist._id': data._id }, (err, doc) => {
         if (err) {
             res.status(500).send(err);
         }
