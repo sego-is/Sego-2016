@@ -10,15 +10,15 @@
    */
   angular.module('segoApp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
-      
+
       function update() {
           $scope.staff = backendFactory.Staff();
           $scope.dagurinnIdag = dagatalFactory.dagsetning();
           $scope.times = dagatalFactory.timabokanir();
       }
-      
+
       $scope.loadingData = true;
-      
+
       // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
       backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
@@ -29,7 +29,7 @@
       }, function errorCallback(error) {
             console.log("ERROR", error);
       });
-      
+
       // GO TO PREVIOUS OR NEXT DAY
       $scope.prev = function() {
           $scope.dagurinnIdag = dagatalFactory.iGaer();
@@ -39,12 +39,15 @@
           $scope.dagurinnIdag = dagatalFactory.aMorgun();
       };
 
-  
+
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
       var valinnDagur;
 
-      $scope.openBooking = function (t, b) {
+      $scope.openBooking = function (t, b, date) {
+        console.log("T: ", t);
+        console.log("B: ", b);
+        console.log("DATE: ", date);
         if (t === undefined) {
           console.log("UNDEFINED");
         } else {
@@ -54,7 +57,7 @@
           $scope.clickOnTimapant = {
             nafn: b,
             timi: t,
-            dags: dagatalFactory.dags(valinnDagur, t)
+            dags: date
           };
           compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
           var directiveElement = compiledDirective(booking);

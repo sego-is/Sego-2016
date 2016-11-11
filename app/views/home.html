@@ -1,46 +1,36 @@
 <div class="loading" ng-show="loadingData">
-  <img src="http://imgwallpaper.com/loading-animations-overview/purple/animations/original-purple-loading-circles-large.gif" alt="">
+  <img
+    src="http://imgwallpaper.com/loading-animations-overview/purple/animations/original-purple-loading-circles-large.gif"
+    alt="">
 </div>
 
 <div class="container-fluid" ng-show="!loadingData">
-  <div class="row btn-group">
-      <div class="col-md-2 pull-left">
-         <button class="btn btn-primary btn-block" ng-click="prev()"> &lt;</button>
-      </div>
-      <div class="col-md-8 center">
-        <button type="button" class="btn btn-primary btn-block">{{ dagurinnIdag }}</button>
-        </div>
-    <div class="col-md-2 pull-right">
-         <button class="btn btn-primary btn-block" ng-click="next()">  &gt;</button>
-      </div>
-  </div>
-  <div class="row">
-      <div class="col-md-8">
-      <table class="table table-hover table-bordered">
-          <thead>
-        <tr>
-          <th class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></th>
-          <th ng-repeat="x in staff">{{ x.name }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="booking" ng-repeat="t in times track by $index ">
-          <td class="booking-time" attr="t"><p ng-if="$index % 2 == 0">{{ t }}</p></td>
-          <td class="booking-cell" ng-repeat="x in staff" ng-click="openBooking(t, x)"><!--       -->
-            <p ng-if="t == bookings[$index].time && x.name == bookings[$index].name"> {{ bookings[$index].name }}</p>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-  </div>
-    <div class="col-md-4">
-        <div ng-controller="DatepickerCtrl"
-             style="display:inline-block; min-height:290px;">
-            <div uib-datepicker
-                 ng-model="dt" class="well well-sm"
-                 datepicker-options="options"></div>
-        </div>
-    </div>
 
+  <div class="row">
+    <div ng-controller="DatepickerCtrl">
+      <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+      <div uib-datepicker ng-model="dt" class="col-md-3" datepicker-options="options">
+      </div>
+
+      <div class="col-md-9">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></th>
+            <th ng-repeat="x in staff">{{ x.name }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="booking" ng-repeat="t in times track by $index ">
+            <td class="booking-time" attr="t"><p ng-if="$index % 2 == 0">{{ t }}</p></td>
+            <td class="booking-cell" ng-repeat="x in staff" ng-click="openBooking(t, x, dt | date:'fullDate')">
+              <!--       -->
+              <p ng-if="t == bookings[$index].time && x.name == bookings[$index].name"> {{ bookings[$index].name }}</p>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

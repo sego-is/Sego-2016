@@ -14,9 +14,8 @@
             $scope.dt = new Date();
             $scope.$emit('dagsetning', $scope.dt);
         };
-        console.log("tveir ", $scope.today());
-        $scope.today();
 
+        $scope.today();
         $scope.clear = function() {
             $scope.dt = null;
         };
@@ -26,8 +25,6 @@
             minDate: new Date(),
             showWeeks: true
         };
-
-        console.log("OPTIONS ", $scope.options);
 
   // Disable weekend selection
   function disabled(data) {
