@@ -229,14 +229,14 @@
     });
   });
   
-  api.put('services/:company_id', (req, res) => {
+  api.put('/services/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.update({ 'company_id': req.params.company_id, 'pricelist._id': data._id }, req.body, (err, doc) => {
+      model.Service.update({ 'company_id': data.company_id, 'pricelist._id': data._id }, req.body, (err, doc) => {
         if (err) {
             res.status(500).send(err);
         }
         else {
-            res.send('HAS BEEN UPDATED')
+            res.send(doc);
         }
     });
   });
@@ -259,13 +259,16 @@
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
     console.log("data:, /service/editPricelist/", data);
-    
-    model.Service.findOneAndUpdate({ 'company_id': data.company_id, 'pricelist._id': data._id }, req.body, (err, doc) => {
+    model.Service.update({ 'company_id': data.company_id, 'pricelist._id': data._id }, {
+        '$set': {
+            'pricelist.$.name': data.name,
+            'pricelist.$.price': data.price
+        }}, (err) => {
             if (err) {
                 res.status(500).send(err);
             }
             else {
-                res.send(doc);
+                res.send("tokst");
             }
       });
   });
