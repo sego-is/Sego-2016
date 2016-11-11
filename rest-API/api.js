@@ -231,7 +231,7 @@
   
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.findById({ 'company_id': data.company_id, 'pricelist._id': data._id }, {
+      model.Service.findById({ 'company_id': data.company_id, 'pricelist._id': model.ObjectId(data._id) }, {
         '$set': {
             'pricelist.$.name': data.name,
             'pricelist.$.price': data.price

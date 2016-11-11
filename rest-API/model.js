@@ -116,11 +116,16 @@ const serviceSchema = Schema({
 
 serviceSchema.index({ company_id: 1 }, { unique: true });
 
+// CAST string to ObjectId //
+function ObjectId(id_string) {
+    return mongoose.Types.ObjectId(id_string);
+};
+
 module.exports = {
   Person:  mongoose.model('persons', personaSchema),
   Company: mongoose.model('companies', companySchema),
   Booking: mongoose.model('bookings', bookingsSchema),
   /* Staff:   mongoose.model('staffs', staffSchema), */
   Service: mongoose.model('services', serviceSchema),
-  ObjectId: Schema.Types.ObjectId 
+  ObjectId: ObjectId 
 };
