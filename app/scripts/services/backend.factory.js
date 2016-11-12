@@ -104,6 +104,19 @@
 
 
       // BOOKING REST CALLS
+      
+      backendFactory.getBooking = function() {
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/',
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
+      };
+      
       backendFactory.postBooking = function (p) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/',

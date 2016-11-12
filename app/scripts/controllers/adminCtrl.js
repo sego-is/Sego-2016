@@ -66,6 +66,13 @@
             };
             // END OF DELETE USER
             
+            // GET ALL COLLECTIONS IN BOOKINGS
+            backendFactory.getBooking().then(function(res) {
+                console.log("GET BOOKING (res): ", res);  
+            }, function(err) {
+                console.log("GET BOOKING (err): ", err);
+            });
+            
             $scope.toggleEditCompany = function(i) {
                 console.log('toggleEditCompany', $scope.editCompany[i]);
                 $scope.editCompany[i] = !$scope.editCompany[i];

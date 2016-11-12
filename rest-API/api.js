@@ -93,7 +93,16 @@
       svar: 'tippa svar'
     });
   });
-
+  
+  api.get('/bookings/', (req, res) => {
+    model.Booking.find({}, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      }    
+  });
+  
   api.post('/bookings', bodyParser.json(), (req, res) => {
       
     let customer;
