@@ -18,8 +18,8 @@
                   $scope.bookings = [];
               }
               else {
-                  console.log("BOOKINGS:", res.data[0].bookings);
-                  $scope.bookings = res.data[0].bookings;
+                  console.log("BOOKINGS:", res.data);
+                  $scope.bookings = res.data;
               }
           }, function(err) {
               console.log("update()->getBookingByDate() ERR:", err);
