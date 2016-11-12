@@ -14,13 +14,17 @@
         },
         templateUrl: '../../views/boka.html',
         link: function (scope, element, attrs) {
+          /*
             scope.bokun = {};
 
             scope.bokun.timi = scope.objFrom.timi;
 
             // kannski ad huga ad lengdinni hja mer seinna
             scope.bokun.klippari = scope.objFrom.nafn.name;
-            console.log("KLIPPARI ", scope.bokun.klippari);
+            scope.bokun.dags = scope.objFrom.dags;
+            */
+          console.log("DAGS ", scope.objFrom);
+
             scope.leave = function() {
                 scope.close();
             };
@@ -29,13 +33,14 @@
                 console.log("Bókun ", JSON.stringify(bokun));
                 var p = JSON.parse(localStorage.getItem('profile'));
                 backendFactory.postBooking({
-                    user_id: p.user_id,
-                    company_id: p.company_id,
-                    time: new Date(scope.objFrom.dags),
-                    staff_id: scope.bokun.klippari,
-                    customer_name:  scope.bokun.customer,
-                    customer_simi: scope.bokun.simi,
-                    customer_adgerd: scope.bokun.customer.adgerd,
+                    company_id: backendFactory.ID(),
+                    startTime: scope.objFrom.startTime,
+                    endTime: scope.objFrom.endTime,
+                    staff_id: scope.objFrom.staffId,
+                    customer_name:  scope.objFrom.customer,
+                    customer_phone: scope.objFrom.phone,
+                    customer_service: scope.bokun.objFrom.service,
+                    date: scope.objFrom.date
                 }, function(err, doc) {
                     if (err) {
                         console.log("CB scope.stafesta() - err: ", err);
