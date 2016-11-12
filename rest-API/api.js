@@ -97,19 +97,23 @@
   });
  
   api.get('/bookings/:date/:id', (req, res) => {
-      console.log("req.PARAMS:", req.params);
-      model.Booking.find({ company_id: req.params.id, date: req.params.date}).sort({ date: 'desc' }).exec(function (err, docs) {
+      model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.send(docs);
+            docs.bookings.sort({ startTime: 'desc' }).exec(function(err, doc) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                else {
+                    res.send(docs);
+                }
+            });
         } 
     });   
   });
   
   api.post('/bookings', bodyParser.json(), (req, res) => {
-      
-    let customer;
     const data = req.body;
 
     model.Person.findOne({
