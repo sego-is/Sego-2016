@@ -102,9 +102,7 @@
         if (err) {
             res.status(500).send(err);
         } else {
-            console.log("DOCS", docs);
-            const b = docs[0].bookings;
-            _.sortBy(b, 'startTime');
+            const b = _.sortBy(docs[0].bookings, 'startTime');
             res.send(b);
         } 
     });   

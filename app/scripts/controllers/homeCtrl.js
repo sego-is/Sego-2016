@@ -49,7 +49,7 @@
                   console.log("NO BOOKINGS");
               }
               else {
-                  console.log("BOOKINGS:", res.data[0].bookings);
+                  console.log("BOOKINGS:", res.data);
               }
           }, function(err) {
               console.log("homeCtrl.getDailyBooking (err):", err);
