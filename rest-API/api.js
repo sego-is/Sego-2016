@@ -95,20 +95,41 @@
   });
 
   api.post('/bookings', bodyParser.json(), (req, res) => {
+      
     let customer;
     const data = req.body;
+    
     model.Person.findOne({
       "company_id": data.company_id,
       "name": data.customer_name,
       "phone": data.customer_phone
     }, function (err, p) {
-      if (!err) {
-        customer = p;
-        console.log("CUSTOMER P !err", p);
-      } else {
-        console.log("ERROR IN POST /bookings :", err);
+      if (err) {
+        console.log("CUSTOMER DOESN'T EXIST (err_msg):", err);
         customer = null;
+      } else {
+        customer = p;
+        console.log("CUSTOMER EXIST (model.Person)", p);
+        model.Booking.update( {"company_id": data.company_id, "date": data.date },
+            { $push: {
+                "bookings": {
+                    "customer_id": p._id,
+                    "staff_id": data.staff_id,
+                    "startTime": data.startTime,
+                    "endTime":  data.endTime
+                }
+            }},
+            { safe: true, upsert: true }, 
+            function (err, doc) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                else {
+                    res.send(doc);
+                }
+        });
       }
+    });
 
     if (customer === null) {
       model.Person.create({
@@ -122,28 +143,30 @@
         } else {
           customer = p;
           console.log("PERSONA P", p);
+                  model.Booking.update( {"company_id": data.company_id, "date": data.date },
+            { $push: {
+                "bookings": {
+                    "customer_id": p._id,
+                    "staff_id": data.staff_id,
+                    "startTime": data.startTime,
+                    "endTime":  data.endTime
+                }
+            }},
+            { safe: true, upsert: true }, 
+            function (err, doc) {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                else {
+                    res.send(doc);
+                }
+            });
         }
-      })}
+      });
+      }
     });
     
-     model.Booking.update( {"company_id": data.company_id, "date": data.date },
-        { $push: {
-            "bookings": {
-                "customer_id": customer._id,
-                "staff_id": data.staff_id,
-                "startTime": data.startTime,
-                "endTime":  data.endTime
-            }
-        }},
-        { safe: true, upsert: true }, 
-        function (err, doc) {
-          if (err) {
-            res.status(500).send(err);
-          }
-          else {
-            res.send(doc);
-          }
-     });
+     
     /*
      const m = new model.Booking(req.body);
      m.save(function(err, doc) {
