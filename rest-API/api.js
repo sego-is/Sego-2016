@@ -96,7 +96,7 @@
     });   
   });
  
-  api.get('/bookings/:date', (req, res) => {
+  api.get('/bookings/:date/:id', (req, res) => {
       console.log("req.PARAMS:", req.params);
       model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
         if (err) {

@@ -118,16 +118,12 @@
       
       backendFactory.getBookingByDate = function(date) {
           return $http({
-          url: 'http://wwww.sego.is:6969/api/bookings/' + date,
+          url: 'http://wwww.sego.is:6969/api/bookings/' + date + '/' + this.ID(),
           method: 'GET',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-          },
-          params: {
-              date: date,
-              id: this.ID()
           }
         });
       }
