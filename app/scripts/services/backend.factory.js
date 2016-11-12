@@ -185,8 +185,9 @@
       };
 
       backendFactory.editPricelist = function(p) {
+          p.company_id = this.ID();
           return $http({
-          url: 'http://wwww.sego.is:6969/api/services/',
+          url: 'http://wwww.sego.is:6969/api/services/editPricelist',
           method: 'POST',
           headers: {
             'Accept': 'application/json',

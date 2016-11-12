@@ -236,6 +236,7 @@
             res.status(500).send(err);
         }
         else {
+            
             res.send(doc);
         }
     });
@@ -259,12 +260,12 @@
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
 
-    console.log("data:, /service/editPricelist/", data);
+    console.log("data:, /services/editPricelist/", data);
     model.Service.update({ 'company_id': data.company_id, 'pricelist.name': data.name }, {
         '$set': {
             'pricelist.$.name': data.newName,
             'pricelist.$.price': data.price
-        }}, (err) => {
+        }}, { upsert: true }, (err) => {
             if (err) {
                 res.status(500).send(err);
             }
