@@ -265,12 +265,12 @@
         '$set': {
             'pricelist.$.name': data.newName,
             'pricelist.$.price': data.price
-        }}, { upsert: true }, (err) => {
+        }}, (err, doc) => {
             if (err) {
                 res.status(500).send(err);
             }
             else {
-                res.send("tokst");
+                res.send(doc);
             }
       });
   });
