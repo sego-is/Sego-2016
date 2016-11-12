@@ -95,45 +95,54 @@
   });
 
   api.post('/bookings', bodyParser.json(), (req, res) => {
-    let persona;
+    let customer, staff;
     model.Person.findOne({
       "company_id": req.company_id,
       "name": req.customer_name,
-      "simi": req.customer_simi
+      "phone": req.customer_phone
     }, function (err, p) {
       if (!err) {
-        persona = p;
-        console.log("PERSONA P !err", p);
+        customer = p;
+        console.log("CUSTOMER P !err", p);
       } else {
         console.log("ERROR IN POST /bookings :", err);
-        persona = null;
+        customer = null;
       }
 
-    if (persona === null) {
+    if (customer === null) {
       model.Person.create({
         company_id: req.company_id,
         name: req.customer_name,
-        simi: req.customer_simi
+        phone: req.customer_phone
       }, function (err, p) {
         if (err) {
           console.log("PERSONA P err");
           res.status(500).send(err);
         } else {
-          persona = p;
+          customer = p;
           console.log("PERSONA P", p);
         }
       })}
     });
-    /*
-     model.Booking.update( {"company_id":req.company_id,"date":req.date },
-     {$push: {
-     "bookings": {
-     "customer_id": persona._personaId,
-     "staff_id":    req.staff_id,
-     "time":        req.
-     }
-     }
-     })*/
+    
+     model.Booking.update( {"company_id": req.company_id, "date": req.date },
+        { $push: {
+            "bookings": {
+                "customer_id": customer._id,
+                "staff_id": req.staff_id,
+                "startTime": req.start,
+                "endTime":  req.end
+            }
+        }},
+        { safe: true, upsert: true }, 
+        function (err, doc) {
+          if (err) {
+            res.status(500).send(err);
+          }
+          else {
+            res.send(doc);
+          }
+     });
     /*
      const m = new model.Booking(req.body);
      m.save(function(err, doc) {

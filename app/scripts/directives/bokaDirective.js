@@ -31,7 +31,6 @@
 
             scope.stadfesta = function(bokun) {
                 console.log("Bókun ", JSON.stringify(bokun));
-                var p = JSON.parse(localStorage.getItem('profile'));
                 backendFactory.postBooking({
                     company_id: backendFactory.ID(),
                     startTime: scope.objFrom.startTime,
