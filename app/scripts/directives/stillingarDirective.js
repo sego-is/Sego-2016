@@ -63,7 +63,7 @@
           function getService() {
               backendFactory.getService().then(function(res) {
                    scope.pricelist = res.data[0].pricelist;
-                   console.log("pricelist", scope.pricelist);
+                   backendFactory.setServiceID(res.data[0]._id);
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });

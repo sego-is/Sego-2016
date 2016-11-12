@@ -15,7 +15,15 @@
       backendFactory.ID = function () {
         return _company._id;
       }
-
+      
+      backendFactory.setServiceID = function(id) {
+        _company.serviceID = id;    
+      }
+      
+      backendFactory.ServiceID = function() {
+          return _company.serviceID;
+      }
+      
       backendFactory.Staff = function () {
         if (_company != null) {
           return _company.staff;
@@ -185,7 +193,7 @@
       };
 
       backendFactory.editPricelist = function(p) {
-          p.company_id = this.ID();
+          p.serviceID = this.ServiceID;
           return $http({
           url: 'http://wwww.sego.is:6969/api/services/pricelist/',
           method: 'PUT',
