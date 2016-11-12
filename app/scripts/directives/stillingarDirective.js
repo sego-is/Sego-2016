@@ -85,8 +85,9 @@
              });
           };
 
-          scope.verdBreyting = function (p) {
+          scope.verdBreyting = function (p, index) {
             scope.editVerd = p;
+            scope.editVerd.index = index;
             scope.state.edit = true;
             console.log("nytt verð ", JSON.stringify(p));
           };
@@ -109,7 +110,7 @@
             });
           };
 
-          scope.klippBreyting = function (k) {
+          scope.klippBreyting = function (k, index) {
             scope.editUser = k;
             scope.state.edit = true;
           };

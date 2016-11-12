@@ -231,14 +231,19 @@
   
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.find({ 'company_id': data.company_id, 'pricelist._id': data._id }, (err, doc) => {
-        if (err) {
-            res.status(500).send(err);
-        }
-        else {
-            
-            res.send(doc);
-        }
+      model.Service.findOne({ company_id: data.company_id }, (err, doc) => {
+          doc.pricelist[data.index].name = data.name;
+          doc.pricelist[data.index].price = data.price;
+          
+          doc.save(function(err) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.send(doc);
+              }
+          });
+        
     });
   });
   
