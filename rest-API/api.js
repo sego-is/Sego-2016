@@ -130,8 +130,8 @@
             "bookings": {
                 "customer_id": customer._id,
                 "staff_id": req.staff_id,
-                "startTime": req.start,
-                "endTime":  req.end
+                "startTime": req.startTime,
+                "endTime":  req.endTime
             }
         }},
         { safe: true, upsert: true }, 

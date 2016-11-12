@@ -38,7 +38,7 @@
                     staff_id: scope.objFrom.staffId,
                     customer_name:  scope.objFrom.customer,
                     customer_phone: scope.objFrom.phone,
-                    customer_service: scope.bokun.objFrom.service,
+                    customer_service: scope.objFrom.service,
                     date: scope.objFrom.date
                 }, function(err, doc) {
                     if (err) {
