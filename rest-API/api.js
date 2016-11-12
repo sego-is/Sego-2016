@@ -104,7 +104,7 @@
         } else {
             // const b = _.sortBy(docs[0].bookings, 'startTime');
             const b = _(docs[0].bookings).chain().sortBy(function(book) {
-                return book[0]._id;
+                return book[0].staff_id;
             }).sortBy(function(book) {
                return book[1].startTime; 
             }).value();
