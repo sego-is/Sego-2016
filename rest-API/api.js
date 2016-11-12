@@ -231,13 +231,19 @@
   
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.find({ 'company_id': data.company_id, 'pricelist._id': data._id }, (err, doc) => {
-        if (err) {
-            res.status(500).send(err);
-        }
-        else {
-            res.send(doc);
-        }
+      model.Service.findById(data.serviceID, (err, doc) => {
+          doc.pricelist[data.index].name = data.name;
+          doc.pricelist[data.index].price = data.price;
+          
+          doc.save(function(err) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.send(doc);
+              }
+          });
+        
     });
   });
   
@@ -259,17 +265,17 @@
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
 
-    console.log("data:, /service/editPricelist/", data);
-    model.Service.update({ 'company_id': data.company_id, 'pricelist._id': data._id }, {
+    console.log("data:, /services/editPricelist/", data);
+    model.Service.update({ 'company_id': data.company_id, 'pricelist.name': data.name }, {
         '$set': {
-            'pricelist.$.name': data.name,
+            'pricelist.$.name': data.newName,
             'pricelist.$.price': data.price
-        }}, (err) => {
+        }}, (err, doc) => {
             if (err) {
                 res.status(500).send(err);
             }
             else {
-                res.send("tokst");
+                res.send(doc);
             }
       });
   });

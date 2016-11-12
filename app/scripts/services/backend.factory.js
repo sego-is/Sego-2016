@@ -15,7 +15,15 @@
       backendFactory.ID = function () {
         return _company._id;
       }
-
+      
+      backendFactory.setServiceID = function(id) {
+        _company.serviceID = id;    
+      }
+      
+      backendFactory.ServiceID = function() {
+          return _company.serviceID;
+      }
+      
       backendFactory.Staff = function () {
         if (_company != null) {
           return _company.staff;
@@ -185,10 +193,9 @@
       };
 
       backendFactory.editPricelist = function(p) {
-        console.log("OBJECT_SENT_I_EDITPRICELIST:", p);
-        p.company_id = this.ID();
-        return $http({
-          url: 'http://wwww.sego.is:6969/api/services/pricelist',
+          p.serviceID = this.ServiceID;
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/services/pricelist/',
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
@@ -197,6 +204,20 @@
           },
           data: p
         });
+        /*
+        console.log("OBJECT_SENT_I_EDITPRICELIST:", p);
+        p.company_id = this.ID();
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/services/editPricelist',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: p
+        });
+        */
       }
 
       backendFactory.deleteFromStaff = function (s) {
