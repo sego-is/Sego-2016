@@ -85,55 +85,97 @@
 */
  });
  
-  api.get('/bookings', (req, res) => {
-      // RADA EFTIR TIMA OG NAFNI OG KLIPPARA
-      // SAEKJA PERSONU OBJECT AF CUSTOMER
-      // 
-    res.status(201).json({
-      svar: 'tippa svar'
-    });
-  });
-
-  api.post('/bookings', bodyParser.json(), (req, res) => {
-    let persona;
-    model.Person.findOne({
-      "company_id": req.company_id,
-      "name": req.customer_name,
-      "simi": req.customer_simi
-    }, function (err, p) {
-      if (!err) {
-        persona = p;
-        console.log("PERSONA P !err", p);
+   
+  api.get('/bookings/', (req, res) => {
+    model.Booking.find({}, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
       } else {
-        console.log("ERROR IN POST /bookings :", err);
-        persona = null;
-      }
-
-    if (persona === null) {
-      model.Person.create({
-        company_id: req.company_id,
-        name: req.customer_name,
-        simi: req.customer_simi
-      }, function (err, p) {
+        res.send(docs);
+      } 
+    });   
+  });
+ 
+  api.get('/bookings/:date/:id', (req, res) => {
+      console.log("req.PARAMS:", req.params);
+      model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
         if (err) {
-          console.log("PERSONA P err");
-          res.status(500).send(err);
+            res.status(500).send(err);
         } else {
-          persona = p;
-          console.log("PERSONA P", p);
+            res.send(docs);
+        } 
+    });   
+  });
+  
+  api.post('/bookings', bodyParser.json(), (req, res) => {
+      
+    let customer;
+    const data = req.body;
+
+    model.Person.findOne({
+      "company_id": data.company_id,
+      "name": data.customer_name,
+      "phone": data.customer_phone
+    }, function (err, p) {
+      if (err) {
+        console.log("ERROR (err_msg):", err);
+      } else {
+          if (p === null) {
+            model.Person.create({
+                company_id: data.company_id,
+                name: data.customer_name,
+                phone: data.customer_phone
+            }, function (err, p) {
+                if (err) {
+                    console.log("PERSONA P err");
+                    res.status(500).send(err);
+                } else {
+                    console.log("CUSTOMER DOESN'T EXIST BUT CREATE PERSON", p);
+                    model.Booking.update( {"company_id": data.company_id, "date": data.date },
+                        { $push: {
+                            "bookings": {
+                                "customer_id": p._id,
+                                "staff_id": data.staff_id,
+                                "startTime": data.startTime,
+                                "endTime":  data.endTime
+                            }
+                        }},
+                        { safe: true, upsert: true }, 
+                        function (err, doc) {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else {
+                                res.send(doc);
+                            }
+                        });
+                    }
+            });
+          }
+          else {
+            console.log("CUSTOMER EXIST (model.Person)", p);     
+            model.Booking.update( {"company_id": data.company_id, "date": data.date },
+                { $push: {
+                    "bookings": {
+                        "customer_id": p._id,
+                        "staff_id": data.staff_id,
+                        "startTime": data.startTime,
+                        "endTime":  data.endTime
+                    }
+                }},
+                { safe: true, upsert: true }, 
+                function (err, doc) {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                    else {
+                        res.send(doc);
+                    }
+            });
         }
-      })}
+      }
     });
-    /*
-     model.Booking.update( {"company_id":req.company_id,"date":req.date },
-     {$push: {
-     "bookings": {
-     "customer_id": persona._personaId,
-     "staff_id":    req.staff_id,
-     "time":        req.
-     }
-     }
-     })*/
+    
     /*
      const m = new model.Booking(req.body);
      m.save(function(err, doc) {
@@ -231,13 +273,19 @@
   
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.find({ 'company_id': data.company_id, 'pricelist._id': data._id }, (err, doc) => {
-        if (err) {
-            res.status(500).send(err);
-        }
-        else {
-            res.send(doc);
-        }
+      model.Service.findById(data.serviceID, (err, doc) => {
+          doc.pricelist[data.index].name = data.name;
+          doc.pricelist[data.index].price = data.price;
+          
+          doc.save(function(err) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.send(doc);
+              }
+          });
+        
     });
   });
   
@@ -259,17 +307,17 @@
   api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
 
-    console.log("data:, /service/editPricelist/", data);
+    console.log("data:, /services/editPricelist/", data);
     model.Service.update({ 'company_id': data.company_id, 'pricelist.name': data.name }, {
         '$set': {
             'pricelist.$.name': data.newName,
             'pricelist.$.price': data.price
-        }}, (err) => {
+        }}, (err, doc) => {
             if (err) {
                 res.status(500).send(err);
             }
             else {
-                res.send("tokst");
+                res.send(doc);
             }
       });
   });

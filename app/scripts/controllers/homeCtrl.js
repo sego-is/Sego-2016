@@ -39,6 +39,16 @@
           $scope.dagurinnIdag = dagatalFactory.aMorgun();
       };
 
+      // Get bookings for selected date in datepicker
+      $scope.getDailyBookings = function (t) {
+          backendFactory.getBookingByDate(dagatalFactory.dags(new Date(t))).then(function(res) {
+              console.log("getBookingByDate() RES:", res);
+          }, function(err) {
+              console.log("getBookingByDate() ERR:", err);
+          });
+        //console.log("getDailyBookings: ", t);
+      };
+
 
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
@@ -55,11 +65,14 @@
           booking = $scope.$new();
           var compiledDirective;
           $scope.clickOnTimapant = {
-            nafn: b,
-            timi: t,
-            dags: date
+            nafn: b.name,
+            staffId: b.person_id,
+            date: dagatalFactory.dags(new Date(date)),
+            startTime: dagatalFactory.dags(new Date(date), t),
+            endTime: dagatalFactory.dags(new Date(date), '18:00')
           };
-          compiledDirective = $compile('<boka class="skilabod" close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
+          compiledDirective = $compile('<boka class="skilabod" ' +
+            'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
           var directiveElement = compiledDirective(booking);
           $('.skilaboda-haldari').append(directiveElement);
         }

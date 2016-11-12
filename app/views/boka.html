@@ -1,21 +1,19 @@
 <div class="col-xs-12">
   <div class="haus">BÓKA TÍMA
-    <i class="fa fa-book" style="font-size:30px" ; color: white></i>
+    <i class="fa fa-book" style="font-size:30px"></i>
     <button type="button" class="close takki" ng-click="leave()">&times;</button>
   </div>
   <div class="bookingcontent">
     <td colspan="4">
-      <h4>Klippari: {{ bokun.klippari }}</h4>
-      <h5>Tími: {{ bokun.timi }}</h5>
+      <h4>Klippari: {{ objFrom.nafn }}</h4>
+      <h5>Tími: {{ objFrom.startTime }}</h5>
       <form class="form-horizontal">
         <div class="form-group col-xs-11">
-          <label class="sr-only"
-                 for="nafn"></label>
-          <input type="name"
+          <input type="text"
                  class="form-control inputField"
-                 id="inputName"
+                 ng-model="objFrom.customer"
                  placeholder="Nafn"
-                 ng-model="service.name">
+                 ng-model="objFrom.customer">
         </div>
         <div class="pull-right col-xs-1">
           <i class="fa fa-plus fa-2x stadfestaTakki"
@@ -23,45 +21,24 @@
              data-toggle="tooltip"
              data-placement="auto"
              title="Staðfesta"
-             ng-click="stadfesta(bokun)"></i>
+             ng-click="stadfesta(objFrom)"></i>
         </div>
         <div class="form-group col-xs-11">
-          <label class="sr-only"
-                 for="inputPhone"></label>
           <input type="tel"
                  class="form-control inputField"
-                 id="inputPhone"
+                 ng-model="objFrom.phone"
                  placeholder="Sími"
-                 ng-model="service.phone">
+                 ng-model="objFrom.phone">
         </div>
-        <div class="pull-right col-xs-1">
-          <i class="fa fa-times fa-2x haettaVidTakki"
-             aria-hidden="true"
-             data-toggle="tooltip"
-             data-placement="auto"
-             title="Hætta við"
-             ng-click="add()"></i>
+        <div class="form-group col-xs-11">
+          <input type="text"
+                 class="form-control inputField"
+                 ng-model="objFrom.service"
+                 placeholder="Aðgerð"
+                 ng-model="objFrom.service">
         </div>
       </form>
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="adgerd" data-toggle="dropdown">Aðgerð
-            <span class="caret"></span></button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-            <li role="presentation"><a role="menuitem" href="#">HTML</a></li>
-          </ul>
-        </div>
     </td>
-    </tr>
-
-
-    <!--<form validate class="simple-form">
-      <input type="text" name="nafn" ng-model="bokun.customer"><br/>
-      <input type="tel" name="simi" ng-model="bokun.simi"><br/>
-      <input type="text" name="adgerd" ng-model="bokun.adgerd">
-
-      <input type="button" ng-click="leave()" value="Hætta við">
-      <input type="button" ng-click="stadfesta(bokun)" value="STADFESTA">
-    </form>-->
   </div>
   <div class="footer">SEGO</div>
 </div>

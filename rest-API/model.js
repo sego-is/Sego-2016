@@ -85,7 +85,7 @@ const bookingsSchema = Schema({
     require: true
   },
   bookings: [{
-    person_id: {
+    customer_id: {
       type: Schema.Types.ObjectId,
       ref:  'Person'
     },
@@ -93,7 +93,8 @@ const bookingsSchema = Schema({
       type: Schema.Types.ObjectId,
       ref:  'Person'
     },
-    time: Date
+    startTime: Date,
+    endTime: Date
   }]
 });
 
@@ -128,5 +129,5 @@ module.exports = {
   Booking: mongoose.model('bookings', bookingsSchema),
   /* Staff:   mongoose.model('staffs', staffSchema), */
   Service: mongoose.model('services', serviceSchema),
-  ObjectId: ObjectId 
+  ObjectId: ObjectId
 };

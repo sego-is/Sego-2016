@@ -84,8 +84,10 @@
                 }
             },
             dags: function(d, t) {
-                if (d === undefined || t == undefined) {
+                if (d === undefined) {
                     d = new Date();
+                }
+                if (t == undefined) {
                     t = "00:00:00";
                 }
                 var month = d.getMonth()+1;

@@ -15,7 +15,15 @@
       backendFactory.ID = function () {
         return _company._id;
       }
-
+      
+      backendFactory.setServiceID = function(id) {
+        _company.serviceID = id;    
+      }
+      
+      backendFactory.ServiceID = function() {
+          return _company.serviceID;
+      }
+      
       backendFactory.Staff = function () {
         if (_company != null) {
           return _company.staff;
@@ -96,10 +104,34 @@
 
 
       // BOOKING REST CALLS
+      backendFactory.getBooking = function() {
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/',
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
+      };
+      
+      backendFactory.getBookingByDate = function(date) {
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/' + date + '/' + this.ID(),
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
+      }
+      
       backendFactory.postBooking = function (p) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/',
-          method: 'PUT',
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -185,9 +217,10 @@
       };
 
       backendFactory.editPricelist = function(p) {
+          p.serviceID = this.ServiceID;
           return $http({
-          url: 'http://wwww.sego.is:6969/api/services/',
-          method: 'POST',
+          url: 'http://wwww.sego.is:6969/api/services/pricelist/',
+          method: 'PUT',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
