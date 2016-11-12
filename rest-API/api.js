@@ -5,6 +5,7 @@
   const express    = require('express');
   const jwt        = require('express-jwt');
   const bodyParser = require('body-parser');
+  const _          = require('underscore');
   const model      = require('./model');
   const api        = express();
 
@@ -97,19 +98,23 @@
   });
  
   api.get('/bookings/:date/:id', (req, res) => {
-      console.log("req.PARAMS:", req.params);
       model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.send(docs);
+            if (docs.length === 0) {
+                res.send([]);
+            }
+            else {
+                let b = _.sortBy(docs[0].bookings, 'staff_id');
+                b = _.sortBy(b, 'startTime');
+                res.send(b);
+            }   
         } 
     });   
   });
   
   api.post('/bookings', bodyParser.json(), (req, res) => {
-      
-    let customer;
     const data = req.body;
 
     model.Person.findOne({

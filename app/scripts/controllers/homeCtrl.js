@@ -12,6 +12,18 @@
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
 
       function update() {
+          backendFactory.getBookingByDate(dagatalFactory.dags()).then(function(res) {
+              if (res.data.length === 0) {
+                  console.log("NO BOOKINGS");
+                  $scope.bookings = [];
+              }
+              else {
+                  console.log("BOOKINGS:", res.data);
+                  $scope.bookings = res.data;
+              }
+          }, function(err) {
+              console.log("update()->getBookingByDate() ERR:", err);
+          });
           $scope.staff = backendFactory.Staff();
           $scope.dagurinnIdag = dagatalFactory.dagsetning();
           $scope.times = dagatalFactory.timabokanir();
@@ -30,21 +42,17 @@
             console.log("ERROR", error);
       });
 
-      // GO TO PREVIOUS OR NEXT DAY
-      $scope.prev = function() {
-          $scope.dagurinnIdag = dagatalFactory.iGaer();
-      };
-
-      $scope.next = function() {
-          $scope.dagurinnIdag = dagatalFactory.aMorgun();
-      };
-
       // Get bookings for selected date in datepicker
       $scope.getDailyBookings = function (t) {
           backendFactory.getBookingByDate(dagatalFactory.dags(new Date(t))).then(function(res) {
-              console.log("getBookingByDate() RES:", res);
+              if (res.data.length === 0) {
+                  console.log("NO BOOKINGS");
+              }
+              else {
+                  console.log("BOOKINGS:", res.data);
+              }
           }, function(err) {
-              console.log("getBookingByDate() ERR:", err);
+              console.log("homeCtrl.getDailyBooking (err):", err);
           });
         //console.log("getDailyBookings: ", t);
       };
