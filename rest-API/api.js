@@ -102,7 +102,7 @@
         if (err) {
             res.status(500).send(err);
         } else {
-            if (docs[0].bookings === undefined) {
+            if (docs.length === 0) {
                 res.send([]);
             }
             else {
