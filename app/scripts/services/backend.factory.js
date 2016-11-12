@@ -185,11 +185,9 @@
       };
 
       backendFactory.editPricelist = function(p) {
-        console.log("OBJECT_SENT_I_EDITPRICELIST:", p);
-        p.company_id = this.ID();
-        return $http({
-          url: 'http://wwww.sego.is:6969/api/services/pricelist',
-          method: 'PUT',
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/services/',
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -197,6 +195,20 @@
           },
           data: p
         });
+        /*
+        console.log("OBJECT_SENT_I_EDITPRICELIST:", p);
+        p.company_id = this.ID();
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/services/editPricelist',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: p
+        });
+        */
       }
 
       backendFactory.deleteFromStaff = function (s) {

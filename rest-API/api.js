@@ -260,9 +260,9 @@
     var data = req.body;
 
     console.log("data:, /service/editPricelist/", data);
-    model.Service.update({ 'company_id': data.company_id, 'pricelist._id': data._id }, {
+    model.Service.update({ 'company_id': data.company_id, 'pricelist.name': data.name }, {
         '$set': {
-            'pricelist.$.name': data.name,
+            'pricelist.$.name': data.newName,
             'pricelist.$.price': data.price
         }}, (err) => {
             if (err) {

@@ -108,7 +108,8 @@ const serviceSchema = Schema({
   pricelist: [{
     name: {
       type:    String,
-      require: true
+      require: true,
+      unique: true
     },
     price: Number
   }]
