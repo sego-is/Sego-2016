@@ -5,6 +5,7 @@
   const express    = require('express');
   const jwt        = require('express-jwt');
   const bodyParser = require('body-parser');
+  const _          = require('underscore');
   const model      = require('./model');
   const api        = express();
 
@@ -101,14 +102,10 @@
         if (err) {
             res.status(500).send(err);
         } else {
-            docs.bookings.sort({ startTime: 'desc' }).exec(function(err, doc) {
-                if (err) {
-                    res.status(500).send(err);
-                }
-                else {
-                    res.send(docs);
-                }
-            });
+            console.log("DOCS", docs);
+            const b = docs[0].bookings;
+            _.sortBy(b, 'startTime');
+            res.send(b);
         } 
     });   
   });
