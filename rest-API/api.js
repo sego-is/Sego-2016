@@ -96,13 +96,14 @@
     });   
   });
  
-  api.get('/bookings/:date/:company_id', (req, res) => {
-    model.Booking.find({}, function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(docs);
-      } 
+  api.get('/bookings/:date', (req, res) => {
+      console.log("req.PARAMS:", req.params);
+      model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.send(docs);
+        } 
     });   
   });
   

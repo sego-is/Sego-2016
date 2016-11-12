@@ -118,7 +118,7 @@
       
       backendFactory.getBookingByDate = function(date) {
           return $http({
-          url: 'http://wwww.sego.is:6969/api/bookings/',
+          url: 'http://wwww.sego.is:6969/api/bookings/' + date,
           method: 'GET',
           headers: {
             'Accept': 'application/json',

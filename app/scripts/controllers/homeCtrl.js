@@ -41,6 +41,11 @@
 
       // Get bookings for selected date in datepicker
       $scope.getDailyBookings = function (t) {
+          backendFactory.getBookingByDate(dagatalFactory.dags(new Date(t))).then(function(res) {
+              console.log("getBookingByDate() RES:", res);
+          }, function(err) {
+              console.log("getBookingByDate() ERR:", err);
+          });
         //console.log("getDailyBookings: ", t);
       };
 
