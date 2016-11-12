@@ -40,13 +40,10 @@
                     customer_phone: scope.objFrom.phone,
                     customer_service: scope.objFrom.service,
                     date: scope.objFrom.date
-                }, function(err, doc) {
-                    if (err) {
-                        console.log("CB scope.stafesta() - err: ", err);
-                    }
-                    else {
-                        console.log("CB scope.stafesta() - doc: ", doc);
-                    }
+                }).then(function(doc) {
+                  console.log("CB scope.stafesta() - doc: ", doc);
+                }, function (err) {
+                  console.log("CB scope.stafesta() - err: ", err);
 
                 });
             };
