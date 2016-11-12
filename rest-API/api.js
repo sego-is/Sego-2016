@@ -98,7 +98,7 @@
  
   api.get('/bookings/:date/:id', (req, res) => {
       console.log("req.PARAMS:", req.params);
-      model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
+      model.Booking.find({ company_id: req.params.id, date: req.params.date}).sort({ date: 'desc' }).exec(function (err, docs) {
         if (err) {
             res.status(500).send(err);
         } else {
