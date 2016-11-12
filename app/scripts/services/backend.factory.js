@@ -107,7 +107,7 @@
       backendFactory.postBooking = function (p) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/',
-          method: 'PUT',
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

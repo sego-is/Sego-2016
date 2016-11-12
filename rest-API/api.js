@@ -95,11 +95,12 @@
   });
 
   api.post('/bookings', bodyParser.json(), (req, res) => {
-    let customer, staff;
+    let customer;
+    const data = req.body;
     model.Person.findOne({
-      "company_id": req.company_id,
-      "name": req.customer_name,
-      "phone": req.customer_phone
+      "company_id": data.company_id,
+      "name": data.customer_name,
+      "phone": data.customer_phone
     }, function (err, p) {
       if (!err) {
         customer = p;
@@ -111,9 +112,9 @@
 
     if (customer === null) {
       model.Person.create({
-        company_id: req.company_id,
-        name: req.customer_name,
-        phone: req.customer_phone
+        company_id: data.company_id,
+        name: data.customer_name,
+        phone: data.customer_phone
       }, function (err, p) {
         if (err) {
           console.log("PERSONA P err");
@@ -125,13 +126,13 @@
       })}
     });
     
-     model.Booking.update( {"company_id": req.company_id, "date": req.date },
+     model.Booking.update( {"company_id": data.company_id, "date": data.date },
         { $push: {
             "bookings": {
                 "customer_id": customer._id,
-                "staff_id": req.staff_id,
-                "startTime": req.startTime,
-                "endTime":  req.endTime
+                "staff_id": data.staff_id,
+                "startTime": data.startTime,
+                "endTime":  data.endTime
             }
         }},
         { safe: true, upsert: true }, 
