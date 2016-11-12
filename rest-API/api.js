@@ -102,7 +102,13 @@
         if (err) {
             res.status(500).send(err);
         } else {
-            const b = _.sortBy(docs[0].bookings, 'startTime');
+            // const b = _.sortBy(docs[0].bookings, 'startTime');
+            const b = _(docs[0].bookings).chain().sortBy(function(book) {
+                return book[0]._id;
+            }).sortBy(function(book) {
+               return book[1].startTime; 
+            }).value();
+            console.log('b:', b);
             res.send(b);
         } 
     });   
