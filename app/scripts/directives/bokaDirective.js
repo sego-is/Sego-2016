@@ -17,6 +17,7 @@
             scope.bokun = {};
 
             scope.bokun.timi = scope.objFrom.timi;
+
             // kannski ad huga ad lengdinni hja mer seinna
             scope.bokun.klippari = scope.objFrom.nafn.name;
             console.log("KLIPPARI ", scope.bokun.klippari);
