@@ -95,6 +95,16 @@
       } 
     });   
   });
+ 
+  api.get('/bookings/:date/:company_id', (req, res) => {
+    model.Booking.find({}, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      } 
+    });   
+  });
   
   api.post('/bookings', bodyParser.json(), (req, res) => {
       
