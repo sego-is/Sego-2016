@@ -85,7 +85,7 @@ const bookingsSchema = Schema({
     require: true
   },
   bookings: [{
-    person_id: {
+    customer_id: {
       type: Schema.Types.ObjectId,
       ref:  'Person'
     },
@@ -93,7 +93,8 @@ const bookingsSchema = Schema({
       type: Schema.Types.ObjectId,
       ref:  'Person'
     },
-    time: Date
+    startTime: Date,
+    endTime: Date
   }]
 });
 
