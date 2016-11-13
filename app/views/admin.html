@@ -86,23 +86,23 @@
              </table>
         </div>
         <div class="col-md-6">
-            <h3>Klipparar í kerfinu undir starfsfólk fyrirtækis</h3>
+            <h3>Bókanir í kerfinu</h3>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Notendur</th>
-                        <th>Sími</th>
-                        <th>Netfang</th>
-                        <th>role</th>
+                        <th>Staff ID</th>
+                        <th>Customer ID</th>
+                        <th>Start Time</th>
+                        <th>End time</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="u in users">
-                        <td>{{ u.name }}</td>
-                        <td>{{ u._id }}</td>
-                        <td>{{ u.email }}</td>
-                        <td>{{ u.role }}</td>
+                    <tr ng-repeat="b in bookings">
+                        <td>{{ b.staff_id }}</td>
+                        <td>{{ b.customer_id }}</td>
+                        <td>{{ b.startTime }}</td>
+                        <td>{{ b.endTime }}</td>
                         <td><button ng-click="deleteUser(u._id)" value="eyða">eyða</button></td>
                     </tr>
                 </tbody>

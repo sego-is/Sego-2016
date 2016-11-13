@@ -24,13 +24,7 @@
               <p ng-if="$index % 2 == 0">{{ t }}</p>
             </td>
             <td class="booking-cell" ng-repeat="x in staff" ng-click="openBooking(t, x, dt | date:'fullDate')">
-              <!-- 
-                  if (t === bookings[teljari].time && x._id === bookings[teljari].staff_id) {
-                    SYNA BOKUN
-                    teljari++;
-                  }
-                -->
-              <p ng-if="t == bookings[$index].time && x.name == bookings[$index].name"> {{ bookings[$index].name }}</p>
+              <p ng-if="t == curr.time && x.person_id == curr.staff_id" ng-init="nextBooking()"> {{ curr._id }}</p>
             </td>
           </tr>
           </tbody>

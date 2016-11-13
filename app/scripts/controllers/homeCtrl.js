@@ -10,62 +10,77 @@
    */
   angular.module('segoApp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
-
-      function update() {
-          backendFactory.getBookingByDate(dagatalFactory.dags()).then(function(res) {
-              if (res.data.length === 0) {
-                  console.log("NO BOOKINGS");
-                  $scope.bookings = [];
-              }
-              else {
-                  console.log("BOOKINGS:", res.data);
-                  $scope.bookings = res.data;
-              }
-          }, function(err) {
-              console.log("update()->getBookingByDate() ERR:", err);
-          });
-          $scope.staff = backendFactory.Staff();
-          $scope.dagurinnIdag = dagatalFactory.dagsetning();
-          $scope.times = dagatalFactory.timabokanir();
-      }
-
-      $scope.loadingData = true;
-
-      // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
-      var p = JSON.parse(localStorage.getItem('profile'));
-      backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
-          backendFactory.set(response.data[0]);
-          console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
-          update();
-          $scope.loadingData = false;
-      }, function errorCallback(error) {
+        // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
+        var p = JSON.parse(localStorage.getItem('profile'));
+        backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
+            backendFactory.set(response.data[0]);
+            console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
+            // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
+            update();    
+        }, function errorCallback(error) {
             console.log("ERROR", error);
-      });
-
-      // Get bookings for selected date in datepicker
-      $scope.getDailyBookings = function (t) {
-          backendFactory.getBookingByDate(dagatalFactory.dags(new Date(t))).then(function(res) {
-              if (res.data.length === 0) {
-                  console.log("NO BOOKINGS");
-              }
-              else {
-                  console.log("BOOKINGS:", res.data);
-              }
-          }, function(err) {
-              console.log("homeCtrl.getDailyBooking (err):", err);
-          });
-        //console.log("getDailyBookings: ", t);
-      };
+        });
+                
+        // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
+        var selectedDay = dagatalFactory.dags();
+        // COUNTER SEM HELDUR UTAN UM THANN NAESTA BOKADA TIMA FYRIR UTLIT A BOKINNI
+        var counter = 0;
+        
+              
+        // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
+        function update() {
+            backendFactory.getBookingByDate(selectedDay).then(function(res) {
+                // If there are no bookings by given date -> return EMPTY ARRAY
+                if (res.data.length === 0) {
+                    $scope.bookings = [];
+                    $scope.curr = {};
+                    $scope.loadingData = false;
+                }
+                else {
+                    // GEYMA BOKANIR
+                    $scope.bookings = res.data;
+                    // NAESTA BOKUN SEM VERDUR BIRT FYRST I RENDER A TOFLU
+                    $scope.nextBooking();
+                    $scope.loadingData = false;
+                    console.log("BOOKINGS", $scope.bookings);
+                }
+            }, function(err) {
+                console.log("update()->getBookingByDate() ERR:", err);
+            });
+            $scope.staff = backendFactory.Staff();
+            $scope.dagurinnIdag = dagatalFactory.dagsetning();
+            $scope.times = dagatalFactory.timabokanir();
+             
+            
+        };
+        // ENDIR update()
+        
+        // FYRIR PROGRESS MYND
+        $scope.loadingData = true;
+        
+        // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
+        
+        $scope.nextBooking = function() {
+            if (counter < $scope.bookings.length) {
+                $scope.curr = $scope.bookings[counter];
+                $scope.curr.time = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[0].startTime) );
+                console.log("timi", $scope.curr.time);
+                console.log("counter", counter);
+                counter = counter + 1;
+            }
+        }
+      
+        // Get bookings for selected date in datepicker
+        $scope.getDailyBookings = function (t) {
+            selectedDay = t;
+            update();
+        };
 
 
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
-      var valinnDagur;
-
+      // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
       $scope.openBooking = function (t, b, date) {
-        console.log("T: ", t);
-        console.log("B: ", b);
-        console.log("DATE: ", date);
         if (t === undefined) {
           console.log("UNDEFINED");
         } else {
@@ -93,5 +108,6 @@
         console.log("BUTTON_CLICK");
       };
       // END OF BOOKING CLICK
+      
     }]);
 })();

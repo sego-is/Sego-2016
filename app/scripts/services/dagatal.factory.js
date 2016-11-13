@@ -96,6 +96,16 @@
                 if (month < 10) { month = "0" + month; }
                 if (date < 10) { date = "0" + date; }
                 return d.getFullYear() + "-" + month + "-" + date + "T" + t;
+            },
+            getHHMMfromDate: function(d) {
+                var HH = d.getHours();
+                var MM = d.getMinutes();
+                
+                if (HH   < 10) {HH   = "0"+HH;}
+                if (MM < 10) {MM = "0"+MM;}
+                
+                return HH + ":" + MM;
+                
             }
     	};
 
