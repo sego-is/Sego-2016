@@ -219,7 +219,7 @@
       backendFactory.editPricelist = function(p) {
           p.serviceID = this.ServiceID;
           return $http({
-          url: 'http://wwww.sego.is:6969/api/services/pricelist/',
+          url: 'http://wwww.sego.is:6969/api/services/editPricelist/',
           method: 'PUT',
           headers: {
             'Accept': 'application/json',

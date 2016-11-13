@@ -132,10 +132,8 @@
                 phone: data.customer_phone
             }, function (err, p) {
                 if (err) {
-                    console.log("PERSONA P err");
                     res.status(500).send(err);
                 } else {
-                    console.log("CUSTOMER DOESN'T EXIST BUT CREATE PERSON", p);
                     model.Booking.update( {"company_id": data.company_id, "date": data.date },
                         { $push: {
                             "bookings": {
@@ -158,7 +156,6 @@
             });
           }
           else {
-            console.log("CUSTOMER EXIST (model.Person)", p);     
             model.Booking.update( {"company_id": data.company_id, "date": data.date },
                 { $push: {
                     "bookings": {
@@ -309,13 +306,13 @@
     });
   });
 
-  api.post('/services/editPricelist/', bodyParser.json(), (req, res) => {
+  api.put('/services/editPricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
 
     console.log("data:, /services/editPricelist/", data);
-    model.Service.update({ 'company_id': data.company_id, 'pricelist.name': data.name }, {
+    model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
         '$set': {
-            'pricelist.$.name': data.newName,
+            'pricelist.$.name': data.name,
             'pricelist.$.price': data.price
         }}, (err, doc) => {
             if (err) {
