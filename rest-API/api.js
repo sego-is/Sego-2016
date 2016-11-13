@@ -275,20 +275,18 @@
   
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.findById(data.serviceID, (err, doc) => {
-          doc.pricelist[data.index].name = data.name;
-          doc.pricelist[data.index].price = data.price;
-          
-          doc.save(function(err) {
-              if (err) {
+      model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
+        '$set': {
+            'pricelist.$.name': data.name,
+            'pricelist.$.price': data.price
+        }}, (err, doc) => {
+            if (err) {
                 res.status(500).send(err);
-              }
-              else {
+            }
+            else {
                 res.send(doc);
-              }
-          });
-        
-    });
+            }
+      });
   });
   
   // DELETE specific service with price in services.pricelist //
@@ -305,10 +303,9 @@
         }
     });
   });
-
+/* PUT -> /services/pricelist/
   api.put('/services/editPricelist/', bodyParser.json(), (req, res) => {
-    var data = req.body;
-
+    const data = req.body;
     console.log("data:, /services/editPricelist/", data);
     model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
         '$set': {
@@ -323,9 +320,9 @@
             }
       });
   });
-
+*/
   api.post('/companies/staff/', bodyParser.json(), (req, res) => {
-      var data = req.body;
+      const data = req.body;
       model.Company.update({ '_id': data.cid },
         { $pull: { "staff": { _id: data.staff._id } } },
         { safe: true, upsert: true }, function (err, doc) {
