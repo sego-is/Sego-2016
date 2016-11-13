@@ -35,14 +35,17 @@
 
   //DELETE PERSON
   api.delete('/persons/:id', (req, res) => {
-    var id = req.body.id;
+    var id = req.params.id;
     model.Person.findByIdAndRemove(id, function(err, p) {
-        var response = {
-           messages: "Vona tókst að eyða honum",
-           id: id
-        };
-
-        res.send(response);
+        if (err) {
+            res.status(500).send(err);
+        }
+        else {
+            res.send({
+                messages: "Vona tókst að eyða honum",
+                id: id
+            });
+        }
     });
 
     /*model.Person.remove({"_id": id}, function (err, c) {
@@ -226,8 +229,6 @@
         }
     });
   });
-  
-
   
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);

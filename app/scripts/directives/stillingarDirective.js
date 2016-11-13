@@ -22,6 +22,7 @@
               backendFactory.postPerson(s).then(function(res) {
                   scope.state.add = false;
                   scope.staff.push(res.data);
+                  console.log("res.data: ", res.data);
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
               });
