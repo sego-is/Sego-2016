@@ -16,7 +16,7 @@
             backendFactory.set(response.data[0]);
             console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
             // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
-            update();    
+            update();
         }, function errorCallback(error) {
             console.log("ERROR", error);
         });
@@ -35,6 +35,7 @@
                     $scope.bookings = [];
                     $scope.curr = {};
                     $scope.loadingData = false;
+                    console.log("data.length === 0", selectedDay);
                 }
                 else {
                     // GEYMA BOKANIR
@@ -48,10 +49,7 @@
                 console.log("update()->getBookingByDate() ERR:", err);
             });
             $scope.staff = backendFactory.Staff();
-            $scope.dagurinnIdag = dagatalFactory.dagsetning();
             $scope.times = dagatalFactory.timabokanir();
-             
-            
         };
         // ENDIR update()
         
@@ -66,12 +64,16 @@
                 $scope.curr.time = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[0].startTime) );
                 console.log("timi", $scope.curr.time);
                 console.log("counter", counter);
+                if ($scope.curr.startTime === $scope.bookings[counter+1].startTime) {
+                    counter = counter + 1;
+                }
                 counter = counter + 1;
             }
         }
       
         // Get bookings for selected date in datepicker
         $scope.getDailyBookings = function (t) {
+            console.log("t:", t);
             selectedDay = t;
             update();
         };

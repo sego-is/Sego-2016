@@ -31,7 +31,7 @@
         </table>
       </div>
       <pre><em>{{dt | date:'fullDate' }}</em></pre>
-      <div uib-datepicker ng-model="dt" class="col-md-3" datepicker-options="options">
+      <div uib-datepicker ng-model="dt" class="col-md-3" datepicker-options="options" ng-click="getDailyBookings(dt | date:'fullDate')">>
 
       </div>
     </div>
