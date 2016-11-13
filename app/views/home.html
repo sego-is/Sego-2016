@@ -8,27 +8,43 @@
 
   <div class="row">
     <div ng-controller="DatepickerCtrl">
-
-
+      <div class="col-md-12">
+        <button class="col-md-2" ng-click="prevDay()">bakka</button>
+         <p class="col-md-2">{{ dagurinnIdag }}</p>
+        <button class="col-md-2" ng-click="nextDay()">áfram</button>
+        <div class="col-md-6"></div>
+      </div>
       <div class="col-md-9">
         <table class="table table-hover table-bordered">
           <thead>
           <tr>
-            <th class="klukka"><i class="fa fa-clock-o" aria-hidden="true"></i></th>
-            <th ng-repeat="x in staff | orderBy: x.person_id">{{ x.person_id }}</th>
+            <th class="klukka">
+              <i class="fa fa-clock-o"
+                 aria-hidden="true"></i>
+            </th>
+            <th ng-repeat="x in staff | orderBy: x.person_id">
+              {{ x.name }}
+            </th>
           </tr>
           </thead>
           <tbody>
           <tr class="booking" ng-repeat="t in times track by $index ">
-            <td class="booking-time"><p ng-if="$index % 2 == 0">{{ t }}</p></td>
-            <td class="booking-cell" ng-repeat="x in staff | orderBy: x.person_id" ng-click="openBooking(t, x, dt | date:'fullDate')"  id="{{ t }}{{ x.person_id }}"></td>
+            <td class="booking-time">
+              <p ng-if="$index % 2 == 0">{{ t }}</p>
+            </td>
+            <td class="booking-cell"
+                ng-repeat="x in staff | orderBy: x.person_id"
+                ng-click="openBooking(t, x, dt | date:'fullDate')"
+                id="{{ t }}{{ x.person_id }}">
+            </td>
           </tr>
           </tbody>
         </table>
       </div>
-      <pre><em>{{dt | date:'fullDate' }}</em></pre>
-      <div uib-datepicker ng-model="dt" class="col-md-3" datepicker-options="options" ng-click="getDailyBookings(dt | date:'fullDate')">>
-
+      <div uib-datepicker ng-model="dt"
+           class="col-md-3"
+           datepicker-options="options"
+           ng-click="getDailyBookings(dt | date:'fullDate')">>
       </div>
     </div>
   </div>

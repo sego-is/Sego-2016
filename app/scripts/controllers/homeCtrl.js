@@ -20,13 +20,27 @@
         }, function errorCallback(error) {
             console.log("ERROR", error);
         });
-                
+
         // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
         var selectedDay = dagatalFactory.dags();
         // COUNTER SEM HELDUR UTAN UM THANN NAESTA BOKADA TIMA FYRIR UTLIT A BOKINNI
         var counter = 0;
-        
-              
+
+      $scope.dagurinnIdag = dagatalFactory.dagsetning();
+
+      $scope.prevDay = function() {
+        selectedDay = dagatalFactory.yesterday(new Date(selectedDay));
+        $scope.getDailyBookings(selectedDay);
+        $scope.dagurinnIdag = dagatalFactory.iGaer();
+      };
+
+      $scope.nextDay = function() {
+        selectedDay = dagatalFactory.tomorrow(new Date(selectedDay));
+        $scope.getDailyBookings(selectedDay);
+        $scope.dagurinnIdag = dagatalFactory.aMorgun();
+      };
+
+
         // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
         function update() {
             backendFactory.getBookingByDate(selectedDay).then(function(res) {
@@ -40,7 +54,6 @@
                     // GEYMA BOKANIR
                     $scope.bookings = res.data;
                     $scope.loadingData = false;
-                    
                     $scope.bookingsToday();
                 }
             }, function(err) {
@@ -48,30 +61,35 @@
             });
             $scope.staff = backendFactory.Staff();
             $scope.times = dagatalFactory.timabokanir();
-        };
+        }
         // ENDIR update()
-        
+
         // FYRIR PROGRESS MYND
         $scope.loadingData = true;
 
         // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
         $scope.bookingsToday = function() {
+          console.log($scope.bookings);
             for (var b in $scope.bookings) {
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
                 var myElm = document.getElementById(tmp);
-                myElm.innerHTML = '<p class="confirmedBooking">BOOKING FOR  yyeeessss</p>';
-            };
-        }
-        
+                myElm.innerHTML =
+                  '<p class="confirmedBooking">' + $scope.bookings[b].customer_id + '</p>';
+            }
+        };
+
         function cleanPage() {
             $('.confirmedBooking').remove();
         }
-        
+
         // Get bookings for selected date in datepicker
         $scope.getDailyBookings = function (t) {
-            cleanPage()
+            cleanPage();
             console.log("t:", t);
             selectedDay = t;
+            /**********************************************************************************************/
+            /* $scope.dagurinnIdag = dagatalFactory.dagsetning( vantar lausn á að uppfæra daginn í dag ); */
+            /**********************************************************************************************/
             update();
         };
 
@@ -107,6 +125,6 @@
         console.log("BUTTON_CLICK");
       };
       // END OF BOOKING CLICK
-      
+
     }]);
 })();
