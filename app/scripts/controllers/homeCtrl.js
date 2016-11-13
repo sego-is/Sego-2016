@@ -40,8 +40,8 @@
                     // GEYMA BOKANIR
                     $scope.bookings = res.data;
                     $scope.loadingData = false;
-                    console.log("BOOKINGS", $scope.bookings);
-                    setTimeout($scope.nextBooking(), 5500);
+                    
+                    $scope.bookingsToday();
                 }
             }, function(err) {
                 console.log("update()->getBookingByDate() ERR:", err);
@@ -55,21 +55,11 @@
         $scope.loadingData = true;
 
         // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
-        var objOnPage = {};
-        
-        $scope.nextBooking = function() {
+        $scope.bookingsToday = function() {
             for (var b in $scope.bookings) {
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
-           
                 var myElm = document.getElementById(tmp);
                 myElm.innerHTML = '<p class="confirmedBooking">BOOKING FOR  yyeeessss</p>';
-                
-                /*var compiledDirective;
-                compiledDirective = $compile('<p class="confirmedBooking">BOOKING FOR  yyeeessss</p>');
-                var directiveElement = compiledDirective(objOnPage[tmp].scope);
-                myElm.append(directiveElement);
-          */
-                //console.log("myElm", myElm);
             };
         }
         
