@@ -215,6 +215,34 @@ boka.skilabod {
   margin-left: 40%;
 }
 
+.dagur {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 0px;
+}
+
+.bakkaTakki {
+  float: left;
+  color: #7a43b6;
+  padding-top: 10px;
+  padding-left: 45px;
+  padding-right: 60px;
+}
+
+.bakkaTakki i {
+  cursor: pointer;
+}
+
+.nextTakki {
+  color: #7a43b6;
+  padding-top: 10px;
+}
+
+.nextTakki i {
+  cursor: pointer;
+}
+
 button#adgerd {
   background-color: #7a43b6;
   color: white;
