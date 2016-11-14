@@ -218,15 +218,15 @@ boka.skilabod {
   font-weight: bold;
   font-size: 20px;
   padding-top: 10px;
-  padding-left: 0px;
+  padding-left: 53px;
 }
 
 .bakkaTakki {
   float: left;
   color: #7a43b6;
   padding-top: 10px;
-  padding-left: 45px;
-  padding-right: 60px;
+  padding-left: 20px;
+  padding-right: 0px;
 }
 
 .bakkaTakki i {
@@ -236,6 +236,7 @@ boka.skilabod {
 .nextTakki {
   color: #7a43b6;
   padding-top: 10px;
+  position: 100px;
 }
 
 .nextTakki i {

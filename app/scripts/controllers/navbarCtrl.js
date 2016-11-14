@@ -14,7 +14,7 @@
   angular.module('segoApp')
     .controller('navbarCtrl', ['$scope', 'authService', function ($scope, authService) {
         $scope.isLoggedIn - authService.auth();
-        
+
       }]);
 })();
 
