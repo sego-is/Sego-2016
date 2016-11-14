@@ -22,7 +22,6 @@
               backendFactory.postPerson(s).then(function(res) {
                   scope.state.add = false;
                   scope.staff.push(res.data);
-                  console.log("res.data: ", res.data);
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
               });
@@ -37,7 +36,6 @@
               backendFactory.postService(s).then(function(res) {
                   scope.pricelist.push(res.data);
                   scope.state.add = false;
-                  console.log("stadfestaPrice:", res.data);
               }, function(err) {
                   console.log("ERROR stadfestaPrice(): ", err);
               });
@@ -115,7 +113,10 @@
             scope.editUser = k;
             scope.state.edit = true;
           };
-
+          
+          scope.updateStaff = function() {
+              backendFactory.edit
+          }
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
           scope.state = {
