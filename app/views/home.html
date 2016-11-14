@@ -4,30 +4,41 @@
     alt="">
 </div>
 
-<div class="container-fluid" ng-show="!loadingData">
+<div class="container-fluid bak" ng-show="!loadingData">
 
   <div class="row">
     <div ng-controller="DatepickerCtrl">
-      <div class="col-md-12">
-        <!--<button class="col-md-2" ng-click="prevDay()">bakka</button>-->
-        <div class="bakkaTakki">
-            <i class="fa fa-arrow-left fa-2x"
-               aria-hidden="true"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Fyrri dag" ng-click="prevDay()"></i>
-        </div>
-          <div class="dagur col-md-3">{{ dagurinnIdag }}</div>
-        <div class="nextTakki">
-            <i class="fa fa-arrow-right fa-2x"
-               aria-hidden="true"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Næsta dag" ng-click="nextDay()"></i>
-        </div>
-        <!--<button class="col-md-2" ng-click="nextDay()">áfram</button>-->
-        <div class="col-md-6"></div>
+
+      <!-- Stefáns útgáfa-->
+      <div class="row dagsetning">
+
+           <div class="col-md-10">
+             <i class="fa fa-caret-left buttonleft divTakki pull-left" ng-click="prevDay()"></i>
+             <p class="col-md-3"> {{ dagurinnIdag }} </p>
+             <i class="fa fa-caret-right buttonright divTakki" ng-click="nextDay()"></i>
+           </div>
       </div>
+
+      <!-- Óla útgáfa
+
+        <div class="col-md-12">
+
+      <div class="bakkaTakki">
+        <i class="fa fa-arrow-left fa-2x"
+           aria-hidden="true"
+           data-toggle="tooltip"
+           data-placement="auto"
+           title="Fyrri dag" ng-click="prevDay()"></i>
+      </div>
+      <div class="dagur col-md-3">{{ dagurinnIdag }}</div>
+      <div class="nextTakki">
+        <i class="fa fa-arrow-right fa-2x"
+           aria-hidden="true"
+           data-toggle="tooltip"
+           data-placement="auto"
+           title="Næsta dag" ng-click="nextDay()"></i>
+      </div>-->
+
       <div class="col-md-9">
         <table class="table table-hover table-bordered">
           <thead>
