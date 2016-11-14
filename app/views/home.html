@@ -9,6 +9,7 @@
   <div class="row">
     <div ng-controller="DatepickerCtrl">
 
+      <!-- Stefáns útgáfa -->
       <div class="row dagsetning">
 
            <div class="col-md-10">
@@ -16,9 +17,29 @@
              <p class="col-md-3"> {{ dagurinnIdag }} </p>
              <i class="fa fa-caret-right buttonright divTakki" ng-click="nextDay()"></i>
            </div>
-
-
       </div>
+
+      <!-- Óla útgáfa
+
+        <div class="col-md-12">
+
+      <div class="bakkaTakki">
+        <i class="fa fa-arrow-left fa-2x"
+           aria-hidden="true"
+           data-toggle="tooltip"
+           data-placement="auto"
+           title="Fyrri dag" ng-click="prevDay()"></i>
+      </div>
+      <div class="dagur col-md-2">{{ dagurinnIdag }}</div>
+      <div class="nextTakki">
+        <i class="fa fa-arrow-right fa-2x"
+           aria-hidden="true"
+           data-toggle="tooltip"
+           data-placement="auto"
+           title="Næsta dag" ng-click="nextDay()"></i>
+      </div>
+      <div class="col-md-6"></div>
+      -->
 
       <div class="col-md-9">
         <table class="table table-hover table-bordered">
