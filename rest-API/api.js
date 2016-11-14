@@ -72,11 +72,7 @@
              res.send(doc);
          }
      });
-     
-     
-     
-     
-     
+ 
      /*
     model.Person.find({"company_id": req.params.company_id, "role": 1}, (err, p) => {
       if (!err) {
@@ -304,24 +300,8 @@
         }
     });
   });
-/* PUT -> /services/pricelist/
-  api.put('/services/editPricelist/', bodyParser.json(), (req, res) => {
-    const data = req.body;
-    console.log("data:, /services/editPricelist/", data);
-    model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
-        '$set': {
-            'pricelist.$.name': data.name,
-            'pricelist.$.price': data.price
-        }}, (err, doc) => {
-            if (err) {
-                res.status(500).send(err);
-            }
-            else {
-                res.send(doc);
-            }
-      });
-  });
-*/
+  
+  // REMOVE PERSON FROM COMPANY STAFF
   api.post('/companies/staff/', bodyParser.json(), (req, res) => {
       const data = req.body;
       model.Company.update({ '_id': data.cid },
@@ -331,13 +311,42 @@
             res.status(500).send(err);
         }
         else {
-            res.send('HAS BEEN DELETED')
+            res.send('STAFF HAS BEEN FIRED OR QUIT')
         }
     });
   });
-
-
-  api.get('/companies', (req, res) => {
+  
+  api.put('/companies/staff/', bodyParser.json(), (req, res) => {
+      const data = req.body;
+      model.Company.update({ '_id': { $eq: data.company_id }, 'staff.person_id': { $eq: data.person_id }}, {
+        '$set': {
+            'staff.$.name': data.name
+        }}, (err, doc) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                model.Person.update({ '_id': data.person_id }, {
+                    '$set': {
+                        'name': data.name,
+                        'email': data.email,
+                        'phone': parseInt(data.phone),
+                        'address': data.address,                       
+                        'image_url': null
+                    }}, (err, doc) => {
+                        if (err) {
+                            err.shit = err;
+                            res.status(500).send(err);
+                        }
+                        else {
+                            res.send(doc);
+                        }
+                    });
+                } 
+            });
+      });
+ 
+   api.get('/companies', (req, res) => {
     model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
       if (err) {
         res.status(500).send(err);
@@ -357,7 +366,7 @@
       }
     });
   });
-
+// FIND COMPANY BY AUTH_ID
   api.get('/companies/:id', (req, res) => {
     model.Company.find({ auth_id: req.params.id }, function (err, c) {
       if (err) {

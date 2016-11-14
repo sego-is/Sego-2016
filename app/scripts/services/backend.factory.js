@@ -71,7 +71,7 @@
         });
       }
       
-      backendFactory.getStaff = function() {
+      backendFactory.getPersonsfromCID = function() {
         return $http({
           method: 'GET',
           url: 'http://wwww.sego.is:6969/api/persons/',
@@ -213,7 +213,7 @@
         });
       };
 
-      backendFactory.editPricelist = function(p) {
+      backendFactory.updatePricelist = function(p) {
           p.serviceID = this.ServiceID;
           return $http({
           url: 'http://wwww.sego.is:6969/api/services/pricelist/',
@@ -225,22 +225,25 @@
           },
           data: p
         });
-        /*
-        console.log("OBJECT_SENT_I_EDITPRICELIST:", p);
-        p.company_id = this.ID();
-        return $http({
-          url: 'http://wwww.sego.is:6969/api/services/editPricelist',
-          method: 'POST',
+      };
+      
+      backendFactory.updateStaff = function(s) {
+          console.log("UpdateStaff(s) -> s =>", s);
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/companies/staff/',
+          method: 'PUT',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
-          data: p
+          data: {
+            staff: s,
+            cid: this.ID()
+          }
         });
-        */
-      }
-
+      };
+      
       backendFactory.deleteFromStaff = function (s) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/companies/staff/',
@@ -256,9 +259,6 @@
           }
         });
       };
-
-      
-      
 
       backendFactory.deleteService = function (s) {
         return $http({

@@ -77,7 +77,7 @@
                   '<p class="confirmedBooking">' + $scope.bookings[b].customer_id + '</p>';
             }
         };
-
+        // HREINSA BLADSIDA FYRIR NYJAN DAG
         function cleanPage() {
             $('.confirmedBooking').remove();
         }
