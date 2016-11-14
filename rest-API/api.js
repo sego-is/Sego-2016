@@ -335,6 +335,7 @@
                         'image_url': null
                     }}, (err, doc) => {
                         if (err) {
+                            err.shit = err;
                             res.status(500).send(err);
                         }
                         else {

@@ -228,6 +228,7 @@
       };
       
       backendFactory.updateStaff = function(s) {
+          console.log("UpdateStaff(s) -> s =>", s);
           return $http({
           url: 'http://wwww.sego.is:6969/api/companies/staff/',
           method: 'PUT',
