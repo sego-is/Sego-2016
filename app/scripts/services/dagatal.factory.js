@@ -11,14 +11,14 @@
              {'full': 'september','dagar':30},{'full': 'október','dagar':31},{'full': 'nóvember','dagar':30},{'full': 'desember','dagar':31}];
 
         var dagar = [
-            {'short': 'sun','full': 'sunnudagur'},
-            {'short': 'mán','full': 'mánudagur'},
-            {'short': 'þri','full': 'þriðjudagur'},
-            {'short': 'mið','full': 'miðvikudagur'},
-            {'short': 'fim','full': 'fimmtudagur'},
-            {'short': 'fös','full': 'föstudagur'},
-            {'short': 'lau','full': 'laugardagur'}];
-        
+            {'short': 'sun','full': 'Sunnudagur'},
+            {'short': 'mán','full': 'Mánudagur'},
+            {'short': 'þri','full': 'Þriðjudagur'},
+            {'short': 'mið','full': 'Miðvikudagur'},
+            {'short': 'fim','full': 'Fimmtudagur'},
+            {'short': 'fös','full': 'Föstudagur'},
+            {'short': 'lau','full': 'Laugardagur'}];
+
         // Initialize the time (clock) in booking for the day
       var stillingar = {
         upphafsTimi: 3600 * 7,
@@ -35,11 +35,11 @@
         }
       };
       initTimes();
-      
+
       // END OF INITIALIZE TIME
-      
+
         var dagsetningValinn = new Date();
-        
+
         function toHHMMSS(a) {
             var sec_num = parseInt(a, 10); // don't forget the second param
             var hours   = Math.floor(sec_num / 3600);
@@ -49,7 +49,7 @@
             if (minutes < 10) {minutes = "0"+minutes;}
             return hours + ":" + minutes;
         }
-        
+
     	return {
             dagsetning: function(day, date, month) {
                 if (day === undefined) {
@@ -83,6 +83,30 @@
                     // STYTTA EDA LENGJA I LOTU
                 }
             },
+            yesterday: function(d) {
+              if (d === undefined) {
+                d = new Date();
+              }
+              var t = "00:00:00";
+              var date = d.getDate() - 1;
+              var month = d.getMonth() + 1;
+
+              if (month < 10) { month = "0" + month; }
+              if (date < 10) { date = "0" + date; }
+              return d.getFullYear() + "-" + month + "-" + date + "T" + t;
+            },
+            tomorrow: function(d){
+              if (d === undefined) {
+                d = new Date();
+              }
+              var t = "00:00:00";
+              var date = d.getDate() + 1;
+              var month = d.getMonth()+1;
+
+              if (month < 10) { month = "0" + month; }
+              if (date < 10) { date = "0" + date; }
+              return d.getFullYear() + "-" + month + "-" + date + "T" + t;
+            },
             dags: function(d, t) {
                 if (d === undefined) {
                     d = new Date();
@@ -90,9 +114,9 @@
                 if (t == undefined) {
                     t = "00:00:00";
                 }
-                var month = d.getMonth()+1;
                 var date = d.getDate();
-                
+                var month = d.getMonth()+1;
+
                 if (month < 10) { month = "0" + month; }
                 if (date < 10) { date = "0" + date; }
                 return d.getFullYear() + "-" + month + "-" + date + "T" + t;
@@ -100,12 +124,12 @@
             getHHMMfromDate: function(d) {
                 var HH = d.getHours();
                 var MM = d.getMinutes();
-                
+
                 if (HH   < 10) {HH   = "0"+HH;}
                 if (MM < 10) {MM = "0"+MM;}
-                
+
                 return HH + ":" + MM;
-                
+
             }
     	};
 

@@ -71,7 +71,7 @@
         });
       }
       
-      backendFactory.getStaff = function() {
+      backendFactory.getPersonsfromCID = function() {
         return $http({
           method: 'GET',
           url: 'http://wwww.sego.is:6969/api/persons/',
@@ -213,7 +213,7 @@
         });
       };
 
-      backendFactory.editPricelist = function(p) {
+      backendFactory.updatePricelist = function(p) {
           p.serviceID = this.ServiceID;
           return $http({
           url: 'http://wwww.sego.is:6969/api/services/pricelist/',
@@ -226,7 +226,23 @@
           data: p
         });
       };
-
+      
+      backendFactory.updateStaff = function(s) {
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/companies/staff/',
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: {
+            staff: s,
+            cid: this.ID()
+          }
+        });
+      };
+      
       backendFactory.deleteFromStaff = function (s) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/companies/staff/',

@@ -6,6 +6,7 @@
 }
 
 body {
+
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
@@ -214,6 +215,35 @@ boka.skilabod {
   margin-left: 40%;
 }
 
+.dagur {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 53px;
+}
+
+.bakkaTakki {
+  float: left;
+  color: #7a43b6;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 0px;
+}
+
+.bakkaTakki i {
+  cursor: pointer;
+}
+
+.nextTakki {
+  color: #7a43b6;
+  padding-top: 10px;
+  position: 100px;
+}
+
+.nextTakki i {
+  cursor: pointer;
+}
+
 button#adgerd {
   background-color: #7a43b6;
   color: white;
@@ -341,3 +371,31 @@ padding-left
 .loading {
   padding: 15% 60% 50% 40%;
 }
+
+.bak {
+  background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
+}
+
+.dagsetning {
+  padding-top: 1em;
+  padding-left: 3em;
+}
+
+.dagsetning div p {
+  font-size: 1.8em;
+}
+
+.buttonleft {
+  font-size: 1.8em;
+  padding-top: 0.3em;
+  padding-left: 1em;
+  padding-right: 0.3em;
+}
+
+.buttonright {
+  font-size: 1.8em;
+  padding-right: 1em;
+  padding-top: 0.3em;
+}
+
+

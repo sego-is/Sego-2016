@@ -123,7 +123,7 @@
                  data-toggle="tooltip"
                  data-placement="auto"
                  title="Staðfesta"
-                 ng-click="stadfestaStaff(person)"></i>
+                 ng-click="addStaff(person)"></i>
             </div>
             <div class="form-group col-xs-11">
               <label class="sr-only"
@@ -160,13 +160,13 @@
         <td>{{ s.role }}</td>
         <td>
           <div class="pull-right">
-            <a ng-click="klippTrash(s, $index)">
+            <a ng-click="removeStaff(s, $index)">
               <i class="glyphicon glyphicon-trash divTakki"
                  data-toggle="tooltip"
                  data-placement="auto"
                  title="Henda"></i>
             </a>
-            <a ng-click="klippBreyting(s)">
+            <a ng-click="editStaff(s)">
               <i class="glyphicon glyphicon-pencil divTakki"
                  data-toggle="tooltip"
                  data-placement="auto"
@@ -280,7 +280,7 @@
                  data-toggle="tooltip"
                  data-placement="auto"
                  title="Staðfesta"
-                 ng-click="stadfestaPrice(service)"></i>
+                 ng-click="addPrice(service)"></i>
             </div>
             <div class="form-group col-xs-11">
               <label class="sr-only"
@@ -308,13 +308,13 @@
         <td></td>
         <td>
           <div class="pull-right">
-            <a ng-click="verdTrash(p, $index)">
+            <a ng-click="removePrice(p, $index)">
               <i class="glyphicon glyphicon-trash divTakki"
                  data-toggle="tooltip"
                  data-placement="auto"
                  title="Henda"></i>
             </a>
-            <a ng-click="verdBreyting(p, $index)"
+            <a ng-click="editPrice(p)"
                href="#editing">
               <i class="glyphicon glyphicon-pencil divTakki"
                  data-toggle="tooltip"

@@ -12,27 +12,36 @@
         },
         templateUrl: '../../views/stillingar.html',
         link: function (scope, element, attrs) {
-
-          // CREATE PERSON THAT WILL GET THE ROLE OF HAIRCUTTER OR DRESSER
+          // scope Variables
+          // CREATE PERSON 
           scope.person = {};
+          // CREATE SERVICE
+          scope.service = {};
+           // GET ALL STAFF AND SERVICE FOR SALOON
+          scope.staff = [];
+          //scope.services = [];
+          
+          
+          // COMPANY->_ID PERSON WORKS FOR
           scope.person.company_id = backendFactory.ID();
+          // PERSONE WILL GET ROLE OF STAFF : 1
           scope.person.role = 1;
-
-          scope.stadfestaStaff = function(s) {
+          // ADD PERSON AS STAFF IN COMPANY
+          scope.addStaff = function(s) {
               backendFactory.postPerson(s).then(function(res) {
-                  scope.state.add = false;
                   scope.staff.push(res.data);
+                  scope.state.add = false;
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
               });
           };
-          // END OF CREATING HAIR.. //
+          // END OF CREATING STAFF //
 
-          // CREATING SERVICE
-          scope.service = {};
+          
+          //  COMPANY->_ID OWN SERVICE 
           scope.service.company_id = backendFactory.ID();
 
-          scope.stadfestaPrice = function(s) {
+          scope.addPrice = function(s) {
               backendFactory.postService(s).then(function(res) {
                   scope.pricelist.push(res.data);
                   scope.state.add = false;
@@ -42,21 +51,12 @@
           };
           // END OF CREATE SERVICE
 
-          // GET ALL STAFF AND SERVICE FOR SALOON
-          scope.staff = [];
-          //scope.services = [];
-
+          // GET DATA, NEED TO SHOW
           getStaff();
           getService();
 
           function getStaff() {
               scope.staff = backendFactory.Staff();
-              backendFactory.getStaff().then(function(res) {
-                  console.log("RES getStaff()", res);
-              }, function(err) {
-                  console.log("RERR", err);
-              });
-              
           };
 
           function getService() {
@@ -69,54 +69,56 @@
           }
          // END OF GETTING U/S
 
-
+         // LOKA GLUGGANUM A STILLINGAR VIEW-INU
           scope.closeWindow = function () {
             scope.lokaGlugga();
           };
 
-
-
-          scope.verdTrash = function (p, index) {
+          // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
+          scope.removePrice = function (p, index) {
             backendFactory.deleteFromPricelist(p).then(function successCallback(response) {
                 scope.pricelist.splice(index, 1);
              }, function errorCallback(error) {
 
              });
           };
-
-          scope.verdBreyting = function (p, index) {
-            scope.editVerd = p;
-            scope.editVerd.index = index;
-            scope.state.edit = true;
-            console.log("nytt verð ", JSON.stringify(p));
-          };
           
+          // HELP FUNCTION WHEN CLICK EDIT PRICE
+          scope.editPrice = function (p) {
+            scope.editVerd = p;
+            scope.state.edit = true;
+          };
+          // UPDATE PRICE PUT:CALL
           scope.updatePrice = function() {
-              backendFactory.editPricelist(scope.editVerd).then(function successCallBack(response) {
+              backendFactory.updatePricelist(scope.editVerd).then(function successCallBack(response) {
+                // CLOSE EDIT VIEW
                 scope.state.edit = false;
-                console.log("RESPONSE", response);
             }, function errorCallback(error) {
                     console.log("ERRROR", error);
             });
           }
           
-            
-          scope.klippTrash = function (a, index) {
+          // REMOVE/DELETE STAFF FROM STAFF IN COMPANY, REFERENCE->PERSON DOESN'T DELETE
+          scope.removeStaff = function (a, index) {
             backendFactory.deleteFromStaff(a).then(function successCallback(response) {
                 scope.staff.splice(index, 1);
             }, function errorCallback(error) {
 
             });
           };
-
-          scope.klippBreyting = function (k, index) {
+          // HELP FUNCTION WHEN CLICK EDIT STAFF,
+          scope.editStaff = function (k, index) {
             scope.editUser = k;
             scope.state.edit = true;
           };
           
           scope.updateStaff = function() {
-              backendFactory.edit
-          }
+              backendFactory.updateStaff(scope.editUser).then(function(res) {
+                  console.log("UPDATE SUCCESSFULL", res);
+              }, function(err) {
+                  console.log("UPDATE ERROR", err);
+              });
+          };
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
           scope.state = {
