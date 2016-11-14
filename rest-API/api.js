@@ -330,7 +330,7 @@
                     '$set': {
                         'name': data.name,
                         'email': data.email,
-                        'phone': data.phone,
+                        'phone': parseInt(data.phone),
                         'address': data.address,                       
                         'image_url': null
                     }}, (err, doc) => {
