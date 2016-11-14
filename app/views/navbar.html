@@ -2,7 +2,7 @@
   <nav class="navbar navbar-default navbar-fixed-top" ng-controller="MainCtrl">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
+      <div class="navbar-header col-lg-2">
         <button type="button"
                 class="navbar-toggle collapsed"
                 data-toggle="collapse"
@@ -33,8 +33,7 @@
                     class="btn btn-link btn-lg"
                     ng-click="opnaGlugga('verdlisti')"
                     data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Verðlisti">Verðlisti
+                    data-placement="auto">Verðlisti
               <span class="fa fa-dollar" aria-hidden="true"></span>
             </button>
           </li>
@@ -43,16 +42,14 @@
                     class="btn btn-link btn-lg"
                     ng-click="opnaGlugga('stillingar')"
                     data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Stillingar">Stillingar <span class="fa fa-cogs" aria-hidden="true"></span></button>
+                    data-placement="auto">Stillingar <span class="fa fa-cogs" aria-hidden="true"></span></button>
           </li>
           <li>
             <button type="button"
                     class="btn btn-link btn-lg"
                     ng-click="opnaGlugga('vidskiptavinir')"
                     data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Viðskiptavinir">Viðskiptavinir <span class="fa fa-users" aria-hidden="true"></span></button>
+                    data-placement="auto">Viðskiptavinir <span class="fa fa-users" aria-hidden="true"></span></button>
             <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
           </li>
           <li>
@@ -60,8 +57,7 @@
                     class="btn btn-link btn-lg"
                     ng-click="authService.logout()"
                     data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Útskrá">Útskrá <span class="fa fa-sign-out" aria-hidden="true"></span></button>
+                    data-placement="auto">Útskrá <span class="fa fa-sign-out" aria-hidden="true"></span></button>
           </li>
         </ul>
       </div>

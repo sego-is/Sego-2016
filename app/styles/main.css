@@ -158,6 +158,9 @@ body.jumbotron #page-header-wrapper {
 .container-fluid-fullSego {
   margin-top: 4em;
 }
+
+
+
 /* Verðlisti*/
 .col-xs-12 {
   padding-left: 0;
@@ -184,7 +187,7 @@ boka.skilabod {
 .haus {
   background-color: #7a43b6;
   width: 100%;
-  color: white;
+  color: lightgray;
   font-size: 30px;
   font-family: Gadugi, sans-serif;
   padding-top: 5px;
@@ -196,7 +199,7 @@ boka.skilabod {
 .footer {
   background-color: #7a43b6;
   width: 100%;
-  color: white;
+  color: lightgray;
   font-size: 18px;
   font-family: Gadugi, sans-serif;
   padding-top: 5px;
@@ -207,7 +210,12 @@ boka.skilabod {
 }
 
 .close {
-  color: #ffffff;
+  color: lightgray;
+  opacity: 1;
+}
+
+.close:hover {
+  color: white;
   opacity: 1;
 }
 
@@ -242,11 +250,6 @@ boka.skilabod {
 
 .nextTakki i {
   cursor: pointer;
-}
-
-button#adgerd {
-  background-color: #7a43b6;
-  color: white;
 }
 
 .bookingcontent {
@@ -336,12 +339,33 @@ footer p {
 }
 
 .navbar-default .navbar-brand {
+  /*color: black;*/
+  color: lightgray;
+}
+
+.navbar-default .navbar-brand:hover {
+  /*color: #7a43b6;*/
   color: white;
+}
+
+.navbar-default {
+  background-color: #7a43b6;
+  /*background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");*/
+}
+
+.btn.btn-link.btn-lg {
+  color: lightgray;
+}
+
+.btn.btn-link.btn-lg:hover {
+  /*color: #7a43b6;*/
+  color: white;
+  text-decoration: none;
 }
 
 .navbar-header {
   background-color: #7a43b6;
-  margin-left: 10px;
+  /*background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");*/
   padding-left: 15px;
 }
 
