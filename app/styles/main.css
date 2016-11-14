@@ -369,6 +369,10 @@ footer p {
   padding-left: 15px;
 }
 
+#nav {
+  border-bottom: 2px solid black;
+}
+
 .vidskiptavinir {
   background-color: #7a43b6;
   color: white;
