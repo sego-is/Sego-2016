@@ -11,13 +11,13 @@
              {'full': 'september','dagar':30},{'full': 'október','dagar':31},{'full': 'nóvember','dagar':30},{'full': 'desember','dagar':31}];
 
         var dagar = [
-            {'short': 'sun','full': 'sunnudagur'},
-            {'short': 'mán','full': 'mánudagur'},
-            {'short': 'þri','full': 'þriðjudagur'},
-            {'short': 'mið','full': 'miðvikudagur'},
-            {'short': 'fim','full': 'fimmtudagur'},
-            {'short': 'fös','full': 'föstudagur'},
-            {'short': 'lau','full': 'laugardagur'}];
+            {'short': 'sun','full': 'Sunnudagur'},
+            {'short': 'mán','full': 'Mánudagur'},
+            {'short': 'þri','full': 'Þriðjudagur'},
+            {'short': 'mið','full': 'Miðvikudagur'},
+            {'short': 'fim','full': 'Fimmtudagur'},
+            {'short': 'fös','full': 'Föstudagur'},
+            {'short': 'lau','full': 'Laugardagur'}];
 
         // Initialize the time (clock) in booking for the day
       var stillingar = {

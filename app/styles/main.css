@@ -6,6 +6,7 @@
 }
 
 body {
+
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
@@ -340,4 +341,30 @@ padding-left
 */
 .loading {
   padding: 15% 60% 50% 40%;
+}
+
+.bak {
+  background-image: url("../images/backgr.png");
+}
+
+.dagsetning {
+  padding-top: 1em;
+  padding-left: 3em;
+}
+
+.dagsetning div p {
+  font-size: 1.8em;
+}
+
+.buttonleft {
+  font-size: 1.8em;
+  padding-top: 0.3em;
+  padding-left: 1em;
+  padding-right: 0.3em;
+}
+
+.buttonright {
+  font-size: 1.8em;
+  padding-right: 1em;
+  padding-top: 0.3em;
 }
