@@ -318,26 +318,24 @@
       model.Company.update({ '_id': { $eq: data.company_id }, 'staff.person_id': { $eq: data.person_id }}, {
         '$set': {
             'staff.$.name': data.name
-        }}, (err, doc) => {
-            if (err) {
-                res.status(500).send(err);
+        }}, (e, doc) => {
+            if (e) {
+                res.status(500).send(e);
             }
             else {
-                model.Person.findById(data.person_id,(err, doc) => {
-                        if (err) {
-                            res.status(500).send(err);
+                model.Person.update({'_id': { $eq: data.person_id }}, {
+                    '$set': {
+                        'name' : data.name,
+                        'email': data.email,
+                        'phone' : data.phone
+                    }}, (er, docc) => {
+                        if (er) {
+                            res.status(500).send(er);
                         }
                         else {
-                            doc.name =  data.name;
-                            doc.email = data.email;
-                            doc.phone = data.phone;
-                            doc.address = data.address;
-                            doc.save(function(err) {
-                            if (err) return res.status(500).send(err);
-                            res.send(doc);
-                        });
+                            res.send(docc);
                         }
-                        
+ 
                     });
                 } 
             });
