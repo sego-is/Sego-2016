@@ -118,7 +118,6 @@ body.jumbotron #page-header-wrapper {
     max-width: 730px;
   }
 
-
   /* Remove the padding we set earlier */
   .header,
   .marketing,
@@ -339,13 +338,12 @@ footer p {
 }
 
 .navbar-default .navbar-brand {
-  color: black;
-  /*color: lightgray;*/
+  color: white;
 }
 
 .navbar-default .navbar-brand:hover {
   /*color: #7a43b6;*/
-  color: darkgray;
+  color: black;
 }
 
 /*.navbar-default {
@@ -353,22 +351,22 @@ footer p {
   background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
 }*/
 
-.btn.btn-link.btn-lg {
-  /*color: lightgray;*/
+/*.btn.btn-link.btn-lg {
+  color: lightgray;
   color: black;
-}
+}*/
 
-.btn.btn-link.btn-lg:hover {
-  /*color: #7a43b6;*/
+/*.btn.btn-link.btn-lg:hover {
+  color: #7a43b6;
   color: darkgray;
   text-decoration: none;
-}
-
-/*.navbar-header {
-  background-color: #7a43b6;
-  background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
-  padding-left: 15px;
 }*/
+
+.navbar-header {
+  background-color: #7a43b6;
+  /*background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
+  padding-left: 15px;*/
+}
 
 /*#nav {
   border-bottom: 1px solid black;

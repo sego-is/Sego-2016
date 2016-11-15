@@ -19,7 +19,8 @@
             <li>
               <button type="button"
                       class="btn btn-link btn-lg"
-                      ng-click="authService.login()">
+                      ng-click="authService.login()"
+                      title="Innskráning">
                 Innskráning <span
                 class="fa fa-sign-in" aria-hidden="true"></span></button>
             </li>
@@ -30,7 +31,8 @@
                       class="btn btn-link btn-lg"
                       ng-click="opnaGlugga('verdlisti')"
                       data-toggle="tooltip"
-                      data-placement="auto">Verðlisti
+                      data-placement="auto"
+                      title="Verðlisti">Verðlisti
                 <span class="fa fa-dollar" aria-hidden="true"></span>
               </button>
             </li>
@@ -39,14 +41,16 @@
                       class="btn btn-link btn-lg"
                       ng-click="opnaGlugga('stillingar')"
                       data-toggle="tooltip"
-                      data-placement="auto">Stillingar <span class="fa fa-cogs" aria-hidden="true"></span></button>
+                      data-placement="auto"
+                      title="Stillingar">Stillingar <span class="fa fa-cogs" aria-hidden="true"></span></button>
             </li>
             <li>
               <button type="button"
                       class="btn btn-link btn-lg"
                       ng-click="opnaGlugga('vidskiptavinir')"
                       data-toggle="tooltip"
-                      data-placement="auto">Viðskiptavinir <span class="fa fa-users" aria-hidden="true"></span></button>
+                      data-placement="auto"
+                      title="Viðskiptavinir">Viðskiptavinir <span class="fa fa-users" aria-hidden="true"></span></button>
               <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
             </li>
             <li>
@@ -54,7 +58,8 @@
                       class="btn btn-link btn-lg"
                       ng-click="authService.logout()"
                       data-toggle="tooltip"
-                      data-placement="auto">Útskrá <span class="fa fa-sign-out" aria-hidden="true"></span></button>
+                      data-placement="auto"
+                      title="Útskrá">Útskrá <span class="fa fa-sign-out" aria-hidden="true"></span></button>
             </li>
           </ul>
         </div>
