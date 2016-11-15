@@ -39,9 +39,9 @@
         state.openView = 0;
       };
 
-      $scope.checkPass = function (password) {
+      $scope.checkPass = function (lykill) {
         var compiledDirective;
-        if (1 === 1)/*(password === 'pass')*/ {
+        if (1 === 1)/*(lykill === 'pass')*/ {
           state.openView = 'stillingar';
           compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
           state.isOpen = true;
@@ -69,8 +69,8 @@
               $scope.checkPass();
               //simple password protection
               /*compiledDirective = $compile('<div class="skilabod">' +
-                '<input type="password" placeholder="Lykilorð" ng-model="password"> </input>' +
-                '<button type="submit" ng-click="checkPass(password)">Áfram</button>' +
+                '<input type="password" placeholder="Lykilorð" ng-model="p"> </input>' +
+                '<button type="submit" ng-click="checkPass(p)">Áfram</button>' +
                 '<button type="submit" ng-click="lokaGlugga()">Bakka</button>' +
                 '</div>');*/
               break;
