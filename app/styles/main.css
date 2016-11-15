@@ -339,38 +339,39 @@ footer p {
 }
 
 .navbar-default .navbar-brand {
-  /*color: black;*/
-  color: lightgray;
+  color: black;
+  /*color: lightgray;*/
 }
 
 .navbar-default .navbar-brand:hover {
   /*color: #7a43b6;*/
-  color: white;
+  color: darkgray;
 }
 
-.navbar-default {
+/*.navbar-default {
   background-color: #7a43b6;
-  /*background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");*/
-}
+  background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
+}*/
 
 .btn.btn-link.btn-lg {
-  color: lightgray;
+  /*color: lightgray;*/
+  color: black;
 }
 
 .btn.btn-link.btn-lg:hover {
   /*color: #7a43b6;*/
-  color: white;
+  color: darkgray;
   text-decoration: none;
 }
 
-.navbar-header {
+/*.navbar-header {
   background-color: #7a43b6;
-  /*background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");*/
+  background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
   padding-left: 15px;
-}
+}*/
 
 #nav {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
 }
 
 .vidskiptavinir {
@@ -400,9 +401,9 @@ padding-left
   padding: 15% 60% 50% 40%;
 }
 
-.bak {
+/*.bak {
   background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
-}
+}*/
 
 .dagsetning {
   padding-top: 1em;
