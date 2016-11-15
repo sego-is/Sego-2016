@@ -315,28 +315,26 @@
   
   api.put('/companies/staff/', bodyParser.json(), (req, res) => {
       const data = req.body;
-      model.Company.update({ '_id': { $eq: data.company_id }, 'staff.person_id': { $eq: data.person_id }}, {
+      console.log("DATA:", data);
+      model.Company.update({ '_id': { $eq: data.cid }, 'staff.person_id': { $eq: data.person_id }}, {
         '$set': {
             'staff.$.name': data.name
-        }}, (err, doc) => {
-            if (err) {
-                res.status(500).send(err);
+        }}, (e, doc) => {
+            if (e) {
+                res.status(500).send(e);
             }
             else {
-                model.Person.update({ '_id': data.person_id }, {
+                model.Person.update({'company_id': { $eq: data.cid }, '_id': { $eq: data.person_id }},  {
                     '$set': {
-                        'name': data.name,
+                        'name' : data.name,
                         'email': data.email,
-                        'phone': parseInt(data.phone),
-                        'address': data.address,                       
-                        'image_url': null
-                    }}, (err, doc) => {
-                        if (err) {
-                            err.shit = err;
-                            res.status(500).send(err);
+                        'phone' : parseInt(data.phone)
+                    }}, (er, docc) => {
+                        if (er) {
+                            res.status(500).send(er);
                         }
                         else {
-                            res.send(doc);
+                            res.send(docc);
                         }
                     });
                 } 
