@@ -41,10 +41,7 @@
             res.status(500).send(err);
         }
         else {
-            res.send({
-                messages: "Vona tókst að eyða honum",
-                id: id
-            });
+            res.send(p);
         }
     });
 
