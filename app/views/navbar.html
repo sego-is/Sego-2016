@@ -13,18 +13,18 @@
           <a class="navbar-brand"
              rel="home"
              href="home">SEGO</a>
-          <a class="navbar-brand"
+          <!--<a class="navbar-brand"
              rel="home"
-             href="admin">tmpAdmin</a>
+             href="admin">tmpAdmin</a>-->
         </div>
+        <a class="navbar-brand" rel="home" href="admin">tmpAdmin</a>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right" ng-if="!isAuthenticated">
             <li>
               <button type="button"
                       class="btn btn-link btn-lg"
-                      ng-click="authService.login()"
-                      title="Innskráning">
+                      ng-click="authService.login()">
                 Innskráning <span
                 class="fa fa-sign-in" aria-hidden="true"></span></button>
             </li>
