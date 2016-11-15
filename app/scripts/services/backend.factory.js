@@ -46,14 +46,11 @@
       backendFactory.getCompanyByAuthID = function (c) {
         return $http({
           method: 'GET',
-          url: 'http://wwww.sego.is:6969/api/companies/',
+          url: 'http://wwww.sego.is:6969/api/companies/' + c,
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-          },
-          params: {
-            id: c
           }
         });
       }
