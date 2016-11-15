@@ -25,8 +25,6 @@
 
       $scope.waitingList = {};
 
-      $('[data-toggle="tooltip"]').tooltip();
-
       $scope.vidskiptavinir = {
         'addCustomer': false
       };
@@ -38,11 +36,11 @@
         state.isOpen = false;
         state.openView = 0;
       };
-
+/*
       $scope.checkPass = function (password) {
-        var compiledDirective;
-        if (1 === 1)/*(password === 'pass')*/ {
-          state.openView = 'stillingar';
+        
+        if (1 === 1)/*(password === 'pass')
+          /*state.openView = 'stillingar';
           compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
           state.isOpen = true;
           var directiveElement = compiledDirective(state.scope);
@@ -51,12 +49,9 @@
           $scope.lokaGlugga();
         }
       };
-
+*/
       $scope.opnaGlugga = function (gluggi) {
-        if (!state.isOpen || state.openView !== gluggi) {
-          if(state.openView !==  gluggi && state.isOpen) {
-            $scope.lokaGlugga();
-          }
+        if (!state.isOpen) {
           document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
           state.scope = $scope.$new();
           var compiledDirective;
@@ -66,14 +61,18 @@
               compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
               break;
             case "stillingar":
-              $scope.checkPass();
+              // $scope.checkPass();
               //simple password protection
-              /*compiledDirective = $compile('<div class="skilabod">' +
+              state.openView = gluggi;
+              compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
+              break;
+              /*
+              compiledDirective = $compile('<div class="skilabod">' +
                 '<input type="password" placeholder="Lykilorð" ng-model="password"> </input>' +
                 '<button type="submit" ng-click="checkPass(password)">Áfram</button>' +
                 '<button type="submit" ng-click="lokaGlugga()">Bakka</button>' +
-                '</div>');*/
-              break;
+                '</div>');
+              break;*/
             case "vidskiptavinir":
               state.openView = gluggi;
               compiledDirective = $compile('<vidskiptavinir class="skilabod" close="lokaGlugga()"></vidskiptavinir>');
@@ -82,9 +81,9 @@
           state.isOpen = true;
           var directiveElement = compiledDirective(state.scope);
           $('.skilaboda-haldari').append(directiveElement);
-        } else if (state.openView === gluggi) {
-          $scope.lokaGlugga();
-        }
+        } else {
+            $scope.lokaGlugga();
+        } 
       };
     }]);
 })();
