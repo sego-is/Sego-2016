@@ -425,4 +425,9 @@ padding-left
   padding-top: 0.3em;
 }
 
-
+.horizontal-collapse {
+  height: 70px;
+}
+.navbar-collapse.in {
+  overflow-y: hidden;
+}

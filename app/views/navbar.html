@@ -33,7 +33,8 @@
             <li>
               <button type="button"
                       class="btn btn-link btn-lg"
-                      ng-click="opnaGlugga('verdlisti')">Verðlisti
+                      ng-click="opnaGlugga('verdlisti')">
+                <span class="visible-lg-inline-block visible-md-inline-block"> Verðlisti</span>
                 <span class="fa fa-dollar" aria-hidden="true"></span>
               </button>
             </li>
@@ -41,18 +42,26 @@
               <button type="button"
                       class="btn btn-link btn-lg"
                       ng-click="opnaGlugga('stillingar')">
-                Stillingar <span class="fa fa-cogs" aria-hidden="true"></span></button>
+                <span class="visible-lg-inline-block visible-md-inline-block">Stillingar</span>
+                <span class="fa fa-cogs " aria-hidden="true"></span>
+              </button>
             </li>
             <li>
               <button type="button"
                       class="btn btn-link btn-lg"
-                      ng-click="opnaGlugga('vidskiptavinir')">Viðskiptavinir <span class="fa fa-users" aria-hidden="true"></span></button>
+                      ng-click="opnaGlugga('vidskiptavinir')">
+                <span class="visible-lg-inline-block visible-md-inline-block"> Viðskiptavinir </span>
+                <span class="fa fa-users" aria-hidden="true"></span>
+              </button>
               <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
             </li>
             <li>
               <button type="button"
                       class="btn btn-link btn-lg"
-                      ng-click="authService.logout()">Útskrá <span class="fa fa-sign-out" aria-hidden="true"></span></button>
+                      ng-click="authService.logout()">
+                <span class="visible-lg-inline-block visible-md-inline-block"> Útskrá </span>
+                <span class="fa fa-sign-out" aria-hidden="true"></span>
+              </button>
             </li>
           </ul>
         </div>
