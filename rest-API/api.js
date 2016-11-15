@@ -327,12 +327,17 @@
                         if (err) {
                             res.status(500).send(err);
                         }
-                        doc.email = data.email;
-                        doc.address = data.address;
-                        doc.save(function(err) {
+                        else {
+                            doc.name =  data.name;
+                            doc.email = data.email;
+                            doc.phone = data.phone;
+                            doc.address = data.address;
+                            doc.save(function(err) {
                             if (err) return res.status(500).send(err);
                             res.send(doc);
-                        })
+                        });
+                        }
+                        
                     });
                 } 
             });
