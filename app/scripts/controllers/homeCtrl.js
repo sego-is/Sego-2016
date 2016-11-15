@@ -23,9 +23,7 @@
 
         // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
         var selectedDay = dagatalFactory.dags();
-        // COUNTER SEM HELDUR UTAN UM THANN NAESTA BOKADA TIMA FYRIR UTLIT A BOKINNI
-        var counter = 0;
-
+   
       $scope.dagurinnIdag = dagatalFactory.dagsetning();
 
       $scope.prevDay = function() {
