@@ -39,6 +39,19 @@
         state.openView = 0;
       };
 
+      $scope.checkPass = function (password) {
+        var compiledDirective;
+        if (password === 'pass') {
+          state.openView = 'stillingar';
+          compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
+          state.isOpen = true;
+          var directiveElement = compiledDirective(state.scope);
+          $('.skilaboda-haldari').append(directiveElement);
+        }else {
+          $scope.lokaGlugga();
+        }
+      };
+
       $scope.opnaGlugga = function (gluggi) {
         if (!state.isOpen || state.openView !== gluggi) {
           if(state.openView !==  gluggi && state.isOpen) {
@@ -53,8 +66,11 @@
               compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
               break;
             case "stillingar":
-              state.openView = gluggi;
-              compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
+              compiledDirective = $compile('<div class="skilabod">' +
+                '<input type="password" placeholder="Lykilorð" ng-model="password"> </input>' +
+                '<button type="submit" ng-click="checkPass(password)">Áfram</button>' +
+                '<button type="submit" ng-click="lokaGlugga()">Bakka</button>' +
+                '</div>');
               break;
             case "vidskiptavinir":
               state.openView = gluggi;
