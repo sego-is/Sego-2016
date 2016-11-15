@@ -323,21 +323,16 @@
                 res.status(500).send(err);
             }
             else {
-                model.Person.update({ '_id': data.person_id }, {
-                    '$set': {
-                        'name': data.name,
-                        'email': data.email,
-                        'phone': parseInt(data.phone),
-                        'address': data.address,                       
-                        'image_url': null
-                    }}, (err, doc) => {
+                model.Person.findById(data.person_id,(err, doc) => {
                         if (err) {
-                            err.shit = err;
                             res.status(500).send(err);
                         }
-                        else {
+                        doc.email = data.email;
+                        doc.address = data.address;
+                        doc.save(function(err) {
+                            if (err) return res.status(500).send(err);
                             res.send(doc);
-                        }
+                        })
                     });
                 } 
             });
