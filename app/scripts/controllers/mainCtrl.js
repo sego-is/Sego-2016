@@ -25,8 +25,6 @@
 
       $scope.waitingList = {};
 
-      $('[data-toggle="tooltip"]').tooltip();
-
       $scope.vidskiptavinir = {
         'addCustomer': false
       };
@@ -53,10 +51,7 @@
       };
 
       $scope.opnaGlugga = function (gluggi) {
-        if (!state.isOpen || state.openView !== gluggi) {
-          if(state.openView !==  gluggi && state.isOpen) {
-            $scope.lokaGlugga();
-          }
+        if (!state.isOpen) {
           document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
           state.scope = $scope.$new();
           var compiledDirective;
@@ -82,8 +77,8 @@
           state.isOpen = true;
           var directiveElement = compiledDirective(state.scope);
           $('.skilaboda-haldari').append(directiveElement);
-        } else if (state.openView === gluggi) {
-          $scope.lokaGlugga();
+        } else {
+            $scope.lokaGlugga();
         }
       };
     }]);
