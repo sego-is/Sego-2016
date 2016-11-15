@@ -187,7 +187,7 @@ boka.skilabod {
 .haus {
   background-color: #7a43b6;
   width: 100%;
-  color: lightgray;
+  color: white;
   font-size: 30px;
   font-family: Gadugi, sans-serif;
   padding-top: 5px;
@@ -199,7 +199,7 @@ boka.skilabod {
 .footer {
   background-color: #7a43b6;
   width: 100%;
-  color: lightgray;
+  color: white;
   font-size: 18px;
   font-family: Gadugi, sans-serif;
   padding-top: 5px;
@@ -210,12 +210,12 @@ boka.skilabod {
 }
 
 .close {
-  color: lightgray;
+  color: white;
   opacity: 1;
 }
 
 .close:hover {
-  color: white;
+  color: lightgray;
   opacity: 1;
 }
 
@@ -370,9 +370,9 @@ footer p {
   padding-left: 15px;
 }*/
 
-#nav {
+/*#nav {
   border-bottom: 1px solid black;
-}
+}*/
 
 .vidskiptavinir {
   background-color: #7a43b6;
