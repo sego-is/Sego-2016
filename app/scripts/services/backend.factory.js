@@ -229,6 +229,7 @@
       
       backendFactory.updateStaff = function(s) {
           console.log("UpdateStaff(s) -> s =>", s);
+          s.cid = this.ID();
           return $http({
           url: 'http://wwww.sego.is:6969/api/companies/staff/',
           method: 'PUT',
@@ -237,10 +238,7 @@
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
-          data: {
-            staff: s,
-            cid: this.ID()
-          }
+          data: s
         });
       };
       
