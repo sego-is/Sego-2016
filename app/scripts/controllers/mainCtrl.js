@@ -41,7 +41,7 @@
 
       $scope.checkPass = function (password) {
         var compiledDirective;
-        if (password === 'pass') {
+        if (1 === 1)/*(password === 'pass')*/ {
           state.openView = 'stillingar';
           compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
           state.isOpen = true;
@@ -66,11 +66,13 @@
               compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
               break;
             case "stillingar":
-              compiledDirective = $compile('<div class="skilabod">' +
+              $scope.checkPass();
+              //simple password protection
+              /*compiledDirective = $compile('<div class="skilabod">' +
                 '<input type="password" placeholder="Lykilorð" ng-model="password"> </input>' +
                 '<button type="submit" ng-click="checkPass(password)">Áfram</button>' +
                 '<button type="submit" ng-click="lokaGlugga()">Bakka</button>' +
-                '</div>');
+                '</div>');*/
               break;
             case "vidskiptavinir":
               state.openView = gluggi;
