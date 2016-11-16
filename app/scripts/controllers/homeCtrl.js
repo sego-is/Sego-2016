@@ -27,6 +27,7 @@
         // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
         $scope.dagurinnIdag = dagatalFactory.dagsetning();
 
+
       $scope.prevDay = function() {
         dagatalFactory.iGaer();
         $scope.getDailyBookings(selectedDay);
@@ -71,7 +72,7 @@
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
                 var myElm = document.getElementById(tmp);
                 myElm.innerHTML =
-                  '<p class="confirmedBooking">' + $scope.bookings[b].customer_id + '</p>';
+                  '<p class="confirmedBooking">' + $scope.bookings[b].customer_id.name + '</p>';
             }
         };
         // HREINSA BLADSIDA FYRIR NYJAN DAG

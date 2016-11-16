@@ -307,9 +307,16 @@
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
             res.status(500).send(err);
-        }
-        else {
-            res.send('STAFF HAS BEEN FIRED OR QUIT')
+          }
+          else {
+            model.Person.update({ '_id': data.staff.person_id }, { $set: { 'role' : 0 }}, function(e, d) {
+                if (e) {
+                    res.status(500).send(err);
+                }
+                else {
+                    res.send(d);
+                }
+            }); 
         }
     });
   });
