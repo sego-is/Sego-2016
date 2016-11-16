@@ -23,7 +23,7 @@
 
         // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
         var selectedDay = dagatalFactory.dags();
-   
+
       $scope.dagurinnIdag = dagatalFactory.dagsetning();
 
       $scope.prevDay = function() {
@@ -72,7 +72,7 @@
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
                 var myElm = document.getElementById(tmp);
                 myElm.innerHTML =
-                  '<p class="confirmedBooking">' + $scope.bookings[b].customer_id + '</p>';
+                  '<p class="confirmedBooking">' + $scope.bookings[b].customer_id.name + '</p>';
             }
         };
         // HREINSA BLADSIDA FYRIR NYJAN DAG
@@ -96,6 +96,7 @@
       var booking;
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
       $scope.openBooking = function (t, b, date) {
+
         if (t === undefined) {
           console.log("UNDEFINED");
         } else {
