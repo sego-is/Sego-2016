@@ -347,7 +347,7 @@ footer p {
 .navbar-default .navbar-brand:hover {
   /*color: #7a43b6;*/
   color: black;
-  text-shadow: 3px 3px 5px white;
+  text-shadow: 2px 2px 4px white;
   font-family: Gadugi, sans-serif;
 }
 
@@ -366,7 +366,7 @@ footer p {
 }
 
 .navbar-header {
-  background-color: darkgray;
+  background-color: #7a43b6;
   width: 100px;
   height: 48px;
   -moz-border-radius: 100px/50px;
@@ -398,6 +398,18 @@ footer p {
     top: 0;
     right: 0;
 }
+
+.list-group-item-heading {
+  float: left;
+  border: solid red;
+}
+
+.list-group-item-text {
+  overflow: hidden;
+  padding-left: 250px;
+  padding-top: 10px;
+}
+
 /*
 padding-top
 padding-right
@@ -434,4 +446,13 @@ padding-left
   padding-top: 0.3em;
 }
 
+.thjonusta {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.verd {
+  font-size: 14px;
+  font-weight: bold;
+}
 
