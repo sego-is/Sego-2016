@@ -94,6 +94,7 @@
   });
  
   api.get('/bookings/:date/:id', (req, res) => {
+      /*
       model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
         if (err) {
             res.status(500).send(err);
@@ -108,6 +109,22 @@
             }   
         } 
     });   
+    */
+     model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id').exec(function (err, docs) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if (docs.length === 0) {
+                res.send([]);
+            }
+            else {
+                console.log("DOCS", docs);
+                let b = _.sortBy(docs[0].bookings, 'staff_id');
+                b = _.sortBy(b, 'startTime');
+                res.send(b);
+            }   
+        } 
+    });
   });
   
   api.post('/bookings', bodyParser.json(), (req, res) => {
@@ -246,7 +263,7 @@
           });
         }
         else {
-            res.send("PERSONA BEEN ADDED");
+            res.send(doc);
         }
 
       }
@@ -339,8 +356,9 @@
                     });
                 } 
             });
-      });
+   });
  
+   
    api.get('/companies', (req, res) => {
     model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
       if (err) {
@@ -361,6 +379,7 @@
       }
     });
   });
+  
 // FIND COMPANY BY AUTH_ID
   api.get('/companies/:id', (req, res) => {
     model.Company.find({ auth_id: req.params.id }, function (err, c) {
