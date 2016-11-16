@@ -94,7 +94,6 @@
   });
  
   api.get('/bookings/:date/:id', (req, res) => {
-      /*
       model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
         if (err) {
             res.status(500).send(err);
@@ -109,8 +108,8 @@
             }   
         } 
     });   
-    */
-     model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('person').populate('customer_id').exec(function (err, docs) {
+    /*
+     model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('person').populate('bookings.customer_id').exec(function (err, docs) {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -123,7 +122,7 @@
                 res.send(b);
             }   
         } 
-    })
+    });*/
   });
   
   api.post('/bookings', bodyParser.json(), (req, res) => {
