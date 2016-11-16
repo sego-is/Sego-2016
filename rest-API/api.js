@@ -246,7 +246,7 @@
           });
         }
         else {
-            res.send("PERSONA BEEN ADDED");
+            res.send(doc);
         }
 
       }
@@ -339,8 +339,9 @@
                     });
                 } 
             });
-      });
+   });
  
+   
    api.get('/companies', (req, res) => {
     model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
       if (err) {
@@ -361,6 +362,7 @@
       }
     });
   });
+  
 // FIND COMPANY BY AUTH_ID
   api.get('/companies/:id', (req, res) => {
     model.Company.find({ auth_id: req.params.id }, function (err, c) {
