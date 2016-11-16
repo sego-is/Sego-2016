@@ -110,7 +110,7 @@
         } 
     });   
     */
-     model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('Person').populate('bookings.customer_id').exec(function (err, docs) {
+     model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id').exec(function (err, docs) {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -118,6 +118,7 @@
                 res.send([]);
             }
             else {
+                console.log("DOCS", docs);
                 let b = _.sortBy(docs[0].bookings, 'staff_id');
                 b = _.sortBy(b, 'startTime');
                 res.send(b);
