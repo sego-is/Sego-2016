@@ -430,12 +430,12 @@ padding-left
 }
 
 .dagsetning div p {
-  font-size: 1.8em;
+  font-size: 1.6em;
 }
 
 .buttonleft {
   font-size: 1.8em;
-  padding-top: 0.3em;
+  padding-top: 0.15em;
   padding-left: 1em;
   padding-right: 0.3em;
 }
@@ -443,7 +443,7 @@ padding-left
 .buttonright {
   font-size: 1.8em;
   padding-right: 1em;
-  padding-top: 0.3em;
+  padding-top: 0.15em;
 }
 
 .thjonusta {
@@ -454,5 +454,12 @@ padding-left
 .verd {
   font-size: 14px;
   font-weight: bold;
+}
+
+.horizontal-collapse {
+  height: 70px;
+}
+.navbar-collapse.in {
+  overflow-y: hidden;
 }
 

@@ -10,6 +10,11 @@
      */
     angular.module('segoApp')
       .controller('DatepickerCtrl', ['$scope', function ($scope) {
+///////////////////////////////////////////////////
+        $scope.isNavCollapsed = true;
+        $scope.isCollapsed = false;
+        $scope.isCollapsedHorizontal = false;
+////////////////////////////////////////////////////
         $scope.today = function() {
             $scope.dt = new Date();
             $scope.$emit('dagsetning', $scope.dt);

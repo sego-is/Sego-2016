@@ -4,58 +4,60 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button"
-                  class="navbar-toggle collapsed"
-                  data-toggle="collapse"
-                  data-target="#bs-example-navbar-collapse-1"
-                  aria-expanded="false">
-          </button>
+
           <a class="navbar-brand"
              rel="home"
              href="home">SEGO</a>
           <!--<a class="navbar-brand"
              rel="home"
              href="admin">tmpAdmin</a>-->
+
         </div>
+
         <a class="navbar-brand" rel="home" href="admin">tmpAdmin</a>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right" ng-if="!isAuthenticated">
-            <li>
+          <div class="nav navbar-nav navbar-right" ng-if="!isAuthenticated">
+
               <button type="button"
                       class="btn btn-link btn-lg"
                       ng-click="authService.login()">
                 Innskráning <span
                 class="fa fa-sign-in" aria-hidden="true"></span></button>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav pull-right" ng-if="isAuthenticated">
-            <li>
+
+          </div>
+          <div class="nav navbar-nav pull-right" ng-if="isAuthenticated">
+
               <button type="button"
                       class="btn btn-link btn-lg"
-                      ng-click="opnaGlugga('verdlisti')">Verðlisti
+                      ng-click="opnaGlugga('verdlisti')">
+                <span class="visible-lg-inline-block visible-md-inline-block"> Verðlisti</span>
                 <span class="fa fa-dollar" aria-hidden="true"></span>
               </button>
-            </li>
-            <li>
+
               <button type="button"
                       class="btn btn-link btn-lg"
                       ng-click="opnaGlugga('stillingar')">
-                Stillingar <span class="fa fa-cogs" aria-hidden="true"></span></button>
-            </li>
-            <li>
+                <span class="visible-lg-inline-block visible-md-inline-block">Stillingar</span>
+                <span class="fa fa-cogs " aria-hidden="true"></span>
+              </button>
+
               <button type="button"
                       class="btn btn-link btn-lg"
-                      ng-click="opnaGlugga('vidskiptavinir')">Viðskiptavinir <span class="fa fa-users" aria-hidden="true"></span></button>
+                      ng-click="opnaGlugga('vidskiptavinir')">
+                <span class="visible-lg-inline-block visible-md-inline-block"> Viðskiptavinir </span>
+                <span class="fa fa-users" aria-hidden="true"></span>
+              </button>
               <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
-            </li>
-            <li>
+
               <button type="button"
                       class="btn btn-link btn-lg"
-                      ng-click="authService.logout()">Útskrá <span class="fa fa-sign-out" aria-hidden="true"></span></button>
-            </li>
-          </ul>
-        </div>
+                      ng-click="authService.logout()">
+                <span class="visible-lg-inline-block visible-md-inline-block"> Útskrá </span>
+                <span class="fa fa-sign-out" aria-hidden="true"></span>
+              </button>
+
+          </div>
+
       </div>
       <!-- /.container-fluid -->
     </div>
