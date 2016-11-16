@@ -23,19 +23,18 @@
 
         // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
         var selectedDay = dagatalFactory.dags();
-   
-      $scope.dagurinnIdag = dagatalFactory.dagsetning();
+        
+        // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
+        $scope.dagurinnIdag = dagatalFactory.dagsetning();
 
       $scope.prevDay = function() {
-        selectedDay = dagatalFactory.yesterday(new Date(selectedDay));
+        dagatalFactory.iGaer();
         $scope.getDailyBookings(selectedDay);
-        $scope.dagurinnIdag = dagatalFactory.iGaer();
       };
 
       $scope.nextDay = function() {
-        selectedDay = dagatalFactory.tomorrow(new Date(selectedDay));
+        dagatalFactory.aMorgun();
         $scope.getDailyBookings(selectedDay);
-        $scope.dagurinnIdag = dagatalFactory.aMorgun();
       };
 
 
@@ -83,8 +82,10 @@
         // Get bookings for selected date in datepicker
         $scope.getDailyBookings = function (t) {
             cleanPage();
-            console.log("t:", t);
-            selectedDay = t;
+            dagatalFactory.setDate(t);
+            selectedDay = dagatalFactory.getDate()
+            $scope.dagurinnIdag = dagatalFactory.dagsetning();
+            console.log("$scope.dagurinnIdag: ", $scope.dagurinnIdag);
             /**********************************************************************************************/
             /* $scope.dagurinnIdag = dagatalFactory.dagsetning( vantar lausn á að uppfæra daginn í dag ); */
             /**********************************************************************************************/
@@ -94,20 +95,22 @@
 
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
+
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
-      $scope.openBooking = function (t, b, date) {
+      $scope.openBooking = function (t, b) {
         if (t === undefined) {
           console.log("UNDEFINED");
         } else {
+            console.log("date:", new Date(selectedDay));
           document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
           booking = $scope.$new();
           var compiledDirective;
           $scope.clickOnTimapant = {
             nafn: b.name,
             staffId: b.person_id,
-            date: dagatalFactory.dags(new Date(date)),
-            startTime: dagatalFactory.dags(new Date(date), t),
-            endTime: dagatalFactory.dags(new Date(date), '18:00')
+            date: dagatalFactory.dags(new Date(selectedDay)),
+            startTime: dagatalFactory.dags(new Date(selectedDay), t),
+            endTime: dagatalFactory.dags(new Date(selectedDay), '18:00')
           };
           compiledDirective = $compile('<boka class="skilabod" ' +
             'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');

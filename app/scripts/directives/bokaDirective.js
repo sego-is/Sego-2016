@@ -44,10 +44,8 @@
                   console.log("CB scope.stafesta() - doc: ", doc);
                 }, function (err) {
                   console.log("CB scope.stafesta() - err: ", err);
-
                 });
             };
-
         }
       };
     }]);

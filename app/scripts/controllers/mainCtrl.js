@@ -36,10 +36,10 @@
         state.isOpen = false;
         state.openView = 0;
       };
-
+/*
       $scope.checkPass = function (lykill) {
         var compiledDirective;
-        if (1 === 1)/*(lykill === 'pass')*/ {
+        if (1 === 1)/*(lykill === 'pass') {
           state.openView = 'stillingar';
           compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
           state.isOpen = true;
@@ -49,7 +49,10 @@
           $scope.lokaGlugga();
         }
       };
-
+      */
+      // TEMP TIL AD SYNA EKKI TMPaDMIN VIEW
+      $scope.admin = false;
+      
       $scope.opnaGlugga = function (gluggi) {
         if (!state.isOpen) {
           document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
@@ -61,7 +64,9 @@
               compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
               break;
             case "stillingar":
-              $scope.checkPass();
+             compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
+             
+             // $scope.checkPass();
               //simple password protection
               /*compiledDirective = $compile('<div class="skilabod">' +
                 '<input type="password" placeholder="Lykilorð" ng-model="p"> </input>' +

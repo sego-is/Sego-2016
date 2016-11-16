@@ -223,29 +223,19 @@ boka.skilabod {
 }
 
 .dagur {
-  font-weight: bold;
-  font-size: 20px;
-  padding-top: 10px;
-  padding-left: 53px;
+    width: 85%;
+    margin: 0.5em auto;
+    font-weight: bold;
+    font-size: 2.0em;
 }
 
-.bakkaTakki {
-  float: left;
+.btnSkiptumDag {
   color: #7a43b6;
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-right: 0px;
-}
-
-.bakkaTakki i {
+  margin: 0.5em 0em;
+  top: 50%;
   cursor: pointer;
 }
 
-.nextTakki {
-  color: #7a43b6;
-  padding-top: 10px;
-  position: 100px;
-}
 
 .nextTakki i {
   cursor: pointer;

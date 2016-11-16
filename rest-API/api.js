@@ -69,7 +69,7 @@
              res.send(doc);
          }
      });
- 
+
      /*
     model.Person.find({"company_id": req.params.company_id, "role": 1}, (err, p) => {
       if (!err) {
@@ -78,38 +78,22 @@
         res.status(500).send(err);
       }
     });
- 
+
 */
  });
- 
-   
+
+
   api.get('/bookings/', (req, res) => {
     model.Booking.find({}, function (err, docs) {
       if (err) {
         res.status(500).send(err);
       } else {
         res.send(docs);
-      } 
-    });   
+      }
+    });
   });
- 
+
   api.get('/bookings/:date/:id', (req, res) => {
-      /*
-      model.Booking.find({ company_id: req.params.id, date: req.params.date}, function (err, docs) {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            if (docs.length === 0) {
-                res.send([]);
-            }
-            else {
-                let b = _.sortBy(docs[0].bookings, 'staff_id');
-                b = _.sortBy(b, 'startTime');
-                res.send(b);
-            }   
-        } 
-    });   
-    */
      model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id').exec(function (err, docs) {
         if (err) {
             res.status(500).send(err);
@@ -122,11 +106,11 @@
                 let b = _.sortBy(docs[0].bookings, 'staff_id');
                 b = _.sortBy(b, 'startTime');
                 res.send(b);
-            }   
-        } 
+            }
+        }
     });
   });
-  
+
   api.post('/bookings', bodyParser.json(), (req, res) => {
     const data = req.body;
 
@@ -156,7 +140,7 @@
                                 "endTime":  data.endTime
                             }
                         }},
-                        { safe: true, upsert: true }, 
+                        { safe: true, upsert: true },
                         function (err, doc) {
                             if (err) {
                                 res.status(500).send(err);
@@ -178,7 +162,7 @@
                         "endTime":  data.endTime
                     }
                 }},
-                { safe: true, upsert: true }, 
+                { safe: true, upsert: true },
                 function (err, doc) {
                     if (err) {
                         res.status(500).send(err);
@@ -190,7 +174,7 @@
         }
       }
     });
-    
+
     /*
      const m = new model.Booking(req.body);
      m.save(function(err, doc) {
@@ -239,7 +223,7 @@
         }
     });
   });
-  
+
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
     model.Person.create(p, function (err, doc) {
@@ -283,7 +267,7 @@
         }
     });
   });
-  
+
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
       model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
@@ -299,7 +283,7 @@
             }
       });
   });
-  
+
   // DELETE specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
@@ -314,7 +298,7 @@
         }
     });
   });
-  
+
   // REMOVE PERSON FROM COMPANY STAFF
   api.post('/companies/staff/', bodyParser.json(), (req, res) => {
       const data = req.body;
@@ -329,7 +313,7 @@
         }
     });
   });
-  
+
   api.put('/companies/staff/', bodyParser.json(), (req, res) => {
       const data = req.body;
       console.log("DATA:", data);
@@ -354,11 +338,11 @@
                             res.send(docc);
                         }
                     });
-                } 
+                }
             });
    });
- 
-   
+
+
    api.get('/companies', (req, res) => {
     model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
       if (err) {
@@ -379,7 +363,7 @@
       }
     });
   });
-  
+
 // FIND COMPANY BY AUTH_ID
   api.get('/companies/:id', (req, res) => {
     model.Company.find({ auth_id: req.params.id }, function (err, c) {

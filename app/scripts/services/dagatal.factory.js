@@ -37,7 +37,6 @@
       initTimes();
 
       // END OF INITIALIZE TIME
-
         var dagsetningValinn = new Date();
 
         function toHHMMSS(a) {
@@ -51,21 +50,21 @@
         }
 
     	return {
-            dagsetning: function(day, date, month) {
-                if (day === undefined) {
+            dagsetning: function(d) {
+                if (d === undefined) {
                     return " " + dagar[dagsetningValinn.getDay()].full +  " " + dagsetningValinn.getDate() + ". " + months[dagsetningValinn.getMonth()].full + "";
                 }
                 else {
-                    return " " + dagar[day].full +  " " + date + ". " + months[month].full + "";
+                    return " " + dagar[d.getDay()].full +  " " + d.getDate() + ". " + months[d.getMonth()].full + "";
                 }
             },
             aMorgun: function() {
                 dagsetningValinn.setDate(dagsetningValinn.getDate() + 1);
-                return this.dagsetning(dagsetningValinn.getDay(), dagsetningValinn.getDate(), dagsetningValinn.getMonth());
+                //return this.dagsetning(dagsetningValinn.getDay(), dagsetningValinn.getDate(), dagsetningValinn.getMonth());
             },
             iGaer: function() {
                 dagsetningValinn.setDate(dagsetningValinn.getDate() - 1);
-                return this.dagsetning(dagsetningValinn.getDay(), dagsetningValinn.getDate(), dagsetningValinn.getMonth());
+                //return this.dagsetning(dagsetningValinn.getDay(), dagsetningValinn.getDate(), dagsetningValinn.getMonth());
             },
             timasetning: function(a) {
                 if (a === undefined) {
@@ -82,30 +81,6 @@
                 else {
                     // STYTTA EDA LENGJA I LOTU
                 }
-            },
-            yesterday: function(d) {
-              if (d === undefined) {
-                d = new Date();
-              }
-              var t = "00:00:00";
-              var date = d.getDate() - 1;
-              var month = d.getMonth() + 1;
-
-              if (month < 10) { month = "0" + month; }
-              if (date < 10) { date = "0" + date; }
-              return d.getFullYear() + "-" + month + "-" + date + "T" + t;
-            },
-            tomorrow: function(d){
-              if (d === undefined) {
-                d = new Date();
-              }
-              var t = "00:00:00";
-              var date = d.getDate() + 1;
-              var month = d.getMonth()+1;
-
-              if (month < 10) { month = "0" + month; }
-              if (date < 10) { date = "0" + date; }
-              return d.getFullYear() + "-" + month + "-" + date + "T" + t;
             },
             dags: function(d, t) {
                 if (d === undefined) {
@@ -130,6 +105,12 @@
 
                 return HH + ":" + MM;
 
+            },
+            getDate: function() {
+                return dagsetningValinn;
+            },
+            setDate: function(d) {
+                dagsetningValinn = new Date(d);
             }
     	};
 
