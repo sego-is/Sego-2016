@@ -33,22 +33,23 @@
           
           
           // WHEN
-          scope.addCus = false;
-          scope.addCust = function () {
-            scope.addCus = !scope.addCus;
-          };
-          
-          scope.editCus = false;
+  
+          scope.modifyCus = false;
           scope.editCust = function(c, index) {
               if (c !== undefined) {
                   scope.person = c;
-                  scope.editCus = !scope.editCus;
+                  scope.modifyCus = !scope.modifyCus;
               }
               else {
-                  scope.editCus = !scope.editCus;
+                  scope.modifyCus = !scope.modifyCus;
               }
           };
-
+          
+          scope.toggleCus = function() {
+              scope.modifyCus = !scope.modifyCus;
+              scope.person = {};
+          };
+          
           scope.addCustomer = function (s) {
             console.log("bæta við nýjum viðskiptavin: ", s);
              backendFactory.postPerson(s).then(function (res) {

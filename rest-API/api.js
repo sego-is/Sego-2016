@@ -222,7 +222,49 @@
   });
 
   api.post('/persons', bodyParser.json(), (req, res) => {
-    const p = new model.Person(req.body);
+    const data = req.body;
+    if (data._id === undefined) {
+        model.Person.create(p, function (err, doc) {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                if (data.role === 1) {
+                    model.Company.update({'_id': data.company_id}, {
+                        $push: { "staff": {
+                            "person_id": doc._id,
+                            "name": doc.name
+                        }
+                        }}, function (err) {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else {
+                                res.send(doc);
+                            }
+                    });
+                }
+                else {
+                    res.send(doc);
+                }
+            }
+      });
+    }
+    else {
+        model.Person.update({ '_id': { $eq: data._id }}, { '$set': {
+            'name': data.name,
+            'email': data.email,
+            'phone': parseInt(data.phone),
+            'address': data.address
+        }}, (err, doc) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                res.send(doc);
+            }
+        });
+    }
     /* model.Person.findById(p._id, (err, per) => {
          if (err) {
              res.status(500).send(err);
@@ -232,32 +274,7 @@
          }
     });
    */
-    model.Person.create(p, function (err, doc) {
-      if (err) {
-        res.status(500).send(err);
-      }
-      else {
-        if (req.body.role === 1) {
-          model.Company.update({'_id': req.body.company_id}, {
-            $push: { "staff": {
-                "person_id": doc._id,
-                "name": doc.name
-              }
-            }}, function (err) {
-                if (err) {
-                    res.status(500).send(err);
-                }
-                else {
-                    res.send(doc);
-                }
-          });
-        }
-        else {
-            res.send(doc);
-        }
-
-      }
-    })
+    
   });
 
   // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
