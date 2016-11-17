@@ -33,7 +33,7 @@
                    class="form-control inputField"
                    name="name"
                    ng-model="person.name"
-                   placeholder="Nafn">
+                   placeholder="Nafn" required>
           </div>
           <div class="form-group col-xs-11">
             <label class="sr-only" for="phone">Sími</label>
@@ -41,7 +41,7 @@
                    class="form-control inputField"
                    name="phone"
                    ng-model="person.phone"
-                   placeholder="Símanúmer">
+                   placeholder="Símanúmer" required>
           </div>
        
           <div class="form-group col-xs-11">
@@ -50,7 +50,7 @@
                    class="form-control inputField"
                    name="email"
                    ng-model="person.email"
-                   placeholder="Netfang">
+                   placeholder="Netfang" required>
           </div>
            <div class="form-group col-xs-11">
             <label class="sr-only" for="email">Heimilisfang</label>
@@ -77,7 +77,7 @@
     <tr ng-repeat="vinur in vidskiptavinir track by $index" id="{{ $index }}">
             <td>{{ vinur.name }}</td>
             <td>{{ vinur.phone }}</td>
-            <td></td>
+            <td>{{ vinur.email }}</td>
             <td>
                 <div class="pull-right">
                 <a ng-click="editCust(vinur, $index)">
