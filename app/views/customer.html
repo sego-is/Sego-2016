@@ -65,6 +65,14 @@
                    ng-model="person.email"
                    placeholder="Netfang">
           </div>
+           <div class="form-group col-xs-11">
+            <label class="sr-only" for="email">Heimilisfang</label>
+            <input type="text"
+                   class="form-control inputField"
+                   name="email"
+                   ng-model="person.address"
+                   placeholder="Heimilisfang">
+          </div>
         </form>
       </td>
     </tr>
@@ -100,10 +108,10 @@
         <td></td>
     </tr>
     <tr>
+        <td class="fa fa-arrow-left fa-3x btnTilbaka" ng-click="editCust()"></td>
         <td></td>
         <td></td>
         <td></td>
-        <td ng-click="editCust()">Hætta við</td>
     </tr>
     </tbody>
   </table>

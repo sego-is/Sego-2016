@@ -51,8 +51,8 @@
                 else {
                     // GEYMA BOKANIR
                     $scope.bookings = res.data;
-                    $scope.loadingData = false;
                     $scope.bookingsToday();
+                    $scope.loadingData = false;
                 }
             }, function(err) {
                 console.log("update()->getBookingByDate() ERR:", err);

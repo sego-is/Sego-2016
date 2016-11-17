@@ -100,7 +100,6 @@
                 res.send([]);
             }
             else {
-                console.log("DOCS", docs);
                 let b = _.sortBy(docs[0].bookings, 'staff_id');
                 b = _.sortBy(b, 'startTime');
                 res.send(b);
@@ -224,6 +223,15 @@
 
   api.post('/persons', bodyParser.json(), (req, res) => {
     const p = new model.Person(req.body);
+    /* model.Person.findById(p._id, (err, per) => {
+         if (err) {
+             res.status(500).send(err);
+         }
+         else {
+             res.send(per);
+         }
+    });
+   */
     model.Person.create(p, function (err, doc) {
       if (err) {
         res.status(500).send(err);
