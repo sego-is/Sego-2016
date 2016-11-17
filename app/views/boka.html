@@ -7,13 +7,13 @@
     <td colspan="4">
       <h4>Klippari: {{ objFrom.nafn }}</h4>
       <h5>Tími: {{ objFrom.startTime }}</h5>
-      <form class="form-horizontal">
+      <form name="myForm" class="form-horizontal">
         <div class="form-group col-xs-11">
           <input type="text"
+                 name="name"
                  class="form-control inputField"
                  ng-model="objFrom.customer"
                  placeholder="Nafn"
-                 ng-model="objFrom.customer"
                  required>
         </div>
         <div class="pull-right col-xs-1">
@@ -22,25 +22,35 @@
              data-toggle="tooltip"
              data-placement="auto"
              title="Staðfesta"
-             ng-click="stadfesta(objFrom)"></i>
+             ng-click="myForm.$invalid ? alert('Please correct the form') : stadfesta(objFrom)"></i>
         </div>
         <div class="form-group col-xs-11">
           <input type="tel"
+                 ng-minlength="7"
+                 ng-maxlength="7"
+                 name="phone"
                  class="form-control inputField"
                  ng-model="objFrom.phone"
                  placeholder="Sími"
-                 ng-model="objFrom.phone"
                  required>
         </div>
         <div class="form-group col-xs-11">
           <input type="text"
+                 name="service"
                  class="form-control inputField"
                  ng-model="objFrom.service"
                  placeholder="Aðgerð"
-                 ng-model="objFrom.service"
                  required>
         </div>
       </form>
+
+      <!--     testing purposes      -->
+      <p>The input's valid state is:</p>
+      <h4>{{myForm.name.$valid}}</h4>
+      <h4>{{myForm.phone.$valid}}</h4>
+      <h4>{{myForm.service.$valid}}</h4>
+      <!--  testing purposes  done   -->
+
     </td>
   </div>
   <div class="footer">SEGO</div>

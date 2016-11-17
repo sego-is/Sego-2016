@@ -454,3 +454,9 @@ padding-left
   overflow-y: hidden;
 }
 
+input.ng-invalid {
+  background-color:pink;
+}
+input.ng-valid {
+  background-color:lightgreen;
+}

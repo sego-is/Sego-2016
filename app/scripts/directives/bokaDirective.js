@@ -30,8 +30,9 @@
             };
 
             scope.stadfesta = function(bokun) {
+
                 console.log("Bókun ", JSON.stringify(bokun));
-                backendFactory.postBooking({
+                /*backendFactory.postBooking({
                     company_id: backendFactory.ID(),
                     startTime: scope.objFrom.startTime,
                     endTime: scope.objFrom.endTime,
@@ -44,7 +45,7 @@
                   console.log("CB scope.stafesta() - doc: ", doc);
                 }, function (err) {
                   console.log("CB scope.stafesta() - err: ", err);
-                });
+                });*/
             };
         }
       };
