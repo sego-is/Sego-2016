@@ -66,12 +66,7 @@
             };
             // END OF DELETE USER
             
-            // GET ALL CUSTOMERS FROM CID
-            backendFactory.getCustomerByCID().then(function(res) {
-                console.log("backendFactory.getCustomerByCID(), res: ", res)
-            }, function(err) {
-                console.log("backendFactory.getCustomerByCID(), err: ", err)
-            });
+
             
             // GET ALL COLLECTIONS IN BOOKINGS
             backendFactory.getBooking().then(function(res) {

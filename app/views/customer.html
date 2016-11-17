@@ -10,7 +10,7 @@
         <div class="pull-left">Nafn</div>
       </th>
       <th>Símanúmer</th>
-      <th></th>
+      <th>Netfang</th>
       <th>
         <div class="pull-right">
           <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
@@ -23,9 +23,8 @@
       </th>
     </tr>
     </thead>
-    <tbody>
+    <tbody ng-if="addCus">
     <tr>
-    <tr ng-if="addCus">
       <td colspan="4">
         <form class="form-horizontal">
           <div class="form-group col-xs-11">
@@ -69,53 +68,42 @@
         </form>
       </td>
     </tr>
+    </tbody>
     <!------------------------------------------------------------------------------------------->
     <!-------------------------          Viðskiptavinir          -------------------------------->
     <!------------------------------------------------------------------------------------------->
-    <tr ng-repeat="vinur in vidskiptavinir track by $index" data-toggle="collapse" data-target=".demo1">
-      <td>{{ vinur.nafn }}</td>
-      <td>{{ vinur.simi }}</td>
-      <td></td>
-      <td>
-        <div class="pull-right">
-          <a ng-click="klippTrash()">
-            <i class="glyphicon glyphicon-trash divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Henda"></i>
-          </a>
-          <a ng-click="klippBreyting()">
-            <i class="glyphicon glyphicon-pencil divTakki"
-               data-toggle="tooltip"
-               data-placement="auto"
-               title="Breyta"></i>
-          </a>
-        </div>
-      </td>
+    <tbody ng-if="!editCus">
+    <tr ng-repeat="vinur in vidskiptavinir track by $index" id="{{ $index }}">
+            <td>{{ vinur.name }}</td>
+            <td>{{ vinur.phone }}</td>
+            <td></td>
+            <td>
+                <div class="pull-right">
+                <a ng-click="editCust(vinur, $index)">
+                    <i class="glyphicon glyphicon-pencil divTakki"></i>
+                </a>
+                </div>
+            </td>
+    </tr>
+    </tbody>
+    <tbody ng-if="editCus">
     <tr>
-      <td class="hiddenRow">
-        <div class="collapse demo1">Netfang:</div>
-      </td>
-      <td class="hiddenRow" colspan="3">
-        <div class="collapse demo1">{{ vinur.netfang }}</div>
-      </td>
+        <td>{{ person.name }}</td>
+        <td>{{ person.phone }}</td>
+        <td>{{ person.email }}</td>
+        <td></td>
     </tr>
     <tr>
-      <td class="hiddenRow">
-        <div class="collapse demo1">Heimilisfang:</div>
-      </td>
-      <td class="hiddenRow" colspan="3">
-        <div class="collapse demo1">{{ vinur.heimilisfang }}</div>
-      </td>
+        <td>{{ person.address }}</td>
+        <td>{{ person.role }}</td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-      <td class="hiddenRow" colspan="3">
-        <div class="collapse demo1">Athugasemd:</div>
-      </td>
-      <td class="hiddenRow" colspan="3">
-        <div ng-repeat="ath in vinur.Athugasemdir" class="collapse demo1 athugasemd"> {{ ath }}</div>
-      </td>
-    </tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td ng-click="editCust()">Hætta við</td>
     </tr>
     </tbody>
   </table>

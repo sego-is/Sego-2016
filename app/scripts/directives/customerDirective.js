@@ -4,40 +4,49 @@
 
   angular
     .module('segoApp')
-    .directive('vidskiptavinir', ['$http', 'backendFactory', function ($http, backendFactory) {
+    .directive('customer', ['$compile', 'backendFactory', function ($compile, backendFactory) {
       return {
         restrict: 'E',
         scope: {
           lokaGlugga: '&close'
         },
-        templateUrl: '../../views/vidskiptavinir.html',
+        templateUrl: '../../views/customer.html',
         link: function (scope, element, attrs) {
-
+          
+          // GET ALL CUSTOMERS FROM CID
+          backendFactory.getCustomerByCID().then(function(res) {
+              scope.vidskiptavinir = res.data;
+          }, function(err) {
+              console.log("customerDirective, getCustomerByCID() ERROR:", err)
+              scope.vidskiptavinir = [];
+          });
+          
+          // WHEN CREATING NEW PERSON
           scope.person = {};
           scope.person.company_id = backendFactory.ID();
           scope.person.role = 0;
 
+          // TO CLOSE THIS VIEW
           scope.closeWindow = function () {
             scope.lokaGlugga();
           };
-
-          scope.vidskiptavinir = [{
-            'nafn': 'Hillary Clinton',
-            'simi': '9112119',
-            'netfang': 'Hillary@lewinsky.com',
-            'heimilisfang': 'Bandaríkin 16',
-            'Athugasemdir': ['Vill verða forseti']
-          }, {
-            'nafn': 'Arnfinnur Geirsson',
-            'simi': '5684715',
-            'netfang': 'finnur@gmail.com',
-            'heimilisfang': 'Brávallargata 7',
-            'Athugasemdir': ['Vill láta gæla við sig meðan á klippingu stendur',
-              'Mikill áhugamaður um uppstopun á grænmeti og ávöxtum']
-          }];
+          
+          
+          // WHEN
           scope.addCus = false;
           scope.addCust = function () {
             scope.addCus = !scope.addCus;
+          };
+          
+          scope.editCus = false;
+          scope.editCust = function(c, index) {
+              if (c !== undefined) {
+                  scope.person = c;
+                  scope.editCus = !scope.editCus;
+              }
+              else {
+                  scope.editCus = !scope.editCus;
+              }
           };
 
           scope.addCustomer = function (s) {
@@ -49,12 +58,8 @@
             });
           };
 
-          scope.hendaVidskiptavin = function () {
+          scope.removeCustomer = function () {
             console.log("henda viðskiptavin");
-          };
-
-          scope.breytaVidskiptavin = function () {
-            console.log("breyta viðskiptavin");
           };
         }
       };
