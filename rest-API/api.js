@@ -69,19 +69,17 @@
              res.send(doc);
          }
      });
-
-     /*
-    model.Person.find({"company_id": req.params.company_id, "role": 1}, (err, p) => {
-      if (!err) {
-        res.send(p);
+ });
+ // GET ALL CUSTOMER FOR GIVEN COMPANY
+ api.get('/persons/:company_id/customers', (req, res) => {
+    model.Person.find({'company_id': req.params.company_id, 'role': 0}, (err, p) => {
+      if (err) {
+          res.status(500).send(err);
       } else {
-        res.status(500).send(err);
+        res.send(p);
       }
     });
-
-*/
  });
-
 
   api.get('/bookings/', (req, res) => {
     model.Booking.find({}, function (err, docs) {

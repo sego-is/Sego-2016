@@ -19,7 +19,7 @@
             // END GETTING ALL //
 
             // GET ALL USERS //
-            backendFactory.getPersons().then(function (response) {
+            backendFactory.getPersonsfromCID().then(function (response) {
                 $scope.users = response.data;
                 console.log("RESPONSE:", response);
             }).catch(function(err) {
@@ -65,6 +65,13 @@
                 }).finally(function() {} );
             };
             // END OF DELETE USER
+            
+            // GET ALL CUSTOMERS FROM CID
+            backendFactory.getCustomerByCID().then(function(res) {
+                console.log("backendFactory.getCustomerByCID(), res: ", res)
+            }, function(err) {
+                console.log("backendFactory.getCustomerByCID(), err: ", err)
+            });
             
             // GET ALL COLLECTIONS IN BOOKINGS
             backendFactory.getBooking().then(function(res) {
