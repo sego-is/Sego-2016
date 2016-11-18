@@ -83,6 +83,18 @@
         });  
       };
       
+      backendFactory.getCustomerByCID = function() {
+        return $http({
+            method: 'GET',
+            url: 'http://www.sego.is:6969/api/persons/' + this.ID() + '/customers',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
+      };
+      
       // PERSON REST CALLS / BOTH FOR CUSTOMERS AND STAFF //
       backendFactory.getPersons = function () {
         return $http({

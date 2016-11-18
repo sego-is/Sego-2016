@@ -7,25 +7,35 @@
     <td colspan="4">
       <h4>Klippari: {{ objFrom.nafn }}</h4>
       <h5>Tími: {{ objFrom.startTime }}</h5>
-      <form name="myForm" class="form-horizontal">
+      <form name="bookingForm" class="form-horizontal">
         <div class="form-group col-xs-11">
           <input type="text"
                  name="name"
+                 ng-class="{error: badInput && bookingForm.name.$error.required}"
+                 ng-click="badInput = false"
+                 ng-minlength="3"
+                 ng-maxlength="44"
                  class="form-control inputField"
                  ng-model="objFrom.customer"
                  placeholder="Nafn"
                  required>
         </div>
+        <!-- vantar gott error msg eða eitthvað -->
+        <div ng-show="badInput && bookingForm.name.$error.required">x</div>
         <div class="pull-right col-xs-1">
           <i class="fa fa-plus fa-2x stadfestaTakki"
              aria-hidden="true"
              data-toggle="tooltip"
              data-placement="auto"
              title="Staðfesta"
-             ng-click="myForm.$invalid ? alert('Please correct the form') : stadfesta(objFrom)"></i>
+
+             ng-click="stadfesta(objFrom)"></i>
         </div>
         <div class="form-group col-xs-11">
-          <input type="tel"
+          <!-- input type="tel" er bara stutt í safari -->
+          <input type="number"
+                 ng-click="badInput = false"
+                 ng-class="{error: badInput && bookingForm.phone.$error.required}"
                  ng-minlength="7"
                  ng-maxlength="7"
                  name="phone"
@@ -34,23 +44,21 @@
                  placeholder="Sími"
                  required>
         </div>
+        <!-- vantar gott error msg eða eitthvað -->
+        <div ng-show="badInput && bookingForm.phone.$error.required">x</div>
         <div class="form-group col-xs-11">
           <input type="text"
                  name="service"
+                 ng-click="badInput = false"
+                 ng-class="{error: badInput && bookingForm.service.$error.required}"
                  class="form-control inputField"
                  ng-model="objFrom.service"
                  placeholder="Aðgerð"
                  required>
+          <!-- vantar gott error msg eða eitthvað -->
+          <div ng-show="badInput && bookingForm.service.$error.required">x</div>
         </div>
       </form>
-
-      <!--     testing purposes      -->
-      <p>The input's valid state is:</p>
-      <h4>{{myForm.name.$valid}}</h4>
-      <h4>{{myForm.phone.$valid}}</h4>
-      <h4>{{myForm.service.$valid}}</h4>
-      <!--  testing purposes  done   -->
-
     </td>
   </div>
   <div class="footer">SEGO</div>

@@ -454,9 +454,18 @@ padding-left
   overflow-y: hidden;
 }
 
-input.ng-invalid {
-  background-color:pink;
-}
 input.ng-valid {
-  background-color:lightgreen;
+  outline: none;
+  border-color:lightgreen;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+.btnTilbaka {
+    color: #7a43b6;
+}
+
+.error {
+  outline: none;
+  border-color: red;
+  box-shadow: 0 0 10px #9ecaed;
 }

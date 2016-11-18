@@ -29,9 +29,18 @@
                 scope.close();
             };
 
-            scope.stadfesta = function(bokun) {
 
-                console.log("Bókun ", JSON.stringify(bokun));
+            scope.stadfesta = function(bokun) {
+              console.log(scope.badInput);
+              if(scope.bookingForm.$valid) {
+                console.log("getur bókað það ", JSON.stringify(bokun));
+                scope.badInput = false;
+              } else {
+                console.log("vantar input ");
+                scope.badInput = true;
+              }
+
+
                 /*backendFactory.postBooking({
                     company_id: backendFactory.ID(),
                     startTime: scope.objFrom.startTime,

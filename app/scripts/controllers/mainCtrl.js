@@ -76,7 +76,7 @@
               break;
             case "vidskiptavinir":
               state.openView = gluggi;
-              compiledDirective = $compile('<vidskiptavinir class="skilabod" close="lokaGlugga()"></vidskiptavinir>');
+              compiledDirective = $compile('<customer class="skilabod" close="lokaGlugga()"></customer>');
               break;
           }
           state.isOpen = true;

@@ -23,7 +23,7 @@
 
         // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
         var selectedDay = dagatalFactory.dags();
-        
+
         // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
         $scope.dagurinnIdag = dagatalFactory.dagsetning();
 
@@ -51,8 +51,8 @@
                 else {
                     // GEYMA BOKANIR
                     $scope.bookings = res.data;
-                    $scope.loadingData = false;
                     $scope.bookingsToday();
+                    $scope.loadingData = false;
                 }
             }, function(err) {
                 console.log("update()->getBookingByDate() ERR:", err);

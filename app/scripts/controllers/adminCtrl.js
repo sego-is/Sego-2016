@@ -19,7 +19,7 @@
             // END GETTING ALL //
 
             // GET ALL USERS //
-            backendFactory.getPersons().then(function (response) {
+            backendFactory.getPersonsfromCID().then(function (response) {
                 $scope.users = response.data;
                 console.log("RESPONSE:", response);
             }).catch(function(err) {
@@ -65,6 +65,8 @@
                 }).finally(function() {} );
             };
             // END OF DELETE USER
+            
+
             
             // GET ALL COLLECTIONS IN BOOKINGS
             backendFactory.getBooking().then(function(res) {
