@@ -10,6 +10,7 @@
    */
   angular.module('segoApp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
+        $scope.bookings = [];
         // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
         var p = JSON.parse(localStorage.getItem('profile'));
         backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
@@ -22,19 +23,19 @@
         });
 
         // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
-        var selectedDay = dagatalFactory.dags();
+        var selectedDay = dagatalFactory.getStringForDate();
 
         // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
-        $scope.dagurinnIdag = dagatalFactory.dagsetning();
+        $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
 
 
       $scope.prevDay = function() {
-        dagatalFactory.iGaer();
+        dagatalFactory.yesterday();
         $scope.getDailyBookings(selectedDay);
       };
 
       $scope.nextDay = function() {
-        dagatalFactory.aMorgun();
+        dagatalFactory.tomorrow();
         $scope.getDailyBookings(selectedDay);
       };
 
@@ -58,7 +59,7 @@
                 console.log("update()->getBookingByDate() ERR:", err);
             });
             $scope.staff = backendFactory.Staff();
-            $scope.times = dagatalFactory.timabokanir();
+            $scope.times = dagatalFactory.timeSession();
         }
         // ENDIR update()
 
@@ -85,7 +86,7 @@
             cleanPage();
             dagatalFactory.setDate(t);
             selectedDay = dagatalFactory.getDate()
-            $scope.dagurinnIdag = dagatalFactory.dagsetning();
+            $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
             console.log("$scope.dagurinnIdag: ", $scope.dagurinnIdag);
             /**********************************************************************************************/
             /* $scope.dagurinnIdag = dagatalFactory.dagsetning( vantar lausn á að uppfæra daginn í dag ); */
@@ -109,9 +110,9 @@
           $scope.clickOnTimapant = {
             nafn: b.name,
             staffId: b.person_id,
-            date: dagatalFactory.dags(new Date(selectedDay)),
-            startTime: dagatalFactory.dags(new Date(selectedDay), t),
-            endTime: dagatalFactory.dags(new Date(selectedDay), '18:00')
+            date: dagatalFactory.getStringForDate(new Date(selectedDay)),
+            startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t),
+            endTime: dagatalFactory.getStringForDate(new Date(selectedDay), '18:00')
           };
           compiledDirective = $compile('<boka class="skilabod" ' +
             'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');

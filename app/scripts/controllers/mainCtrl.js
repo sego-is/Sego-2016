@@ -17,18 +17,6 @@
         'isOpen': false
       };
 
-      $scope.gluggiOpinn = state.isOpen;
-
-      $scope.valinnDagur = {
-        'iDag': new Date()
-      };
-
-      $scope.waitingList = {};
-
-      $scope.vidskiptavinir = {
-        'addCustomer': false
-      };
-
       $scope.lokaGlugga = function () {
         state.scope.$destroy();
         $('.skilaboda-haldari').empty();
@@ -50,8 +38,6 @@
         }
       };
       */
-      // TEMP TIL AD SYNA EKKI TMPaDMIN VIEW
-      $scope.admin = false;
       
       $scope.opnaGlugga = function (gluggi) {
         if (!state.isOpen) {

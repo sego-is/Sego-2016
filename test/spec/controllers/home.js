@@ -9,15 +9,26 @@ describe('Controller: HomeCtrl', function () {
     scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($rootScope, $controller) {
+      var profile = {};
     scope = $rootScope.$new();
     HomeCtrl = $controller('HomeCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
+    
+    spyOn(localStorage, 'getItem').and.callFake(function(key) {
+        return profile[key];
+    });
+    
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.booking.length).toBe(0);
+  it('should have bookings defined', function () {
+    expect(scope.bookings).toBeDefined();
+    
+  });
+  
+  it('bookings should be empty', function() {
+      expect(scope.bookings.length).toEqual(0);
   });
 });

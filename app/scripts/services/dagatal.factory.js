@@ -50,7 +50,7 @@
         }
 
     	return {
-            dagsetning: function(d) {
+            dateToStringISL: function(d) {
                 if (d === undefined) {
                     return " " + dagar[dagsetningValinn.getDay()].full +  " " + dagsetningValinn.getDate() + ". " + months[dagsetningValinn.getMonth()].full + "";
                 }
@@ -58,23 +58,16 @@
                     return " " + dagar[d.getDay()].full +  " " + d.getDate() + ". " + months[d.getMonth()].full + "";
                 }
             },
-            aMorgun: function() {
+            tomorrow: function() {
                 dagsetningValinn.setDate(dagsetningValinn.getDate() + 1);
                 //return this.dagsetning(dagsetningValinn.getDay(), dagsetningValinn.getDate(), dagsetningValinn.getMonth());
             },
-            iGaer: function() {
+            yesterday: function() {
                 dagsetningValinn.setDate(dagsetningValinn.getDate() - 1);
                 //return this.dagsetning(dagsetningValinn.getDay(), dagsetningValinn.getDate(), dagsetningValinn.getMonth());
             },
-            timasetning: function(a) {
-                if (a === undefined) {
-                    return toHHMMSS(0)
-                }
-                else {
-                    return toHHMMSS(a);
-                }
-            },
-            timabokanir: function(lota) {
+            // HVE LENGI LOTA ER SEM BIRTIR BLADSIDU A DAGPONTUN
+            timeSession: function(lota) {
                 if (lota === undefined) {
                     return times;
                 }
@@ -82,7 +75,7 @@
                     // STYTTA EDA LENGJA I LOTU
                 }
             },
-            dags: function(d, t) {
+            getStringForDate: function(d, t) {
                 if (d === undefined) {
                     d = new Date();
                 }
