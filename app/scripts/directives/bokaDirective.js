@@ -50,7 +50,7 @@
                   console.log("CB scope.stafesta() - err: ", err);
                  });
               } else {
-                console.log("vantar input ");
+                console.log("bad input ");
                 scope.badInput = true;
               }
             };

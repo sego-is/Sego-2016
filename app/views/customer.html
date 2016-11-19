@@ -29,24 +29,34 @@
     <tbody ng-if="modifyCus">
     <tr>
       <th colspan="4">
-        <form class="form-horizontal">
+        <form name="form.customerForm"
+              class="form-horizontal"
+              novalidate>
           <div class="form-group col-xs-11">
-            <label class="sr-only"
-                   for="name">Nafn
-            </label>
-            <input type="name"
-                   class="form-control inputField"
+
+            <input type="text"
                    name="name"
+                   ng-class="{error: (badInput && form.customerForm.name.$error.required)
+                                  || (badInput && form.customerForm.name.$error.maxlength)
+                                  || (badInput && form.customerForm.name.$error.minlength)}"
+                   ng-click="badInputFalse()"
+                   ng-minlength="3"
+                   ng-maxlength="44"
+                   class="form-control inputField"
                    ng-model="person.name"
                    placeholder="Nafn"
                    required>
           </div>
           <div class="form-group col-xs-11">
-            <label class="sr-only"
-                   for="phone">Sími
-            </label>
-            <input type="tel"
+
+            <input type="number"
                    class="form-control inputField"
+                   ng-click="badInputFalse()"
+                   ng-class="{error: (badInput && form.customerForm.phone.$error.required)
+                                  || (badInput && form.customerForm.phone.$error.maxlength)
+                                  || (badInput && form.customerForm.phone.$error.minlength)}"
+                   ng-minlength="7"
+                   ng-maxlength="7"
                    name="phone"
                    ng-model="person.phone"
                    placeholder="Símanúmer"
@@ -54,36 +64,32 @@
           </div>
 
           <div class="form-group col-xs-11">
-            <label class="sr-only"
-                   for="email">Netfang
-            </label>
-            <input type="text"
+
+            <input type="email"
                    class="form-control inputField"
                    name="email"
                    ng-model="person.email"
-                   placeholder="Netfang"
-                   required>
+                   placeholder="Netfang">
           </div>
           <div class="form-group col-xs-11">
-            <label class="sr-only"
-                   for="email">Heimilisfang
-            </label>
+
             <input type="text"
                    class="form-control inputField"
-                   name="email"
+                   name="address"
                    ng-model="person.address"
                    placeholder="Heimilisfang">
           </div>
+
         </form>
       </th>
     </tr>
     <tr>
-      <td class="fa fa-arrow-left fa-2x btnTilbaka"
+      <td class="fa fa-arrow-left fa-2x btnTilbaka divTakki"
           ng-click="toggleCus()">
       </td>
       <td></td>
       <td></td>
-      <td class="fa fa-check fa-2x btnTilbaka"
+      <td class="fa fa-check fa-2x btnTilbaka divTakki"
           ng-click="addCustomer(person)">
       </td>
     </tr>

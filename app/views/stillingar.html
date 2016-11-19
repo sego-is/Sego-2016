@@ -42,55 +42,77 @@
         </th>
       </tr>
       </thead>
-      <tbody>
+      <tbody ng-if="!state.verdskra && state.add">
       <!-- EDIT KLIPPARA -->
-      <tr ng-if="!state.verdskra && state.edit">
+      <tr>
         <td colspan="4">
-          <form>
+          <form name="form.staffForm"
+                class="form-horizontal"
+                novalidate>
             <div class="form-group row">
-              <label for="inputName3"
+              <label for="name"
                      class="col-sm-2 col-form-label">Nafn
               </label>
               <div class="col-sm-10">
                 <input type="text"
+                       name="name"
+                       ng-class="{error: (badInput && form.staffForm.name.$error.required)
+                                  || (badInput && form.staffForm.name.$error.maxlength)
+                                  || (badInput && form.staffForm.name.$error.minlength)}"
+                       ng-click="badInputFalse()"
+                       ng-minlength="3"
+                       ng-maxlength="44"
                        class="form-control"
-                       id="inputName3"
+                       id="name"
                        placeholder="Nafn"
-                       ng-model="editUser.name">
+                       ng-model="editUser.name"
+                       required>
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3"
+              <label for="email"
                      class="col-sm-2 col-form-label">Netfang
               </label>
               <div class="col-sm-10">
                 <input type="email"
                        class="form-control"
-                       id="inputEmail3"
+                       name="email"
+                       ng-class="{error: (badInput && form.staffForm.email.$error.required)
+                                  || (badInput && form.staffForm.email.$error.email)}"
+                       id="email"
                        placeholder="Netfang"
-                       ng-model="editUser.email">
+                       ng-model="editUser.email"
+                       required>
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPhone3"
+              <label for="phone"
                      class="col-sm-2 col-form-label">Símanúmer
               </label>
               <div class="col-sm-10">
-                <input type="tel"
+                <input type="number"
+                       name="phone"
+                       ng-class="{error: (badInput && form.staffForm.phone.$error.required)
+                                      || (badInput && form.staffForm.phone.$error.maxlength)
+                                      || (badInput && form.staffForm.phone.$error.minlength)}"
+                       ng-minlength="7"
+                       ng-maxlength="7"
+                       ng-click="badInputFalse()"
                        class="form-control"
-                       id="inputPhone3"
+                       id="phone"
                        placeholder="Símanúmer"
-                       ng-model="editUser.phone">
+                       ng-model="editUser.phone"
+                       required>
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPhone3"
+              <label for="address"
                      class="col-sm-2 col-form-label">Heimilisfang
               </label>
               <div class="col-sm-10">
                 <input type="text"
                        class="form-control"
-                       id="inputPhone3"
+                       id="address"
                        placeholder="Heimilisfang"
                        ng-model="editUser.address">
               </div>
@@ -99,72 +121,19 @@
               <div class="offset-sm-2 col-sm-10 pull-right">
                 <button type="submit"
                         class="btn btn-primary"
-                        ng-click="state.edit = false">Hætta við
+                        ng-click="toggleView()">Hætta við
                 </button>
                 <button type="submit"
                         class="btn btn-primary"
-                        ng-click="updateStaff(editUser)">Uppfæra
+                        ng-click="addStaff(editUser)">Uppfæra
                 </button>
               </div>
             </div>
           </form>
         </td>
       </tr>
-
-      <tr ng-if="!state.verdskra && state.add">
-        <td colspan="4">
-          <form class="form-horizontal">
-            <div class="form-group col-xs-11">
-              <label class="sr-only"
-                     for="inputKlippari">
-              </label>
-              <input type="name"
-                     class="form-control inputField"
-                     id="inputKlippari"
-                     placeholder="Nafn"
-                     ng-model="person.name">
-            </div>
-            <div class="pull-right col-xs-1">
-              <i class="fa fa-plus fa-2x stadfestaTakki"
-                 aria-hidden="true"
-                 data-toggle="tooltip"
-                 data-placement="auto"
-                 title="Staðfesta"
-                 ng-click="addStaff(person)">
-              </i>
-            </div>
-            <div class="form-group col-xs-11">
-              <label class="sr-only"
-                     for="inputSimanumer">
-              </label>
-              <input type="tel"
-                     class="form-control inputField"
-                     id="inputSimanumer"
-                     placeholder="Símanúmer"
-                     ng-model="person.phone">
-            </div>
-            <div class="pull-right col-xs-1">
-              <i class="fa fa-times fa-2x haettaVidTakki"
-                 aria-hidden="true"
-                 data-toggle="tooltip"
-                 data-placement="auto"
-                 title="Hætta við"
-                 ng-click="add()">
-              </i>
-            </div>
-            <div class="form-group col-xs-11">
-              <label class="sr-only"
-                     for="inputNetpostur">
-              </label>
-              <input type="email"
-                     class="form-control inputField"
-                     id="inputNetpostur"
-                     placeholder="Netpóstur"
-                     ng-model="person.email">
-            </div>
-          </form>
-        </td>
-      </tr>
+</tbody>
+<tbody ng-if="!state.verdskra && !state.add">
       <tr ng-repeat="s in staff track by $index">
         <td class="theFirst col-xs-4">{{ s.name }}</td>
         <td>{{ s.phone }}</td>
@@ -178,7 +147,7 @@
                  title="Henda">
               </i>
             </a>
-            <a ng-click="editStaff(s)">
+            <a ng-click="editStaff(s, $index)">
               <i class="glyphicon glyphicon-pencil divTakki"
                  data-toggle="tooltip"
                  data-placement="auto"
