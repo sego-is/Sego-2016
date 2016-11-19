@@ -10,14 +10,16 @@
   </div>
   <div class="bookingcontent">
     <td colspan="4">
-      <h4>Klippari: {{ objFrom.nafn }}</h4>
+      <h4>Klippari: {{ objFrom.name }}</h4>
       <h5>Tími: {{ objFrom.startTime }}</h5>
       <form name="bookingForm"
             class="form-horizontal">
         <div class="form-group col-xs-11">
           <input type="text"
                  name="name"
-                 ng-class="{error: badInput && bookingForm.name.$error.required}"
+                 ng-class="{error: (badInput && bookingForm.name.$error.required)
+                 || (badInput && bookingForm.name.$error.maxlength)
+                 || (badInput && bookingForm.name.$error.minlength)}"
                  ng-click="badInput = false"
                  ng-minlength="3"
                  ng-maxlength="44"
@@ -40,7 +42,9 @@
           <!-- input type="tel" er bara stutt í safari -->
           <input type="number"
                  ng-click="badInput = false"
-                 ng-class="{error: badInput && bookingForm.phone.$error.required}"
+                 ng-class="{error: (badInput && bookingForm.phone.$error.required)
+                 || (badInput && bookingForm.phone.$error.maxlength)
+                 || (badInput && bookingForm.phone.$error.minlength)}"
                  ng-minlength="7"
                  ng-maxlength="7"
                  name="phone"
@@ -68,3 +72,28 @@
   </div>
   <div class="footer">SEGO</div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

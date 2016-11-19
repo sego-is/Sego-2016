@@ -47,7 +47,7 @@
           </td>
           <td class="booking-cell"
               ng-repeat="x in staff | orderBy: x.person_id"
-              ng-click="openBooking(t, x)"
+              ng-click="openBooking(t, x, $event)"
               id="{{ t }}{{ x.person_id }}">
           </td>
         </tr>

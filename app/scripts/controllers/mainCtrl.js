@@ -38,9 +38,12 @@
         }
       };
       */
-      
+
       $scope.opnaGlugga = function (gluggi) {
-        if (!state.isOpen) {
+        if (!state.isOpen || state.openView !== gluggi) {
+          if(state.openView !==  gluggi && state.isOpen) {
+            $scope.lokaGlugga();
+          }
           document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
           state.scope = $scope.$new();
           var compiledDirective;
@@ -50,8 +53,9 @@
               compiledDirective = $compile('<verdlisti class="skilabod" close="lokaGlugga()"></verdlisti>');
               break;
             case "stillingar":
-             compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
-             
+              state.openView = gluggi;
+              compiledDirective = $compile('<stillingar class="skilabod" close="lokaGlugga()"></stillingar>');
+
              // $scope.checkPass();
               //simple password protection
               /*compiledDirective = $compile('<div class="skilabod">' +

@@ -20,7 +20,7 @@
            // GET ALL STAFF AND SERVICE FOR SALOON
           scope.staff = [];
           //scope.services = [];
-
+          scope.form = {};
 
           // COMPANY->_ID PERSON WORKS FOR
           scope.person.company_id = backendFactory.ID();
@@ -28,15 +28,50 @@
           scope.person.role = 1;
           // ADD PERSON AS STAFF IN COMPANY
           scope.addStaff = function(s) {
+            if (scope.form.staffForm.$valid) {
               backendFactory.postPerson(s).then(function(res) {
                   scope.staff.push(res.data);
                   scope.state.add = false;
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
               });
+            } else {
+              scope.badInput = true;
+            }
           };
           // END OF CREATING STAFF //
 
+          // HELP FUNCTION WHEN CLICK EDIT STAFF,
+
+          scope.editStaff = function (k, index) {
+            if (k !== undefined) {
+              scope.editUser = k;
+              scope.state.add = !scope.state.add;
+            } else {
+              scope.state.add = !scope.state.add;
+            }
+          };
+
+          scope.updateStaff = function() {
+            backendFactory.updateStaff(scope.editUser).then(function(res) {
+              console.log("UPDATE SUCCESSFULL", res);
+            }, function(err) {
+              console.log("UPDATE ERROR", err);
+            });
+          };
+
+          scope.toggleView = function () {
+            console.log("toggleView");
+            scope.state.add = !scope.state.add;
+            scope.badInput = false;
+            scope.editUser = {};
+          };
+
+          // Varð að setja til að gera badinput false,
+          // ekki hægt í html einhverra hluta vegna
+          scope.badInputFalse = function () {
+            scope.badInput = false;
+          };
 
           //  COMPANY->_ID OWN SERVICE
           scope.service.company_id = backendFactory.ID();
@@ -107,19 +142,7 @@
 
             });
           };
-          // HELP FUNCTION WHEN CLICK EDIT STAFF,
-          scope.editStaff = function (k, index) {
-            scope.editUser = k;
-            scope.state.edit = true;
-          };
 
-          scope.updateStaff = function() {
-              backendFactory.updateStaff(scope.editUser).then(function(res) {
-                  console.log("UPDATE SUCCESSFULL", res);
-              }, function(err) {
-                  console.log("UPDATE ERROR", err);
-              });
-          };
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
           scope.state = {

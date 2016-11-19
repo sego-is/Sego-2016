@@ -223,6 +223,7 @@
 
   api.post('/persons', bodyParser.json(), (req, res) => {
     const data = req.body;
+    const p = new model.Person(req.body);
     if (data._id === undefined) {
         model.Person.create(p, function (err, doc) {
             if (err) {

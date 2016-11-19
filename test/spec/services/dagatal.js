@@ -25,11 +25,7 @@ describe('Factory: Dagatal', function () {
       expect(getDate.getMonth()).toBe(tmpDate.getMonth());
       expect(getDate.getFullYear()).toBe(tmpDate.getFullYear());
   });
-  
-  it('should have tomorrow() function defined', function() {
-    expect(dagatalFactory.tomorrow()).toBeDefined();    
-  });
-  
+
   it('When running tomorrow() and getDate() should return date tomorrow', function() {
     dagatalFactory.tomorrow();
     var getTomorrow = dagatalFactory.getDate();
@@ -38,11 +34,7 @@ describe('Factory: Dagatal', function () {
     expect(getTomorrow.getDate()).toBe(tmpTomorrow.getDate());
      
   });
-  
-  it('should have yesterday() function defined', function() {
-    expect(dagatalFactory.yesterday()).toBeDefined();    
-  });
-  
+
   it('When running yesterday() and getDate() should return date yesterday', function() {
     dagatalFactory.yesterday();
     var getTomorrow = dagatalFactory.getDate();
@@ -64,4 +56,13 @@ describe('Factory: Dagatal', function () {
       var t = d.getFullYear() + "-" + month + "-" + d.getDate() + "T00:00:00";
       expect(dagatalFactory.getStringForDate(d)).toEqual(t);
   });
+  
+    it('getStringForDate(new Date(), time) should return string YYYY-MM-DDTtime', function () {
+      var d = new Date();
+      var t = "17:00";
+      var month = d.getMonth()+1;
+      var t = d.getFullYear() + "-" + month + "-" + d.getDate() + "T" + t;
+      expect(dagatalFactory.getStringForDate(d)).toEqual(t);
+  });
+  
 });
