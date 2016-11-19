@@ -44,7 +44,7 @@
             // CREATING NEW USER
             $scope.user = {};
 
-            $scope.addUser = function(p) {
+            $scope.addUser = function(u) {
                backendFactory.postPerson(p).then(function (response) {
                 console.log("RESPONSE:", response);
             }).catch(function(err) {
