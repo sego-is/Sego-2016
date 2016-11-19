@@ -4,7 +4,7 @@
     angular.module('segoApp')
       .controller('AdminCtrl', ['$scope', 'backendFactory', function ($scope, backendFactory) {
             $scope.editCompany = [];
-            
+
             // GET ALL COMPANIES //
             backendFactory.getCompanies().then(function (response) {
                 $scope.companies = response.data;
@@ -34,17 +34,17 @@
             $scope.addCompany = function(c) {
                 backendFactory.postCompany(c).then(function (response) {
                     console.log("RESPONSE:", response);
-                    
+
                 }).catch(function(err) {
                     console.log("ERROR", JSON.stringify(err));
                 }).finally(function() {} );
-            }
+            };
             // END CREATING COMPANY
 
             // CREATING NEW USER
             $scope.user = {};
 
-            $scope.addUser = function(u) {
+            $scope.addUser = function(p) {
                backendFactory.postPerson(p).then(function (response) {
                 console.log("RESPONSE:", response);
             }).catch(function(err) {
@@ -65,17 +65,17 @@
                 }).finally(function() {} );
             };
             // END OF DELETE USER
-            
 
-            
+
+
             // GET ALL COLLECTIONS IN BOOKINGS
             backendFactory.getBooking().then(function(res) {
                 $scope.bookings = res.data;
-                console.log("GET BOOKING ($scope.bookings): ", $scope.bookings);  
+                console.log("GET BOOKING ($scope.bookings): ", $scope.bookings);
             }, function(err) {
                 console.log("GET BOOKING (err): ", err);
             });
-            
+
             $scope.toggleEditCompany = function(i) {
                 console.log('toggleEditCompany', $scope.editCompany[i]);
                 $scope.editCompany[i] = !$scope.editCompany[i];

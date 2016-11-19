@@ -79,7 +79,7 @@
                 if (d === undefined) {
                     d = new Date();
                 }
-                if (t == undefined) {
+                if (t === undefined) {
                     t = "00:00:00";
                 }
                 var date = d.getDate();
