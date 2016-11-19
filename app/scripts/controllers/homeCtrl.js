@@ -71,7 +71,6 @@
         var bookingForToday = {};
         
         var bookingsToday = function() {
-          console.log($scope.bookings);
             for (var b in $scope.bookings) {
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
                 bookingForToday[tmp] = b;
@@ -80,11 +79,7 @@
                   '<p class="confirmedBooking">' + $scope.bookings[b].customer_id.name + '</p>';
             }
         };
-        
-        $scope.clickOnBooking = function() {
-            console.log("prufadu clickOnBooking");  
-        };
-        
+                
         // HREINSA BLADSIDA FYRIR NYJAN DAG
         function cleanPage() {
             $('.confirmedBooking').remove();
