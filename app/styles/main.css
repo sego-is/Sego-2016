@@ -96,6 +96,8 @@ body.jumbotron #page-header-wrapper {
 .accordion .accordion-item:nth-child(1) {
   width: 33%;
   float: left;
+  font-family: Gadugi, sans-serif;
+  text-align: center;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   margin-right: 7px;
@@ -105,6 +107,8 @@ body.jumbotron #page-header-wrapper {
 .accordion .accordion-item:nth-child(2) {
   width: 33%;
   float: left;
+  font-family: Gadugi, sans-serif;
+  text-align: center;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   margin-right: 7px;
@@ -114,16 +118,18 @@ body.jumbotron #page-header-wrapper {
 .accordion .accordion-item:nth-child(3) {
   width: 33%;
   float: left;
+  font-family: Gadugi, sans-serif;
+  text-align: center;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   margin-top: 1px;
 }
 
-.accordion .accordion-item:nth-child(4) {
+/*.accordion .accordion-item:nth-child(4) {
   float: left;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}
+}*/
 
 .botnmynd img {
   width: 100%;
