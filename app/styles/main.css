@@ -17,12 +17,12 @@ body.jumbotron #page-header-wrapper {
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
+/*.header,
 .marketing,
 .footer {
   padding-left: 15px;
   padding-right: 15px;
-}
+}*/
 
 /* Custom page header */
 .header {
@@ -48,7 +48,7 @@ body.jumbotron #page-header-wrapper {
   margin: 30px 0;
 }
 
-/* Main marketing message and sign up button */
+/* Main marketing message and sign up button
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
@@ -57,15 +57,101 @@ body.jumbotron #page-header-wrapper {
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
+}*/
+
+.adalmynd img {
+  width: 100%;
+  height: 30%;
 }
 
+/* The Magic */
+.accordion:hover .accordion-item:hover .accordion-item-content,
+.accordion .accordion-item--default .accordion-item-content {
+  height: 6em;
+}
+
+.accordion-item-content,
+.accordion:hover .accordion-item-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.75s;
+}
+
+/* Aesthetic */
+body {
+  background: #222;
+}
+
+/*.accordion {
+  padding: 0;
+  margin: 0 auto;
+  width: 20%;
+  font-family: "PT Sans" sans-serif
+}*/
+
+.accordion .accordion-item {
+  background-image: linear-gradient(90deg, #eee, #f5f5f5, #eee);
+  border-bottom: 1px solid #666;
+  padding: 1em;
+  color: #eee;
+}
+
+.accordion h1 {
+  margin: 0;
+}
+
+.accordion .accordion-item:nth-child(1) {
+  width: 33%;
+  float: left;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+  margin-right: 7px;
+  margin-top: 1px;
+}
+
+.accordion .accordion-item:nth-child(2) {
+  width: 33%;
+  float: left;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+  margin-right: 7px;
+  margin-top: 1px;
+}
+
+.accordion .accordion-item:nth-child(3) {
+  width: 33%;
+  float: left;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+  margin-top: 1px;
+}
+
+.accordion .accordion-item:nth-child(4) {
+  float: left;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+}
+
+.botnmynd img {
+  width: 100%;
+  height: 10%;
+  padding-top: 4px;
+  z-index: 0;
+}
+
+/*
+.parallax {
+  background-image: url("http://www.biihairsalon.com/wp-content/uploads/2012/08/Salon_Banner.jpg");
+  min-height: 1000px;
+
+   Create the parallax scrolling effect
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+}  */
+
 /* Supporting marketing content */
-.marketing {
-  margin-left: 25%;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
 
 .skilaboda-haldari {
   position: fixed;
@@ -93,20 +179,7 @@ body.jumbotron #page-header-wrapper {
     -webkit-transition: all 5s ease-in-out;
     -moz-transition: all duration ease-in-out;
     transition: all duration ease-in-out;
-    /*
-  position: absolute;
-  width: 50%;
-  height: 70%;
-  top: 10%;
-  right: 25%;
-  /*padding: 1% 5% 5% 5%;
-  background: white;
-  /*border: 1px solid black;
-  border-radius: 6px 6px 6px 6px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  z-index: 3;
-  */
+    padding: 0px;
 }
 
 .skilabod-xHorn {
@@ -184,7 +257,9 @@ boka.skilabod {
 }
 
 .haus {
-  background-color: #7a43b6;
+  /*background-color: #7a43b6;*/
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100%;
   color: white;
   font-size: 30px;
@@ -196,7 +271,9 @@ boka.skilabod {
 }
 
 .footer {
-  background-color: #7a43b6;
+  /*background-color: #7a43b6;*/
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100%;
   color: white;
   font-size: 18px;
@@ -341,22 +418,15 @@ footer p {
   font-family: Gadugi, sans-serif;
 }
 
-/*.navbar-default {
-  background-color: #7a43b6;
-  background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
-}*/
-
-/*.btn.btn-link.btn-lg {
-  color: lightgray;
-  color: black;
-}*/
 
 .btn.btn-link.btn-lg:hover {
   text-decoration: none;
 }
 
 .navbar-header {
-  background-color: #7a43b6;
+  /*background-color: #7a43b6;*/
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100px;
   height: 48px;
   -moz-border-radius: 100px/50px;
