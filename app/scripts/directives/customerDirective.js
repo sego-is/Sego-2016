@@ -24,8 +24,7 @@
 
           // WHEN CREATING NEW PERSON
           scope.person = {};
-          scope.person.company_id = backendFactory.ID();
-          scope.person.role = 0;
+          
 
           scope.vidskiptavinir = [];
           scope.form = {};
@@ -69,7 +68,8 @@
           scope.addCustomer = function (s) {
             //console.log("bæta við nýjum viðskiptavin: ", s);
             if(scope.form.customerForm.$valid) {
-
+                s.company_id = backendFactory.ID();
+                s.role = 0;
               console.log("bæta við nýjum viðskiptavin: ", scope.vidskiptavinir);
                backendFactory.postPerson(s).then(function (res) {
                 scope.vidskiptavinir.push(res.data);

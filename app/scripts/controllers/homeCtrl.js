@@ -52,7 +52,7 @@
                 else {
                     // GEYMA BOKANIR
                     $scope.bookings = res.data;
-                    $scope.bookingsToday();
+                    bookingsToday();
                     $scope.loadingData = false;
                 }
             }, function(err) {
@@ -65,17 +65,26 @@
 
         // FYRIR PROGRESS MYND
         $scope.loadingData = true;
-
+        
         // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
-        $scope.bookingsToday = function() {
+        // Breytti frá $scope i var, því enginn ástæða til að kalla á þetta fall á scope-i
+        var bookingForToday = {};
+        
+        var bookingsToday = function() {
           console.log($scope.bookings);
             for (var b in $scope.bookings) {
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
+                bookingForToday[tmp] = b;
                 var myElm = document.getElementById(tmp);
                 myElm.innerHTML =
                   '<p class="confirmedBooking">' + $scope.bookings[b].customer_id.name + '</p>';
             }
         };
+        
+        $scope.clickOnBooking = function() {
+            console.log("prufadu clickOnBooking");  
+        };
+        
         // HREINSA BLADSIDA FYRIR NYJAN DAG
         function cleanPage() {
             $('.confirmedBooking').remove();
@@ -99,25 +108,38 @@
       var booking;
 
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
-      $scope.openBooking = function (t, b) {
+      $scope.openBooking = function (t, b, ev) {
         if (t === undefined) {
           console.log("UNDEFINED");
-        } else {
-            console.log("date:", new Date(selectedDay));
-          document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
-          booking = $scope.$new();
-          var compiledDirective;
-          $scope.clickOnTimapant = {
-            nafn: b.name,
-            staffId: b.person_id,
-            date: dagatalFactory.getStringForDate(new Date(selectedDay)),
-            startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t),
-            endTime: dagatalFactory.getStringForDate(new Date(selectedDay), '18:00')
-          };
-          compiledDirective = $compile('<boka class="skilabod" ' +
-            'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
-          var directiveElement = compiledDirective(booking);
-          $('.skilaboda-haldari').append(directiveElement);
+        } 
+        else {
+            var idForCell = bookingForToday[ev.currentTarget.id];
+            if (idForCell !== undefined) {
+                var tmpBook = $scope.bookings[idForCell];
+                b.customer = tmpBook.customer_id.name;
+                b.phone = tmpBook.customer_id.phone;
+            }
+            else {
+                b.customer = "Sláðu inn nafn...";
+                b.phone = 5551234; 
+            }
+            document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
+            booking = $scope.$new();
+            var compiledDirective;
+
+            $scope.clickOnTimapant = {
+                name: b.name,
+                customer: b.customer,
+                phone: b.phone,
+                staffId: b.person_id,
+                date: dagatalFactory.getStringForDate(new Date(selectedDay)),
+                startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t),
+                endTime: dagatalFactory.getStringForDate(new Date(selectedDay), '18:00')
+            };
+            compiledDirective = $compile('<boka class="skilabod" ' +
+                'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
+            var directiveElement = compiledDirective(booking);
+            $('.skilaboda-haldari').append(directiveElement);
         }
       };
 
@@ -125,9 +147,7 @@
         booking.$destroy();
         $('.skilaboda-haldari').empty();
         document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
-        console.log("BUTTON_CLICK");
       };
       // END OF BOOKING CLICK
-
     }]);
 })();
