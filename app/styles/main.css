@@ -62,73 +62,81 @@ body.jumbotron #page-header-wrapper {
 .adalmynd img {
   width: 100%;
   height: 30%;
-  border-bottom: white;
-  border-bottom: 2px;
 }
 
-.slidemyndir {
-  width: 100%;
-  text-align: center;
+/* The Magic */
+.accordion:hover .accordion-item:hover .accordion-item-content,
+.accordion .accordion-item--default .accordion-item-content {
+  height: 6em;
 }
 
-.slidemynd {
-  height: 437px;
-  width: 434px;
+.accordion-item-content,
+.accordion:hover .accordion-item-content {
+  height: 0;
   overflow: hidden;
-  padding-top: 3px;
-  float: left;
+  transition: height 0.75s;
 }
 
-.slidemynd img {
-  transform: translate3d(0px, 0px, 0px);
-  transition: transform .2s ease-in-out;
+/* Aesthetic */
+body {
+  background: #222;
 }
 
-.slidemynd img:hover {
-  transform: translate3d(-214px, 0px, 0px);
-}
-
-.slidemynd_middle {
-  display: inline-block;
-  height: 437px;
-  width: 432px;
-  overflow: hidden;
-  padding-top: 3px;
-  padding-left: 4px;
+/*.accordion {
+  padding: 0;
   margin: 0 auto;
+  width: 20%;
+  font-family: "PT Sans" sans-serif
+}*/
+
+.accordion .accordion-item {
+  background-image: linear-gradient(90deg, #eee, #f5f5f5, #eee);
+  border-bottom: 1px solid #666;
+  padding: 1em;
+  color: #eee;
 }
 
-.slidemynd_middle img {
-  transform: translate3d(0px, 0px, 0px);
-  transition: transform .2s ease-in-out;
+.accordion h1 {
+  margin: 0;
 }
 
-.slidemynd_middle img:hover {
-  transform: translate3d(-260px, 0px, 0px);
+.accordion .accordion-item:nth-child(1) {
+  width: 33%;
+  float: left;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+  margin-right: 7px;
+  margin-top: 1px;
 }
 
-.slidemynd_right {
-  height: 437px;
-  width: 436px;
-  overflow: hidden;
-  padding-top: 3px;
-  padding-left: 4px;
-  float: right;
+.accordion .accordion-item:nth-child(2) {
+  width: 33%;
+  float: left;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+  margin-right: 7px;
+  margin-top: 1px;
 }
 
-.slidemynd_right img {
-  transform: translate3d(0px, 0px, 0px);
-  transition: transform .2s ease-in-out;
+.accordion .accordion-item:nth-child(3) {
+  width: 33%;
+  float: left;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+  margin-top: 1px;
 }
 
-.slidemynd_right img:hover {
-  transform: translate3d(-260px, 0px, 0px);
+.accordion .accordion-item:nth-child(4) {
+  float: left;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
 }
 
 .botnmynd img {
   width: 100%;
   height: 10%;
   padding-top: 4px;
+  z-index: 0;
 }
 
 /*
