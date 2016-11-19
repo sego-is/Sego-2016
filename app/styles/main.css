@@ -17,12 +17,12 @@ body.jumbotron #page-header-wrapper {
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
+/*.header,
 .marketing,
 .footer {
   padding-left: 15px;
   padding-right: 15px;
-}
+}*/
 
 /* Custom page header */
 .header {
@@ -48,7 +48,7 @@ body.jumbotron #page-header-wrapper {
   margin: 30px 0;
 }
 
-/* Main marketing message and sign up button */
+/* Main marketing message and sign up button
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
@@ -57,15 +57,93 @@ body.jumbotron #page-header-wrapper {
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
+}*/
+
+.adalmynd img {
+  width: 100%;
+  height: 30%;
+  border-bottom: white;
+  border-bottom: 2px;
 }
 
+.slidemyndir {
+  width: 100%;
+  text-align: center;
+}
+
+.slidemynd {
+  height: 437px;
+  width: 434px;
+  overflow: hidden;
+  padding-top: 3px;
+  float: left;
+}
+
+.slidemynd img {
+  transform: translate3d(0px, 0px, 0px);
+  transition: transform .2s ease-in-out;
+}
+
+.slidemynd img:hover {
+  transform: translate3d(-214px, 0px, 0px);
+}
+
+.slidemynd_middle {
+  display: inline-block;
+  height: 437px;
+  width: 432px;
+  overflow: hidden;
+  padding-top: 3px;
+  padding-left: 4px;
+  margin: 0 auto;
+}
+
+.slidemynd_middle img {
+  transform: translate3d(0px, 0px, 0px);
+  transition: transform .2s ease-in-out;
+}
+
+.slidemynd_middle img:hover {
+  transform: translate3d(-260px, 0px, 0px);
+}
+
+.slidemynd_right {
+  height: 437px;
+  width: 436px;
+  overflow: hidden;
+  padding-top: 3px;
+  padding-left: 4px;
+  float: right;
+}
+
+.slidemynd_right img {
+  transform: translate3d(0px, 0px, 0px);
+  transition: transform .2s ease-in-out;
+}
+
+.slidemynd_right img:hover {
+  transform: translate3d(-260px, 0px, 0px);
+}
+
+.botnmynd img {
+  width: 100%;
+  height: 30%;
+  padding-top: 4px;
+}
+
+/*
+.parallax {
+  background-image: url("http://www.biihairsalon.com/wp-content/uploads/2012/08/Salon_Banner.jpg");
+  min-height: 1000px;
+
+   Create the parallax scrolling effect
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+}  */
+
 /* Supporting marketing content */
-.marketing {
-  margin-left: 25%;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
 
 .skilaboda-haldari {
   position: fixed;
