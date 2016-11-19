@@ -29,22 +29,30 @@
                 scope.close();
             };
 
+
             scope.stadfesta = function(bokun) {
-                console.log("Bókun ", JSON.stringify(bokun));
+
+              if(scope.bookingForm.$valid) {
+                console.log("getur bókað það ", JSON.stringify(bokun));
+                scope.badInput = false;
                 backendFactory.postBooking({
-                    company_id: backendFactory.ID(),
-                    startTime: scope.objFrom.startTime,
-                    endTime: scope.objFrom.endTime,
-                    staff_id: scope.objFrom.staffId,
-                    customer_name:  scope.objFrom.customer,
-                    customer_phone: scope.objFrom.phone,
-                    customer_service: scope.objFrom.service,
-                    date: scope.objFrom.date
-                }).then(function(doc) {
+                 company_id: backendFactory.ID(),
+                 startTime: scope.objFrom.startTime,
+                 endTime: scope.objFrom.endTime,
+                 staff_id: scope.objFrom.staffId,
+                 customer_name:  scope.objFrom.customer,
+                 customer_phone: scope.objFrom.phone,
+                 customer_service: scope.objFrom.service,
+                 date: scope.objFrom.date
+                 }).then(function(doc) {
                   console.log("CB scope.stafesta() - doc: ", doc);
-                }, function (err) {
+                 }, function (err) {
                   console.log("CB scope.stafesta() - err: ", err);
-                });
+                 });
+              } else {
+                console.log("vantar input ");
+                scope.badInput = true;
+              }
             };
         }
       };

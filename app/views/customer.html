@@ -1,0 +1,111 @@
+<div class="haus">VIÐSKIPTAVINIR
+  <i class="fa fa-users"></i>
+  <button type="button"
+          class="close takki"
+          ng-click="closeWindow()">&times;
+  </button>
+</div>
+<div class="content">
+  <table class="table table-striped">
+    <thead ng-if="!modifyCus">
+    <tr>
+      <th>
+        <div class="pull-left">Nafn</div>
+      </th>
+      <th>Símanúmer</th>
+      <th>Netfang</th>
+      <th>
+        <div class="pull-right">
+          <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
+                  ng-click="toggleCus()"
+                  data-toggle="tooltip"
+                  data-placement="auto"
+                  title="Bæta við viðskiptavin">
+          </button>
+        </div>
+      </th>
+    </tr>
+    </thead>
+    <tbody ng-if="modifyCus">
+    <tr>
+      <th colspan="4">
+        <form class="form-horizontal">
+          <div class="form-group col-xs-11">
+            <label class="sr-only"
+                   for="name">Nafn
+            </label>
+            <input type="name"
+                   class="form-control inputField"
+                   name="name"
+                   ng-model="person.name"
+                   placeholder="Nafn"
+                   required>
+          </div>
+          <div class="form-group col-xs-11">
+            <label class="sr-only"
+                   for="phone">Sími
+            </label>
+            <input type="tel"
+                   class="form-control inputField"
+                   name="phone"
+                   ng-model="person.phone"
+                   placeholder="Símanúmer"
+                   required>
+          </div>
+
+          <div class="form-group col-xs-11">
+            <label class="sr-only"
+                   for="email">Netfang
+            </label>
+            <input type="text"
+                   class="form-control inputField"
+                   name="email"
+                   ng-model="person.email"
+                   placeholder="Netfang"
+                   required>
+          </div>
+          <div class="form-group col-xs-11">
+            <label class="sr-only"
+                   for="email">Heimilisfang
+            </label>
+            <input type="text"
+                   class="form-control inputField"
+                   name="email"
+                   ng-model="person.address"
+                   placeholder="Heimilisfang">
+          </div>
+        </form>
+      </th>
+    </tr>
+    <tr>
+      <td class="fa fa-arrow-left fa-2x btnTilbaka"
+          ng-click="toggleCus()">
+      </td>
+      <td></td>
+      <td></td>
+      <td class="fa fa-check fa-2x btnTilbaka"
+          ng-click="addCustomer(person)">
+      </td>
+    </tr>
+    </tbody>
+    <!------------------------------------------------------------------------------------------->
+    <!-------------------------          Viðskiptavinir          -------------------------------->
+    <!------------------------------------------------------------------------------------------->
+    <tbody ng-if="!modifyCus">
+    <tr ng-repeat="vinur in vidskiptavinir track by $index"
+        id="{{ $index }}">
+      <td>{{ vinur.name }}</td>
+      <td>{{ vinur.phone }}</td>
+      <td>{{ vinur.email }}</td>
+      <td>
+        <div class="pull-right">
+          <a ng-click="editCust(vinur, $index)">
+            <i class="glyphicon glyphicon-pencil divTakki"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="footer">SEGO</div>

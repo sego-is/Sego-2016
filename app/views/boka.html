@@ -1,20 +1,33 @@
 <div class="col-xs-12">
   <div class="haus">BÓKA TÍMA
-    <i class="fa fa-book" style="font-size:30px"></i>
-    <button type="button" class="close takki" ng-click="leave()">&times;</button>
+    <i class="fa fa-book"
+       style="font-size:30px">
+    </i>
+    <button type="button"
+            class="close takki"
+            ng-click="leave()">&times;
+    </button>
   </div>
   <div class="bookingcontent">
     <td colspan="4">
       <h4>Klippari: {{ objFrom.nafn }}</h4>
       <h5>Tími: {{ objFrom.startTime }}</h5>
-      <form class="form-horizontal">
+      <form name="bookingForm"
+            class="form-horizontal">
         <div class="form-group col-xs-11">
           <input type="text"
+                 name="name"
+                 ng-class="{error: badInput && bookingForm.name.$error.required}"
+                 ng-click="badInput = false"
+                 ng-minlength="3"
+                 ng-maxlength="44"
                  class="form-control inputField"
                  ng-model="objFrom.customer"
                  placeholder="Nafn"
-                 ng-model="objFrom.customer">
+                 required>
         </div>
+        <!-- vantar gott error msg eða eitthvað -->
+        <div ng-show="badInput && bookingForm.name.$error.required">x</div>
         <div class="pull-right col-xs-1">
           <i class="fa fa-plus fa-2x stadfestaTakki"
              aria-hidden="true"
@@ -24,18 +37,31 @@
              ng-click="stadfesta(objFrom)"></i>
         </div>
         <div class="form-group col-xs-11">
-          <input type="tel"
+          <!-- input type="tel" er bara stutt í safari -->
+          <input type="number"
+                 ng-click="badInput = false"
+                 ng-class="{error: badInput && bookingForm.phone.$error.required}"
+                 ng-minlength="7"
+                 ng-maxlength="7"
+                 name="phone"
                  class="form-control inputField"
                  ng-model="objFrom.phone"
                  placeholder="Sími"
-                 ng-model="objFrom.phone">
+                 required>
         </div>
+        <!-- vantar gott error msg eða eitthvað -->
+        <div ng-show="badInput && bookingForm.phone.$error.required">x</div>
         <div class="form-group col-xs-11">
           <input type="text"
+                 name="service"
+                 ng-click="badInput = false"
+                 ng-class="{error: badInput && bookingForm.service.$error.required}"
                  class="form-control inputField"
                  ng-model="objFrom.service"
                  placeholder="Aðgerð"
-                 ng-model="objFrom.service">
+                 required>
+          <!-- vantar gott error msg eða eitthvað -->
+          <div ng-show="badInput && bookingForm.service.$error.required">x</div>
         </div>
       </form>
     </td>

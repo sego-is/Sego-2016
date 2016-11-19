@@ -124,10 +124,10 @@ function ObjectId(id_string) {
 };
 
 module.exports = {
-  Person:  mongoose.model('Person', personaSchema),
+  Person:  mongoose.model('Person',   personaSchema),
   Company: mongoose.model('Company', companySchema),
-  Booking: mongoose.model('Booking', bookingsSchema),
+  Booking: mongoose.model('Booking',  bookingsSchema),
   /* Staff:   mongoose.model('staffs', staffSchema), */
-  Service: mongoose.model('Service', serviceSchema),
+  Service: mongoose.model('Service',  serviceSchema),
   ObjectId: ObjectId
 };

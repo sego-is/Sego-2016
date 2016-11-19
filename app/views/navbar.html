@@ -1,63 +1,65 @@
 <div ng-controller="navbarCtrl">
-  <nav class="navbar navbar-default navbar-fixed-top" ng-controller="MainCtrl">
+  <nav class="navbar navbar-default navbar-fixed-top"
+       ng-controller="MainCtrl">
     <div id="nav">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-
           <a class="navbar-brand"
              rel="home"
              href="home">SEGO</a>
-          <!--<a class="navbar-brand"
-             rel="home"
-             href="admin">tmpAdmin</a>-->
-
         </div>
+        <a class="navbar-brand hidden-xs hidden-sm"
+           rel="home"
+           href="admin">tmpAdmin
+        </a>
+        <div class="nav navbar-nav navbar-right"
+             ng-if="!isAuthenticated">
+          <button type="button"
+                  class="btn btn-link btn-lg"
+                  ng-click="authService.login()">Innskráning
+            <span class="fa fa-sign-in"
+                  aria-hidden="true">
+                </span>
+          </button>
+        </div>
+        <div class="nav navbar-nav pull-right"
+             ng-if="isAuthenticated">
+          <button type="button"
+                  class="btn btn-link btn-lg"
+                  ng-click="opnaGlugga('verdlisti')">
+            <span class="visible-lg-inline-block visible-md-inline-block">Verðlisti</span>
+            <span class="fa fa-dollar"
+                  aria-hidden="true">
+                </span>
+          </button>
 
-        <a class="navbar-brand hidden-xs hidden-sm" rel="home" href="admin">tmpAdmin</a>
-
-          <div class="nav navbar-nav navbar-right" ng-if="!isAuthenticated">
-
-              <button type="button"
-                      class="btn btn-link btn-lg"
-                      ng-click="authService.login()">
-                Innskráning <span
-                class="fa fa-sign-in" aria-hidden="true"></span></button>
-
-          </div>
-          <div class="nav navbar-nav pull-right" ng-if="isAuthenticated">
-
-              <button type="button"
-                      class="btn btn-link btn-lg"
-                      ng-click="opnaGlugga('verdlisti')">
-                <span class="visible-lg-inline-block visible-md-inline-block"> Verðlisti</span>
-                <span class="fa fa-dollar" aria-hidden="true"></span>
-              </button>
-
-              <button type="button"
-                      class="btn btn-link btn-lg"
-                      ng-click="opnaGlugga('stillingar')">
-                <span class="visible-lg-inline-block visible-md-inline-block">Stillingar</span>
-                <span class="fa fa-cogs " aria-hidden="true"></span>
-              </button>
-
-              <button type="button"
-                      class="btn btn-link btn-lg"
-                      ng-click="opnaGlugga('vidskiptavinir')">
-                <span class="visible-lg-inline-block visible-md-inline-block"> Viðskiptavinir </span>
-                <span class="fa fa-users" aria-hidden="true"></span>
-              </button>
-              <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
-
-              <button type="button"
-                      class="btn btn-link btn-lg"
-                      ng-click="authService.logout()">
-                <span class="visible-lg-inline-block visible-md-inline-block"> Útskrá </span>
-                <span class="fa fa-sign-out" aria-hidden="true"></span>
-              </button>
-
-          </div>
-
+          <button type="button"
+                  class="btn btn-link btn-lg"
+                  ng-click="opnaGlugga('stillingar')">
+            <span class="visible-lg-inline-block visible-md-inline-block">Stillingar</span>
+            <span class="fa fa-cogs "
+                  aria-hidden="true">
+                </span>
+          </button>
+          <button type="button"
+                  class="btn btn-link btn-lg"
+                  ng-click="opnaGlugga('vidskiptavinir')">
+            <span class="visible-lg-inline-block visible-md-inline-block">Viðskiptavinir</span>
+            <span class="fa fa-users"
+                  aria-hidden="true">
+                </span>
+          </button>
+          <!-- ef valinn breytist button.class =  btn btn-primary btn-lg -->
+          <button type="button"
+                  class="btn btn-link btn-lg"
+                  ng-click="authService.logout()">
+            <span class="visible-lg-inline-block visible-md-inline-block">Útskrá</span>
+            <span class="fa fa-sign-out"
+                  aria-hidden="true">
+                </span>
+          </button>
+        </div>
       </div>
       <!-- /.container-fluid -->
     </div>

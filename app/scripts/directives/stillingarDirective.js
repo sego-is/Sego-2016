@@ -13,15 +13,15 @@
         templateUrl: '../../views/stillingar.html',
         link: function (scope, element, attrs) {
           // scope Variables
-          // CREATE PERSON 
+          // CREATE PERSON
           scope.person = {};
           // CREATE SERVICE
           scope.service = {};
            // GET ALL STAFF AND SERVICE FOR SALOON
           scope.staff = [];
           //scope.services = [];
-          
-          
+
+
           // COMPANY->_ID PERSON WORKS FOR
           scope.person.company_id = backendFactory.ID();
           // PERSONE WILL GET ROLE OF STAFF : 1
@@ -37,8 +37,8 @@
           };
           // END OF CREATING STAFF //
 
-          
-          //  COMPANY->_ID OWN SERVICE 
+
+          //  COMPANY->_ID OWN SERVICE
           scope.service.company_id = backendFactory.ID();
 
           scope.addPrice = function(s) {
@@ -51,13 +51,9 @@
           };
           // END OF CREATE SERVICE
 
-          // GET DATA, NEED TO SHOW
-          getStaff();
-          getService();
-
           function getStaff() {
               scope.staff = backendFactory.Staff();
-          };
+          }
 
           function getService() {
               backendFactory.getService().then(function(res) {
@@ -67,6 +63,11 @@
                   console.log("ERROR getService(): ", err);
               });
           }
+
+          // GET DATA, NEED TO SHOW
+          getStaff();
+          getService();
+
          // END OF GETTING U/S
 
          // LOKA GLUGGANUM A STILLINGAR VIEW-INU
@@ -82,7 +83,7 @@
 
              });
           };
-          
+
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p) {
             scope.editVerd = p;
@@ -96,8 +97,8 @@
             }, function errorCallback(error) {
                     console.log("ERRROR", error);
             });
-          }
-          
+          };
+
           // REMOVE/DELETE STAFF FROM STAFF IN COMPANY, REFERENCE->PERSON DOESN'T DELETE
           scope.removeStaff = function (a, index) {
             backendFactory.deleteFromStaff(a).then(function successCallback(response) {
@@ -111,7 +112,7 @@
             scope.editUser = k;
             scope.state.edit = true;
           };
-          
+
           scope.updateStaff = function() {
               backendFactory.updateStaff(scope.editUser).then(function(res) {
                   console.log("UPDATE SUCCESSFULL", res);
