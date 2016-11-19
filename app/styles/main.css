@@ -127,7 +127,7 @@ body.jumbotron #page-header-wrapper {
 
 .botnmynd img {
   width: 100%;
-  height: 30%;
+  height: 10%;
   padding-top: 4px;
 }
 
@@ -171,20 +171,7 @@ body.jumbotron #page-header-wrapper {
     -webkit-transition: all 5s ease-in-out;
     -moz-transition: all duration ease-in-out;
     transition: all duration ease-in-out;
-    /*
-  position: absolute;
-  width: 50%;
-  height: 70%;
-  top: 10%;
-  right: 25%;
-  /*padding: 1% 5% 5% 5%;
-  background: white;
-  /*border: 1px solid black;
-  border-radius: 6px 6px 6px 6px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  z-index: 3;
-  */
+    padding: 0px;
 }
 
 .skilabod-xHorn {
@@ -262,7 +249,9 @@ boka.skilabod {
 }
 
 .haus {
-  background-color: #7a43b6;
+  /*background-color: #7a43b6;*/
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100%;
   color: white;
   font-size: 30px;
@@ -274,7 +263,9 @@ boka.skilabod {
 }
 
 .footer {
-  background-color: #7a43b6;
+  /*background-color: #7a43b6;*/
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100%;
   color: white;
   font-size: 18px;
@@ -419,22 +410,15 @@ footer p {
   font-family: Gadugi, sans-serif;
 }
 
-/*.navbar-default {
-  background-color: #7a43b6;
-  background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");
-}*/
-
-/*.btn.btn-link.btn-lg {
-  color: lightgray;
-  color: black;
-}*/
 
 .btn.btn-link.btn-lg:hover {
   text-decoration: none;
 }
 
 .navbar-header {
-  background-color: #7a43b6;
+  /*background-color: #7a43b6;*/
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100px;
   height: 48px;
   -moz-border-radius: 100px/50px;
