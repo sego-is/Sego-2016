@@ -144,7 +144,7 @@
                             }
                             else {
                                 console.log("b from when pushing to bookings:", b);
-                                model.Person.update( { "_id": p._id }, 
+                                model.Person.update( { "_id": p1._id }, 
                                 { $push: {
                                     "history": {
                                         "_id": b._id
