@@ -115,7 +115,7 @@ console.log("BOOKING DATA: ", data);
       "company_id": data.company_id,
       "name":       data.customer_name,
       "phone":      data.customer_phone,
-      "service":    data.customer_service
+      "history":    data.customer_service
     }, function (err, p) {
       if (err) {
         console.log("ERROR (err_msg):", err);
@@ -125,7 +125,7 @@ console.log("BOOKING DATA: ", data);
                 company_id: data.company_id,
                 name:       data.customer_name,
                 phone:      data.customer_phone,
-                service:    data.customer_service
+                history:    data.customer_service
             }, function (err, p) {
                 if (err) {
                     res.status(500).send(err);

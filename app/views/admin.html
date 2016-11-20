@@ -73,6 +73,7 @@
           <th>Sími</th>
           <th>Netfang</th>
           <th>role</th>
+          <th>Saga</th>
           <th></th>
         </tr>
         </thead>
@@ -82,9 +83,11 @@
           <td>{{ u.phone }}</td>
           <td>{{ u.email }}</td>
           <td>{{ u.role }}</td>
+          <td>{{u.history}}</td>
           <td>
             <button ng-click="deleteUser(u._id)" value="eyða">eyða</button>
           </td>
+          <td>{{u}}</td>
         </tr>
         </tbody>
       </table>
@@ -110,6 +113,7 @@
           <td>
             <button ng-click="deleteUser(u._id)" value="eyða">eyða</button>
           </td>
+          <td>{{b}}</td>
         </tr>
         </tbody>
       </table>
