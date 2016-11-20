@@ -45,8 +45,8 @@
             backendFactory.getBookingByDate(selectedDay).then(function(res) {
                 // If there are no bookings by given date -> return EMPTY ARRAY
                 if (res.data.length === 0) {
-                    $scope.bookings = [];
-                    $scope.curr = {};
+                    $scope.bookings =    [];
+                    $scope.curr =        {};
                     $scope.loadingData = false;
                 }
                 else {
@@ -65,11 +65,11 @@
 
         // FYRIR PROGRESS MYND
         $scope.loadingData = true;
-        
+
         // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
         // Breytti frá $scope i var, því enginn ástæða til að kalla á þetta fall á scope-i
         var bookingForToday = {};
-        
+
         var bookingsToday = function() {
             for (var b in $scope.bookings) {
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
@@ -79,7 +79,7 @@
                   '<p class="confirmedBooking">' + $scope.bookings[b].customer_id.name + '</p>';
             }
         };
-                
+
         // HREINSA BLADSIDA FYRIR NYJAN DAG
         function cleanPage() {
             $('.confirmedBooking').remove();
@@ -89,12 +89,8 @@
         $scope.getDailyBookings = function (t) {
             cleanPage();
             dagatalFactory.setDate(t);
-            selectedDay = dagatalFactory.getDate()
+            selectedDay =         dagatalFactory.getDate();
             $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
-            console.log("$scope.dagurinnIdag: ", $scope.dagurinnIdag);
-            /**********************************************************************************************/
-            /* $scope.dagurinnIdag = dagatalFactory.dagsetning( vantar lausn á að uppfæra daginn í dag ); */
-            /**********************************************************************************************/
             update();
         };
 
@@ -106,30 +102,34 @@
       $scope.openBooking = function (t, b, ev) {
         if (t === undefined) {
           console.log("UNDEFINED");
-        } 
+        }
         else {
             var idForCell = bookingForToday[ev.currentTarget.id];
             if (idForCell !== undefined) {
+              console.log("BOOKING: ", b);
                 var tmpBook = $scope.bookings[idForCell];
-                b.customer = tmpBook.customer_id.name;
-                b.phone = tmpBook.customer_id.phone;
+                b.customer =  tmpBook.customer_id.name;
+                b.phone =     tmpBook.customer_id.phone;
+                b.service =   tmpBook.customer_id.service;
             }
             else {
                 b.customer = "Sláðu inn nafn...";
-                b.phone = 5551234; 
+                b.phone = 5551234;
+              b.service = "Rassgat";
             }
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             booking = $scope.$new();
             var compiledDirective;
 
             $scope.clickOnTimapant = {
-                name: b.name,
-                customer: b.customer,
-                phone: b.phone,
-                staffId: b.person_id,
-                date: dagatalFactory.getStringForDate(new Date(selectedDay)),
+                name:      b.name,
+                customer:  b.customer,
+                phone:     b.phone,
+                service:   b.service,
+                staffId:   b.person_id,
+                date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
                 startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t),
-                endTime: dagatalFactory.getStringForDate(new Date(selectedDay), '18:00')
+                endTime:   dagatalFactory.getStringForDate(new Date(selectedDay), '18:00')
             };
             compiledDirective = $compile('<boka class="skilabod" ' +
                 'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
