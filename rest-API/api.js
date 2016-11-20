@@ -110,90 +110,98 @@
 
   api.post('/bookings', bodyParser.json(), (req, res) => {
     const data = req.body;
-console.log("BOOKING DATA: ", data);
     model.Person.findOne({
       "company_id": data.company_id,
       "name":       data.customer_name,
       "phone":      data.customer_phone
     }, function (err, p) {
-      console.log("BOOKING DATA p: ", p);
       if (err) {
         console.log("ERROR (err_msg):", err);
       } else {
           if (p === null) {
-            console.log("p === NULL: ");
             model.Person.create({
                 company_id: data.company_id,
                 name:       data.customer_name,
-                phone:      data.customer_phone,
-              history: { $push: {
-                text: data.customer_service
-              }}
-            }, function (err, p) {
-              console.log("p == NULL after person.create: ", p);
-                if (err) {
-                    res.status(500).send(err);
+                phone:      data.customer_phone
+            }, function (err1, p1) {
+                if (err1) {
+                    res.status(500).send(err1);
                 } else {
-                  console.log("p == NULL after person.create else: ", p);
+                  console.log("p == NULL after person.create else: ", p1);
                     model.Booking.update( {"company_id": data.company_id, "date": data.date },
                         { $push: {
                             "bookings": {
-                                "customer_id": p._id,
+                                "customer_id": p1._id,
                                 "staff_id":    data.staff_id,
                                 "startTime":   data.startTime,
                                 "endTime":     data.endTime
                             }
                         }},
                         { safe: true, upsert: true },
-                        function (err, doc) {
-                            if (err) {
-                                res.status(500).send(err);
+                        function (err2, b) {
+                            if (err2) {
+                                res.status(500).send(err2);
                             }
                             else {
-                                res.send(doc);
+                                console.log("b from when pushing to bookings:", b);
+                                model.Person.update( { "_id": p._id }, 
+                                { $push: {
+                                    "history": {
+                                        "_id": b._id
+                                    }
+                                }}, { safe: true, upsert: true},
+                                function(errr, p2) {
+                                    if (errr) {
+                                        res.status(500).send(errr);
+                                    }
+                                    else {
+                                        res.send(p2);
+                                    }
+                                });
                             }
                         });
                     }
             });
           }
           else {
-            console.log("p !== NULL: ", p);
-
             model.Booking.update( {"company_id": data.company_id, "date": data.date },
                 { $push: {
                     "bookings": {
                         "customer_id": p._id,
                         "staff_id":    data.staff_id,
                         "startTime":   data.startTime,
-                        "endTime":     data.endTime
+                        "endTime":     data.endTime,
+                        "service":     data.service
+                        }
                     }
-                }},
+                },
                 { safe: true, upsert: true },
-                function (err, doc) {
-                  console.log("p !== NULL after: ", doc);
-                    if (err) {
-                        res.status(500).send(err);
+                function (err1, b) {
+                  console.log("p !== NULL after: ", b);
+                    if (err1) {
+                        res.status(500).send(err1);
                     }
                     else {
-                        res.send(doc);
+                        model.Person.update( { "_id": p._id }, 
+                            { $push: {
+                                "history": {
+                                    "_id": b._id
+                                }
+                            }},
+                            { safe: true, upsert: true},
+                            function(errr, p2) {
+                                if (errr) {
+                                    res.status(500).send(errr);
+                                }
+                                else {
+                                    res.send(p2);
+                                }
+                            });
                     }
             });
         }
       }
     });
-
-    /*
-     const m = new model.Booking(req.body);
-     m.save(function(err, doc) {
-     if (err) {
-     res.status(500).send(err);
-     return;
-     }
-     else {
-     res.status(201).send(doc);
-     }
-     });*/
-    //res.status(201).send(req.body);
   });
 
   api.get('/services', (req, res) => {

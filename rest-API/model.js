@@ -25,9 +25,13 @@ const personaSchema = Schema({
   },
   image_url: String,
   history: [{
-    date: Date,
-    text: String
+    bookings_id: {
+        _id: false,
+        type: Schema.Types.ObjectId,
+        ref: 'Booking'
+    }
   }],
+  comments: [String],
   // 0:Customer 1:Staff
   role: {
     type:    Number,
@@ -94,7 +98,11 @@ const bookingsSchema = Schema({
       ref:  'Person'
     },
     startTime: Date,
-    endTime: Date
+    endTime: Date,
+    service: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Service.pricelist'
+    }]
   }]
 });
 
@@ -110,7 +118,6 @@ const serviceSchema = Schema({
     name: {
       type:    String,
       require: true,
-      unique: true
     },
     price: Number
   }]
