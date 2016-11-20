@@ -92,7 +92,7 @@
   });
 
   api.get('/bookings/:date/:id', (req, res) => {
-     model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id').exec(function (err, docs) {
+     model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id').populate('bookings.service').exec(function (err, docs) {
         if (err) {
             res.status(500).send(err);
         } else {
