@@ -127,7 +127,7 @@ console.log("BOOKING DATA: ", data);
                 name:       data.customer_name,
                 phone:      data.customer_phone,
               history: { $push: {
-                history: data.customer_service
+                text: data.customer_service
               }}
             }, function (err, p) {
               console.log("p == NULL after person.create: ", p);
@@ -158,6 +158,7 @@ console.log("BOOKING DATA: ", data);
           }
           else {
             console.log("p !== NULL: ", p);
+
             model.Booking.update( {"company_id": data.company_id, "date": data.date },
                 { $push: {
                     "bookings": {
