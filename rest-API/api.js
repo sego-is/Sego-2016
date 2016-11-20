@@ -134,7 +134,8 @@
                                 "customer_id": p1._id,
                                 "staff_id":    data.staff_id,
                                 "startTime":   data.startTime,
-                                "endTime":     data.endTime
+                                "endTime":     data.endTime,
+                                "service":     data.customer_service
                             }
                         }},
                         { safe: true, upsert: true },
@@ -171,7 +172,7 @@
                         "staff_id":    data.staff_id,
                         "startTime":   data.startTime,
                         "endTime":     data.endTime,
-                        "service":     data.service
+                        "service":     data.customer_service
                         }
                     }
                 },
