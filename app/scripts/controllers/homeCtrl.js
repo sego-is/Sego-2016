@@ -111,7 +111,7 @@
                 var tmpBook = $scope.bookings[idForCell];
                 b.customer =  tmpBook.customer_id.name;
                 b.phone =     tmpBook.customer_id.phone;
-                b.service =   tmpBook.customer_id.history[0];
+                b.service =   tmpBook.service;
             }
             else {
                 b.customer = "";
