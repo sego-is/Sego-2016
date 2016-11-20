@@ -174,8 +174,8 @@
                     }
                 }},
                 { safe: true, upsert: true },
-                function (err1, doc) {
-                  console.log("p !== NULL after: ", doc);
+                function (err1, b) {
+                  console.log("p !== NULL after: ", b);
                     if (err) {
                         res.status(500).send(err1);
                     }
