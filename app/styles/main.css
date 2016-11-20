@@ -48,17 +48,6 @@ body.jumbotron #page-header-wrapper {
   margin: 30px 0;
 }
 
-/* Main marketing message and sign up button
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 0px;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}*/
-
 .adalmynd img {
   width: 100%;
   height: 30%;
@@ -94,48 +83,33 @@ body.jumbotron #page-header-wrapper {
 }
 
 .accordion .accordion-item:nth-child(1) {
-  width: 33%;
-  float: left;
   font-family: Gadugi, sans-serif;
   text-align: center;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-  margin-right: 7px;
   margin-top: 1px;
 }
 
 .accordion .accordion-item:nth-child(2) {
-  width: 33%;
-  float: left;
   font-family: Gadugi, sans-serif;
   text-align: center;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-  margin-right: 7px;
   margin-top: 1px;
 }
 
 .accordion .accordion-item:nth-child(3) {
-  width: 33%;
-  float: left;
   font-family: Gadugi, sans-serif;
   text-align: center;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   margin-top: 1px;
 }
-
-/*.accordion .accordion-item:nth-child(4) {
-  float: left;
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}*/
 
 .botnmynd img {
   width: 100%;
   height: 10%;
   padding-top: 4px;
-  z-index: 0;
 }
 
 /*
@@ -216,6 +190,7 @@ body.jumbotron #page-header-wrapper {
         height: 90%;
     }
 }
+
 /* Allt nýtt fyrir neðan þetta*/
 .test {
   border: 1px solid red;
@@ -238,19 +213,6 @@ body.jumbotron #page-header-wrapper {
 .col-xs-12 {
   padding-left: 0;
   padding-right: 0;
-  /*border-radius: 5px;*/
-}
-
-verdlisti.skilabod {
-  padding: 0px;
-}
-
-stillingar.skilabod {
-  padding: 0px;
-}
-
-vidskiptavinir.skilabod {
-  padding: 0px;
 }
 
 boka.skilabod {
@@ -258,7 +220,6 @@ boka.skilabod {
 }
 
 .haus {
-  /*background-color: #7a43b6;*/
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100%;
@@ -272,7 +233,6 @@ boka.skilabod {
 }
 
 .footer {
-  /*background-color: #7a43b6;*/
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100%;
@@ -399,7 +359,6 @@ boka.skilabod {
 }
 
 .navbar-default .navbar-brand:hover {
-  /*color: #7a43b6;*/
   color: black;
   text-shadow: 2px 2px 4px white;
   font-family: Gadugi, sans-serif;
@@ -411,7 +370,6 @@ boka.skilabod {
 }
 
 .navbar-header {
-  /*background-color: #7a43b6;*/
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100px;
@@ -419,7 +377,6 @@ boka.skilabod {
   -moz-border-radius: 100px/50px;
   -webkit-border-radius: 100px/50px;
   border-radius: 100px/50px;
-  /*background-image: url("http://1.bp.blogspot.com/-IdHkNJRShik/T1-pkQVpvcI/AAAAAAAABjs/G7g0vQA_deQ/s1600/subtle_website_background_134.jpg");*/
   padding-left: 12px;
   box-shadow: 5px 5px 5px grey;
   display: inline-block;
@@ -427,18 +384,6 @@ boka.skilabod {
 
 /*#nav {
   border-bottom: 1px solid black;
-}*/
-
-/*.vidskiptavinir {
-  background-color: #7a43b6;
-  color: white;
-  font-size: 30px;
-  font-family: Gadugi, sans-serif;
-  padding-top: 5px;
-  height: 55px;
-  margin-bottom: 10px;
-  padding-left: 12px;
-  padding-right: 12px;
 }*/
 
 .skilabod-x {
