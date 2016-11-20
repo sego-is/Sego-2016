@@ -5,62 +5,62 @@
     alt="">
 </div>
 <div class="container-fluid bak" ng-show="!loadingData">
-  <div class="row">
-    <div class="row dagsetning">
-      <div class="col-md-offset-3">
-        <i class="fa fa-caret-left buttonleft divTakki pull-left"
-           ng-click="prevDay()">
-        </i>
-        <p class="col-md-3 col-sm-6 col-xs-6"
-           ng-bind="dagurinnIdag">
-        </p>
-        <i class="fa fa-caret-right buttonright divTakki"
-           ng-click="nextDay()">
-        </i>
-        <i class="fa fa-calendar fa-2x divTakki"
-           ng-click="isCollapsed = !isCollapsed"
-           aria-hidden="true">
-        </i>
+  <div class="row dagsetning">
+    <div class="col-md-offset-3">
+      <i class="fa fa-caret-left buttonleft divTakki pull-left"
+         ng-click="prevDay()">
+      </i>
+      <div class="dagurin_i_dag">
+      <p class="col-md-3 col-sm-6 col-xs-6"
+         ng-bind="dagurinnIdag">
+      </p>
       </div>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-9">
-      <table class="table table-hover table-bordered">
-        <thead>
-        <tr>
-          <th class="klukka">
-            <i class="fa fa-clock-o"
-               aria-hidden="true"></i>
-          </th>
-          <th ng-repeat="x in staff | orderBy: x.person_id">
-            {{ x.name }}
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="booking"
-            ng-repeat="t in times track by $index ">
-          <td class="booking-time">
-            <p ng-if="$index % 2 == 0">{{ t }}</p>
-          </td>
-          <td class="booking-cell"
-              ng-repeat="x in staff | orderBy: x.person_id"
-              ng-click="openBooking(t, x, $event)"
-              id="{{ t }}{{ x.person_id }}">
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div uib-datepicker
-         ng-model="dt"
-         uib-collapse="isCollapsed"
-         class="col-md-3"
-         datepicker-options="options"
-         ng-click="getDailyBookings(dt | date:'fullDate')">
+      <i class="fa fa-caret-right buttonright divTakki"
+         ng-click="nextDay()">
+      </i>
+      <i class="fa fa-calendar fa-2x divTakki"
+         ng-click="isCollapsed = !isCollapsed"
+         aria-hidden="true">
+      </i>
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-9">
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th class="klukka">
+          <i class="fa fa-clock-o"
+             aria-hidden="true"></i>
+        </th>
+        <th ng-repeat="x in staff | orderBy: x.person_id">
+          {{ x.name }}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="booking"
+          ng-repeat="t in times track by $index ">
+        <td class="booking-time">
+          <p ng-if="$index % 2 == 0">{{ t }}</p>
+        </td>
+        <td class="booking-cell"
+            ng-repeat="x in staff | orderBy: x.person_id"
+            ng-click="openBooking(t, x, $event)"
+            id="{{ t }}{{ x.person_id }}">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div uib-datepicker
+       ng-model="dt"
+       uib-collapse="isCollapsed"
+       class="col-md-3"
+       datepicker-options="options"
+       ng-click="getDailyBookings(dt | date:'fullDate')">
+  </div>
+</div>
+

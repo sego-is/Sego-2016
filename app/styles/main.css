@@ -209,6 +209,10 @@ body.jumbotron #page-header-wrapper {
   background-color: white;
 }
 
+.dagurin_i_dag {
+  padding-right: 0px;
+}
+
 /* Verðlisti*/
 .col-xs-12 {
   padding-left: 0;
