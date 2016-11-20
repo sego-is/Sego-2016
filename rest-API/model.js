@@ -98,7 +98,11 @@ const bookingsSchema = Schema({
       ref:  'Person'
     },
     startTime: Date,
-    endTime: Date
+    endTime: Date,
+    service: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Service.pricelist'
+    }]
   }]
 });
 
