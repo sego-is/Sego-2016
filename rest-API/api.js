@@ -170,13 +170,15 @@
                         "customer_id": p._id,
                         "staff_id":    data.staff_id,
                         "startTime":   data.startTime,
-                        "endTime":     data.endTime
+                        "endTime":     data.endTime,
+                        "service":     data.service
+                        }
                     }
-                }},
+                },
                 { safe: true, upsert: true },
                 function (err1, b) {
                   console.log("p !== NULL after: ", b);
-                    if (err) {
+                    if (err1) {
                         res.status(500).send(err1);
                     }
                     else {
@@ -200,19 +202,6 @@
         }
       }
     });
-
-    /*
-     const m = new model.Booking(req.body);
-     m.save(function(err, doc) {
-     if (err) {
-     res.status(500).send(err);
-     return;
-     }
-     else {
-     res.status(201).send(doc);
-     }
-     });*/
-    //res.status(201).send(req.body);
   });
 
   api.get('/services', (req, res) => {

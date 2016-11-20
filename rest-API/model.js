@@ -118,7 +118,6 @@ const serviceSchema = Schema({
     name: {
       type:    String,
       require: true,
-      unique: true
     },
     price: Number
   }]
