@@ -101,7 +101,7 @@
             }
             else {
                 let b = _.sortBy(docs[0].bookings, 'staff_id');
-                b = _.sortBy(b, 'startTime');
+                b =     _.sortBy(b, 'startTime');
                 res.send(b);
             }
         }
@@ -123,8 +123,9 @@ console.log("BOOKING DATA: ", data);
           if (p === null) {
             model.Person.create({
                 company_id: data.company_id,
-                name: data.customer_name,
-                phone: data.customer_phone
+                name:       data.customer_name,
+                phone:      data.customer_phone,
+                service:    data.customer_service
             }, function (err, p) {
                 if (err) {
                     res.status(500).send(err);
@@ -133,9 +134,9 @@ console.log("BOOKING DATA: ", data);
                         { $push: {
                             "bookings": {
                                 "customer_id": p._id,
-                                "staff_id": data.staff_id,
-                                "startTime": data.startTime,
-                                "endTime":  data.endTime
+                                "staff_id":    data.staff_id,
+                                "startTime":   data.startTime,
+                                "endTime":     data.endTime
                             }
                         }},
                         { safe: true, upsert: true },
@@ -155,9 +156,9 @@ console.log("BOOKING DATA: ", data);
                 { $push: {
                     "bookings": {
                         "customer_id": p._id,
-                        "staff_id": data.staff_id,
-                        "startTime": data.startTime,
-                        "endTime":  data.endTime
+                        "staff_id":    data.staff_id,
+                        "startTime":   data.startTime,
+                        "endTime":     data.endTime
                     }
                 }},
                 { safe: true, upsert: true },
@@ -235,7 +236,7 @@ console.log("BOOKING DATA: ", data);
                     model.Company.update({'_id': data.company_id}, {
                         $push: { "staff": {
                             "person_id": doc._id,
-                            "name": doc.name
+                            "name":      doc.name
                         }
                         }}, function (err) {
                             if (err) {
@@ -254,9 +255,9 @@ console.log("BOOKING DATA: ", data);
     }
     else {
         model.Person.update({ '_id': { $eq: data._id }}, { '$set': {
-            'name': data.name,
-            'email': data.email,
-            'phone': parseInt(data.phone),
+            'name':    data.name,
+            'email':   data.email,
+            'phone':   parseInt(data.phone),
             'address': data.address
         }}, (err, doc) => {
             if (err) {
@@ -297,7 +298,7 @@ console.log("BOOKING DATA: ", data);
       var data = req.body;
       model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
         '$set': {
-            'pricelist.$.name': data.name,
+            'pricelist.$.name':  data.name,
             'pricelist.$.price': data.price
         }}, (err, doc) => {
             if (err) {
@@ -349,8 +350,10 @@ console.log("BOOKING DATA: ", data);
   api.put('/companies/staff/', bodyParser.json(), (req, res) => {
       const data = req.body;
       console.log("DATA:", data);
-      model.Company.update({ '_id': { $eq: data.cid }, 'staff.person_id': { $eq: data.person_id }}, {
-        '$set': {
+      model.Company.update({
+        '_id': { $eq: data.cid },
+        'staff.person_id': { $eq: data.person_id }},
+        { '$set': {
             'staff.$.name': data.name
         }}, (e, doc) => {
             if (e) {
@@ -359,8 +362,8 @@ console.log("BOOKING DATA: ", data);
             else {
                 model.Person.update({'company_id': { $eq: data.cid }, '_id': { $eq: data.person_id }},  {
                     '$set': {
-                        'name' : data.name,
-                        'email': data.email,
+                        'name' :  data.name,
+                        'email':  data.email,
                         'phone' : parseInt(data.phone)
                     }}, (er, docc) => {
                         if (er) {
