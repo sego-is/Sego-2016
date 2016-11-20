@@ -144,21 +144,35 @@
                                 res.status(500).send(err2);
                             }
                             else {
-                                console.log("b from when pushing to bookings:", b);
-                                model.Person.update( { "_id": p1._id }, 
-                                { $push: {
-                                    "history": {
-                                        "_id": b._id
-                                    }
-                                }}, { safe: true, upsert: true},
-                                function(errr, p2) {
-                                    if (errr) {
-                                        res.status(500).send(errr);
+                                model.Booking.findIdOfBooking({
+                                    'company_id': data.company_id,
+                                    'customer_id': p1._id,
+                                    'staff_id': data.staff_id,
+                                    'startTime': data.startTime
+                                }, function(e, bid) {
+                                    if (bid !== null) {
+                                        console.log('bid !== null, bid:', bid);
+                                        model.Person.update( { "_id": p1._id }, 
+                                            { $push: {
+                                                "history": {
+                                                    "_id": bid
+                                                }
+                                            }}, { safe: true, upsert: true},
+                                            function(errr, p2) {
+                                                if (errr) {
+                                                    res.status(500).send(errr);
+                                                }
+                                                else {
+                                                    res.send(p2);
+                                                }
+                                            });
                                     }
                                     else {
-                                        res.send(p2);
+                                        console.log('bid was fucking NULL');
+                                        res.status(500).send(e);
                                     }
                                 });
+                                
                             }
                         });
                     }
@@ -183,25 +197,35 @@
                         res.status(500).send(err1);
                     }
                     else {
-                        model.Person.update( { "_id": p._id }, 
-                            { $push: {
-                                "history": {
-                                    "_id": b._id
-                                }
-                            }},
-                            { safe: true, upsert: true},
-                            function(errr, p2) {
-                                if (errr) {
-                                    res.status(500).send(errr);
-                                }
-                                else {
-                                    res.send(p2);
-                                }
-                            });
+                        model.Booking.findIdOfBooking({
+                            'company_id': data.company_id,
+                            'customer_id': p._id,
+                            'staff_id': data.staff_id,
+                            'startTime': data.startTime
+                        }, function(e, bid) {
+                            if (bid !== null) {
+                                model.Person.update( { "_id": p._id }, 
+                                    { $push: {
+                                        "history": {
+                                            "_id": bid
+                                        }
+                                    }
+                                },
+                                { safe: true, upsert: true},
+                                function(errr, p2) {
+                                    if (errr) {
+                                        res.status(500).send(errr);
+                                    }
+                                    else {
+                                        res.send(p2);
+                                    }
+                                });
+                            }
+                        });
                     }
-            });
+                });
+            }
         }
-      }
     });
   });
 

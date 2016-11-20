@@ -29,7 +29,8 @@
                 scope.close();
             };
           // FOR CHECKBOX SELECTED SERVICE
-          scope.serviceSelected = [];
+          scope.serviceSelected = scope.objFrom.service;
+          
           scope.toggleSelection = function(s) {
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
               if (posOfSelected > -1) {
