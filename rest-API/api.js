@@ -114,8 +114,7 @@ console.log("BOOKING DATA: ", data);
     model.Person.findOne({
       "company_id": data.company_id,
       "name":       data.customer_name,
-      "phone":      data.customer_phone,
-      "history":    data.customer_service
+      "phone":      data.customer_phone
     }, function (err, p) {
       console.log("BOOKING DATA p: ", p);
       if (err) {
@@ -127,7 +126,7 @@ console.log("BOOKING DATA: ", data);
                 company_id: data.company_id,
                 name:       data.customer_name,
                 phone:      data.customer_phone,
-              service: { $push: {
+              history: { $push: {
                 history: data.customer_service
               }}
             }, function (err, p) {
