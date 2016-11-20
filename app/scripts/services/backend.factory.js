@@ -284,7 +284,19 @@
         });
       };
       // END OF SERVICE
-
+      
+      backendFactory.deleteBooking = function(bid) {
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/booking/' + bid,
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
+      };
+      
       return backendFactory;
 
     }]);

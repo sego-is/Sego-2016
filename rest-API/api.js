@@ -155,7 +155,7 @@
                                         model.Person.update( { "_id": p1._id }, 
                                             { $push: {
                                                 "history": {
-                                                    "_id": bid
+                                                    "_id": bid._id
                                                 }
                                             }}, { safe: true, upsert: true},
                                             function(errr, p2) {
@@ -207,7 +207,7 @@
                                 model.Person.update( { "_id": p._id }, 
                                     { $push: {
                                         "history": {
-                                            "_id": bid
+                                            "_id": bid._id
                                         }
                                     }
                                 },
@@ -228,7 +228,17 @@
         }
     });
   });
-
+  
+  api.delete('/bookings/:bid', (req, res) => {
+      model.Booking.findByIdAndRemove(req.params.bid, function (err, c) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.send(c);
+        }
+    });
+  });
+  
   api.get('/services', (req, res) => {
     model.Service.find({}, function (err, docs) {
       if (err) {

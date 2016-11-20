@@ -23,7 +23,6 @@
             scope.bokun.klippari = scope.objFrom.nafn.name;
             scope.bokun.dags = scope.objFrom.dags;
             */
-          console.log("DAGS ", scope.objFrom);
 
             scope.leave = function() {
                 scope.close();

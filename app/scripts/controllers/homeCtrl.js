@@ -72,6 +72,7 @@
 
         var bookingsToday = function() {
             for (var b in $scope.bookings) {
+                console.log('b in $scope.bookings:', $scope.bookings[b]);
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
                 bookingForToday[tmp] = b;
                 var myElm = document.getElementById(tmp);

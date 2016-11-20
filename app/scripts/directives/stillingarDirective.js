@@ -13,8 +13,10 @@
         templateUrl: '../../views/stillingar.html',
         link: function (scope, element, attrs) {
           // scope Variables
-          // CREATE PERSON
-          scope.person = {};
+          // When Creating or Updating PERSON (staff)
+          scope.editUser = {};
+          scope.editUser.role = 1;
+          scope.editUser.company_id = backendFactory.ID();
           // CREATE SERVICE
           scope.service = {};
            // GET ALL STAFF AND SERVICE FOR SALOON
@@ -23,9 +25,7 @@
           scope.form = {};
 
           // COMPANY->_ID PERSON WORKS FOR
-          scope.person.company_id = backendFactory.ID();
-          // PERSONE WILL GET ROLE OF STAFF : 1
-          scope.person.role = 1;
+
           // ADD PERSON AS STAFF IN COMPANY
           scope.addStaff = function(s) {
             if (scope.form.staffForm.$valid) {
@@ -65,6 +65,8 @@
             scope.state.add = !scope.state.add;
             scope.badInput = false;
             scope.editUser = {};
+            scope.editUser.role = 1;
+            scope.editUser.company_id = backendFactory.ID();
           };
 
           // Varð að setja til að gera badinput false,
