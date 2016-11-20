@@ -105,8 +105,8 @@
                        ng-model="editUser.address">
               </div>
             </div>
-            <div class="form-group row">
-              <div class="takkar col-xs-11 col-md-offset-7 col-xs-offset-5">
+            <div class="form-group row col-xs-11">
+              <div class="takkar col-md-offset-8 col-xs-offset-5">
                 <button type="submit"
                         id="haettavidtakki"
                         class="btn btn-primary"
@@ -122,8 +122,8 @@
           </form>
         </td>
       </tr>
-</tbody>
-<tbody ng-if="!state.verdskra && !state.add">
+      </tbody>
+      <tbody ng-if="!state.verdskra && !state.add">
       <tr ng-repeat="s in staff track by $index">
         <td class="theFirst col-xs-4">{{ s.name }}</td>
         <td>{{ s.phone }}</td>
@@ -240,7 +240,59 @@
       <!-- Verdskra add -->
       <tr ng-if="state.verdskra && state.add">
         <td colspan="4">
-          <form class="form-horizontal">
+          <form name="form.priceForm"
+                class="form-horizontal"
+                novalidate>
+            <div class="form-group row">
+              <div class="col-xs-11">
+                <input type="text"
+                       name="service"
+                       ng-class="{error: (badInput && form.priceForm.name.$error.required)
+                                  || (badInput && form.priceForm.name.$error.maxlength)
+                                  || (badInput && form.priceForm.name.$error.minlength)}"
+                       ng-click="badInputFalse()"
+                       ng-minlength="3"
+                       ng-maxlength="44"
+                       class="form-control"
+                       id="service"
+                       placeholder="Þjónusta"
+                       ng-model="service.name"
+                       required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-xs-11">
+                <input type="number"
+                       name="price"
+                       ng-class="{error: (badInput && form.priceForm.price.$error.required)
+                                      || (badInput && form.priceForm.price.$error.maxlength)
+                                      || (badInput && form.priceForm.price.$error.minlength)}"
+                       ng-minlength="7"
+                       ng-maxlength="7"
+                       ng-click="badInputFalse()"
+                       class="form-control"
+                       id="price"
+                       placeholder="Verð"
+                       ng-model="service.price"
+                       required>
+              </div>
+            </div>
+            <div class="form-group row col-xs-11">
+              <div class="takkar col-md-offset-8 col-xs-offset-5">
+                <button type="submit"
+                        id="haettavid"
+                        class="btn btn-primary"
+                        ng-click="toggleView()">Hætta við
+                </button>
+                <button type="submit"
+                        id="stadfesta"
+                        class="btn btn-primary"
+                        ng-click="addStaff(editUser)">Bæta við
+                </button>
+              </div>
+            </div>
+          </form>
+          <!--<form class="form-horizontal">
             <div class="form-group col-xs-11">
               <label class="sr-only"
                      for="Þjónusta">
@@ -250,15 +302,6 @@
                      id="inputÞjónusta"
                      placeholder="Þjónusta"
                      ng-model="service.name">
-            </div>
-            <div class="pull-right col-xs-1">
-              <i class="fa fa-plus fa-2x stadfestaTakki"
-                 aria-hidden="true"
-                 data-toggle="tooltip"
-                 data-placement="auto"
-                 title="Staðfesta"
-                 ng-click="addPrice(service)">
-              </i>
             </div>
             <div class="form-group col-xs-11">
               <label class="sr-only"
@@ -271,6 +314,15 @@
                      ng-model="service.price">
             </div>
             <div class="pull-right col-xs-1">
+              <i class="fa fa-plus fa-2x stadfestaTakki"
+                 aria-hidden="true"
+                 data-toggle="tooltip"
+                 data-placement="auto"
+                 title="Staðfesta"
+                 ng-click="addPrice(service)">
+              </i>
+            </div>
+            <div class="pull-right col-xs-1">
               <i class="fa fa-times fa-2x haettaVidTakki"
                  aria-hidden="true"
                  data-toggle="tooltip"
@@ -279,7 +331,7 @@
                  ng-click="add()">
               </i>
             </div>
-          </form>
+          </form>-->
         </td>
       </tr>
       <tr ng-repeat="p in pricelist track by $index">
