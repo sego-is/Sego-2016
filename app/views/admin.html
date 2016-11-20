@@ -104,17 +104,19 @@
           <th></th>
         </tr>
         </thead>
-        <tbody>
-        <tr ng-repeat="b in bookings">
-          <td>{{ b.staff_id }}</td>
-          <td>{{ b.customer_id }}</td>
-          <td>{{ b.startTime }}</td>
-          <td>{{ b.endTime }}</td>
-          <td>
-            <button ng-click="deleteBooking(b._id)" value="eyða">eyða</button>
-          </td>
-          <td>{{b}}</td>
-        </tr>
+        <tbody ng-repeat="b in bookings">
+            <tr>
+                <td colspan=3>{{b}}</td>
+                <td>
+                    <button ng-click="deleteBooking(b._id)" value="eyða">eyða</button>
+                </td>
+            </tr>
+            <tr ng-repeat="books in b.bookings">
+                <td>{{ books.staff_id }}</td>
+                <td>{{ books.customer_id }}</td>
+                <td>{{ books.startTime }}</td>
+                <td>{{ books.endTime }}</td>
+            </tr>
         </tbody>
       </table>
     </div>

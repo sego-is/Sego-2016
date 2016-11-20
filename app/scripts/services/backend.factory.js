@@ -124,7 +124,19 @@
           }
         });
       };
-
+      
+      backendFactory.getBookingByCompany = function() {
+          return $http({
+              url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID(),
+              method: 'GET',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+              }
+          });
+      };
+      
       backendFactory.getBookingByDate = function(date) {
           return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + date + '/' + this.ID(),

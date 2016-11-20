@@ -90,7 +90,17 @@
       }
     });
   });
-
+  
+  api.get('/bookings/:cid', (req, res) => {
+      model.Booking.find({ company_id: req.params.cid }).sort('date', -1).populate("bookings.staff_id bookings.person_id").exec(function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      }
+    });
+  });
+  
   api.get('/bookings/:date/:id', (req, res) => {
      model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id').exec(function (err, docs) {
         if (err) {
