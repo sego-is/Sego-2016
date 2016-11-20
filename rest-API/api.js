@@ -127,7 +127,9 @@ console.log("BOOKING DATA: ", data);
                 company_id: data.company_id,
                 name:       data.customer_name,
                 phone:      data.customer_phone,
-                service:    history.splice(0,0, data.customer_service)
+              service: { $push: {
+                history: data.customer_service
+              }}
             }, function (err, p) {
               console.log("p == NULL after person.create: ", p);
                 if (err) {
