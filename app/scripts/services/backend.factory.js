@@ -138,6 +138,7 @@
       };
 
       backendFactory.postBooking = function (p) {
+        console.log("backendF.postBooking p: ", p);
         return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/',
           method: 'POST',

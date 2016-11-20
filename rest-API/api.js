@@ -117,19 +117,23 @@ console.log("BOOKING DATA: ", data);
       "phone":      data.customer_phone,
       "history":    data.customer_service
     }, function (err, p) {
+      console.log("BOOKING DATA p: ", p);
       if (err) {
         console.log("ERROR (err_msg):", err);
       } else {
           if (p === null) {
+            console.log("p === NULL: ");
             model.Person.create({
                 company_id: data.company_id,
                 name:       data.customer_name,
                 phone:      data.customer_phone,
                 history:    data.customer_service
             }, function (err, p) {
+              console.log("p == NULL after person.create: ", p);
                 if (err) {
                     res.status(500).send(err);
                 } else {
+                  console.log("p == NULL after person.create else: ", p);
                     model.Booking.update( {"company_id": data.company_id, "date": data.date },
                         { $push: {
                             "bookings": {
@@ -152,6 +156,7 @@ console.log("BOOKING DATA: ", data);
             });
           }
           else {
+            console.log("p !== NULL: ", p);
             model.Booking.update( {"company_id": data.company_id, "date": data.date },
                 { $push: {
                     "bookings": {
@@ -163,6 +168,7 @@ console.log("BOOKING DATA: ", data);
                 }},
                 { safe: true, upsert: true },
                 function (err, doc) {
+                  console.log("p !== NULL after: ", doc);
                     if (err) {
                         res.status(500).send(err);
                     }
