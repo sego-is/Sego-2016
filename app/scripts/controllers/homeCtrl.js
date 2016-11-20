@@ -72,6 +72,7 @@
 
         var bookingsToday = function() {
             for (var b in $scope.bookings) {
+                console.log('b in $scope.bookings:', $scope.bookings[b]);
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
                 bookingForToday[tmp] = b;
                 var myElm = document.getElementById(tmp);
@@ -107,9 +108,7 @@
         else {
             var idForCell = bookingForToday[ev.currentTarget.id];
             if (idForCell !== undefined) {
-
                 var tmpBook = $scope.bookings[idForCell];
-              console.log("BOOKING 2: ", tmpBook.customer_id);
                 b.customer =  tmpBook.customer_id.name;
                 b.phone =     tmpBook.customer_id.phone;
                 b.service =   tmpBook.customer_id.history[0];
@@ -117,12 +116,16 @@
             else {
                 b.customer = "";
                 b.phone = "";
-                b.service = "";
             }
+            
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             booking = $scope.$new();
             var compiledDirective;
-
+            
+            if (b.service === undefined) {
+                b.service = [];
+            }
+            
             $scope.clickOnTimapant = {
                 name:      b.name,
                 customer:  b.customer,

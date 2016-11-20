@@ -106,6 +106,14 @@ const bookingsSchema = Schema({
   }]
 });
 
+bookingsSchema.static('findIdOfBooking', function(b, cb) {
+    return this.findOne({ 
+        'company_id' : b.company_id, 
+        'bookings.customer_id': b.customer_id, 
+        'bookings.staff_id': b.staff_id,
+        'bookings.startTime': b.startTime }, 'bookings._id', cb); 
+});
+
 bookingsSchema.index({company_id: 1, date: 1}, {unique: true});
 
 const serviceSchema = Schema({

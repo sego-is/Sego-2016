@@ -75,7 +75,16 @@
             }, function(err) {
                 console.log("GET BOOKING (err): ", err);
             });
-
+            
+            $scope.deleteBooking = function(bid, index) {
+                backendFactory.deleteBookings(bid).then(function(res) {
+                      $scope.bookings.splice(index, 1);
+                      console.log("BOOKINGS FOR GIVEN DAY HAVE BEEN DELETED");
+                }, function(err) {
+                    console.log('ERROR deleteBooking:', err);
+                }); 
+            };
+            
             $scope.toggleEditCompany = function(i) {
                 console.log('toggleEditCompany', $scope.editCompany[i]);
                 $scope.editCompany[i] = !$scope.editCompany[i];

@@ -23,13 +23,13 @@
             scope.bokun.klippari = scope.objFrom.nafn.name;
             scope.bokun.dags = scope.objFrom.dags;
             */
-          console.log("DAGS ", scope.objFrom);
 
             scope.leave = function() {
                 scope.close();
             };
           // FOR CHECKBOX SELECTED SERVICE
-          scope.serviceSelected = [];
+          scope.serviceSelected = scope.objFrom.service;
+          
           scope.toggleSelection = function(s) {
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
               if (posOfSelected > -1) {
