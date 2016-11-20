@@ -55,7 +55,7 @@
         </div>
         <!-- vantar gott error msg eða eitthvað -->
         <div ng-show="badInput && bookingForm.phone.$error.required">x</div>
-        <div class="form-group col-xs-11">
+        <!--<div class="form-group col-xs-11">
           <input type="text"
                  name="service"
                  ng-click="badInput = false"
@@ -64,9 +64,23 @@
                  ng-model="objFrom.service"
                  placeholder="Aðgerð"
                  required>
-          <!-- vantar gott error msg eða eitthvað -->
+          <!-- vantar gott error msg eða eitthvað
           <div ng-show="badInput && bookingForm.service.$error.required">x</div>
+        </div>-->
+        <div class="form-group col-xs-11">
+           <div ng-repeat="p in pricelist track by $index">
+            <input type="checkbox"
+                   name="service"
+                   ng-model="serviceCheckbox.$index"
+                   value="{{p.name}},{{p.price}}">
+                    {{p.name}}
+            <br>
+          </div>
         </div>
+
+
+
+
       </form>
     </td>
   </div>
