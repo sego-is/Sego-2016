@@ -113,8 +113,9 @@
 console.log("BOOKING DATA: ", data);
     model.Person.findOne({
       "company_id": data.company_id,
-      "name": data.customer_name,
-      "phone": data.customer_phone
+      "name":       data.customer_name,
+      "phone":      data.customer_phone,
+      "service":    data.customer_service
     }, function (err, p) {
       if (err) {
         console.log("ERROR (err_msg):", err);
