@@ -65,11 +65,11 @@
 
         // FYRIR PROGRESS MYND
         $scope.loadingData = true;
-        
+
         // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
         // Breytti frá $scope i var, því enginn ástæða til að kalla á þetta fall á scope-i
         var bookingForToday = {};
-        
+
         var bookingsToday = function() {
             for (var b in $scope.bookings) {
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
@@ -79,7 +79,7 @@
                   '<p class="confirmedBooking">' + $scope.bookings[b].customer_id.name + '</p>';
             }
         };
-                
+
         // HREINSA BLADSIDA FYRIR NYJAN DAG
         function cleanPage() {
             $('.confirmedBooking').remove();
@@ -106,17 +106,19 @@
       $scope.openBooking = function (t, b, ev) {
         if (t === undefined) {
           console.log("UNDEFINED");
-        } 
+        }
         else {
             var idForCell = bookingForToday[ev.currentTarget.id];
             if (idForCell !== undefined) {
+              console.log("BOOKING: ", b);
                 var tmpBook = $scope.bookings[idForCell];
                 b.customer = tmpBook.customer_id.name;
                 b.phone = tmpBook.customer_id.phone;
             }
             else {
                 b.customer = "Sláðu inn nafn...";
-                b.phone = 5551234; 
+                b.phone = 5551234;
+              b.service = "Rassgat";
             }
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             booking = $scope.$new();

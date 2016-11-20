@@ -110,7 +110,7 @@
 
   api.post('/bookings', bodyParser.json(), (req, res) => {
     const data = req.body;
-
+console.log("BOOKING DATA: ", data);
     model.Person.findOne({
       "company_id": data.company_id,
       "name": data.customer_name,
@@ -275,7 +275,7 @@
          }
     });
    */
-    
+
   });
 
   // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
@@ -340,7 +340,7 @@
                 else {
                     res.send(d);
                 }
-            }); 
+            });
         }
     });
   });

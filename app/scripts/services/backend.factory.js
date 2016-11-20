@@ -182,7 +182,6 @@
 
 
       backendFactory.postPerson = function (p) {
-        console.log("BACKENDFACTORY P: ", p);
         return $http({
           url: 'http://wwww.sego.is:6969/api/persons/',
           method: 'POST',
