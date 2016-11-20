@@ -100,22 +100,24 @@
 
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
       $scope.openBooking = function (t, b, ev) {
+        console.log("BOOKING 1: ", b);
         if (t === undefined) {
           console.log("UNDEFINED");
         }
         else {
             var idForCell = bookingForToday[ev.currentTarget.id];
             if (idForCell !== undefined) {
-              console.log("BOOKING: ", b);
+
                 var tmpBook = $scope.bookings[idForCell];
+              console.log("BOOKING 2: ", tmpBook.customer_id);
                 b.customer =  tmpBook.customer_id.name;
                 b.phone =     tmpBook.customer_id.phone;
-                b.service =   tmpBook.customer_id.service;
+                b.service =   tmpBook.customer_id.history[0];
             }
             else {
-                b.customer = "Sláðu inn nafn...";
-                b.phone = 5551234;
-              b.service = "Rassgat";
+                b.customer = "";
+                b.phone = "";
+                b.service = "";
             }
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             booking = $scope.$new();
