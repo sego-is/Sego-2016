@@ -112,8 +112,8 @@
                 </td>
             </tr>
             <tr ng-repeat="books in b.bookings">
-                <td>{{ books.staff_id }}</td>
-                <td>{{ books.customer_id }}</td>
+                <td>{{ books.staff_id.name }}</td>
+                <td>{{ books.customer_id.name }}</td>
                 <td>{{ books.startTime }}</td>
                 <td>{{ books.endTime }}</td>
             </tr>

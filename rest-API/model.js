@@ -128,7 +128,14 @@ const serviceSchema = Schema({
       require: true,
     },
     price: Number,
-    timeLength: Number /* 900 === 15 min // 60 = 1 min */
+    timeLength: { /* 900 === 15 min // 60 = 1 min */
+        type: Number,
+        default: 1800
+    },
+    active: {
+        type: Boolean,
+        default: true
+    }
   }]
 });
 

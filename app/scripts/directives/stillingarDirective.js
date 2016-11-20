@@ -42,7 +42,6 @@
           // END OF CREATING STAFF //
 
           // HELP FUNCTION WHEN CLICK EDIT STAFF,
-
           scope.editStaff = function (k, index) {
             if (k !== undefined) {
               scope.editUser = k;
@@ -76,8 +75,6 @@
           };
 
           //  COMPANY->_ID OWN SERVICE
-          scope.service.company_id = backendFactory.ID();
-
           scope.addPrice = function(s) {
               backendFactory.postService(s).then(function(res) {
                   scope.pricelist.push(res.data);
@@ -124,13 +121,18 @@
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p) {
             scope.editVerd = p;
-            scope.state.edit = true;
+            scope.state.add = true;
           };
+          
+          scope.addUpdatePrice = function(p) {
+              
+              
+          }
           // UPDATE PRICE PUT:CALL
           scope.updatePrice = function() {
               backendFactory.updatePricelist(scope.editVerd).then(function successCallBack(response) {
-                // CLOSE EDIT VIEW
-                scope.state.edit = false;
+                // CLOSE EDIT/ADD VIEW
+                scope.state.add = false;
             }, function errorCallback(error) {
                     console.log("ERRROR", error);
             });
