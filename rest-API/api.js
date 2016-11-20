@@ -155,7 +155,7 @@
                                         model.Person.update( { "_id": p1._id }, 
                                             { $push: {
                                                 "history": {
-                                                    "_id": bid._id
+                                                    "_id": bid.bookings._id
                                                 }
                                             }}, { safe: true, upsert: true},
                                             function(errr, p2) {
