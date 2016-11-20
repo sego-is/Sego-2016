@@ -92,7 +92,7 @@
   });
   
   api.get('/bookings/:cid', (req, res) => {
-      model.Booking.find({ company_id: req.params.cid }).sort('date', -1).populate("bookings.staff_id bookings.person_id").exec(function (err, docs) {
+      model.Booking.find({ company_id: req.params.cid }).sort('date').populate("bookings.staff_id bookings.person_id").exec(function (err, docs) {
       if (err) {
         res.status(500).send(err);
       } else {
