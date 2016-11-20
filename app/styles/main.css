@@ -6,7 +6,6 @@
 }
 
 body {
-
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
@@ -17,12 +16,12 @@ body.jumbotron #page-header-wrapper {
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-/*.header,
+.header,
 .marketing,
 .footer {
   padding-left: 15px;
   padding-right: 15px;
-}*/
+}
 
 /* Custom page header */
 .header {
@@ -78,8 +77,17 @@ body.jumbotron #page-header-wrapper {
   color: #eee;
 }
 
+.accordion {
+  padding-left: 0px;
+  padding-right: 2px;
+}
+
 .accordion h1 {
   margin: 0;
+}
+
+.accordion .accordion-item {
+  border: black;
 }
 
 .accordion .accordion-item:nth-child(1) {
@@ -354,6 +362,15 @@ boka.skilabod {
 
 .booking-time p {
     font-size: 0.8em;
+}
+
+@media screen {
+  .navbar-right {
+    float: right;
+  }
+  .adalmynd {
+    height: 50%;
+  }
 }
 
 .navbar-default .navbar-brand {
