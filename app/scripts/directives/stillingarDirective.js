@@ -25,7 +25,15 @@
           scope.form = {};
 
           // COMPANY->_ID PERSON WORKS FOR
-
+          
+          // HELP FUNCTION WHEN TOGGLE TO CREATING STAFF MEMBER
+          scope.toStaffAdd = function() {
+            scope.state.add =  !scope.state.add;
+            scope.editUser = {};
+            scope.editUser.role = 1;
+            scope.editUser.company_id = backendFactory.ID();
+          };
+          
           // ADD PERSON AS STAFF IN COMPANY
           scope.addStaff = function(s) {
             if (scope.form.staffForm.$valid) {
@@ -42,15 +50,13 @@
           // END OF CREATING STAFF //
 
           // HELP FUNCTION WHEN CLICK EDIT STAFF,
-          scope.editStaff = function (k, index) {
+          scope.editStaff = function (k) {
             if (k !== undefined) {
               scope.editUser = k;
-              scope.state.add = !scope.state.add;
-            } else {
-              scope.state.add = !scope.state.add;
             }
+            scope.state.edit = !scope.state.edit;
           };
-
+          
           scope.updateStaff = function() {
             backendFactory.updateStaff(scope.editUser).then(function(res) {
               console.log("UPDATE SUCCESSFULL", res);
@@ -61,11 +67,7 @@
 
           scope.toggleView = function () {
             console.log("toggleView");
-            scope.state.add = !scope.state.add;
             scope.badInput = false;
-            scope.editUser = {};
-            scope.editUser.role = 1;
-            scope.editUser.company_id = backendFactory.ID();
           };
 
           // Varð að setja til að gera badinput false,
@@ -73,17 +75,6 @@
           scope.badInputFalse = function () {
             scope.badInput = false;
           };
-
-          //  COMPANY->_ID OWN SERVICE
-          scope.addPrice = function(s) {
-              backendFactory.postService(s).then(function(res) {
-                  scope.pricelist.push(res.data);
-                  scope.state.add = false;
-              }, function(err) {
-                  console.log("ERROR stadfestaPrice(): ", err);
-              });
-          };
-          // END OF CREATE SERVICE
 
           function getStaff() {
               scope.staff = backendFactory.Staff();
@@ -121,21 +112,35 @@
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p) {
             scope.editVerd = p;
-            scope.state.add = true;
+            scope.state.edit = true;
           };
           
-          scope.addUpdatePrice = function(p) {
-              
-              
-          }
-          // UPDATE PRICE PUT:CALL
-          scope.updatePrice = function() {
-              backendFactory.updatePricelist(scope.editVerd).then(function successCallBack(response) {
-                // CLOSE EDIT/ADD VIEW
-                scope.state.add = false;
-            }, function errorCallback(error) {
-                    console.log("ERRROR", error);
+          // HELP FUNCTION FOR ADD PRICE 
+          scope.toPriceAdd = function() {
+            scope.editVerd = {};
+             scope.state.add = true;
+          };
+          
+          // MAKE CALL to ADD PRICE
+          scope.addPrice = function(s) {
+            backendFactory.postService(scope.editVerd).then(function(res) {
+              scope.pricelist.push(res.data);
+              scope.state.add = false;
+
+            }, function(err) {
+              console.log("addUpdatePrice(add) -> postService(priceObj), err:", err);
             });
+            }
+          
+          // MAKE CALL TO UPDATE PRICE
+          scope.updatePrice = function() {
+              backendFactory.updatePricelist(scope.editVerd).then(function(res) {
+                    // CLOSE EDIT/ADD VIEW
+                    scope.state.edit = false;
+                    scope.editVerd = {};
+                }, function (err) {
+                    console.log("addUpdatePrice(edit) -> updatePricelist(priceObj), err:", err);
+                });
           };
 
           // REMOVE/DELETE STAFF FROM STAFF IN COMPANY, REFERENCE->PERSON DOESN'T DELETE
@@ -157,11 +162,6 @@
 
           scope.toggle = function() {
               scope.state.verdskra = !scope.state.verdskra;
-              scope.edit = [];
-          };
-
-          scope.add = function() {
-              scope.state.add = !scope.state.add;
           };
           // END OF TOGGLE
         }

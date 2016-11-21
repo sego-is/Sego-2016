@@ -100,8 +100,11 @@ const bookingsSchema = Schema({
     startTime: Date,
     endTime: Date,
     service: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Service.pricelist'
+      pricelist_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Service.pricelist'
+      },
+      name: String
     }]
   }]
 });

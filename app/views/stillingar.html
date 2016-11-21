@@ -17,7 +17,8 @@
   </div>
   <div class="content">
     <table class="table table-striped">
-      <thead ng-if="!state.verdskra && !state.add">
+        <!-- HAUSINN A RODINNI -->
+      <thead ng-if="!state.verdskra && !state.add && !state.edit">
       <tr>
         <th>
           <div class="col-xs-1">Nafn</div>
@@ -33,7 +34,7 @@
                     title="Yfir á verðlista">
             </button>
             <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
-                    ng-click="add()"
+                    ng-click="toStaffAdd()"
                     data-toggle="tooltip"
                     data-placement="auto"
                     title="Bæta við klippara">
@@ -42,8 +43,9 @@
         </th>
       </tr>
       </thead>
-      <tbody ng-if="!state.verdskra && state.add">
+      <!-- HAUSINN A RODINNI, ENDIR -->
       <!-- EDIT KLIPPARA -->
+      <tbody ng-if="!state.verdskra && state.edit">
       <tr>
         <td colspan="4">
           <form name="form.staffForm"
@@ -110,7 +112,7 @@
                 <button type="submit"
                         id="haettavidtakki"
                         class="btn btn-primary"
-                        ng-click="toggleView()">Hætta við
+                        ng-click="state.edit = !state.edit">Hætta við
                 </button>
                 <button type="submit"
                         id="uppfaeratakki"
@@ -123,7 +125,91 @@
         </td>
       </tr>
       </tbody>
-      <tbody ng-if="!state.verdskra && !state.add">
+      <!-- EDIT KLIPPARA OUT OF IT -->
+      <!-- ADD KLIPPARA -->
+      <tbody ng-if="!state.verdskra && state.add">
+      <tr>
+        <td colspan="4">
+          <form name="form.staffForm"
+                class="form-horizontal"
+                novalidate>
+            <div class="form-group row">
+              <div class="col-xs-11">
+                <input type="text"
+                       name="name"
+                       ng-class="{error: (badInput && form.staffForm.name.$error.required)
+                                  || (badInput && form.staffForm.name.$error.maxlength)
+                                  || (badInput && form.staffForm.name.$error.minlength)}"
+                       ng-click="badInputFalse()"
+                       ng-minlength="3"
+                       ng-maxlength="44"
+                       class="form-control"
+                       id="name"
+                       placeholder="Nafn"
+                       ng-model="editUser.name"
+                       required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-xs-11">
+                <input type="email"
+                       class="form-control"
+                       name="email"
+                       ng-class="{error: (badInput && form.staffForm.email.$error.required)
+                                  || (badInput && form.staffForm.email.$error.email)}"
+                       id="email"
+                       placeholder="Netfang"
+                       ng-model="editUser.email"
+                       required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-xs-11">
+                <input type="number"
+                       name="phone"
+                       ng-class="{error: (badInput && form.staffForm.phone.$error.required)
+                                      || (badInput && form.staffForm.phone.$error.maxlength)
+                                      || (badInput && form.staffForm.phone.$error.minlength)}"
+                       ng-minlength="7"
+                       ng-maxlength="7"
+                       ng-click="badInputFalse()"
+                       class="form-control"
+                       id="phone"
+                       placeholder="Símanúmer"
+                       ng-model="editUser.phone"
+                       required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-xs-11">
+                <input type="text"
+                       class="form-control"
+                       id="address"
+                       placeholder="Heimilisfang"
+                       ng-model="editUser.address">
+              </div>
+            </div>
+            <div class="form-group row col-xs-11">
+              <div class="takkar col-md-offset-8 col-xs-offset-5">
+                <button type="submit"
+                        id="haettavidtakki"
+                        class="btn btn-primary"
+                        ng-click="state.add = !state.add">Hætta við
+                </button>
+                <button type="submit"
+                        id="uppfaeratakki"
+                        class="btn btn-primary"
+                        ng-click="addStaff(editUser)">Uppfæra
+                </button>
+              </div>
+            </div>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+      <!-- ADD KLIPPARA, ENDIR -->
+      <!-- SHOW name, phone and role OF KLIPPARA -->
+      <tbody ng-if="!state.verdskra && !state.add && !state.edit">
       <tr ng-repeat="s in staff track by $index">
         <td class="theFirst col-xs-4">{{ s.name }}</td>
         <td>{{ s.phone }}</td>
@@ -137,7 +223,7 @@
                  title="Henda">
               </i>
             </a>
-            <a ng-click="editStaff(s, $index)">
+            <a ng-click="editStaff(s)">
               <i class="glyphicon glyphicon-pencil divTakki"
                  data-toggle="tooltip"
                  data-placement="auto"
@@ -148,6 +234,7 @@
         </td>
       </tr>
       </tbody>
+      <!-- SHOW ... KLIPPARA OUT OF IT -->
     </table>
   </div>
   <div class="footer">SEGO</div>
@@ -168,7 +255,7 @@
   </div>
   <div class="content">
     <table class="table table-striped">
-      <thead ng-if="state.verdskra && !state.add">
+      <thead ng-if="state.verdskra && !state.add && !state.edit">
       <tr>
         <th>
           <div class="pull-left">Nafn</div>
@@ -184,7 +271,7 @@
                     title="Fara yfir á klippara">
             </button>
             <button class="eigandi-addService glyphicon glyphicon-plus"
-                    ng-click="add()"
+                    ng-click="toPriceAdd()"
                     data-toggle="tooltip"
                     data-placement="auto"
                     title="Bæta við þjónustu">
@@ -223,15 +310,15 @@
             </div>
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10 pull-right">
-                <button type="submit" class="btn btn-primary" ng-click="state.add = false">Hætta við</button>
-                <button type="submit" class="btn btn-primary" ng-click="updatePrice()">Uppfæra</button>
+                <button type="submit" class="btn btn-primary" ng-click="state.edit = !state.edit">Hætta við</button>
+                <button type="submit" class="btn btn-primary" ng-click="updatePrice(edit)">Uppfæra</button>
               </div>
             </div>
           </form>
         </td>
       </tr>
       </tbody>
-      <!-- Verdskra add -->
+      <!-- ADD VERDSKRA -->
       <tbody ng-if="state.verdskra && state.add">
       <tr>
         <td colspan="4">
@@ -277,12 +364,12 @@
                 <button type="submit"
                         id="haettavid"
                         class="btn btn-primary"
-                        ng-click="toggleView()">Hætta við
+                        ng-click="state.add = !state.add">Hætta við
                 </button>
                 <button type="submit"
                         id="stadfesta"
                         class="btn btn-primary"
-                        ng-click="addUpdatePrice(editVerd)">Bæta við
+                        ng-click="addPrice(edit)">Bæta við
                 </button>
               </div>
             </div>
@@ -330,7 +417,7 @@
         </td>
       </tr>
       </tbody>
-      <tbody ng-if="state.verdskra && !state.add">
+      <tbody ng-if="state.verdskra && !state.add && !state.edit">
       <tr ng-repeat="p in pricelist track by $index">
         <td>{{ p.name }}</td>
         <td>{{ p.price }} kr.</td>
@@ -344,8 +431,7 @@
                  title="Henda">
               </i>
             </a>
-            <a ng-click="editPrice(p)"
-               href="#editing">
+            <a ng-click="editPrice(p)">
               <i class="glyphicon glyphicon-pencil divTakki"
                  data-toggle="tooltip"
                  data-placement="auto"
