@@ -181,6 +181,7 @@
       };
 
       backendFactory.postService = function (s) {
+        console.log("BACKEND s:", s);
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/',
           method: 'POST',

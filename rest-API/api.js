@@ -328,6 +328,7 @@
   });
 
   api.post('/services', bodyParser.json(), (req, res) => {
+    console.log("POST SERVICE req.body:", req.body);
     const s = new model.Service(req.body);
     console.log("POST SERVICE s: ", s);
     model.Service.update({ '_id': s.company_id },
@@ -371,8 +372,6 @@
         }
     });
   });
-
-
 
   // DELETE specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
