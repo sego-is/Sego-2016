@@ -25,7 +25,7 @@
           scope.form = {};
 
           // COMPANY->_ID PERSON WORKS FOR
-          
+
           // HELP FUNCTION WHEN TOGGLE TO CREATING STAFF MEMBER
           scope.toStaffAdd = function() {
             scope.state.add =  !scope.state.add;
@@ -33,7 +33,7 @@
             scope.editUser.role = 1;
             scope.editUser.company_id = backendFactory.ID();
           };
-          
+
           // ADD PERSON AS STAFF IN COMPANY
           scope.addStaff = function(s) {
             if (scope.form.staffForm.$valid) {
@@ -56,7 +56,7 @@
             }
             scope.state.edit = !scope.state.edit;
           };
-          
+
           scope.updateStaff = function() {
             backendFactory.updateStaff(scope.editUser).then(function(res) {
               console.log("UPDATE SUCCESSFULL", res);
@@ -114,24 +114,32 @@
             scope.editVerd = p;
             scope.state.edit = true;
           };
-          
-          // HELP FUNCTION FOR ADD PRICE 
+
+          // HELP FUNCTION FOR ADD PRICE
           scope.toPriceAdd = function() {
             scope.editVerd = {};
              scope.state.add = true;
           };
-          
+
           // MAKE CALL to ADD PRICE
           scope.addPrice = function(s) {
-            backendFactory.postService(scope.editVerd).then(function(res) {
-              scope.pricelist.push(res.data);
-              scope.state.add = false;
-
-            }, function(err) {
-              console.log("addUpdatePrice(add) -> postService(priceObj), err:", err);
-            });
+            if (scope.form.priceForm.$valid) {
+              console.log("FORM VALID 1", s);
+              console.log("FORM VALID 2", scope.editVerd);
+              backendFactory.postService(s).then(function(res) {
+                console.log("POSTED ", res);
+                scope.pricelist.push(res.data);
+                scope.state.add = false;
+                scope.badInput = true;
+              }, function(err) {
+                console.log("addUpdatePrice(add) -> postService(priceObj), err:", err);
+              });
+            } else {
+              scope.badInput = true;
             }
-          
+
+            };
+
           // MAKE CALL TO UPDATE PRICE
           scope.updatePrice = function() {
               backendFactory.updatePricelist(scope.editVerd).then(function(res) {

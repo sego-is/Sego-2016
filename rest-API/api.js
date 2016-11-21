@@ -81,6 +81,63 @@
     });
  });
 
+  api.post('/persons', bodyParser.json(), (req, res) => {
+    const data = req.body;
+    const p = new model.Person(req.body);
+    if (data._id === undefined) {
+      model.Person.create(p, function (err, doc) {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          if (data.role === 1) {
+            model.Company.update({'_id': data.company_id}, {
+              $push: { "staff": {
+                "person_id": doc._id,
+                "name":      doc.name
+              }
+              }}, function (err) {
+              if (err) {
+                res.status(500).send(err);
+              }
+              else {
+                res.send(doc);
+              }
+            });
+          }
+          else {
+            res.send(doc);
+          }
+        }
+      });
+    }
+    else {
+      model.Person.update({ '_id': { $eq: data._id }}, { '$set': {
+        'name':    data.name,
+        'email':   data.email,
+        'phone':   parseInt(data.phone),
+        'address': data.address
+      }}, (err, doc) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        else {
+          res.send(doc);
+        }
+      });
+    }
+    /* model.Person.findById(p._id, (err, per) => {
+     if (err) {
+     res.status(500).send(err);
+     }
+     else {
+     res.send(per);
+     }
+     });
+     */
+
+  });
+
   api.get('/bookings/', (req, res) => {
     model.Booking.find({}, function (err, docs) {
       if (err) {
@@ -90,7 +147,7 @@
       }
     });
   });
-  
+
   api.get('/bookings/:cid', (req, res) => {
       model.Booking.find({ company_id: req.params.cid }).sort('date').populate("bookings.staff_id bookings.customer_id").exec(function (err, docs) {
       if (err) {
@@ -100,7 +157,7 @@
       }
     });
   });
-  
+
   api.get('/bookings/:date/:id', (req, res) => {
      model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id').exec(function (err, docs) {
         if (err) {
@@ -162,7 +219,7 @@
                                 }, function(e, bid) {
                                     if (bid !== null) {
                                         console.log('bid !== null, bid:', bid);
-                                        model.Person.update( { "_id": p1._id }, 
+                                        model.Person.update( { "_id": p1._id },
                                             { $push: {
                                                 "history": {
                                                     "_id": bid.bookings._id
@@ -182,7 +239,7 @@
                                         res.status(500).send(e);
                                     }
                                 });
-                                
+
                             }
                         });
                     }
@@ -214,7 +271,7 @@
                             'startTime': data.startTime
                         }, function(e, bid) {
                             if (bid !== null) {
-                                model.Person.update( { "_id": p._id }, 
+                                model.Person.update( { "_id": p._id },
                                     { $push: {
                                         "history": {
                                             "_id": bid._id
@@ -238,7 +295,7 @@
         }
     });
   });
-  
+
   api.delete('/bookings/:bid', (req, res) => {
       model.Booking.findByIdAndRemove(req.params.bid, function (err, c) {
         if (err) {
@@ -248,7 +305,7 @@
         }
     });
   });
-  
+
   api.get('/services', (req, res) => {
     model.Service.find({}, function (err, docs) {
       if (err) {
@@ -272,7 +329,8 @@
 
   api.post('/services', bodyParser.json(), (req, res) => {
     const s = new model.Service(req.body);
-    model.Service.update({ '_id': req.body.company_id },
+    console.log("POST SERVICE s: ", s);
+    model.Service.update({ '_id': s.company_id },
         { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
@@ -284,61 +342,20 @@
     });
   });
 
-  api.post('/persons', bodyParser.json(), (req, res) => {
-    const data = req.body;
-    const p = new model.Person(req.body);
-    if (data._id === undefined) {
-        model.Person.create(p, function (err, doc) {
-            if (err) {
-                res.status(500).send(err);
-            }
-            else {
-                if (data.role === 1) {
-                    model.Company.update({'_id': data.company_id}, {
-                        $push: { "staff": {
-                            "person_id": doc._id,
-                            "name":      doc.name
-                        }
-                        }}, function (err) {
-                            if (err) {
-                                res.status(500).send(err);
-                            }
-                            else {
-                                res.send(doc);
-                            }
-                    });
-                }
-                else {
-                    res.send(doc);
-                }
-            }
-      });
-    }
-    else {
-        model.Person.update({ '_id': { $eq: data._id }}, { '$set': {
-            'name':    data.name,
-            'email':   data.email,
-            'phone':   parseInt(data.phone),
-            'address': data.address
-        }}, (err, doc) => {
-            if (err) {
-                res.status(500).send(err);
-            }
-            else {
-                res.send(doc);
-            }
-        });
-    }
-    /* model.Person.findById(p._id, (err, per) => {
-         if (err) {
-             res.status(500).send(err);
-         }
-         else {
-             res.send(per);
-         }
+  api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
+    var data = req.body;
+    model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
+      '$set': {
+        'pricelist.$.name':  data.name,
+        'pricelist.$.price': data.price
+      }}, (err, doc) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(doc);
+      }
     });
-   */
-
   });
 
   // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
@@ -355,21 +372,7 @@
     });
   });
 
-  api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
-      var data = req.body;
-      model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
-        '$set': {
-            'pricelist.$.name':  data.name,
-            'pricelist.$.price': data.price
-        }}, (err, doc) => {
-            if (err) {
-                res.status(500).send(err);
-            }
-            else {
-                res.send(doc);
-            }
-      });
-  });
+
 
   // DELETE specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {

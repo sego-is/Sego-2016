@@ -124,7 +124,7 @@
           }
         });
       };
-      
+
       backendFactory.getBookingByCompany = function() {
           return $http({
               url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID(),
@@ -136,7 +136,7 @@
               }
           });
       };
-      
+
       backendFactory.getBookingByDate = function(date) {
           return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + date + '/' + this.ID(),
@@ -193,6 +193,20 @@
         });
       };
 
+      backendFactory.updatePricelist = function(p) {
+        p.serviceID = this.ServiceID;
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/services/pricelist/',
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: p
+        });
+      };
+
 
       backendFactory.postPerson = function (p) {
         return $http({
@@ -232,20 +246,6 @@
             service: p,
             cid: this.ID()
           }
-        });
-      };
-
-      backendFactory.updatePricelist = function(p) {
-          p.serviceID = this.ServiceID;
-          return $http({
-          url: 'http://wwww.sego.is:6969/api/services/pricelist/',
-          method: 'PUT',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-          },
-          data: p
         });
       };
 
@@ -296,7 +296,7 @@
         });
       };
       // END OF SERVICE
-      
+
       backendFactory.deleteBookings = function(bid) {
           return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + bid,
@@ -308,7 +308,7 @@
           }
         });
       };
-      
+
       return backendFactory;
 
     }]);
