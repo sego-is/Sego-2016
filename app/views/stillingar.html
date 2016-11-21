@@ -329,9 +329,9 @@
               <div class="col-xs-11">
                 <input type="text"
                        name="service"
-                       ng-class="{error: (badInput && form.priceForm.name.$error.required)
-                                  || (badInput && form.priceForm.name.$error.maxlength)
-                                  || (badInput && form.priceForm.name.$error.minlength)}"
+                       ng-class="{error: (badInput && form.priceForm.service.$error.required)
+                                  || (badInput && form.priceForm.service.$error.maxlength)
+                                  || (badInput && form.priceForm.service.$error.minlength)}"
                        ng-click="badInputFalse()"
                        ng-minlength="3"
                        ng-maxlength="44"
@@ -349,8 +349,8 @@
                        ng-class="{error: (badInput && form.priceForm.price.$error.required)
                                       || (badInput && form.priceForm.price.$error.maxlength)
                                       || (badInput && form.priceForm.price.$error.minlength)}"
-                       ng-minlength="7"
-                       ng-maxlength="7"
+                       ng-minlength="10"
+                       ng-maxlength="10"
                        ng-click="badInputFalse()"
                        class="form-control"
                        id="price"
@@ -360,11 +360,13 @@
               </div>
             </div>
             <div class="form-group row col-xs-11">
-              <div class="takkar col-md-offset-8 col-xs-offset-5">
+              <div class="takkar col-md-offset-8 col-xs-offset-8">
                 <button type="submit"
                         id="haettavid"
                         class="btn btn-primary"
-                        ng-click="state.add = !state.add">Hætta við
+                        data-placement="auto"
+                        title="Hætta við"
+                        ng-click="toggleView()">Hætta við
                 </button>
                 <button type="submit"
                         id="stadfesta"
@@ -374,28 +376,7 @@
               </div>
             </div>
           </form>
-          <!--<form class="form-horizontal">
-            <div class="form-group col-xs-11">
-              <label class="sr-only"
-                     for="Þjónusta">
-              </label>
-              <input type="name"
-                     class="form-control inputField"
-                     id="inputÞjónusta"
-                     placeholder="Þjónusta"
-                     ng-model="service.name">
-            </div>
-            <div class="form-group col-xs-11">
-              <label class="sr-only"
-                     for="inputVerd">
-              </label>
-              <input type="tel"
-                     class="form-control inputField"
-                     id="inputVerd"
-                     placeholder="Verð"
-                     ng-model="service.price">
-            </div>
-            <div class="pull-right col-xs-1">
+            <!--<div class="pull-right col-xs-1">
               <i class="fa fa-plus fa-2x stadfestaTakki"
                  aria-hidden="true"
                  data-toggle="tooltip"

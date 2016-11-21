@@ -160,7 +160,6 @@ body.jumbotron #page-header-wrapper {
 .skilabod {
     position: absolute;
     margin: 5.0em auto;
-    padding: 1%;
     width: 40%;
     right: 30%;
     background: white;
@@ -521,4 +520,14 @@ input.ng-valid {
 .form-horizontal .form-group {
   margin-left: 0px;
   margin-right: 0px;
+}
+
+#haettavid {
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+}
+
+#stadfesta {
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
 }
