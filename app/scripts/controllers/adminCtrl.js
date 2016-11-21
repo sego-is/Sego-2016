@@ -69,7 +69,8 @@
 
 
             // GET ALL COLLECTIONS IN BOOKINGS
-            backendFactory.getBooking().then(function(res) {
+            //backendFactory.getBooking().then(function(res) {
+            backendFactory.getBookingByCompany().then(function(res) {
                 $scope.bookings = res.data;
                 console.log("GET BOOKING ($scope.bookings): ", $scope.bookings);
             }, function(err) {

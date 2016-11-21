@@ -75,7 +75,8 @@
                 console.log('b in $scope.bookings:', $scope.bookings[b]);
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
                 bookingForToday[tmp] = b;
-                var myElm = document.getElementById(tmp);
+                // Mismun a startTime og endTime ==> 45 min
+                var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
                 myElm.innerHTML =
                   '<p class="confirmedBooking">' + $scope.bookings[b].customer_id.name + '</p>';
             }
@@ -111,20 +112,18 @@
                 var tmpBook = $scope.bookings[idForCell];
                 b.customer =  tmpBook.customer_id.name;
                 b.phone =     tmpBook.customer_id.phone;
-                b.service =   tmpBook.customer_id.history[0];
+                b.service =   tmpBook.service;
             }
             else {
                 b.customer = "";
                 b.phone = "";
+                b.service = [];
             }
             
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             booking = $scope.$new();
             var compiledDirective;
-            
-            if (b.service === undefined) {
-                b.service = [];
-            }
+
             
             $scope.clickOnTimapant = {
                 name:      b.name,
