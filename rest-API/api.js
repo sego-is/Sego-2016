@@ -352,6 +352,7 @@
 
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
+    console.log("UPDATE PRICE data: ", data);
     model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
       '$set': {
         'pricelist.$.name':       data.name,
@@ -359,9 +360,11 @@
         'pricelist.$.timelength': data.timeLength
       }}, (err, doc) => {
       if (err) {
+        console.log("update price ERR ", err);
         res.status(500).send(err);
       }
       else {
+        console.log("upadte price success", doc);
         res.send(doc);
       }
     });

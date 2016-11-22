@@ -143,6 +143,7 @@
           // MAKE CALL TO UPDATE PRICE
           scope.updatePrice = function() {
             if (scope.form.priceForm.$valid) {
+              console.log("updatePrice() data", scope.editVerd);
               backendFactory.updatePricelist(scope.editVerd).then(function (res) {
                 // CLOSE EDIT/ADD VIEW
                 scope.state.edit = false;
