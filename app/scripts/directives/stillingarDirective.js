@@ -126,29 +126,33 @@
             if (scope.form.priceForm.$valid) {
               console.log("FORM VALID 1", s);
               console.log("FORM VALID 2", scope.editVerd);
-              backendFactory.postService(s).then(function(res) {
+              backendFactory.postService(scope.editVerd).then(function(res) {
                 console.log("POSTED ", res);
                 scope.pricelist.push(res.data);
                 scope.state.add = false;
-                scope.badInput = true;
+                scope.badInput = false;
               }, function(err) {
                 console.log("addUpdatePrice(add) -> postService(priceObj), err:", err);
               });
             } else {
               scope.badInput = true;
             }
-
-            };
+          };
 
           // MAKE CALL TO UPDATE PRICE
           scope.updatePrice = function() {
-              backendFactory.updatePricelist(scope.editVerd).then(function(res) {
-                    // CLOSE EDIT/ADD VIEW
-                    scope.state.edit = false;
-                    scope.editVerd = {};
-                }, function (err) {
-                    console.log("addUpdatePrice(edit) -> updatePricelist(priceObj), err:", err);
-                });
+            if (scope.form.priceForm.$valid) {
+              backendFactory.updatePricelist(scope.editVerd).then(function (res) {
+                // CLOSE EDIT/ADD VIEW
+                scope.state.edit = false;
+                scope.badInput = false;
+                scope.editVerd = {};
+              }, function (err) {
+                console.log("addUpdatePrice(edit) -> updatePricelist(priceObj), err:", err);
+              });
+            } else {
+              scope.badInput = true;
+            }
           };
 
           // REMOVE/DELETE STAFF FROM STAFF IN COMPANY, REFERENCE->PERSON DOESN'T DELETE
