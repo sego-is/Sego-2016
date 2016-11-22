@@ -22,6 +22,7 @@
            // GET ALL STAFF AND SERVICE FOR SALOON
           scope.staff = [];
           //scope.services = [];
+          // Needed for validation
           scope.form = {};
 
           // COMPANY->_ID PERSON WORKS FOR
@@ -66,7 +67,8 @@
           };
 
           scope.toggleView = function () {
-            console.log("toggleView");
+            scope.state.edit = false;
+            scope.state.add = false;
             scope.badInput = false;
           };
 
@@ -75,6 +77,10 @@
           scope.badInputFalse = function () {
             scope.badInput = false;
           };
+
+          // GET DATA, NEED TO SHOW
+          getStaff();
+          getService();
 
           function getStaff() {
               scope.staff = backendFactory.Staff();
@@ -88,11 +94,6 @@
                   console.log("ERROR getService(): ", err);
               });
           }
-
-          // GET DATA, NEED TO SHOW
-          getStaff();
-          getService();
-
          // END OF GETTING U/S
 
          // LOKA GLUGGANUM A STILLINGAR VIEW-INU

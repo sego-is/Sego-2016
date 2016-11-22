@@ -331,13 +331,20 @@
     console.log("POST SERVICE req.body:", req.body);
     const s = new model.Service(req.body);
     model.Service.update({ '_id': req.body.company_id },
-        { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
+        { $push: {
+          "pricelist":
+            {
+              name:       req.body.name,
+              price:      req.body.price,
+              timeLength: req.body.timeLength
+            }
+          }
+        },
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
             res.status(500).send(err);
         }
         else {
-          console.log("SUCCESSFULLY POSTED PRICE: ", doc)
             res.send(doc);
         }
     });
@@ -347,8 +354,9 @@
     var data = req.body;
     model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
       '$set': {
-        'pricelist.$.name':  data.name,
-        'pricelist.$.price': data.price
+        'pricelist.$.name':       data.name,
+        'pricelist.$.price':      data.price,
+        'pricelist.$.timelength': data.timeLength
       }}, (err, doc) => {
       if (err) {
         res.status(500).send(err);

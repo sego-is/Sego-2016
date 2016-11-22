@@ -28,7 +28,7 @@ const personaSchema = Schema({
     bookings_id: {
         _id: false,
         type: Schema.Types.ObjectId,
-        ref: 'Booking'
+        ref: 'Booking.bookings'
     }
   }],
   comments: [String],
