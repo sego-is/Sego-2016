@@ -357,14 +357,12 @@
       '$set': {
         'pricelist.$.name':       data.name,
         'pricelist.$.price':      data.price,
-        'pricelist.$.timelength': data.timeLength
+        'pricelist.$.timeLength': data.timeLength
       }}, (err, doc) => {
       if (err) {
-        console.log("update price ERR ", err);
         res.status(500).send(err);
       }
       else {
-        console.log("upadte price success", doc);
         res.send(doc);
       }
     });
