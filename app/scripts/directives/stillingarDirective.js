@@ -66,8 +66,8 @@
           };
 
           scope.toggleView = function () {
-            console.log("toggleView");
-            scope.state.edit, scope.state.add = false; 
+            scope.state.edit = false;
+            scope.state.add = false; 
             scope.badInput = false;
           };
 
