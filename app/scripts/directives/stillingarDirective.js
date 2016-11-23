@@ -91,9 +91,9 @@
                    scope.pricelist = res.data[0].pricelist;
                    backendFactory.setServiceID(res.data[0]._id);
                 //console.log(scope.pricelist);
-                for(let i = 0; i < scope.pricelist.length; i++) {
+                /*for(let i = 0; i < scope.pricelist.length; i++) {
                   scope.pricelist[i].timeLength /= 60;
-                }
+                }*/
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });
@@ -107,18 +107,18 @@
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
           scope.removePrice = function (p, index) {
-              console.log("REMOVE: ", p);
-              /*
-            backendFactory.deleteFromPricelist(p).then(function successCallback(response) {
+            backendFactory.deleteFromPricelist(p).then(function(res) {
+                console.log("RES:", res);
                 scope.pricelist.splice(index, 1);
-             }, function errorCallback(error) {
+             }, function(err) {
 
-             });*/
+             });
           };
 
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p) {
             scope.editVerd = p;
+            scope.editVerd.timeLength /= 60;
             scope.state.edit = true;
           };
 

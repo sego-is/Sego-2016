@@ -374,7 +374,7 @@
       <tr ng-repeat="p in pricelist track by $index">
         <td>{{ p.name }}</td>
         <td>{{ p.price }} kr.</td>
-        <td>{{p.timeLength}}</td>
+        <td>{{ p.timeLength / 60 }}</td>
         <td>
           <div class="pull-right">
             <a ng-click="removePrice(p, $index)">
