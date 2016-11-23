@@ -233,7 +233,7 @@
           }
         });
       };
-
+      // DE-ACTIVE FROM PRICELIST // 
       backendFactory.deleteFromPricelist = function (p) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/pricelist/',
