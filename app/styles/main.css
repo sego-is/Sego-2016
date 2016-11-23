@@ -228,8 +228,9 @@ body.jumbotron #page-header-wrapper {
   background-color: white;
 }*/
 
-.dagurin_i_dag {
+.dagurin_i_dag .col-md-3 {
   padding-right: 0px;
+  padding-left: 0px;
 }
 
 /* Verðlisti*/
@@ -388,13 +389,12 @@ boka.skilabod {
 }
 
 .booking-time {
-  height: 1em;
-  width: 0.5em;
-  margin: 0.5em auto;
+  text-align: center;
 }
 
 .booking-time p {
-  font-size: 0.8em;
+  font-size: 14px;
+
 }
 
 @media only screen and (max-device-width: 375px) {
@@ -421,6 +421,10 @@ boka.skilabod {
   .container-fluid > .navbar-header {
     margin-top: 6px;
     margin-left: -8px;
+  }
+
+  .row .col-xs-1 {
+    margin-left: 0px;
   }
 
   /*.btn:before {
@@ -589,4 +593,17 @@ input.ng-valid {
 .staff th {
   text-align: center;
 }
+
+.col-xs-12 {
+  margin-left: 0px;
+}
+
+.staffname {
+  width: 100px;
+}
+
+.datepicker {
+  text-align: center;
+}
+
 

@@ -25,42 +25,39 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-9">
-    <table class="table table-hover table-bordered">
-      <thead>
-      <tr class="staff">
-        <th class="klukka">
-          <i class="fa fa-clock-o"
-             aria-hidden="true"></i>
-        </th>
-        <th ng-repeat="x in staff | orderBy: x.person_id">
+<div uib-datepicker
+     ng-model="dt"
+     uib-collapse="isCollapsed"
+     class="datepicker col-md-3 col-md-offset-5 col-sm-3 col-sm-offset-3 col-xs-3 col-xs-offset-2"
+     datepicker-options="options"
+     ng-click="getDailyBookings(dt | date:'fullDate')">
+</div>
+<div class="row col-md-12 col-sm-12 col-xs-12">
+  <table class="table table-hover table-bordered">
+    <thead>
+    <tr class="staff">
+      <th class="klukka col-md-1 col-sm-1 col-xs-1">
+        <i class="fa fa-clock-o"
+           aria-hidden="true"></i>
+      </th>
+        <th class="staffname" ng-repeat="x in staff | orderBy: x.person_id">
           {{ x.name }}
         </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="booking"
-          ng-repeat="t in times track by $index ">
-        <td class="booking-time">
-          <p ng-if="$index % 2 == 0">{{ t }}</p>
-        </td>
-        <td class="booking-cell"
-            ng-repeat="x in staff | orderBy: x.person_id"
-            ng-click="openBooking(t, x, $event)"
-            id="{{ t }}{{ x.person_id }}">
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div uib-datepicker
-       ng-model="dt"
-       uib-collapse="isCollapsed"
-       class="col-md-3"
-       datepicker-options="options"
-       ng-click="getDailyBookings(dt | date:'fullDate')">
-  </div>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="booking"
+        ng-repeat="t in times track by $index ">
+      <td class="booking-time">
+        <p ng-if="$index % 2 == 0">{{ t }}</p>
+      </td>
+      <td class="booking-cell"
+          ng-repeat="x in staff | orderBy: x.person_id"
+          ng-click="openBooking(t, x, $event)"
+          id="{{ t }}{{ x.person_id }}">
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
