@@ -7,14 +7,6 @@ node {
 
 	    	checkout scm
         
-        stage 'Cleanup'
-
-        	print "prune and cleanup"
-        	sh 'npm prune'
-        	sh 'rm -rf node_modules'
-        	sh 'grunt clean'
-
-            
 		stage 'Build'
 
 			env.NODE_ENV = "Build"
@@ -35,7 +27,14 @@ node {
         		subject: 'Project build successful',
         		to: ''
         	*/
+       
+       stage 'Cleanup'
+        	print "prune and cleanup"
+        	sh 'npm prune'
+        	sh 'rm -rf node_modules'
+        	/*sh 'grunt clean'*/
 
+            
         stage 'Test'
             /*sh 'grunt test'*/
 
