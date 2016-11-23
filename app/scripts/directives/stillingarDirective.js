@@ -90,10 +90,6 @@
               backendFactory.getService().then(function(res) {
                    scope.pricelist = res.data[0].pricelist;
                    backendFactory.setServiceID(res.data[0]._id);
-                //console.log(scope.pricelist);
-                /*for(let i = 0; i < scope.pricelist.length; i++) {
-                  scope.pricelist[i].timeLength /= 60;
-                }*/
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });
@@ -134,7 +130,6 @@
               scope.state.add = false;
               s.timeLength *= 60;
               backendFactory.postService(s).then(function(res) {
-                console.log("POSTED ", res);
                 scope.pricelist.push(res.data);
                 scope.badInput = false;
               }, function(err) {
