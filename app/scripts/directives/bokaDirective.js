@@ -31,7 +31,7 @@
             // FOR CHECKBOX SELECTED SERVICE
             scope.serviceSelected = scope.objFrom.service;
 
-          // TO CALCULATE ENDTIME
+            // TO CALCULATE ENDTIME
             scope.timeTaken = 0;
 
             scope.toggleSelection = function(s) {

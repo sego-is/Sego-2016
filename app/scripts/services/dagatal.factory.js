@@ -21,8 +21,8 @@
 
         // Initialize the time (clock) in booking for the day
       var stillingar = {
-        upphafsTimi: 3600 * 7,
-        endaTimi:    3600 * 22,
+        upphafsTimi: 3600 * 8,
+        endaTimi:    3600 * 18,
         lotan:       900
       };
 
