@@ -400,7 +400,10 @@
       <tr ng-repeat="p in pricelist track by $index">
         <td>{{ p.name }}</td>
         <td>{{ p.price }} kr.</td>
-        <td></td>
+        <td>
+            <a ng-click="" class="fa fa-play" ng-if="p.active"></a>
+            <a ng-click="" class="fa fa-stop" ng-if="!p.active"></a>
+        </td>
         <td>
           <div class="pull-right">
             <a ng-click="removePrice(p, $index)">
