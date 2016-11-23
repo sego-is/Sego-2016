@@ -107,7 +107,7 @@
                 console.log("RES:", res);
                 scope.pricelist.splice(index, 1);
              }, function(err) {
-
+                 console.log("ERROR removePrice", err);
              });
           };
 
