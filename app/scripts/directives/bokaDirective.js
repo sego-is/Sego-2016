@@ -49,9 +49,6 @@
             backendFactory.getService().then(function(res) {
                 // Set pricelist as pricelist for given response
                 scope.pricelist = res.data[0].pricelist;
-              for(let i = 0; i < scope.pricelist.length; i++) {
-                scope.pricelist[i].timeLength /= 60;
-              }
             }, function(err) {
                 console.log("ERROR getService(): ", err);
             });
