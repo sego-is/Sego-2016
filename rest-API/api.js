@@ -387,7 +387,7 @@
       var data = req.body;
       console.log("DATA", data);
       model.Service.update({ 
-          'company_id': { $eq: data.cid }, 
+          'company_id': { $eq: data.service.cid }, 
           'pricelist._id': { $eq: data.service._id 
       }},
         { $set: { "pricelist.$.active": false } },
