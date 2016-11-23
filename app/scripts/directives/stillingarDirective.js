@@ -22,6 +22,7 @@
            // GET ALL STAFF AND SERVICE FOR SALOON
           scope.staff = [];
           //scope.services = [];
+          // Needed for validation
           scope.form = {};
 
           // COMPANY->_ID PERSON WORKS FOR
@@ -67,7 +68,7 @@
 
           scope.toggleView = function () {
             scope.state.edit = false;
-            scope.state.add = false; 
+            scope.state.add = false;
             scope.badInput = false;
           };
 
@@ -76,6 +77,10 @@
           scope.badInputFalse = function () {
             scope.badInput = false;
           };
+
+          // GET DATA, NEED TO SHOW
+          getStaff();
+          getService();
 
           function getStaff() {
               scope.staff = backendFactory.Staff();
@@ -89,11 +94,6 @@
                   console.log("ERROR getService(): ", err);
               });
           }
-
-          // GET DATA, NEED TO SHOW
-          getStaff();
-          getService();
-
          // END OF GETTING U/S
 
          // LOKA GLUGGANUM A STILLINGAR VIEW-INU
@@ -103,16 +103,18 @@
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
           scope.removePrice = function (p, index) {
-            backendFactory.deleteFromPricelist(p).then(function successCallback(response) {
+            backendFactory.deleteFromPricelist(p).then(function(res) {
+                console.log("RES:", res);
                 scope.pricelist.splice(index, 1);
-             }, function errorCallback(error) {
-
+             }, function(err) {
+                 console.log("ERROR removePrice", err);
              });
           };
 
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p) {
             scope.editVerd = p;
+            scope.editVerd.timeLength /= 60;
             scope.state.edit = true;
           };
 
@@ -125,31 +127,35 @@
           // MAKE CALL to ADD PRICE
           scope.addPrice = function(s) {
             if (scope.form.priceForm.$valid) {
-              console.log("FORM VALID 1", s);
-              console.log("FORM VALID 2", scope.editVerd);
+              scope.state.add = false;
+              s.timeLength *= 60;
               backendFactory.postService(s).then(function(res) {
-                console.log("POSTED ", res);
                 scope.pricelist.push(res.data);
-                scope.state.add = false;
-                scope.badInput = true;
+                scope.badInput = false;
               }, function(err) {
                 console.log("addUpdatePrice(add) -> postService(priceObj), err:", err);
               });
             } else {
               scope.badInput = true;
             }
-
-            };
+          };
 
           // MAKE CALL TO UPDATE PRICE
           scope.updatePrice = function() {
-              backendFactory.updatePricelist(scope.editVerd).then(function(res) {
-                    // CLOSE EDIT/ADD VIEW
-                    scope.state.edit = false;
-                    scope.editVerd = {};
-                }, function (err) {
-                    console.log("addUpdatePrice(edit) -> updatePricelist(priceObj), err:", err);
-                });
+            if (scope.form.priceForm.$valid) {
+              // CLOSE EDIT/ADD VIEW
+              scope.state.edit = false;
+              scope.editVerd.timeLength *= 60;
+              console.log("updatePrice() data", scope.editVerd);
+              backendFactory.updatePricelist(scope.editVerd).then(function (res) {
+                scope.badInput = false;
+                scope.editVerd = {};
+              }, function (err) {
+                console.log("addUpdatePrice(edit) -> updatePricelist(priceObj), err:", err);
+              });
+            } else {
+              scope.badInput = true;
+            }
           };
 
           // REMOVE/DELETE STAFF FROM STAFF IN COMPANY, REFERENCE->PERSON DOESN'T DELETE

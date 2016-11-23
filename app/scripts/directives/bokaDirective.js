@@ -27,21 +27,25 @@
             scope.leave = function() {
                 scope.close();
             };
-            
+
             // FOR CHECKBOX SELECTED SERVICE
             scope.serviceSelected = scope.objFrom.service;
-          
+
+            // TO CALCULATE ENDTIME
+            scope.timeTaken = 0;
+
             scope.toggleSelection = function(s) {
-                var posOfSelected = scope.serviceSelected.indexOf(s._id);
+              var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
-                        scope.serviceSelected.splice(posOfSelected, 1);
+                  scope.serviceSelected.splice(posOfSelected, 1);
+                  scope.timeTaken -= s.timeLength;
                 }
                 else {
-                    scope.serviceSelected.push(s._id);
+                  scope.serviceSelected.push(s._id);
+                  scope.timeTaken += s.timeLength;
                 }
-                console.log("serviceSelected:", scope.serviceSelected);
             };
-          
+
             backendFactory.getService().then(function(res) {
                 // Set pricelist as pricelist for given response
                 scope.pricelist = res.data[0].pricelist;
@@ -53,8 +57,15 @@
 
               if (scope.bookingForm.$valid) {
                 console.log("getur bókað það ", JSON.stringify(bokun));
+
+                // kannski þarf að breyta timeTaken í sek
+                console.log("service time ", scope.timeTaken);
+
                 scope.badInput = false;
-                backendFactory.postBooking({
+
+                // AFKOMMENTA ÞEGAR timeTaken ER READY
+
+                /* backendFactory.postBooking({
                     company_id: backendFactory.ID(),
                     startTime: scope.objFrom.startTime,
                     endTime: scope.objFrom.endTime,
@@ -69,7 +80,7 @@
                     scope.close();
                 }, function (err) {
                     console.log("CB scope.stafesta() - err: ", err);
-                });
+                });*/
               } else {
                 console.log("bad input ");
                 scope.badInput = true;

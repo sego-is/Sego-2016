@@ -331,13 +331,20 @@
     console.log("POST SERVICE req.body:", req.body);
     const s = new model.Service(req.body);
     model.Service.update({ '_id': req.body.company_id },
-        { $push: { "pricelist": { name: req.body.name, price: req.body.price } } },
+        { $push: {
+          "pricelist":
+            {
+              name:       req.body.name,
+              price:      req.body.price,
+              timeLength: req.body.timeLength
+            }
+          }
+        },
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
             res.status(500).send(err);
         }
         else {
-          console.log("SUCCESSFULLY POSTED PRICE: ", doc)
             res.send(doc);
         }
     });
@@ -345,10 +352,12 @@
 
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
+    console.log("UPDATE PRICE data: ", data);
     model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
       '$set': {
-        'pricelist.$.name':  data.name,
-        'pricelist.$.price': data.price
+        'pricelist.$.name':       data.name,
+        'pricelist.$.price':      data.price,
+        'pricelist.$.timeLength': data.timeLength
       }}, (err, doc) => {
       if (err) {
         res.status(500).send(err);
@@ -373,17 +382,21 @@
     });
   });
 
-  // DELETE specific service with price in services.pricelist //
+  // De-activate specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.update({ '_id': data.cid },
-        { $pull: { "pricelist": { _id: data.service._id } } },
+      console.log("DATA", data);
+      model.Service.update({ 
+          'company_id': { $eq: data.service.cid }, 
+          'pricelist._id': { $eq: data.service._id 
+      }},
+        { $set: { "pricelist.$.active": false } },
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
             res.status(500).send(err);
         }
         else {
-            res.send('HAS BEEN DELETED')
+            res.send('HAS BEEN DE-ACTIVATED')
         }
     });
   });

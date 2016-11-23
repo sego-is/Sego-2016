@@ -195,7 +195,7 @@
       };
 
       backendFactory.updatePricelist = function(p) {
-        p.serviceID = this.ServiceID;
+        p.cid = this.ServiceID;
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/pricelist/',
           method: 'PUT',
@@ -233,7 +233,7 @@
           }
         });
       };
-
+      // DE-ACTIVE FROM PRICELIST // 
       backendFactory.deleteFromPricelist = function (p) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/pricelist/',

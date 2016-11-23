@@ -6,7 +6,7 @@ node {
 		stage 'Stage Checkout'
 
 	    	checkout scm
-
+        
 		stage 'Build'
 
 			env.NODE_ENV = "Build"
@@ -19,17 +19,7 @@ node {
         	sh 'cp -RT dist /opt/app/html'
             sh 'cp -RT rest-API /opt/server'
             /*sh 'npm --prefix /opt/server install /opt/server'*/
-
-        stage 'Test'
-            /*sh 'grunt test'*/
-
-        stage 'Cleanup'
-
-        	print "prune and cleanup"
-        	sh 'npm prune'
-        	sh 'rm -rf node_modules'
-        	/*sh 'grunt clean'*/
-
+            
         	/*
         	mail body: 'Project Build Successful',
         		from: 'einaragusta@gmail.com',
@@ -37,6 +27,18 @@ node {
         		subject: 'Project build successful',
         		to: ''
         	*/
+       
+       stage 'Cleanup'
+        	print "prune and cleanup"
+        	sh 'npm prune'
+        	sh 'rm -rf node_modules'
+        	/*sh 'grunt clean'*/
+
+            
+        stage 'Test'
+            /*sh 'grunt test'*/
+
+        
 	}
 	catch (err) {
 		currentBuild.result = "FAILURE"
