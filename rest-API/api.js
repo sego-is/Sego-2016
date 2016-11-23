@@ -385,6 +385,7 @@
   // De-activate specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
+      console.log("DATA", data);
       model.Service.update({ 'company_id': { $eq: data.cid }, 'pricelist._id': { $eq: data._id }},
         { $set: { "pricelist.$.active": false } },
         { safe: true, upsert: true }, function (err, doc) {
