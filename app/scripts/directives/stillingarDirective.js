@@ -90,6 +90,10 @@
               backendFactory.getService().then(function(res) {
                    scope.pricelist = res.data[0].pricelist;
                    backendFactory.setServiceID(res.data[0]._id);
+                //console.log(scope.pricelist);
+                for(let i = 0; i < scope.pricelist.length; i++) {
+                  scope.pricelist[i].timeLength /= 60;
+                }
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });
@@ -125,12 +129,11 @@
           // MAKE CALL to ADD PRICE
           scope.addPrice = function(s) {
             if (scope.form.priceForm.$valid) {
-              console.log("FORM VALID 1", s);
-              console.log("FORM VALID 2", scope.editVerd);
-              backendFactory.postService(scope.editVerd).then(function(res) {
+              scope.state.add = false;
+              s.timeLength *= 60;
+              backendFactory.postService(s).then(function(res) {
                 console.log("POSTED ", res);
                 scope.pricelist.push(res.data);
-                scope.state.add = false;
                 scope.badInput = false;
               }, function(err) {
                 console.log("addUpdatePrice(add) -> postService(priceObj), err:", err);
@@ -143,10 +146,11 @@
           // MAKE CALL TO UPDATE PRICE
           scope.updatePrice = function() {
             if (scope.form.priceForm.$valid) {
+              // CLOSE EDIT/ADD VIEW
+              scope.state.edit = false;
+              scope.editVerd.timeLength *= 60;
               console.log("updatePrice() data", scope.editVerd);
               backendFactory.updatePricelist(scope.editVerd).then(function (res) {
-                // CLOSE EDIT/ADD VIEW
-                scope.state.edit = false;
                 scope.badInput = false;
                 scope.editVerd = {};
               }, function (err) {

@@ -261,7 +261,7 @@
           <div class="pull-left">Nafn</div>
         </th>
         <th>Verð</th>
-        <th></th>
+        <th>Mínútur</th>
         <th>
           <div class="pull-right">
             <button class="eigandi-toggle glyphicon glyphicon-user"
@@ -328,13 +328,17 @@
 
           <div class="form-group row">
             <label for="inputTime"
-                   class="col-sm-2 col-form-label">Tími
+                   class="col-sm-2 col-form-label">Tími í mínútum
             </label>
             <div class="col-sm-10">
               <input type="number"
                      class="form-control"
                      name="timeLength"
-                     ng-class="{error: (badInput && form.priceForm.timeLength.$error.required)}"
+                     ng-class="{error: (badInput && form.priceForm.timeLength.$error.required)
+                                  || (badInput && form.priceForm.timeLength.$error.maxlength)
+                                  || (badInput && form.priceForm.timeLength.$error.minlength)}"
+                     ng-minlength="2"
+                     ng-maxlength="3"
                      ng-click="badInputFalse()"
                      id="inputTime"
                      placeholder="Tími"
