@@ -257,8 +257,55 @@
             });
             }
             else {
+                currBook.customer_id = p._id;
                 console.log("p er ekki null, p !== null, p =", p);
-                p.bookings.push({});
+                 model.Booking.findOne( {"company_id": data.company_id, "date": data.date }, (err2, b) => {
+                        if (err2) {
+                            console.log("HER ER ERROR i api->post('/bookings/.findOne, err2:", err2);
+                            res.status(500).send(err2);
+                        }
+                        else {
+                            p.history.push(new model.Book(currBook));
+                            p.save((err3, data1) => {
+                                if (err3) {
+                                    console.log("HER ER ERROR i api->post('/bookings/.findOne, err3:", err3);
+                                    res.status(500).send(err3);
+                                }
+                                else {
+                                    if (b === null) {
+                                        const b1 = new model.Booking({ 'company_id': data.company_id, 'date': data.date })
+                                        b1.bookings.push(currBook);
+                                        b1.save((err4, data2) => {
+                                            if (err4) {
+                                                console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
+                                                res.status(500).send(err4);
+                                            }
+                                            else {
+                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data1:", data1);
+                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data2:", data2);
+                                                res.send(data2);
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        b.bookings.push(currBook);
+                                        b.save((err4, data2) => {
+                                            if (err4) {
+                                                console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
+                                                res.status(500).send(err3);
+                                            }
+                                            else {
+                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data1:", data1);
+                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data2:", data2);
+                                                res.send(data);
+                                            }
+                                        });
+                                    }  
+                                }
+                            });
+                            
+                        }
+                    });
             }
       }});
   });
