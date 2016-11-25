@@ -25,7 +25,7 @@ const personSchema = Schema({
   },
   image_url: String,
   history: [{
-    booking_id: {
+    book_id: {
         _id: false,
         type: Schema.Types.ObjectId,
         ref: 'Book'
@@ -91,7 +91,13 @@ const bookingsSchema = Schema({
     type:    Date,
     require: true
   },
-  bookings: [bookSchema]
+  bookings: [{
+      book_id : {
+          _id: false,
+          type: Schema.Types.ObjectId,
+          ref: 'Book'
+      }
+  }]
 });
 
 bookingsSchema.static('findIdOfBooking', function(b, cb) {
