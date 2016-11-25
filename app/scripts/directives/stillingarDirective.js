@@ -144,14 +144,20 @@
           scope.updatePrice = function() {
             if (scope.form.priceForm.$valid) {
               // CLOSE EDIT/ADD VIEW
-              scope.state.edit = false;
+              var tmp_id = scope.editVerd._id;
               scope.editVerd.timeLength *= 60;
               console.log("updatePrice() data", scope.editVerd);
-              backendFactory.updatePricelist(scope.editVerd).then(function (res) {
-                scope.badInput = false;
-                scope.editVerd = {};
-              }, function (err) {
-                console.log("addUpdatePrice(edit) -> updatePricelist(priceObj), err:", err);
+              backendFactory.postService(scope.editVerd).then(function(res) {
+                scope.pricelist.push(res.data);
+                backendFactory.deleteFromPricelist({ '_id': tmp_id }).then(function(res1) {
+                    console.log("postService  ->res:", res);
+                    console.log("deleteFromPricelist ->res1:", res1);
+                    //scope.pricelist.splice(index, 1);
+                }, function(err) {
+                    console.log("ERROR removePrice", err);
+                });
+              }, function(err) {
+                console.log("postService() -> postService(priceObj), err:", err);
               });
             } else {
               scope.badInput = true;

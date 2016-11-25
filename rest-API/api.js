@@ -175,15 +175,24 @@
     });
   });
 
-  api.post('/bookings', bodyParser.json(), (req, res) => {
+  api.post('/bookings/', bodyParser.json(), (req, res) => {
     const data = req.body;
+    const currBook = {
+        customer_id: 'Person',
+        staff_id: data.stafF_id,
+        startTime: data.startTime,
+        endTime: data.endTime,
+        service: data.customer_service
+    };
+    
     model.Person.findOne({
       "company_id": data.company_id,
       "name":       data.customer_name,
       "phone":      data.customer_phone
-    }, function (err, p) {
-      if (err) {
-        console.log("ERROR (err_msg):", err);
+    }, function (err0, p) {
+      if (err0) {
+        res.status(500).send(err0);
+        console.log("HER ER ERROR i api->post('/bookings/.findOne (p, err0:", err0);
       } else {
           if (p === null) {
             model.Person.create({
@@ -192,10 +201,52 @@
                 phone:      data.customer_phone
             }, function (err1, p1) {
                 if (err1) {
+                    console.log("HER ER ERROR i api->post('/bookings/.findOne err1:", err1);
                     res.status(500).send(err1);
                 } else {
-                  console.log("p == NULL after person.create else: ", p1);
-                    model.Booking.update( {"company_id": data.company_id, "date": data.date },
+                    console.log("p1 == NULL after person.create else: ", p1);
+                    currBook.customer_id = p1._id;
+                    model.Booking.findOne( {"company_id": data.company_id, "date": data.date }, (err2, b) => {
+                        if (err2) {
+                            console.log("HER ER ERROR i api->post('/bookings/.findOne, err2:", err2);
+                            res.status(500).send(err2);
+                        }
+                        else {
+                            p1.history.push(new model.Book(currBook));
+                            p1.save((err3, data) => {
+                                if (err3) {
+                                    console.log("HER ER ERROR i api->post('/bookings/.findOne, err3:", err3);
+                                    res.status(500).send(err3);
+                                }
+                                else {
+                                    b.bookings.push(currBook);
+                                    b.save((err4, data2) => {
+                                        if (err4) {
+                                            console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
+                                            res.status(500).send(err3);
+                                        }
+                                        else {
+                                            console.log("FOR I GEGN i api->post('/bookings/.findOne, data1:", data1);
+                                            console.log("FOR I GEGN i api->post('/bookings/.findOne, data2:", data2);
+                                            res.send(data);
+                                        }
+                                    });
+                                    
+                                }
+                            });
+                            
+                        }
+                    });
+                }
+            });
+            }
+            else {
+                console.log("p er ekki null, p !== null, p =", p);
+                p.bookings.push({});
+            }
+      }});
+  });
+                        /*
                         { $push: {
                             "bookings": {
                                 "customer_id": p1._id,
@@ -295,7 +346,7 @@
         }
     });
   });
-
+*/
   api.delete('/bookings/:bid', (req, res) => {
       model.Booking.findByIdAndRemove(req.params.bid, function (err, c) {
         if (err) {
@@ -336,7 +387,8 @@
             {
               name:       req.body.name,
               price:      req.body.price,
-              timeLength: req.body.timeLength
+              timeLength: req.body.timeLength,
+              active: true
             }
           }
         },

@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const personaSchema = Schema({
+const personSchema = Schema({
   company_id: {
     type:    Schema.Types.ObjectId,
     require: true,
@@ -25,10 +25,10 @@ const personaSchema = Schema({
   },
   image_url: String,
   history: [{
-    bookings_id: {
+    booking_id: {
         _id: false,
         type: Schema.Types.ObjectId,
-        ref: 'Booking.bookings'
+        ref: 'Book'
     }
   }],
   comments: [String],
@@ -40,20 +40,8 @@ const personaSchema = Schema({
   }
 });
 
-personaSchema.index({company_id: 1, name: 1, phone: 1}, {unique: true});
-/*
- * Something Shitty that will never be used.. or whatever.
-const staffSchema = Schema({
-  _companyId: {
-    type: String,
-    ref:  'Company'
-  },
-  _personId: {
-    type: Schema.Types.ObjectId,
-    ref:  'Person'
-  }
-});
-*/
+personSchema.index({company_id: 1, name: 1, phone: 1}, {unique: true});
+
 const companySchema = Schema({
   auth_id: {
     type:    String,
@@ -69,26 +57,11 @@ const companySchema = Schema({
   phone: Number,
   address:  [String],
   logo_url: String,
-  staff: [{
-    person_id: {
-      type: Schema.Types.ObjectId,
-      ref:  "Person"
-    },
-    name: String
-  }]
+  staff: [personSchema]
 });
 
-const bookingsSchema = Schema({
-  company_id: {
-    type:    Schema.Types.ObjectId,
-    require: true,
-    ref:     'Company'
-  },
-  date: {
-    type:    Date,
-    require: true
-  },
-  bookings: [{
+
+const bookSchema = Schema({
     customer_id: {
       type: Schema.Types.ObjectId,
       ref:  'Person'
@@ -106,7 +79,19 @@ const bookingsSchema = Schema({
       },
       name: String
     }]
-  }]
+});
+
+const bookingsSchema = Schema({
+  company_id: {
+    type:    Schema.Types.ObjectId,
+    require: true,
+    ref:     'Company'
+  },
+  date: {
+    type:    Date,
+    require: true
+  },
+  bookings: [bookSchema]
 });
 
 bookingsSchema.static('findIdOfBooking', function(b, cb) {
@@ -150,8 +135,9 @@ function ObjectId(id_string) {
 };
 
 module.exports = {
-  Person:  mongoose.model('Person',   personaSchema),
+  Person:  mongoose.model('Person',   personSchema),
   Company: mongoose.model('Company', companySchema),
+  Book: mongoose.model('Book', bookSchema),
   Booking: mongoose.model('Booking',  bookingsSchema),
   /* Staff:   mongoose.model('staffs', staffSchema), */
   Service: mongoose.model('Service',  serviceSchema),

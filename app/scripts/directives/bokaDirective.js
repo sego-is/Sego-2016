@@ -65,8 +65,7 @@
 
                 // AFKOMMENTA ÞEGAR timeTaken ER READY
 
-                /* backendFactory.postBooking({
-                    company_id: backendFactory.ID(),
+                backendFactory.postBooking({
                     startTime: scope.objFrom.startTime,
                     endTime: scope.objFrom.endTime,
                     staff_id: scope.objFrom.staffId,
@@ -80,7 +79,7 @@
                     scope.close();
                 }, function (err) {
                     console.log("CB scope.stafesta() - err: ", err);
-                });*/
+                });
               } else {
                 console.log("bad input ");
                 scope.badInput = true;

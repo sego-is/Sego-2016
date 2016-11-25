@@ -133,7 +133,7 @@
                 staffId:   b.person_id,
                 date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
                 startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t),
-                endTime:   dagatalFactory.getStringForDate(new Date(selectedDay), '18:00')
+                endTime: dagatalFactory.getStringForDate(new Date(selectedDay), "12:00")
             };
             compiledDirective = $compile('<boka class="skilabod" ' +
                 'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
