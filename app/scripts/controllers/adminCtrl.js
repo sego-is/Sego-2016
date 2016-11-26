@@ -4,7 +4,11 @@
     angular.module('segoApp')
       .controller('AdminCtrl', ['$scope', 'backendFactory', function ($scope, backendFactory) {
             $scope.editCompany = [];
-
+            backendFactory.getAllService().then(function(res) {
+                $scope.service = res;
+            }, function(err) {
+                console.log('ERROR getAllService(), err:', err);
+            });
             // GET ALL COMPANIES //
             backendFactory.getCompanies().then(function (response) {
                 $scope.companies = response.data;

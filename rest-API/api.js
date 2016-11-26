@@ -171,16 +171,18 @@
         }
     });
   });
-
+  
+  // THARF EF TIL VILL AD IHUGA HVERNIG VERDUR HAEGT AD UPDATE BOKUN OG/EDA HAETTA VID BOKUN
   api.post('/bookings/', bodyParser.json(), (req, res) => {
     const data = req.body;
+    // Create object for model.Book
     const currBook = {
         staff_id: data.staff_id,
         startTime: data.startTime,
         endTime: data.endTime,
         service: data.customer_service
     };
-    
+    // Athuga hvort nafn, simi persónu tilheyri vidkomandi company
     model.Person.findOne({
       "company_id": data.company_id,
       "name":       data.customer_name,
@@ -188,7 +190,6 @@
     }, function (err0, p) {
       if (err0) {
         res.status(500).send(err0);
-        console.log("HER ER ERROR i api->post('/bookings/.findOne (p, err0:", err0);
       } else {
           if (p === null) {
             model.Person.create({
@@ -197,14 +198,11 @@
                 phone:      data.customer_phone
             }, function (err1, p1) {
                 if (err1) {
-                    console.log("HER ER ERROR i api->post('/bookings/.findOne err1:", err1);
                     res.status(500).send(err1);
                 } else {
-                    console.log("p1 == NULL after person.create else: ", p1);
                     currBook.customer_id = p1._id;
                     model.Booking.findOne( {"company_id": data.company_id, "date": data.date }, (err2, b) => {
                         if (err2) {
-                            console.log("HER ER ERROR i api->post('/bookings/.findOne, err2:", err2);
                             res.status(500).send(err2);
                         }
                         else {
@@ -212,7 +210,6 @@
                             p1.history.push(modelBook);
                             p1.save((err3, data1) => {
                                 if (err3) {
-                                    console.log("HER ER ERROR i api->post('/bookings/.findOne, err3:", err3);
                                     res.status(500).send(err3);
                                 }
                                 else {
@@ -221,13 +218,10 @@
                                         b1.bookings.push(modelBook);
                                         b1.save((err4, data2) => {
                                             if (err4) {
-                                                console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
                                                 res.status(500).send(err4);
                                             }
                                             else {
-                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data1:", data1);
-                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data2:", data2);
-                                                res.send(data2);
+                                                res.send(modelBook);
                                             }
                                         });
                                     }
@@ -235,13 +229,10 @@
                                         b.bookings.push(modelBook);
                                         b.save((err4, data2) => {
                                             if (err4) {
-                                                console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
                                                 res.status(500).send(err3);
                                             }
                                             else {
-                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data1:", data1);
-                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data2:", data2);
-                                                res.send(data);
+                                                res.send(modelBook);
                                             }
                                         });
                                     }  
@@ -255,10 +246,8 @@
             }
             else {
                 currBook.customer_id = p._id;
-                console.log("p er ekki null, p !== null, p =", p);
-                 model.Booking.findOne( {"company_id": data.company_id, "date": data.date }, (err2, b) => {
+                model.Booking.findOne( {"company_id": data.company_id, "date": data.date }, (err2, b) => {
                         if (err2) {
-                            console.log("HER ER ERROR i api->post('/bookings/.findOne, err2:", err2);
                             res.status(500).send(err2);
                         }
                         else {
@@ -266,7 +255,6 @@
                             p.history.push(modelBook);
                             p.save((err3, data1) => {
                                 if (err3) {
-                                    console.log("HER ER ERROR i api->post('/bookings/.findOne, err3:", err3);
                                     res.status(500).send(err3);
                                 }
                                 else {
@@ -275,13 +263,10 @@
                                         b1.bookings.push(modelBook);
                                         b1.save((err4, data2) => {
                                             if (err4) {
-                                                console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
                                                 res.status(500).send(err4);
                                             }
                                             else {
-                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data1:", data1);
-                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data2:", data2);
-                                                res.send(data2);
+                                                res.send(modelBook);
                                             }
                                         });
                                     }
@@ -289,13 +274,10 @@
                                         b.bookings.push(modelBook);
                                         b.save((err4, data2) => {
                                             if (err4) {
-                                                console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
                                                 res.status(500).send(err3);
                                             }
                                             else {
-                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data1:", data1);
-                                                console.log("FOR I GEGN i api->post('/bookings/.findOne, data2:", data2);
-                                                res.send(data);
+                                                res.send(modelBook);
                                             }
                                         });
                                     }  
@@ -307,107 +289,8 @@
             }
       }});
   });
-                        /*
-                        { $push: {
-                            "bookings": {
-                                "customer_id": p1._id,
-                                "staff_id":    data.staff_id,
-                                "startTime":   data.startTime,
-                                "endTime":     data.endTime,
-                                "service":     data.customer_service
-                            }
-                        }},
-                        { safe: true, upsert: true },
-                        function (err2, b) {
-                            if (err2) {
-                                res.status(500).send(err2);
-                            }
-                            else {
-                                model.Booking.findIdOfBooking({
-                                    'company_id': data.company_id,
-                                    'customer_id': p1._id,
-                                    'staff_id': data.staff_id,
-                                    'startTime': data.startTime
-                                }, function(e, bid) {
-                                    if (bid !== null) {
-                                        console.log('bid !== null, bid:', bid);
-                                        model.Person.update( { "_id": p1._id },
-                                            { $push: {
-                                                "history": {
-                                                    "_id": bid.bookings._id
-                                                }
-                                            }}, { safe: true, upsert: true},
-                                            function(errr, p2) {
-                                                if (errr) {
-                                                    res.status(500).send(errr);
-                                                }
-                                                else {
-                                                    res.send(p2);
-                                                }
-                                            });
-                                    }
-                                    else {
-                                        console.log('bid was fucking NULL');
-                                        res.status(500).send(e);
-                                    }
-                                });
 
-                            }
-                        });
-                    }
-            });
-          }
-          else {
-            model.Booking.update( {"company_id": data.company_id, "date": data.date },
-                { $push: {
-                    "bookings": {
-                        "customer_id": p._id,
-                        "staff_id":    data.staff_id,
-                        "startTime":   data.startTime,
-                        "endTime":     data.endTime,
-                        "service":     data.customer_service
-                        }
-                    }
-                },
-                { safe: true, upsert: true },
-                function (err1, b) {
-                  console.log("p !== NULL after: ", b);
-                    if (err1) {
-                        res.status(500).send(err1);
-                    }
-                    else {
-                        model.Booking.findIdOfBooking({
-                            'company_id': data.company_id,
-                            'customer_id': p._id,
-                            'staff_id': data.staff_id,
-                            'startTime': data.startTime
-                        }, function(e, bid) {
-                            if (bid !== null) {
-                                model.Person.update( { "_id": p._id },
-                                    { $push: {
-                                        "history": {
-                                            "_id": bid._id
-                                        }
-                                    }
-                                },
-                                { safe: true, upsert: true},
-                                function(errr, p2) {
-                                    if (errr) {
-                                        res.status(500).send(errr);
-                                    }
-                                    else {
-                                        res.send(p2);
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-        }
-    });
-  });
-*/
+  // REMOVE ALL BOOKINGS FOR THAT DAY WHO HAVE THIS ID->bid
   api.delete('/bookings/:bid', (req, res) => {
       model.Booking.findByIdAndRemove(req.params.bid, function (err, c) {
         if (err) {
@@ -417,7 +300,10 @@
         }
     });
   });
-
+  /*
+   * 
+   */
+  // GET ALL SERVICES IN Service COLLECTION ::: {{ ADMIN }}
   api.get('/services', (req, res) => {
     model.Service.find({}, function (err, docs) {
       if (err) {
@@ -427,7 +313,8 @@
       }
     });
   });
-
+  
+  // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
   api.get('/services/:company_id', (req, res) => {
     const id = req.params.company_id;
     model.Service.find({company_id: id}, function (err, docs) {
@@ -442,24 +329,13 @@
   api.post('/services', bodyParser.json(), (req, res) => {
     console.log("POST SERVICE req.body:", req.body);
     const s = new model.Service(req.body);
-    model.Service.update({ '_id': req.body.company_id },
-        { $push: {
-          "pricelist":
-            {
-              name:       req.body.name,
-              price:      req.body.price,
-              timeLength: req.body.timeLength,
-              active: true
-            }
-          }
-        },
-        { safe: true, upsert: true }, function (err, doc) {
-          if (err) {
-            res.status(500).send(err);
-        }
-        else {
-            res.send(doc);
-        }
+    s.save((err, doc) => {
+       if (err) {
+           
+       } 
+       else {
+           
+       }
     });
   });
 

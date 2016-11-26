@@ -371,7 +371,7 @@
       </tr>
       </tbody>
       <tbody ng-if="state.verdskra && !state.add && !state.edit">
-      <tr ng-repeat="p in pricelist track by $index">
+      <tr ng-repeat="p in pricelist track by $index" ng-if="p.active">
         <td>{{ p.name }}</td>
         <td>{{ p.price }} kr.</td>
         <td>{{ p.timeLength / 60 }}</td>
