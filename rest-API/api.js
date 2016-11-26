@@ -316,7 +316,7 @@
   
   /* DELETE ENTIRE SERVICES IN DEV */
   //api.delete('/services/:sid', (req, res) => {
- /* api.delete('/services', (req, res) => {
+  api.delete('/services', (req, res) => {
      model.Service.remove({}, function (err) {
      //model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
         if (err) {
@@ -326,7 +326,7 @@
         }
     });
   });
-  */
+  
   
   //
   // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
