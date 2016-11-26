@@ -4,11 +4,24 @@
     angular.module('segoApp')
       .controller('AdminCtrl', ['$scope', 'backendFactory', function ($scope, backendFactory) {
             $scope.editCompany = [];
+            
+            // HREINSA TIL I SERVICE //
             backendFactory.getAllService().then(function(res) {
-                $scope.service = res;
+                console.log('getAllService(), res.data:', res.data);
+                $scope.service = res.data;
             }, function(err) {
                 console.log('ERROR getAllService(), err:', err);
             });
+            
+            $scope.deleteService = function(sid, index) {
+                backendFactory.removeService(sid).then(function(res) {
+                    $scope.service.splice(index, 1);
+                }, function(err) {
+                    console.log('ERROR deleteService(_id)->backendFactory.removeService(), err:', err);
+                });
+            };
+            // HREINSA TIL I SERVICE, LOKID //
+            
             // GET ALL COMPANIES //
             backendFactory.getCompanies().then(function (response) {
                 $scope.companies = response.data;

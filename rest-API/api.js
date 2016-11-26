@@ -314,6 +314,16 @@
     });
   });
   
+  api.delete('/services/:sid', (req, res) => {
+     model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.send(c);
+        }
+    });
+  });
+  //
   // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
   api.get('/services/:company_id', (req, res) => {
     const id = req.params.company_id;

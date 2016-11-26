@@ -132,21 +132,17 @@
           <th>price</th>
           <th>timeLength</th>
           <th>active</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="s in service">
+            <tr ng-repeat="s in service track by $index">
                 <td>{{ s.company_id }}</td>
                 <td>{{ s.name }}</td>
                 <td>{{ s.price }}</td>
                 <td>{{ s.timeLength }}</td>
                 <td>{{ s.active }}</td>
-            </tr>
-            <tr>
-                <td colspan=3>{{b}}</td>
-                <td>
-                    <button ng-click="deleteService(s._id)" value="eyða">eyða</button>
-                </td>
+                <td><button ng-click="deleteService(s._id, $index)" value="eyða">eyða</button></td>
             </tr>
         </tbody>
       </table>
