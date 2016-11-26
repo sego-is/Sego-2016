@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .factory('backendFactory', ['$http', function ($http) {
       var _company = null; // THIS IS COMPANY COLLECTION FROM DB //
 
@@ -34,7 +34,7 @@
                 }
             });
         };
-      
+
         backendFactory.getCompanies = function () {
             return $http({
             url: 'http://wwww.sego.is:6969/api/companies/',
@@ -46,7 +46,7 @@
             }
             });
         };
-      
+
         backendFactory.getAllService = function () {
             return $http({
             url: 'http://wwww.sego.is:6969/api/services/',
@@ -58,7 +58,7 @@
             }
             });
         };
-        
+
         backendFactory.removeService = function(sid) {
             return $http({
             url: 'http://wwww.sego.is:6969/api/services/',// + sid,
@@ -82,7 +82,7 @@
             }
             });
         };
-      
+
         backendFactory.postCompany = function (c) {
             return $http({
             url: 'http://wwww.sego.is:6969/api/companies/',
@@ -95,7 +95,7 @@
             data: c
             });
         };
-      
+
         backendFactory.deleteCompany = function (cid) {
             return $http({
             url: 'http://wwww.sego.is:6969/api/companies/' + cid,
@@ -107,7 +107,7 @@
             }
             });
         };
-      
+
         backendFactory.getBooking = function() {
             return $http({
                 url: 'http://wwww.sego.is:6969/api/bookings/',
@@ -119,7 +119,7 @@
                 }
             });
         };
-      
+
         backendFactory.removeIndex = function() {
             return $http({
                 url: 'http://wwww.sego.is:6969/api/index',
@@ -131,12 +131,12 @@
                 }
             });
         };
-      
-      
+
+
       //------------------------------ END OF -> ADMIN CALLS ------------------------------//
-        
-        
-      //------------------------------ NORMAL PEOPLE CALLS ------------------------------// 
+
+
+      //------------------------------ NORMAL PEOPLE CALLS ------------------------------//
       backendFactory.getCompanyByAuthID = function (c) {
         return $http({
           method: 'GET',
@@ -242,8 +242,8 @@
         });
       };
 
-        
-      
+
+
       backendFactory.postService = function (s) {
         s.company_id  = this.ID();
         return $http({
@@ -297,7 +297,7 @@
           }
         });
       };
-      // DE-ACTIVE FROM PRICELIST // 
+      // DE-ACTIVE FROM PRICELIST //
       backendFactory.deleteFromPricelist = function (p) {
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/pricelist/',
@@ -346,7 +346,7 @@
       };
 
 
-      
+
       return backendFactory;
 
     }]);

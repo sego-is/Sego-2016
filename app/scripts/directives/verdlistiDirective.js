@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .directive('verdlisti', ['backendFactory', function(backendFactory) {
     	return {
     		restrict: 'E',

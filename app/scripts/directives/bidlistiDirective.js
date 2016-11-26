@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .directive('bidlisti', function() {
     	return {
     		restrict: 'E',

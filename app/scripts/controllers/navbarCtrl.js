@@ -11,7 +11,7 @@
    * # navbarCtrl til að birta alltaf navbar
    * Controller of the segoApp
    */
-  angular.module('segoApp')
+  angular.module('segoapp')
     .controller('navbarCtrl', ['$scope', 'authService', function ($scope, authService) {
         $scope.isLoggedIn - authService.auth();
       }]);

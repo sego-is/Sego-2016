@@ -8,7 +8,7 @@
      * # AboutCtrl
      * Controller of the segoEnnOgAfturApp
      */
-    angular.module('segoApp')
+    angular.module('segoapp')
       .controller('DatepickerCtrl', ['$scope', function ($scope) {
 ///////////////////////////////////////////////////
         $scope.isNavCollapsed = true;

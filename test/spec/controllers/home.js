@@ -3,7 +3,7 @@
 describe('Controller: HomeCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('segoApp'));
+  beforeEach(module('segoapp'));
 
   var HomeCtrl,
     scope;
@@ -16,18 +16,18 @@ describe('Controller: HomeCtrl', function () {
       $scope: scope
       // place here mocked dependencies
     });
-    
+
     spyOn(localStorage, 'getItem').and.callFake(function(key) {
         return profile[key];
     });
-    
+
   }));
 
   it('should have bookings defined', function () {
     expect(scope.bookings).toBeDefined();
-    
+
   });
-  
+
   it('bookings should be empty', function() {
       expect(scope.bookings.length).toEqual(0);
   });

@@ -8,7 +8,7 @@
    * # AboutCtrl
    * Controller of the segoEnnOgAfturApp
    */
-  angular.module('segoApp')
+  angular.module('segoapp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
         $scope.bookings = [];
         // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //

@@ -3,24 +3,24 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .run(['$http', '$rootScope', '$location', 'authService', 'authManager', 'lock', function($http, $rootScope, $location, authService, authManager, lock) {
-      
+
       /* Send this header with any $http request
       $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       // Send this header only in post requests.
       $http.defaults.headers.post['dataType'] = 'json';
       */
-      
+
       // Intercept the hash that comes back from authentication
       // to ensure the `authenticated` event fires
       lock.interceptHash();
-      
+
       // Put the authService on $rootScope so its methods
       // can be accessed from the nav bar
       $rootScope.authService = authService;
       $rootScope.gluggiOpinn = false;
-      
+
       // Register the authentication listener that is
       // set up in auth.service.js
       authService.registerAuthenticationListener();
@@ -41,14 +41,14 @@
             // requires authorization?
             if (to.authorize === true) {
                 if (authService.auth()) {
-                    
+
                 }
                 else {
                     $location.path("/");
                 }
             }
         });
- 
+
         $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
             if (error)
             {

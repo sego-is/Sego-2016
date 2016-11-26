@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .factory('dagatalFactory', function () {
 
         var months = [
