@@ -394,7 +394,16 @@ boka.skilabod {
 
 .booking-time p {
   font-size: 14px;
+}
 
+.booking-cell {
+  overflow: visible;
+}
+
+.confirmedBooking {
+  background-color: greenyellow;
+  height: 200px;
+  position: absolute;
 }
 
 @media only screen and (max-device-width: 375px) {
@@ -605,5 +614,7 @@ input.ng-valid {
 .datepicker {
   text-align: center;
 }
+
+
 
 
