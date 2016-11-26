@@ -41,7 +41,7 @@
                   scope.timeTaken -= s.timeLength;
                 }
                 else {
-                  scope.serviceSelected.push(s._id);
+                  scope.serviceSelected.push({ 'pricelist_id': s._id });
                   scope.timeTaken += s.timeLength;
                 }
             };

@@ -74,10 +74,10 @@ const bookSchema = Schema({
     endTime: Date,
     service: [{
       pricelist_id: {
+        _id: false,
         type: Schema.Types.ObjectId,
         ref: 'Service.pricelist'
-      },
-      name: String
+      }
     }]
 });
 
