@@ -388,10 +388,11 @@ boka.skilabod {
 
 .booking-time {
   text-align: center;
+  height: 1em;
 }
 
 .booking-time p {
-  font-size: 14px;
+  font-size: 0.8em;
 }
 
 .booking-cell {

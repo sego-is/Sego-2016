@@ -71,7 +71,7 @@
      });
  });
  // GET ALL CUSTOMER FOR GIVEN COMPANY
- api.get('/company/customers', (req, res) => {
+ api.get('/company/customers/:company_id', (req, res) => {
     model.Person.find({'company_id': req.params.company_id, 'role': 0}, (err, p) => {
       if (err) {
           res.status(500).send(err);
