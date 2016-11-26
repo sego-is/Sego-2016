@@ -79,7 +79,7 @@
                 // Mismun a startTime og endTime ==> 45 min
                 var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
                 myElm.innerHTML =
-                  '<p class="confirmedBooking">' + $scope.bookings[b].customer_id.name + '</p>';
+                  '<p class="confirmedBooking test">' + $scope.bookings[b].customer_id.name + '</p>';
             }
         };
 
@@ -109,7 +109,7 @@
         }
         else {
             var idForCell = bookingForToday[ev.currentTarget.id];
-            
+
             if (idForCell !== undefined) {
                 var tmpBook = $scope.bookings[idForCell];
                 b.customer_name =  tmpBook.customer_id.name;
@@ -126,7 +126,7 @@
             booking = $scope.$new();
             var compiledDirective;
 
-            
+
             $scope.clickOnTimapant = {
                 name:      b.name,
                 customer:  b.customer_name,
