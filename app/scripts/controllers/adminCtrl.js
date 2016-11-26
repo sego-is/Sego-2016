@@ -1,10 +1,10 @@
 (function() {
     'use strict';
 
-    angular.module('segoApp')
+    angular.module('segoapp')
       .controller('AdminCtrl', ['$scope', 'backendFactory', function ($scope, backendFactory) {
             $scope.editCompany = [];
-            
+
             // HREINSA TIL I SERVICE //
             backendFactory.getAllService().then(function(res) {
                 console.log('getAllService(), res.data:', res.data);
@@ -12,7 +12,7 @@
             }, function(err) {
                 console.log('ERROR getAllService(), err:', err);
             });
-            
+
             $scope.removeService = function(sid, index) {
                 backendFactory.removeService(sid).then(function(res) {
                     $scope.service.splice(index, 1);
@@ -21,7 +21,7 @@
                 });
             };
             // HREINSA TIL I SERVICE, LOKID //
-            
+
             // GET ALL COMPANIES //
             backendFactory.getCompanies().then(function (response) {
                 $scope.companies = response.data;
@@ -87,16 +87,16 @@
             }, function(err) {
                 console.log("GET BOOKING (err): ", err);
             });
-            
+
             $scope.deleteBooking = function(bid, index) {
                 backendFactory.deleteBookings(bid).then(function(res) {
                       $scope.bookings.splice(index, 1);
                       console.log("BOOKINGS FOR GIVEN DAY HAVE BEEN DELETED");
                 }, function(err) {
                     console.log('ERROR deleteBooking:', err);
-                }); 
+                });
             };
-            
+
             $scope.removeIndex = function() {
                 backendFactory.removeIndex().then(function(res) {
                     console.log("removeIndex()->TOKST, res:", res);

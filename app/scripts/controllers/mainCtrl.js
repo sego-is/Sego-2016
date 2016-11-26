@@ -9,7 +9,7 @@
    * # MainCtrl
    * Controller of the segoEnnOgAfturApp
    */
-  angular.module('segoApp')
+  angular.module('segoapp')
     .controller('MainCtrl', ['$scope', '$compile', function ($scope, $compile) {
       var state = {
         'scope': 0,

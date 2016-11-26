@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .directive('stillingar', ['$http', 'backendFactory', function ($http, backendFactory) {
       return {
         restrict: 'E',

@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .directive('boka', ['backendFactory', 'dagatalFactory', function (backendFactory, dagatalFactory) {
       return {
         restrict: 'E',
@@ -60,11 +60,11 @@
 
                 // kannski þarf að breyta timeTaken í sek
                 console.log("service time ", scope.timeTaken);
-                
+
                 var tmpEndTime = new Date(scope.objFrom.startTime);
                 tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60))
                 console.log("tmpEndTime:", tmpEndTime);
-                
+
                 scope.badInput = false;
 
                 // AFKOMMENTA ÞEGAR timeTaken ER READY

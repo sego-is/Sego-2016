@@ -2,14 +2,14 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .service('authService', ['$rootScope', '$location', 'lock', 'authManager', function ($rootScope, $location, lock, authManager) {
-    
-           
+
+
     var userProfile = localStorage.getItem('profile') || {};
     var authenticated = false;
 
-    
+
     function login() {
       lock.show();
     }

@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('segoApp')
+    .module('segoapp')
     .directive('customer', ['$compile', 'backendFactory', function ($compile, backendFactory) {
       return {
         restrict: 'E',
@@ -24,7 +24,7 @@
 
           // WHEN CREATING NEW PERSON
           scope.person = {};
-          
+
 
           scope.vidskiptavinir = [];
           scope.form = {};
