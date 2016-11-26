@@ -315,7 +315,7 @@
   });
   // DELETE THE OLD SETUP AND SOME SHIT LYING AROUND
   api.delete('/services/:sid', (req, res) => {
-     model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
+     model.Service.remove({ _id: null, active: true, timeLength: 1800 }, function (err, c) {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -323,6 +323,21 @@
         }
     });
   });
+  
+  // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
+  // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
+ /* api.delete('/services/:id', (req, res) => {
+      var id = req.params.id;
+       // model.Service.remove({ _id : model.ObjectId(req.params.id) }, function (err) {
+      model.Service.remove({ _id: null, active: true, timeLength: 1800 }, function (err, c) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.send('BEEN DELETED');
+        }
+    });
+  });*/
+  
   //
   // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
   api.get('/services/:company_id', (req, res) => {
@@ -367,19 +382,7 @@
     });
   });
 
-  // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
-  // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
-  api.delete('/services/:id', (req, res) => {
-      var id = req.params.id;
-       // model.Service.remove({ _id : model.ObjectId(req.params.id) }, function (err) {
-      model.Service.remove({ _id: null, active: true, timeLength: 1800 }, function (err, c) {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.send('BEEN DELETED');
-        }
-    });
-  });
+  
 
   // De-activate specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
