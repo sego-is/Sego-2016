@@ -109,18 +109,19 @@
         }
         else {
             var idForCell = bookingForToday[ev.currentTarget.id];
+            
             if (idForCell !== undefined) {
                 var tmpBook = $scope.bookings[idForCell];
-                b.customer =  tmpBook.customer_id.name;
-                b.phone =     tmpBook.customer_id.phone;
+                b.customer_name =  tmpBook.customer_id.name;
+                b.customer_phone =     tmpBook.customer_id.phone;
                 b.service =   tmpBook.service;
             }
             else {
-                b.customer = "";
-                b.phone = "";
+                b.customer_name = "",
+                b.customer_phone = "",
                 b.service = [];
             }
-            
+
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             booking = $scope.$new();
             var compiledDirective;
@@ -128,8 +129,8 @@
             
             $scope.clickOnTimapant = {
                 name:      b.name,
-                customer:  b.customer,
-                phone:     b.phone,
+                customer:  b.customer_name,
+                phone:     b.customer_phone,
                 service:   b.service,
                 staffId:   b._id,
                 date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
@@ -148,7 +149,6 @@
         booking.$destroy();
         $('.skilaboda-haldari').empty();
         document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
-        update();
       };
       // END OF BOOKING CLICK
     }]);

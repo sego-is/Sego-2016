@@ -155,8 +155,8 @@
     });
   });
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
-  api.get('/bookings/:date/:id', (req, res) => {
-     model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
+  api.get('/bookings/:cid/:date', (req, res) => {
+     model.Booking.find({ company_id: req.params.cid, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
         if (err) {
             res.status(500).send(err);
         } else {
