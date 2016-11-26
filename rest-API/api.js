@@ -314,9 +314,9 @@
     });
   });
   
-  /* DELETE THE OLD SETUP AND SOME SHIT LYING AROUND*/
+  /* DELETE ENTIRE SERVICES IN DEV */
   //api.delete('/services/:sid', (req, res) => {
-  api.delete('/services', (req, res) => {
+ /* api.delete('/services', (req, res) => {
      model.Service.remove({}, function (err) {
      //model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
         if (err) {
@@ -326,7 +326,7 @@
         }
     });
   });
-  
+  */
   
   //
   // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
@@ -346,10 +346,10 @@
     const s = new model.Service(req.body);
     s.save((err, doc) => {
        if (err) {
-           
+           console.log("post.services, err:", err);
        } 
        else {
-           
+           res.send(doc);
        }
     });
   });
