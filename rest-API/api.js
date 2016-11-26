@@ -126,18 +126,9 @@
         }
       });
     }
-    /* model.Person.findById(p._id, (err, per) => {
-     if (err) {
-     res.status(500).send(err);
-     }
-     else {
-     res.send(per);
-     }
-     });
-     */
-
   });
 
+  // FOR ADMIN IF WE ARE GOING TO USE THIS ONE, MAYBE WE NEVER WANT TO GET ALL BOOKINGS IN SYSTEM
   api.get('/bookings/', (req, res) => {
     model.Booking.find({}, function (err, docs) {
       if (err) {
@@ -147,7 +138,7 @@
       }
     });
   });
-
+  // GET ALL BOOKINGS BY ID FOR GIVEN COMPANY
   api.get('/bookings/:cid', (req, res) => {
       model.Booking.find({ company_id: req.params.cid }).sort('date').populate("bookings.staff_id bookings.customer_id").exec(function (err, docs) {
       if (err) {
@@ -157,7 +148,7 @@
       }
     });
   });
-
+  // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
   api.get('/bookings/:date/:id', (req, res) => {
      model.Booking.find({ company_id: req.params.id, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
         if (err) {
@@ -593,7 +584,7 @@
 
 // FIND COMPANY BY AUTH_ID
   api.get('/companies/:id', (req, res) => {
-    model.Company.find({ auth_id: req.params.id }, function (err, c) {
+    model.Company.find({ auth_id: req.params.id }).populate('staff').exec(function (err, c) {
       if (err) {
         res.status(500).send(err);
       } else {
