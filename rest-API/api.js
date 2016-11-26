@@ -313,7 +313,7 @@
       }
     });
   });
-  
+  // DELETE THE OLD SETUP AND SOME SHIT LYING AROUND
   api.delete('/services/:sid', (req, res) => {
      model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
         if (err) {
@@ -372,7 +372,7 @@
   api.delete('/services/:id', (req, res) => {
       var id = req.params.id;
        // model.Service.remove({ _id : model.ObjectId(req.params.id) }, function (err) {
-      model.Service.findByIdAndRemove(id, function (err, c) {
+      model.Service.remove({ _id: null, active: true, timeLength: 1800 }, function (err, c) {
         if (err) {
             res.status(500).send(err);
         } else {
