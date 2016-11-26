@@ -195,7 +195,7 @@
         
         backendFactory.removeService = function(sid) {
             return $http({
-            url: 'http://wwww.sego.is:6969/api/services/' + sid,
+            url: 'http://wwww.sego.is:6969/api/services/',// + sid,
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',

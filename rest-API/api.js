@@ -314,10 +314,11 @@
     });
   });
   
-  /* DELETE THE OLD SETUP AND SOME SHIT LYING AROUND
-  api.delete('/services/:sid', (req, res) => {
-    // model.Service.remove({ _id: null, active: true, timeLength: 1800 }, function (err, c) {
-     model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
+  /* DELETE THE OLD SETUP AND SOME SHIT LYING AROUND*/
+  //api.delete('/services/:sid', (req, res) => {
+  api.delete('/services', (req, res) => {
+     model.Service.remove({ active: true, timeLength: 1800 }, function (err, c) {
+     //model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -325,7 +326,7 @@
         }
     });
   });
-  */
+  
   
   //
   // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
