@@ -51,10 +51,7 @@
       <td class="booking-time">
         <p ng-if="$index % 2 == 0">{{ t }}</p>
       </td>
-      <td class="booking-cell"
-          ng-repeat="x in staff | orderBy: x._id"
-          ng-click="openBooking(t, x, $event)"
-          id="{{ t }}{{ x._id }}">
+      <td class="booking-cell" ng-repeat="x in staff | orderBy: x._id" ng-click="openBooking(t, x, $event)" id="{{ t }}{{ x._id }}">
       </td>
     </tr>
     </tbody>

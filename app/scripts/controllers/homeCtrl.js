@@ -103,7 +103,7 @@
 
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
       $scope.openBooking = function (t, b, ev) {
-        console.log("BOOKING 1: ", b);
+        console.log("$EVENT: ", ev);
         if (t === undefined) {
           console.log("UNDEFINED");
         }
