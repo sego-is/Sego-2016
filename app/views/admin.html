@@ -142,10 +142,14 @@
                 <td>{{ s.price }}</td>
                 <td>{{ s.timeLength }}</td>
                 <td>{{ s.active }}</td>
-                <td><button ng-click="removeService(s._id, $index)" value="eyða">eyða</button></td>
+                <td>
+                    <button ng-click="removeService(s._id, $index)" value="eyða">eyða</button>
+                    <button ng-click="removeIndex()" value="RemoveIndex">RemoveIndex</button>
+                </td>
             </tr>
         </tbody>
       </table>
     </div>
+    
     </div>
 </div>

@@ -311,7 +311,19 @@
           }
         });
       };
-
+      
+      backendFactory.removeIndex = function() {
+           return $http({
+          url: 'http://wwww.sego.is:6969/api/index',
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
+      };
+      
       return backendFactory;
 
     }]);

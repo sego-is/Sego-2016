@@ -96,6 +96,14 @@
                     console.log('ERROR deleteBooking:', err);
                 }); 
             };
+            
+            $scope.removeIndex = function() {
+                backendFactory.removeIndex().then(function(res) {
+                    console.log("removeIndex()->TOKST, res:", res);
+                }, function(err) {
+                    console.log("removeIndex(), err:", err);
+                })
+            }
 
       }]);
 })();

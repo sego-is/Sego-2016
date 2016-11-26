@@ -347,13 +347,24 @@
     s.save((err, doc) => {
        if (err) {
            console.log("post.services, err:", err);
+           res.status(500).send(err);
        } 
        else {
            res.send(doc);
        }
     });
   });
-
+  
+  api.delete('/index', (req, res) => {
+      model.Service.collection.dropIndexes({ "company_id": 1 }, function(err) {
+          if(err) {
+              res.status(500).send(err);
+          }
+          else {
+              res.send('OK');
+          }
+      })
+  });
 
 /* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
