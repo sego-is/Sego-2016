@@ -167,9 +167,9 @@
                 res.send([]);
             }
             else {
-                //let b = _.sortBy(docs[0].bookings, 'staff_id');
-                //b =     _.sortBy(b, 'startTime');
-                res.send(docs);
+                let b = _.sortBy(docs[0].bookings, 'staff_id');
+                b =     _.sortBy(b, 'startTime');
+                res.send(b);
             }
         }
     });
