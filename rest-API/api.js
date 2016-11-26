@@ -91,16 +91,18 @@
         }
         else {
           if (data.role === 1) {
-            model.Company.update({'_id': data.company_id},
-            { $push: { "staff": doc._id }},
-            function (err) {
-              if (err) {
-                res.status(500).send(err);
-              }
-              else {
-                res.send(doc);
-              }
+            model.Company.find({'_id': data.company_id }, function(err1, doc1) {
+                if (err1) {
+                    console.log('error: post(/persons), err1:', err1);
+                    res.status(500).send(err1);
+                }
+                else {
+                    doc1.staff.push(doc);
+                    res.send(doc);
+                }
+                
             });
+            
           }
           else {
             res.send(doc);

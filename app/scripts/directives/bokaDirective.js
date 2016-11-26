@@ -30,7 +30,7 @@
 
             // FOR CHECKBOX SELECTED SERVICE
             scope.serviceSelected = scope.objFrom.service;
-
+            console.log('scope.objFrom:', scope.objFrom);
             // TO CALCULATE ENDTIME
             scope.timeTaken = 0;
 
