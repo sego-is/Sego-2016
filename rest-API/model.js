@@ -64,6 +64,7 @@ const serviceSchema = Schema({
   company_id: {
     type:    Schema.Types.ObjectId,
     require: true,
+    unique: false,
     ref:     'Company'
   },
   name: {
@@ -80,6 +81,8 @@ const serviceSchema = Schema({
       default: true
   }
 });
+
+serviceSchema.index({ _id: 1 }, { unique: true });
 
 const bookSchema = Schema({
     customer_id: {
