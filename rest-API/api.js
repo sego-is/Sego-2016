@@ -178,8 +178,7 @@
   api.post('/bookings/', bodyParser.json(), (req, res) => {
     const data = req.body;
     const currBook = {
-        customer_id: 'Person',
-        staff_id: data.stafF_id,
+        staff_id: data.staff_id,
         startTime: data.startTime,
         endTime: data.endTime,
         service: data.customer_service
