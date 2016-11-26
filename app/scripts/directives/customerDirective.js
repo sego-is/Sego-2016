@@ -70,11 +70,11 @@
             if(scope.form.customerForm.$valid) {
                 s.company_id = backendFactory.ID();
                 s.role = 0;
-              console.log("bæta við nýjum viðskiptavin: ", scope.vidskiptavinir);
-               backendFactory.postPerson(s).then(function (res) {
-                scope.vidskiptavinir.push(res.data);
-              }, function (err) {
-                console.log("ERROR addCustomer(): ", err);
+                console.log("bæta við nýjum viðskiptavin: ", scope.vidskiptavinir);
+                backendFactory.postPerson(s).then(function (res) {
+                    scope.vidskiptavinir.push(res.data);
+                }, function (err) {
+                    console.log("ERROR addCustomer(): ", err);
               });
             } else {
               console.log("BAD INPUT");

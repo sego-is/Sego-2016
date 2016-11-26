@@ -16,14 +16,6 @@
         return _company._id;
       };
 
-      backendFactory.setServiceID = function(id) {
-        _company.serviceID = id;
-      };
-
-      backendFactory.ServiceID = function() {
-          return _company.serviceID;
-      };
-
       backendFactory.Staff = function () {
         if (_company !== null) {
           return _company.staff;

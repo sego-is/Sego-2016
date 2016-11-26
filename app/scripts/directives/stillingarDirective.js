@@ -88,8 +88,8 @@
 
           function getService() {
               backendFactory.getService().then(function(res) {
-                   scope.pricelist = res.data[0].pricelist;
-                   backendFactory.setServiceID(res.data[0]._id);
+                  console.log("getService(), res.data:", res.data);
+                  scope.pricelist = res.data;
               }, function(err) {
                   console.log("ERROR getService(): ", err);
               });
@@ -130,6 +130,7 @@
               scope.state.add = false;
               s.timeLength *= 60;
               backendFactory.postService(s).then(function(res) {
+                  console.log("postService(s), res:", res);
                 scope.pricelist.push(res.data);
                 scope.badInput = false;
               }, function(err) {
