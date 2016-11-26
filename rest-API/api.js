@@ -97,6 +97,7 @@
                     res.status(500).send(err1);
                 }
                 else {
+                    console.log("doc1:", doc1);
                     doc1.staff.push(doc);
                     res.send(doc);
                 }
