@@ -91,7 +91,7 @@
         }
         else {
           if (data.role === 1) {
-            model.Company.find({'_id': data.company_id }, function(err1, doc1) {
+            model.Company.findOne({'_id': data.company_id }, function(err1, doc1) {
                 if (err1) {
                     console.log('error: post(/persons), err1:', err1);
                     res.status(500).send(err1);
@@ -99,11 +99,17 @@
                 else {
                     console.log("doc1:", doc1);
                     doc1.staff.push(doc);
-                    res.send(doc);
+                    doc1.save((err2, doc2) => {
+                        if (err2) {
+                            console.log("HER ER ERROR i api->post('/bookings/.findOne, err2:", err2);
+                            res.status(500).send(err2);
+                        }
+                        else {
+                            res.send(doc2);
+                        }
+                    });
                 }
-                
-            });
-            
+            });  
           }
           else {
             res.send(doc);
