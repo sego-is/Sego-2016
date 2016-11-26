@@ -167,12 +167,15 @@
       backendFactory.getCustomerByCID = function() {
         return $http({
             method: 'GET',
-            url: 'http://www.sego.is:6969/api/persons/' + this.ID() + '/customers',
+            url: 'http://www.sego.is:6969/api/company/customers/',
             headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-          }
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+            },
+            params: {
+                company_id: this.ID()
+            }
         });
       };
 

@@ -73,13 +73,13 @@
 
         var bookingsToday = function() {
             for (var b in $scope.bookings) {
-                console.log('b in $scope.bookings:', $scope.bookings[b]);
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id._id;
                 bookingForToday[tmp] = b;
+                console.log('b:', b);
                 // Mismun a startTime og endTime ==> 45 min
                 var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
                 myElm.innerHTML =
-                  '<p class="confirmedBooking test">' + $scope.bookings[b].customer_id.name + '</p>';
+                '<div class="confirmedBooking test" id="' + $scope.bookings[b].customer_id._id + '">' + $scope.bookings[b].customer_id.name + '</div>';
             }
         };
 
@@ -97,7 +97,7 @@
             update();
         };
 
-
+        
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
 
@@ -109,39 +109,47 @@
         }
         else {
             var idForCell = bookingForToday[ev.currentTarget.id];
-
             if (idForCell !== undefined) {
                 var tmpBook = $scope.bookings[idForCell];
-                b.customer_name =  tmpBook.customer_id.name;
-                b.customer_phone =     tmpBook.customer_id.phone;
-                b.service =   tmpBook.service;
+                b.customer_name = tmpBook.customer_id.name;
+                b.customer_phone = tmpBook.customer_id.phone;
+                b.service = tmpBook.service;
+                
+                var tmpFyrirThetta = document.getElementById(tmpBook.customer_id._id);
+                if (tmpFyrirThetta.style.marginLeft) {
+                    tmpFyrirThetta.style.marginLeft = "";
+                }
+                else {
+                    tmpFyrirThetta.style.marginLeft = "11.35em";;
+                }
             }
             else {
                 b.customer_name = "",
                 b.customer_phone = "",
                 b.service = [];
+                
+                
+                document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
+                booking = $scope.$new();
+                var compiledDirective;
+
+
+                $scope.clickOnTimapant = {
+                    name:      b.name,
+                    customer:  b.customer_name,
+                    phone:     b.customer_phone,
+                    service:   b.service,
+                    staffId:   b._id,
+                    date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
+                    startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
+                };
+                console.log('clickOnTimapant:', $scope.clickOnTimapant);
+                compiledDirective = $compile('<boka class="skilabod" ' +
+                    'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
+                var directiveElement = compiledDirective(booking);
+                $('.skilaboda-haldari').append(directiveElement);
             }
 
-            document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
-            booking = $scope.$new();
-            var compiledDirective;
-
-
-            $scope.clickOnTimapant = {
-                name:      b.name,
-                customer:  b.customer_name,
-                phone:     b.customer_phone,
-                service:   b.service,
-                staffId:   b._id,
-                date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
-                startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t),
-                endTime: dagatalFactory.getStringForDate(new Date(selectedDay), "12:00")
-            };
-            console.log('clickOnTimapant:', $scope.clickOnTimapant);
-            compiledDirective = $compile('<boka class="skilabod" ' +
-                'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
-            var directiveElement = compiledDirective(booking);
-            $('.skilaboda-haldari').append(directiveElement);
         }
       };
 
@@ -149,7 +157,7 @@
         booking.$destroy();
         $('.skilaboda-haldari').empty();
         document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
-        update();
+        //update();
       };
       // END OF BOOKING CLICK
     }]);
