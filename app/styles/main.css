@@ -407,7 +407,7 @@ boka.skilabod {
 
 .confirmedBooking {
   background-color: greenyellow;
-  height: 200px;
+
   position: absolute;
   display: block;
   margin: -0.65em;
