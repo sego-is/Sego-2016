@@ -73,7 +73,7 @@
         var bookingsToday = function() {
             for (var b in $scope.bookings) {
                 console.log('b in $scope.bookings:', $scope.bookings[b]);
-                var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id;
+                var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id._id;
                 bookingForToday[tmp] = b;
                 // Mismun a startTime og endTime ==> 45 min
                 var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
@@ -135,6 +135,7 @@
                 startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t),
                 endTime: dagatalFactory.getStringForDate(new Date(selectedDay), "12:00")
             };
+            console.log('clickOnTimapant:', $scope.clickOnTimapant);
             compiledDirective = $compile('<boka class="skilabod" ' +
                 'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
             var directiveElement = compiledDirective(booking);

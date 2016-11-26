@@ -60,6 +60,28 @@ const companySchema = Schema({
   staff: [personSchema]
 });
 
+const serviceSchema = Schema({
+  company_id: {
+    type:    Schema.Types.ObjectId,
+    require: true,
+    ref:     'Company'
+  },
+  name: {
+      type:    String,
+      require: true,
+  },
+  price: Number,
+  timeLength: { /* 900 === 15 min // 60 = 1 min */
+      type: Number,
+      default: 1800
+  },
+  active: {
+      type: Boolean,
+      default: true
+  }
+});
+
+serviceSchema.index({ company_id: 1 }, { unique: true });
 
 const bookSchema = Schema({
     customer_id: {
@@ -73,11 +95,9 @@ const bookSchema = Schema({
     startTime: Date,
     endTime: Date,
     service: [{
-      _id: false,
-      pricelist_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'Service.pricelist'
-      }
+        type:    Schema.Types.ObjectId,
+        require: true,
+        ref:     'Service'
     }]
 });
 
@@ -104,30 +124,7 @@ bookingsSchema.static('findIdOfBooking', function(b, cb) {
 
 bookingsSchema.index({company_id: 1, date: 1}, {unique: true});
 
-const serviceSchema = Schema({
-  company_id: {
-    type:    Schema.Types.ObjectId,
-    require: true,
-    ref:     'Company'
-  },
-  pricelist: [{
-    name: {
-      type:    String,
-      require: true,
-    },
-    price: Number,
-    timeLength: { /* 900 === 15 min // 60 = 1 min */
-        type: Number,
-        default: 1800
-    },
-    active: {
-        type: Boolean,
-        default: true
-    }
-  }]
-});
 
-serviceSchema.index({ company_id: 1 }, { unique: true });
 
 // CAST string to ObjectId //
 function ObjectId(id_string) {
@@ -139,7 +136,6 @@ module.exports = {
   Company: mongoose.model('Company', companySchema),
   Book: mongoose.model('Book', bookSchema),
   Booking: mongoose.model('Booking',  bookingsSchema),
-  /* Staff:   mongoose.model('staffs', staffSchema), */
   Service: mongoose.model('Service',  serviceSchema),
   ObjectId: ObjectId
 };
