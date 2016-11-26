@@ -40,7 +40,7 @@
         <i class="fa fa-clock-o"
            aria-hidden="true"></i>
       </th>
-        <th class="staffname" ng-repeat="x in staff | orderBy: x.person_id">
+        <th class="staffname" ng-repeat="x in staff | orderBy: x._id">
           {{ x.name }}
         </th>
     </tr>
@@ -52,9 +52,9 @@
         <p ng-if="$index % 2 == 0">{{ t }}</p>
       </td>
       <td class="booking-cell"
-          ng-repeat="x in staff | orderBy: x.person_id"
+          ng-repeat="x in staff | orderBy: x._id"
           ng-click="openBooking(t, x, $event)"
-          id="{{ t }}{{ x.person_id }}">
+          id="{{ t }}{{ x._id }}">
       </td>
     </tr>
     </tbody>

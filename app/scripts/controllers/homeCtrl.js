@@ -59,6 +59,7 @@
                 console.log("update()->getBookingByDate() ERR:", err);
             });
             $scope.staff = backendFactory.Staff();
+            console.log("$scope.staff:", $scope.staff);
             $scope.times = dagatalFactory.timeSession();
         }
         // ENDIR update()
@@ -130,7 +131,7 @@
                 customer:  b.customer,
                 phone:     b.phone,
                 service:   b.service,
-                staffId:   b.person_id,
+                staffId:   b._id,
                 date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
                 startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t),
                 endTime: dagatalFactory.getStringForDate(new Date(selectedDay), "12:00")

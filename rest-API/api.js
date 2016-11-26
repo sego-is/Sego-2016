@@ -105,7 +105,7 @@
                             res.status(500).send(err2);
                         }
                         else {
-                            res.send(doc2);
+                            res.send(doc);
                         }
                     });
                 }
