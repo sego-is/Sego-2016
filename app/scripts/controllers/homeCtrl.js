@@ -149,6 +149,7 @@
         booking.$destroy();
         $('.skilaboda-haldari').empty();
         document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
+        update();
       };
       // END OF BOOKING CLICK
     }]);

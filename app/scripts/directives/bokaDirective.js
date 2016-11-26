@@ -4,7 +4,7 @@
 
   angular
     .module('segoApp')
-    .directive('boka', ['backendFactory', function (backendFactory) {
+    .directive('boka', ['backendFactory', 'dagatalFactory', function (backendFactory, dagatalFactory) {
       return {
         restrict: 'E',
         scope: {
@@ -60,14 +60,18 @@
 
                 // kannski þarf að breyta timeTaken í sek
                 console.log("service time ", scope.timeTaken);
-
+                
+                var tmpEndTime = new Date(scope.objFrom.startTime);
+                tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60))
+                console.log("tmpEndTime:", tmpEndTime);
+                
                 scope.badInput = false;
 
                 // AFKOMMENTA ÞEGAR timeTaken ER READY
 
                 backendFactory.postBooking({
                     startTime: scope.objFrom.startTime,
-                    endTime: scope.objFrom.endTime,
+                    endTime: tmpEndTime,
                     staff_id: scope.objFrom.staffId,
                     customer_name:  scope.objFrom.customer,
                     customer_phone: scope.objFrom.phone,
