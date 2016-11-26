@@ -317,12 +317,12 @@
   /* DELETE THE OLD SETUP AND SOME SHIT LYING AROUND*/
   //api.delete('/services/:sid', (req, res) => {
   api.delete('/services', (req, res) => {
-     model.Service.remove({ active: true, timeLength: 1800 }, function (err, c) {
+     model.Service.remove({}, function (err) {
      //model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.send(c);
+            res.send("EVERYTHING REMOVED, HOPEFULLY");
         }
     });
   });

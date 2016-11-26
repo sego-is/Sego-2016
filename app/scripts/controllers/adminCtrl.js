@@ -13,7 +13,7 @@
                 console.log('ERROR getAllService(), err:', err);
             });
             
-            $scope.deleteService = function(sid, index) {
+            $scope.removeService = function(sid, index) {
                 backendFactory.removeService(sid).then(function(res) {
                     $scope.service.splice(index, 1);
                 }, function(err) {

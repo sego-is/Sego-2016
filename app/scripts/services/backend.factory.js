@@ -204,7 +204,7 @@
             }
             });
         };
-
+      
       backendFactory.postService = function (s) {
         s.company_id  = this.ID();
         return $http({
@@ -306,21 +306,6 @@
         });
       };
 
-      backendFactory.deleteService = function (s) {
-        return $http({
-          url: 'http://wwww.sego.is:6969/api/services/' + s._id,
-          method: 'DELETE',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-          },
-          data: {
-            id: s._id,
-            cid: s.cid
-          }
-        });
-      };
       // END OF SERVICE
 
       backendFactory.deleteBookings = function(bid) {
