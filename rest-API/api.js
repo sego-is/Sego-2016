@@ -91,12 +91,9 @@
         }
         else {
           if (data.role === 1) {
-            model.Company.update({'_id': data.company_id}, {
-              $push: { "staff": {
-                "person_id": doc._id,
-                "name":      doc.name
-              }
-              }}, function (err) {
+            model.Company.update({'_id': data.company_id},
+            { $push: { "staff": doc._id }},
+            function (err) {
               if (err) {
                 res.status(500).send(err);
               }
