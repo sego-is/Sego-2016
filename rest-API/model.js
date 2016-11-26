@@ -81,7 +81,7 @@ const serviceSchema = Schema({
   }
 });
 
-serviceSchema.index({ company_id: 1 }, { unique: true });
+serviceSchema.index({ _id: 1, company_id: 1 }, { unique: true });
 
 const bookSchema = Schema({
     customer_id: {

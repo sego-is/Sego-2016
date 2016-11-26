@@ -126,17 +126,19 @@
 
           // MAKE CALL to ADD PRICE
           scope.addPrice = function(s) {
+              console.log("ADDPRICE(S)", s);
             if (scope.form.priceForm.$valid) {
               scope.state.add = false;
               s.timeLength *= 60;
               backendFactory.postService(s).then(function(res) {
-                  console.log("postService(s), res:", res);
+                console.log("postService(s), res:", res);
                 scope.pricelist.push(res.data);
                 scope.badInput = false;
               }, function(err) {
                 console.log("addUpdatePrice(add) -> postService(priceObj), err:", err);
               });
             } else {
+              console.log('SCOPE.FORM. INVALID!!');
               scope.badInput = true;
             }
           };
