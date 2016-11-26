@@ -211,7 +211,8 @@
                             res.status(500).send(err2);
                         }
                         else {
-                            p1.history.push(new model.Book(currBook));
+                            const modelBook = new model.Book(currBook);
+                            p1.history.push(modelBook);
                             p1.save((err3, data1) => {
                                 if (err3) {
                                     console.log("HER ER ERROR i api->post('/bookings/.findOne, err3:", err3);
@@ -220,7 +221,7 @@
                                 else {
                                     if (b === null) {
                                         const b1 = new model.Booking({ 'company_id': data.company_id, 'date': data.date })
-                                        b1.bookings.push(currBook);
+                                        b1.bookings.push(modelBook);
                                         b1.save((err4, data2) => {
                                             if (err4) {
                                                 console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
@@ -234,7 +235,7 @@
                                         });
                                     }
                                     else {
-                                        b.bookings.push(currBook);
+                                        b.bookings.push(modelBook);
                                         b.save((err4, data2) => {
                                             if (err4) {
                                                 console.log("HER ER ERROR i api->post('/bookings/.findOne, err4:", err4);
