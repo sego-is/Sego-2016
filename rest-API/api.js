@@ -34,8 +34,8 @@
   });
 
   //DELETE PERSON
-  api.delete('/persons/:id', (req, res) => {
-    var id = req.params.id;
+  api.delete('/persons/:pid', (req, res) => {
+    var id = req.params.pid;
     model.Person.findByIdAndRemove(id, function(err, p) {
         if (err) {
             res.status(500).send(err);
@@ -313,9 +313,11 @@
       }
     });
   });
-  // DELETE THE OLD SETUP AND SOME SHIT LYING AROUND
+  
+  /* DELETE THE OLD SETUP AND SOME SHIT LYING AROUND
   api.delete('/services/:sid', (req, res) => {
-     model.Service.remove({ _id: null, active: true, timeLength: 1800 }, function (err, c) {
+    // model.Service.remove({ _id: null, active: true, timeLength: 1800 }, function (err, c) {
+     model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -323,20 +325,7 @@
         }
     });
   });
-  
-  // DELETE SPECIFIC SERVICE WITH GIVEN _ID, WILL DELETE ALLE COLLECTION FOR COMPANY WITH GIVEN _ID
-  // NOT WISE TO HAVE THIS REST CALL IN PRODUCTIN.. MORE TO CLEAN OUR DATABASE. E.A.
- /* api.delete('/services/:id', (req, res) => {
-      var id = req.params.id;
-       // model.Service.remove({ _id : model.ObjectId(req.params.id) }, function (err) {
-      model.Service.remove({ _id: null, active: true, timeLength: 1800 }, function (err, c) {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.send('BEEN DELETED');
-        }
-    });
-  });*/
+  */
   
   //
   // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
@@ -350,7 +339,7 @@
       }
     });
   });
-
+  // CREATE NEW SERVICE // !!!!! FUNCTION NOT IMPLEMENTED !!!!!
   api.post('/services', bodyParser.json(), (req, res) => {
     console.log("POST SERVICE req.body:", req.body);
     const s = new model.Service(req.body);
@@ -364,6 +353,8 @@
     });
   });
 
+
+/* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
     console.log("UPDATE PRICE data: ", data);
@@ -381,7 +372,7 @@
       }
     });
   });
-
+*/
   
 
   // De-activate specific service with price in services.pricelist //

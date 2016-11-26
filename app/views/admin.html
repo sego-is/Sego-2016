@@ -78,14 +78,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="u in users">
+        <tr ng-repeat="u in users track by $index">
           <td>{{ u.name }}</td>
           <td>{{ u.phone }}</td>
           <td>{{ u.email }}</td>
           <td>{{ u.role }}</td>
           <td>{{u.history}}</td>
           <td>
-            <button ng-click="deleteUser(u._id)" value="eyða">eyða</button>
+            <button ng-click="deleteUser(u._id, $index)" value="eyða">eyða</button>
           </td>
           <td>{{u}}</td>
         </tr>

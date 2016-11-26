@@ -72,9 +72,10 @@
             // END CREATING USER
 
             //DELETE USER
-            $scope.deleteUser = function(u) {
+            $scope.deleteUser = function(u, index) {
                 console.log("DELETE USER ", u);
                 backendFactory.deletePerson(u).then(function (response) {
+                    $scope.users.splice(index, 1);
                     console.log("ARRAY OF USERS ", $scope.users);
                     console.log("RESPONSE:", response);
                 }).catch(function(err) {
