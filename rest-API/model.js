@@ -73,8 +73,8 @@ const bookSchema = Schema({
     startTime: Date,
     endTime: Date,
     service: [{
+      _id: false,
       pricelist_id: {
-        _id: false,
         type: Schema.Types.ObjectId,
         ref: 'Service.pricelist'
       }
