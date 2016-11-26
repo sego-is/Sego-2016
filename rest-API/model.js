@@ -91,13 +91,7 @@ const bookingsSchema = Schema({
     type:    Date,
     require: true
   },
-  bookings: [{
-      book_id : {
-          _id: false,
-          type: Schema.Types.ObjectId,
-          ref: 'Book'
-      }
-  }]
+  bookings: [bookSchema]
 });
 
 bookingsSchema.static('findIdOfBooking', function(b, cb) {
