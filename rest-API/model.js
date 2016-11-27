@@ -25,9 +25,8 @@ const personSchema = Schema({
   },
   image_url: String,
   history: [{
-      _id: false,
-      date: Date,
-      book_id: [Schema.Types.ObjectId]
+        type: [Schema.Types.ObjectId],
+        ref: 'Booking.bookings'
   }],
   comments: [String],
   // 0:Customer 1:Staff
