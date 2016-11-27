@@ -87,9 +87,8 @@
                     res.send(docs);
                 }
             })
-        })
-        console.log('/company/customers/:company_Id, p:', JSON.stringify(p));
-        res.send(p);
+        });
+        });
       }
     });
  });
