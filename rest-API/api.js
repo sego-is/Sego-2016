@@ -72,23 +72,11 @@
  });
  // GET ALL CUSTOMER FOR GIVEN COMPANY
  api.get('/company/customers/:company_id', (req, res) => {
-    model.Person.find({'company_id': req.params.company_id, 'role': 0}, function(err, persons) {
+    model.Person.find({'company_id': req.params.company_id, 'role': 0}).populate('history.book_id').exec(function(err, persons) {
       if (err) {
           res.status(500).send(err);
       } else {
-        _.each(persons, function(person) {
-            _.each(person.history, function(book) {
-                model.Book.findById(book._id).populate('service._id').exec(function (err, docs) {
-                if (err) {
-                    console.log("underscore 2x og book.findYbid, ERROR");
-                    res.status(500).send(err);
-                } else {
-                    console.log("LITUR UT FYRIR AD HAFA TEKIST", docs);
-                    res.send(docs);
-                }
-            })
-        });
-        });
+       res.send(persons);
       }
     });
  });
