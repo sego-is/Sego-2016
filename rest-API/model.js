@@ -24,10 +24,10 @@ const personSchema = Schema({
     maxlength: 15
   },
   image_url: String,
-  history: {
+  history: [{
         type: [Schema.Types.ObjectId],
-        ref: 'Book'
-  },
+        ref: 'Booking.boookings'
+  }],
   comments: [String],
   // 0:Customer 1:Staff
   role: {

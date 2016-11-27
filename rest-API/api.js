@@ -70,7 +70,10 @@
 /* ---------------     ENDIR    ADMIN     ENDIR    --------------- */
 
 /* ---------------     GET GET GET GET GET GET     --------------- */
-
+  //api.get('/company/customer/history/', (req, res) => {
+    //  model.Booking.find({ 'company_id': { $eq: req.params.company_id }, 'bookings._id': { $eq: req.params._id }}).populate
+  //});
+  
   // GET ALL PERSONS WORKING FOR COMPANY WITH ID
   api.get('/company/staff/:company_id', (req, res) => {
      model.Company.findById(req.params.company_id).populate('staff.person_id').run( (err, doc) => {
