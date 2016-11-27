@@ -17,7 +17,7 @@
           // GET ALL CUSTOMERS FROM CID
           backendFactory.getCustomerByCID().then(function(res) {
               scope.vidskiptavinir = res.data;
-              console.log("vidskiptavinur[0].history[0]._id:", scope.vidskiptavinir[0].history[0]._id);
+              console.log("vidskiptavinir:", scope.vidskiptavinir);
           }, function(err) {
               console.log("customerDirective, getCustomerByCID() ERROR:", err);
               scope.vidskiptavinir = [];

@@ -26,7 +26,6 @@ const personSchema = Schema({
   image_url: String,
   history: [{
     book_id: {
-        _id: false,
         type: Schema.Types.ObjectId,
         ref: 'Book'
     }
@@ -128,15 +127,15 @@ bookingsSchema.index({company_id: 1, date: 1}, {unique: true});
 
 
 // CAST string to ObjectId //
-function ObjectId(id_string) {
+/*function ObjectId(id_string) {
     return mongoose.Types.ObjectId(id_string);
-};
+};*/
 
 module.exports = {
   Person:  mongoose.model('Person',   personSchema),
   Company: mongoose.model('Company', companySchema),
   Book: mongoose.model('Book', bookSchema),
   Booking: mongoose.model('Booking',  bookingsSchema),
-  Service: mongoose.model('Service',  serviceSchema),
-  ObjectId: ObjectId
+  Service: mongoose.model('Service',  serviceSchema)
+  //ObjectId: ObjectId
 };

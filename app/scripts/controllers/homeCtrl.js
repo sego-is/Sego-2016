@@ -75,7 +75,7 @@
             for (var b in $scope.bookings) {
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id._id;
                 bookingForToday[tmp] = b;
-                console.log('b:', b);
+                //console.log('b:', $scope.bookings[b]);
                 // Mismun a startTime og endTime ==> 45 min
                 var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
                 myElm.innerHTML =
