@@ -152,14 +152,11 @@
       backendFactory.getPersonsfromCID = function() {
         return $http({
           method: 'GET',
-          url: 'http://wwww.sego.is:6969/api/persons/',
+          url: 'http://wwww.sego.is:6969/company/staff/' + this.ID(),
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-          },
-          params: {
-            company_id: this.ID()
           }
         });
       };

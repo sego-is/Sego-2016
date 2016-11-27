@@ -22,45 +22,48 @@
     });
   });
 
-  // TMP GET CALL
-  api.get('/persons', (req, res) => {
-    model.Person.find({}, function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(docs);
-      }
+/* ---------------              ADMIN             --------------- */
+    // GET ALL PERSONS
+    api.get('/persons', (req, res) => {
+        model.Person.find({}, function (err, docs) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.send(docs);
+            }
+        });
     });
-  });
-
-  //DELETE PERSON
-  api.delete('/persons/:pid', (req, res) => {
-    var id = req.params.pid;
-    model.Person.findByIdAndRemove(id, function(err, p) {
-        if (err) {
-            res.status(500).send(err);
-        }
-        else {
-            res.send(p);
-        }
+  
+    // DELETE PERSON BY pID
+    api.delete('/persons/:pid', (req, res) => {
+        var id = req.params.pid;
+        model.Person.findByIdAndRemove(id, function(err, p) {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                res.send(p);
+            }
+        });
     });
+    
+    // GET ALL COMPANIES
+    api.get('/companies', (req, res) => {
+        model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(201).send(doc);
+            }
+        });
+    });
+  
+/* ---------------     ENDIR    ADMIN     ENDIR    --------------- */
 
-    /*model.Person.remove({"_id": id}, function (err, c) {
-      if (err) {
-        console.log("err ", c);
-        res.status(500).send(err);
-      } else {
-        console.log("success ");
-        res.send(c);
-      }
-    });*/
-  });
+/* ---------------     GET GET GET GET GET GET     --------------- */
 
-  // POST PERSONS, EITHER STAFF OR CUSTOMER
-
-
-  // GET ALL HAIRCUTTER WORKING FOR COMPANY WITH ID
-  api.get('/persons/:company_id', (req, res) => {
+  // GET ALL PERSONS WORKING FOR COMPANY WITH ID
+  api.get('/company/staff/:company_id', (req, res) => {
      model.Company.findById(req.params.company_id).populate('staff.person_id').run( (err, doc) => {
          if (err) {
              res.status(500).send(err);
@@ -72,10 +75,7 @@
  });
  // GET ALL CUSTOMER FOR GIVEN COMPANY
  api.get('/company/customers/:company_id', (req, res) => {
-    model.Person.find({'company_id': req.params.company_id, 'role': 0}).populate({
-        path: 'history._id',
-        model: 'Book'
-    }).exec(function(err, persons) {
+    model.Person.find({'company_id': req.params.company_id, 'role': 0}).populate('history').exec(function(err, persons) {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -343,7 +343,7 @@
       }
     });
   });
-  // CREATE NEW SERVICE // !!!!! FUNCTION NOT IMPLEMENTED !!!!!
+  // CREATE NEW SERVICE //
   api.post('/services', bodyParser.json(), (req, res) => {
     console.log("POST SERVICE req.body:", req.body);
     const s = new model.Service(req.body);
@@ -461,16 +461,6 @@
             });
    });
 
-
-   api.get('/companies', (req, res) => {
-    model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.status(201).send(doc);
-      }
-    });
-  });
 
   api.post('/companies', bodyParser.json(), (req, res) => {
     const c = new model.Company(req.body);
