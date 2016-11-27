@@ -25,7 +25,7 @@ const personSchema = Schema({
   },
   image_url: String,
   history: [{
-    book_id: {
+    book: {
         type: Schema.Types.ObjectId,
         ref: 'Book'
     }

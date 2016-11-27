@@ -72,11 +72,14 @@
  });
  // GET ALL CUSTOMER FOR GIVEN COMPANY
  api.get('/company/customers/:company_id', (req, res) => {
-    model.Person.find({'company_id': req.params.company_id, 'role': 0}).populate('history.book_id').exec(function(err, persons) {
+    model.Person.find({'company_id': req.params.company_id, 'role': 0}).populate({
+        path: 'history._id',
+        model: 'Book'
+    }).exec(function(err, persons) {
       if (err) {
-          res.status(500).send(err);
+        res.status(500).send(err);
       } else {
-       res.send(persons);
+        res.send(persons);
       }
     });
  });
