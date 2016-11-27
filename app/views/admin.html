@@ -97,6 +97,7 @@
       <table class="table table-striped">
         <thead>
         <tr>
+          <th>ID</th>
           <th>Staff Name</th>
           <th>Customer Name</th>
           <th>Start Time</th>
@@ -106,13 +107,14 @@
         </thead>
         <tbody ng-repeat="b in bookings">
             <tr ng-repeat="books in b.bookings">
+                <td>{{ books._id }}</td>
                 <td>{{ books.staff_id.name }}</td>
                 <td>{{ books.customer_id.name }}</td>
                 <td>{{ books.startTime }}</td>
                 <td>{{ books.endTime }}</td>
             </tr>
             <tr>
-                <td colspan=3>{{b}}</td>
+                <td colspan=4>{{b}}</td>
                 <td>
                     <button ng-click="deleteBooking(b._id)" value="eyða">eyða</button>
                 </td>

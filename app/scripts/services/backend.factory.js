@@ -131,7 +131,18 @@
                 }
             });
         };
-
+        
+        backendFactory.getBook = function() {
+            return $http({
+                url: 'http://wwww.sego.is:6969/api/book',
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+                }
+            });
+        };
 
       //------------------------------ END OF -> ADMIN CALLS ------------------------------//
 

@@ -43,7 +43,13 @@
             // CREATING NEW COMPANY
             $scope.company = {};
             $scope.company.staff = [];
-
+            
+            backendFactory.getBook().then(function(res) {
+                console.log('getBook success, res:', res);
+            }, function(err) {
+                console.log('getBook error, err:', err);
+            });
+            
             $scope.addCompany = function(c) {
                 backendFactory.postCompany(c).then(function (response) {
                     console.log("RESPONSE:", response);

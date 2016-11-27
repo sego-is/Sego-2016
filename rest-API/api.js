@@ -58,6 +58,15 @@
         });
     });
   
+  api.get('/book', (req, res) => {
+      model.Book.find({}, function(err, docs) {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+            res.status(201).send(docs);
+          }
+      });
+  })
 /* ---------------     ENDIR    ADMIN     ENDIR    --------------- */
 
 /* ---------------     GET GET GET GET GET GET     --------------- */
@@ -232,7 +241,7 @@
                                         b.bookings.push(modelBook);
                                         b.save((err4, data2) => {
                                             if (err4) {
-                                                res.status(500).send(err3);
+                                                res.status(500).send(err4);
                                             }
                                             else {
                                                 res.send(modelBook);
