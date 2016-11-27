@@ -126,9 +126,9 @@
     });
   });
   
-  api.get('/companies/:company_id/:booking_id', (req, res) => {
+ // api.get('/companies/:company_id/:booking_id', (req, res) => {
      /* model.Booking.find({ 'company_id': { $eq: req.params.company_id }, 'bookings._id': { $eq: req.params._id }}).populate*/
-  });
+ // });
   
   // GET ALL PERSONS WORKING FOR COMPANY WITH ID
   api.get('/companies/:company_id/staff/', (req, res) => {
