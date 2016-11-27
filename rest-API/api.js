@@ -67,15 +67,71 @@
           }
       });
   })
+  
+  api.get('/bookings/', (req, res) => {
+    model.Booking.find({}, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      }
+    });
+  });
+  
+  // REMOVE BOOKINGS FOR THAT DAY FOR BOOKING WITH THE ID->bid
+  api.delete('/bookings/:bid', (req, res) => {
+      model.Booking.findByIdAndRemove(req.params.bid, function (err, c) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.send(c);
+        }
+    });
+  });
+
+  // GET ALL SERVICES IN Service COLLECTION
+  api.get('/services', (req, res) => {
+    model.Service.find({}, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      }
+    });
+  });
+    /*
+  api.delete('/index', (req, res) => {
+      model.Service.collection.dropIndexes({ "company_id": 1 }, function(err) {
+          if(err) {
+              res.status(500).send(err);
+          }
+          else {
+              res.send('OK');
+          }
+      })
+  });
+*/
 /* ---------------     ENDIR    ADMIN     ENDIR    --------------- */
 
 /* ---------------     GET GET GET GET GET GET     --------------- */
-  //api.get('/company/customer/history/', (req, res) => {
-    //  model.Booking.find({ 'company_id': { $eq: req.params.company_id }, 'bookings._id': { $eq: req.params._id }}).populate
-  //});
+
+  // FIND COMPANY BY AUTH_ID
+  api.get('/companies/:auth_id', (req, res) => {
+    model.Company.find({ auth_id: req.params.auth_id }).populate('staff').exec(function (err, c) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(c);
+      }
+    });
+  });
+  
+  api.get('/companies/:company_id/:booking_id', (req, res) => {
+     /* model.Booking.find({ 'company_id': { $eq: req.params.company_id }, 'bookings._id': { $eq: req.params._id }}).populate*/
+  });
   
   // GET ALL PERSONS WORKING FOR COMPANY WITH ID
-  api.get('/companies/staff/:company_id', (req, res) => {
+  api.get('/companies/:company_id/staff/', (req, res) => {
      model.Company.findById(req.params.company_id).populate('staff.person_id').run( (err, doc) => {
          if (err) {
              res.status(500).send(err);
@@ -149,16 +205,7 @@
     }
   });
 
-  // FOR ADMIN IF WE ARE GOING TO USE THIS ONE, MAYBE WE NEVER WANT TO GET ALL BOOKINGS IN SYSTEM
-  api.get('/bookings/', (req, res) => {
-    model.Booking.find({}, function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(docs);
-      }
-    });
-  });
+ 
   // GET ALL BOOKINGS BY ID FOR GIVEN COMPANY
   api.get('/bookings/:cid', (req, res) => {
       model.Booking.find({ company_id: req.params.cid }).sort('date').populate("bookings.staff_id bookings.customer_id").exec(function (err, docs) {
@@ -169,6 +216,7 @@
       }
     });
   });
+  
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
   api.get('/bookings/:cid/:date', (req, res) => {
      model.Booking.find({ company_id: req.params.cid, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
@@ -305,29 +353,7 @@
       }});
   });
 
-  // REMOVE ALL BOOKINGS FOR THAT DAY WHO HAVE THIS ID->bid
-  api.delete('/bookings/:bid', (req, res) => {
-      model.Booking.findByIdAndRemove(req.params.bid, function (err, c) {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.send(c);
-        }
-    });
-  });
-  /*
-   * 
-   */
-  // GET ALL SERVICES IN Service COLLECTION ::: {{ ADMIN }}
-  api.get('/services', (req, res) => {
-    model.Service.find({}, function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(docs);
-      }
-    });
-  });
+  
   
   /* DELETE ENTIRE SERVICES IN DEV */
   //api.delete('/services/:sid', (req, res) => {
@@ -368,17 +394,6 @@
            res.send(doc);
        }
     });
-  });
-  
-  api.delete('/index', (req, res) => {
-      model.Service.collection.dropIndexes({ "company_id": 1 }, function(err) {
-          if(err) {
-              res.status(500).send(err);
-          }
-          else {
-              res.send('OK');
-          }
-      })
   });
 
 /* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
@@ -485,15 +500,5 @@
     });
   });
 
-// FIND COMPANY BY AUTH_ID
-  api.get('/companies/:id', (req, res) => {
-    model.Company.find({ auth_id: req.params.id }).populate('staff').exec(function (err, c) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(c);
-      }
-    });
-  });
   module.exports = api;
 })();
