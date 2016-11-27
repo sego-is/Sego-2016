@@ -163,7 +163,7 @@
       backendFactory.getPersonsfromCID = function() {
         return $http({
           method: 'GET',
-          url: 'http://wwww.sego.is:6969/company/staff/' + this.ID(),
+          url: 'http://wwww.sego.is:6969/companies/staff/' + this.ID(),
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -175,7 +175,7 @@
       backendFactory.getCustomerByCID = function() {
         return $http({
             method: 'GET',
-            url: 'http://www.sego.is:6969/api/company/customers/' + this.ID(),
+            url: 'http://www.sego.is:6969/api/companies/customers/' + this.ID(),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

@@ -75,7 +75,7 @@
   //});
   
   // GET ALL PERSONS WORKING FOR COMPANY WITH ID
-  api.get('/company/staff/:company_id', (req, res) => {
+  api.get('/companies/staff/:company_id', (req, res) => {
      model.Company.findById(req.params.company_id).populate('staff.person_id').run( (err, doc) => {
          if (err) {
              res.status(500).send(err);
@@ -86,7 +86,7 @@
      });
  });
  // GET ALL CUSTOMER FOR GIVEN COMPANY
- api.get('/company/customers/:company_id', (req, res) => {
+ api.get('/companies/customers/:company_id', (req, res) => {
     model.Person.find({'company_id': req.params.company_id, 'role': 0}).populate('history').exec(function(err, persons) {
       if (err) {
         res.status(500).send(err);
