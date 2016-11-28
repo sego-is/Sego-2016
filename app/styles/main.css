@@ -23,11 +23,11 @@ body.jumbotron #page-header-wrapper {
   padding-right: 15px;
 }
 
-/* Custom page header */
+/* Custom page header
 .header {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
-}
+}*/
 
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -615,10 +615,11 @@ input.ng-valid {
   height: 2em;
   border-right: 1px solid #ddd;
   text-align: center;
-  padding-top: 3px;
+  padding-top: 5px;
 }
 
 .staffName {
+  font-size: 16px;
   width: 28em;
   display: table-cell;
   border-right: 1px solid #ddd;
@@ -627,6 +628,7 @@ input.ng-valid {
 }
 
 .bookingCell {
+  text-align: center;
   position: relative;
   display: table-cell;
   background-color: #f8f8f8;
@@ -660,6 +662,7 @@ input.ng-valid {
   background-color: #ddd;
 }
 .rTableCell {
+  font-size: 14px;
   display: table-cell;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
