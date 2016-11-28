@@ -64,6 +64,7 @@ body.jumbotron #page-header-wrapper {
   height: 0;
   overflow: hidden;
   transition: height 0.75s;
+  z-index: 1000;
 }
 
 /* Aesthetic */
@@ -79,8 +80,10 @@ body.jumbotron #page-header-wrapper {
 }
 
 .accordion {
+  position: absolute;
   padding-left: 0px;
   padding-right: 2px;
+  z-index: 1000;
 }
 
 .accordion .forsidafyrirsogn {
@@ -126,19 +129,8 @@ body.jumbotron #page-header-wrapper {
   width: 100%;
   height: 10%;
   padding-top: 4px;
+  position: relative;
 }
-
-/*
-.parallax {
-  background-image: url("http://www.biihairsalon.com/wp-content/uploads/2012/08/Salon_Banner.jpg");
-  min-height: 1000px;
-
-   Create the parallax scrolling effect
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: repeat-y;
-  background-size: cover;
-}  */
 
 /* Supporting marketing content */
 
@@ -192,12 +184,6 @@ body.jumbotron #page-header-wrapper {
   .header {
     margin-bottom: 30px;
   }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
 
 @media screen and (max-width: 960px) {
   .skilabod {
@@ -604,12 +590,14 @@ input.ng-valid {
 }
 
 .datepicker {
-  background-color: magenta;
+  background-color: #f8f8f8;
+  /*background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));*/
   border: 1px solid black;
   padding: 0.5em 0.5em 0.5em 2em;
   text-align: center;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 
 .test {
