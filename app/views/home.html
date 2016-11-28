@@ -32,6 +32,42 @@
      datepicker-options="options"
      ng-click="getDailyBookings(dt | date:'fullDate')">
 </div>
+
+<!-- ATTEMPT AT DIV TABLE START-->
+<div class="container-fluid" ng-show="!loadingData">
+  <div class="rTable">
+
+    <div class="rTableRow">
+      <div class="klukka">
+        <i class="fa fa-clock-o"
+           aria-hidden="true">
+        </i>
+      </div>
+      <div class="staffName"
+           ng-repeat="x in staff | orderBy: x._id">
+        {{ x.name }}
+      </div>
+    </div>
+
+    <div class="rTableRow"
+         ng-repeat="t in times track by $index ">
+      <div class="rTableCell">
+        <div ng-if="$index % 2 == 0">{{ t }}</div>
+        <div ng-if="$index % 2 != 0"
+             class="quart"></div>
+      </div>
+
+      <div class="bookingCell"
+           ng-repeat="x in staff | orderBy: x._id"
+           ng-click="openBooking(t, x, $event)"
+           id="{{ t }}{{ x._id }}">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ATTEMPT AT DIV TABLE DONE -->
+<div>space</div>
+
 <div class="row col-md-12 col-sm-12 col-xs-12">
   <table class="table table-hover table-bordered">
     <thead>
@@ -41,26 +77,25 @@
            aria-hidden="true"></i>
       </th>
         <th class="staffname"
-            ng-repeat="x in staff | orderBy: x._id">
-          {{ x.name }}
+            ng-repeat="xts in staff | orderBy: xts._id">
+          {{ xts.name }}
         </th>
     </tr>
     </thead>
     <tbody>
     <tr class="booking"
-        ng-repeat="t in times track by $index ">
+        ng-repeat="tt in times track by $index ">
       <td class="booking-time">
-        <p ng-if="$index % 2 == 0">{{ t }}</p>
+        <p ng-if="$index % 2 == 0">{{ tt }}</p>
       </td>
 
       <td class="booking-cell"
-               ng-repeat="x in staff | orderBy: x._id"
-               ng-click="openBooking(t, x, $event)"
-               id="{{ t }}{{ x._id }}">
+               ng-repeat="xt in staff | orderBy: xt._id"
+               ng-click="openBooking(tt, xt, $event)"
+               id="{{ tt }}{{ xt._id }}">
       </td>
 
     </tr>
     </tbody>
   </table>
 </div>
-

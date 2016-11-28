@@ -399,20 +399,6 @@ boka.skilabod {
   overflow: visible;
 }
 
-.test {
-  border: 1px solid red;
-  padding: 1.0em;
-  width: 12.0em;
-}
-
-.confirmedBooking {
-  background-color: greenyellow;
-  width: 7%;
-  float: right;
-  position: absolute;
-  display: block;
-}
-
 .staff {
     width: 28.0em;
 }
@@ -603,9 +589,7 @@ input.ng-valid {
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
 }
 
-.klukka {
-  font-size: 16px;
-}
+
 
 .booking-time {
   font-size: 14px;
@@ -619,10 +603,6 @@ input.ng-valid {
   margin-left: 0px;
 }
 
-.staffname {
-  width: 100px;
-}
-
 .datepicker {
   background-color: magenta;
   border: 1px solid black;
@@ -632,6 +612,87 @@ input.ng-valid {
   z-index: 1;
 }
 
+.test {
+  border: 1px solid red;
+}
 
+.confirmedBooking {
+  background-color: greenyellow;
+  width: 50%;
+  float: inherit;
+  position: absolute;
+  z-index: 1;
+}
 
+.klukka {
+  font-size: 1.6em;
+  display: table-cell;
+  width: 5em;
+  height: 2em;
+  border-right: 1px solid #ddd;
+  text-align: center;
+  padding-top: 3px;
+}
 
+.staffName {
+  width: 28em;
+  display: table-cell;
+  border-right: 1px solid #ddd;
+  text-align: center;
+  font-weight: bold;
+}
+
+.bookingCell {
+  position: relative;
+  display: table-cell;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.bookingCell:hover {
+  cursor: pointer;
+  background-color: #dff0d8;
+}
+.quart {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+/***********************/
+/*** DIV TABLE BELOW ***/
+/***********************/
+.rTable {
+  display: table;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+.rTableRow {
+  display: table-row;
+}
+.rTableHeading {
+  display: table-header-group;
+  background-color: #ddd;
+}
+.rTableCell {
+  display: table-cell;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  text-align: center;
+}
+.rTableHeading {
+  display: table-header-group;
+  background-color: #ddd;
+  font-weight: bold;
+}
+.rTableFoot {
+  display: table-footer-group;
+  font-weight: bold;
+  background-color: #ddd;
+}
+.rTableBody {
+  display: table-row-group;
+}

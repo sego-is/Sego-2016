@@ -28,7 +28,6 @@
         // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
         $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
 
-
       $scope.prevDay = function() {
         dagatalFactory.yesterday();
         $scope.getDailyBookings(selectedDay);
@@ -38,7 +37,6 @@
         dagatalFactory.tomorrow();
         $scope.getDailyBookings(selectedDay);
       };
-
 
         // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
         function update() {
@@ -97,7 +95,6 @@
             update();
         };
 
-        
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
 
@@ -114,25 +111,23 @@
                 b.customer_name = tmpBook.customer_id.name;
                 b.customer_phone = tmpBook.customer_id.phone;
                 b.service = tmpBook.service;
-                
+
                 var tmpFyrirThetta = document.getElementById(tmpBook.customer_id._id);
                 if (tmpFyrirThetta.style.marginLeft) {
                     tmpFyrirThetta.style.marginLeft = "";
                 }
                 else {
-                    tmpFyrirThetta.style.marginLeft = "11.35em";;
+                    tmpFyrirThetta.style.marginLeft = "50%";
                 }
             }
             else {
-                b.customer_name = "",
-                b.customer_phone = "",
+                b.customer_name = "";
+                b.customer_phone = "";
                 b.service = [];
-                
-                
+
                 document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
                 booking = $scope.$new();
                 var compiledDirective;
-
 
                 $scope.clickOnTimapant = {
                     name:      b.name,
