@@ -171,7 +171,7 @@ body.jumbotron #page-header-wrapper {
   .container {
     max-width: 730px;
   }
-
+}
   /* Remove the padding we set earlier */
   .header,
   .marketing,
@@ -575,8 +575,6 @@ input.ng-valid {
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
 }
 
-
-
 .booking-time {
   font-size: 14px;
 }
@@ -591,8 +589,6 @@ input.ng-valid {
 
 .datepicker {
   background-color: #f8f8f8;
-  /*background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));*/
   border: 1px solid black;
   padding: 0.5em 0.5em 0.5em 2em;
   text-align: center;
