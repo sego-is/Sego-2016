@@ -62,7 +62,8 @@
                 console.log("service time ", scope.timeTaken);
 
                 var tmpEndTime = new Date(scope.objFrom.startTime);
-                tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60))
+                tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
+
                 console.log("tmpEndTime:", tmpEndTime);
 
                 scope.badInput = false;

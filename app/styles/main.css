@@ -620,6 +620,7 @@ input.ng-valid {
   background-color: greenyellow;
   width: 50%;
   float: inherit;
+  overflow: hidden;
   position: absolute;
   z-index: 1;
 }
