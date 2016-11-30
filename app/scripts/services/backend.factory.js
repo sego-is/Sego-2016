@@ -171,7 +171,18 @@
             }
         });
       };
-
+      
+      backendFactory.getCustomerStory = function(pid) {
+          return $http({
+              method: 'GET',
+              url: 'http://www.sego.is:6969/api/bookings/' + this.ID() + '/' + pid,
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+            }
+          });
+      };
       // PERSON REST CALLS / BOTH FOR CUSTOMERS AND STAFF //
 
 

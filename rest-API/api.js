@@ -204,7 +204,20 @@
       });
     }
   });
-
+  
+  api.get('/bookings/:cid/:pid', (req, res) => {
+      model.Booking.find({ company_id: req.params.cid}).populate({
+          path: 'book',
+          match: { customer_id: { $eq: req.params.pid }},
+          select: 'customer_id staff_id startTime service'
+      }).exec(function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      }
+      
+  });
  
   // GET ALL BOOKINGS BY ID FOR GIVEN COMPANY
   api.get('/bookings/:cid', (req, res) => {

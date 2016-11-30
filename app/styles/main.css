@@ -317,11 +317,11 @@ boka.skilabod {
 }
 
 .content thead {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .content tbody td {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .content .thjonusta {
@@ -349,15 +349,6 @@ boka.skilabod {
 .stadfestaTakki:hover {
   cursor: pointer;
   text-shadow: 0 0 10px green;
-}
-
-.haettaVidTakki {
-  color: red;
-}
-
-.haettaVidTakki:hover {
-  cursor: pointer;
-  text-shadow: 0 0 10px red;
 }
 
 .divTakki:hover {
@@ -396,10 +387,6 @@ boka.skilabod {
 
   .adalmynd {
     height: 50%;
-  }
-
-  #haettavidtakki {
-    margin-right: 25px;
   }
 
   .dagsetning {
@@ -549,8 +536,15 @@ input.ng-valid {
   box-shadow: 0 0 10px red;
 }
 
+#haettavidtakkivid {
+  margin-left: -6px;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+}
+
 #haettavidtakki {
   margin-right: 4px;
+  margin-left: 18px;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
 }
@@ -571,6 +565,8 @@ input.ng-valid {
 }
 
 #stadfesta {
+  padding-left: 11px;
+  padding-right: 11px;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
 }
@@ -604,6 +600,7 @@ input.ng-valid {
   background-color: greenyellow;
   width: 50%;
   float: inherit;
+  overflow: hidden;
   position: absolute;
   z-index: 1;
 }

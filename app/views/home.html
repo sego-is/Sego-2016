@@ -56,7 +56,6 @@
         <div ng-if="$index % 2 != 0"
              class="quart"></div>
       </div>
-
       <div class="bookingCell"
            ng-repeat="x in staff | orderBy: x._id"
            ng-click="openBooking(t, x, $event)"

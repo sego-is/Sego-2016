@@ -110,6 +110,14 @@
                     console.log("removeIndex(), err:", err);
                 })
             }
-
+            
+            $scope.ATHUGA = function(pid) {
+                backendFactory.getCustomerStory().then(function(res) {
+                    console.log("getCustomerStory() - THEE TOKSTS, res:", res);
+                }, function(err) {
+                    console.log("getCustomerStory() - ERROR, err:", err);
+                });
+            }
+            
       }]);
 })();
