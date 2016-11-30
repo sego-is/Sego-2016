@@ -175,7 +175,7 @@
       backendFactory.getCustomerStory = function(pid) {
           return $http({
               method: 'GET',
-              url: 'http://www.sego.is:6969/api/bookings/' + this.ID() + '/' + pid,
+              url: 'http://www.sego.is:6969/api/book/' + this.ID() + '/' + pid,
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -183,6 +183,7 @@
             }
           });
       };
+      
       // PERSON REST CALLS / BOTH FOR CUSTOMERS AND STAFF //
 
 

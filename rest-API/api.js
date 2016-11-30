@@ -110,7 +110,22 @@
           }
       })
   });
-*/
+  */
+  /* DELETE ENTIRE SERVICES IN DEV */
+  //api.delete('/services/:sid', (req, res) => {
+  api.delete('/services', (req, res) => {
+     model.Service.remove({}, function (err) {
+     //model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.send("EVERYTHING REMOVED, HOPEFULLY");
+        }
+    });
+  });
+  
+  
+
 /* ---------------     ENDIR    ADMIN     ENDIR    --------------- */
 
 /* ---------------     GET GET GET GET GET GET     --------------- */
@@ -151,7 +166,80 @@
       }
     });
  });
+// SKODA ADEINS URI HER, VAR AD CONFLICTA WITH api.get('/bookings/:cid/:date') svo breytti i book
+api.get('/book/:cid/:pid', (req, res) => {
+      model.Booking.find({ company_id: req.params.cid}).populate({
+          path: 'book',
+          match: { customer_id: { $eq: req.params.pid }},
+          select: 'customer_id staff_id startTime service'
+      }).exec(function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      }
+      });
+  });
+ 
+  // GET ALL BOOKINGS BY ID FOR GIVEN COMPANY
+  api.get('/bookings/:cid', (req, res) => {
+      model.Booking.find({ company_id: req.params.cid }).sort('date').populate("bookings.staff_id bookings.customer_id").exec(function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      }
+    });
+  });
+  
+  // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
+  api.get('/bookings/:cid/:date', (req, res) => {
+     model.Booking.find({ company_id: req.params.cid, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if (docs.length === 0) {
+                res.send([]);
+            }
+            else {
+                let b = _.sortBy(docs[0].bookings, 'staff_id');
+                b =     _.sortBy(b, 'startTime');
+                res.send(b);
+            }
+        }
+    });
+  });
+  
+   //
+  // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
+  api.get('/services/:company_id', (req, res) => {
+    const id = req.params.company_id;
+    model.Service.find({company_id: id}, function (err, docs) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(docs);
+      }
+    });
+  });
+  // CREATE NEW SERVICE //
+  api.post('/services', bodyParser.json(), (req, res) => {
+    console.log("POST SERVICE req.body:", req.body);
+    const s = new model.Service(req.body);
+    s.save((err, doc) => {
+       if (err) {
+           console.log("post.services, err:", err);
+           res.status(500).send(err);
+       } 
+       else {
+           res.send(doc);
+       }
+    });
+  });
+  
+/* ---------------     END GET END GET END GET     --------------- */
 
+/* ---------------     POST POST POST POST POST POST     --------------- */
   api.post('/persons', bodyParser.json(), (req, res) => {
     const data = req.body;
     const p = new model.Person(req.body);
@@ -205,48 +293,7 @@
     }
   });
   
-  api.get('/bookings/:cid/:pid', (req, res) => {
-      model.Booking.find({ company_id: req.params.cid}).populate({
-          path: 'book',
-          match: { customer_id: { $eq: req.params.pid }},
-          select: 'customer_id staff_id startTime service'
-      }).exec(function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(docs);
-      }
-      });
-  });
- 
-  // GET ALL BOOKINGS BY ID FOR GIVEN COMPANY
-  api.get('/bookings/:cid', (req, res) => {
-      model.Booking.find({ company_id: req.params.cid }).sort('date').populate("bookings.staff_id bookings.customer_id").exec(function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(docs);
-      }
-    });
-  });
   
-  // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
-  api.get('/bookings/:cid/:date', (req, res) => {
-     model.Booking.find({ company_id: req.params.cid, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            if (docs.length === 0) {
-                res.send([]);
-            }
-            else {
-                let b = _.sortBy(docs[0].bookings, 'staff_id');
-                b =     _.sortBy(b, 'startTime');
-                res.send(b);
-            }
-        }
-    });
-  });
   
   // THARF EF TIL VILL AD IHUGA HVERNIG VERDUR HAEGT AD UPDATE BOKUN OG/EDA HAETTA VID BOKUN
   api.post('/bookings/', bodyParser.json(), (req, res) => {
@@ -368,46 +415,9 @@
 
   
   
-  /* DELETE ENTIRE SERVICES IN DEV */
-  //api.delete('/services/:sid', (req, res) => {
-  api.delete('/services', (req, res) => {
-     model.Service.remove({}, function (err) {
-     //model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.send("EVERYTHING REMOVED, HOPEFULLY");
-        }
-    });
-  });
   
   
-  //
-  // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
-  api.get('/services/:company_id', (req, res) => {
-    const id = req.params.company_id;
-    model.Service.find({company_id: id}, function (err, docs) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(docs);
-      }
-    });
-  });
-  // CREATE NEW SERVICE //
-  api.post('/services', bodyParser.json(), (req, res) => {
-    console.log("POST SERVICE req.body:", req.body);
-    const s = new model.Service(req.body);
-    s.save((err, doc) => {
-       if (err) {
-           console.log("post.services, err:", err);
-           res.status(500).send(err);
-       } 
-       else {
-           res.send(doc);
-       }
-    });
-  });
+ 
 
 /* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
