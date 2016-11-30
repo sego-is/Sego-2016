@@ -216,7 +216,7 @@
       } else {
         res.send(docs);
       }
-      
+      });
   });
  
   // GET ALL BOOKINGS BY ID FOR GIVEN COMPANY
