@@ -100,7 +100,6 @@
 
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
       $scope.openBooking = function (t, b, ev) {
-        console.log("$EVENT: ", ev);
         if (t === undefined) {
           console.log("UNDEFINED");
         }
@@ -124,8 +123,8 @@
                 b.customer_name = "";
                 b.customer_phone = "";
                 b.service = [];
-
-                document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
+            }
+            document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
                 booking = $scope.$new();
                 var compiledDirective;
 
@@ -143,8 +142,6 @@
                     'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
                 var directiveElement = compiledDirective(booking);
                 $('.skilaboda-haldari').append(directiveElement);
-            }
-
         }
       };
 

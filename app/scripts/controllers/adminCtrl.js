@@ -32,7 +32,7 @@
             // END GETTING ALL //
 
             // GET ALL USERS //
-            backendFactory.getPersonsfromCID().then(function (response) {
+            backendFactory.getCustomerByCID().then(function (response) {
                 $scope.users = response.data;
                 console.log("RESPONSE:", response);
             }).catch(function(err) {

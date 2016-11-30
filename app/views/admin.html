@@ -28,18 +28,14 @@
           <th></th>
         </tr>
         </thead>
-        <tbody>
-        <tr ng-repeat="c in companies track by $index">
+        <tbody ng-repeat="c in companies track by $index">
+        <tr>
           <td>{{ c.name }}</td>
-          <td>{{ c.phone }}</td>
-          <td>
-            <button class="btn" ng-click="toggleEditCompany($index)">EDIT</button>
-          </td>
-        <tr ng-repeat="s in c.staff track by $index">
-          <td>s.name</td>
-          <td>s._id</td>
-          <td></td>
+          <td>{{ c.phone }}</td> 
         </tr>
+        <tr ng-repeat="s in c.staff track by $index">
+            <td>{{ s._id }}</td>
+            <td>{{ s.name }}</td>
         </tr>
         </tbody>
       </table>
