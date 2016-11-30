@@ -53,6 +53,15 @@
                  placeholder="Sími"
                  required>
         </div>
+        <div class="form-group row col-xs-11">
+          <div class="takkar col-md-offset-8 col-xs-offset-7">
+            <button type="submit"
+                    id="haettavidtakki"
+                    class="btn btn-primary"
+                    ng-click="stadfesta(objFrom)">Bóka
+            </button>
+          </div>
+        </div>
         <!-- vantar gott error msg eða eitthvað -->
         <div ng-show="badInput && bookingForm.phone.$error.required">x</div>
         <!--<div class="form-group col-xs-11">
