@@ -160,18 +160,6 @@
         });
       };
 
-      backendFactory.getPersonsfromCID = function() {
-        return $http({
-          method: 'GET',
-          url: 'http://wwww.sego.is:6969/companies/staff/' + this.ID(),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-          }
-        });
-      };
-
       backendFactory.getCustomerByCID = function() {
         return $http({
             method: 'GET',
@@ -183,7 +171,19 @@
             }
         });
       };
-
+      
+      backendFactory.getCustomerStory = function(pid) {
+          return $http({
+              method: 'GET',
+              url: 'http://www.sego.is:6969/api/book/' + this.ID() + '/' + pid,
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+            }
+          });
+      };
+      
       // PERSON REST CALLS / BOTH FOR CUSTOMERS AND STAFF //
 
 

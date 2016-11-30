@@ -115,7 +115,6 @@
 
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
       $scope.openBooking = function (t, b, ev) {
-
         if (t === undefined) {
           console.log("UNDEFINED");
         }
@@ -136,29 +135,28 @@
                 }
             }
             else {
-              b.customer_name = "";
-              b.customer_phone = "";
-              b.service = [];
+                b.customer_name = "";
+                b.customer_phone = "";
+                b.service = [];
             }
+            document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
+            booking = $scope.$new();
+            var compiledDirective;
 
-                document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
-                booking = $scope.$new();
-                var compiledDirective;
-
-                $scope.clickOnTimapant = {
-                    name:      b.name,
-                    customer:  b.customer_name,
-                    phone:     b.customer_phone,
-                    service:   b.service,
-                    staffId:   b._id,
-                    date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
-                    startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
-                };
-                console.log('clickOnTimapant:', $scope.clickOnTimapant);
-                compiledDirective = $compile('<boka class="skilabod" ' +
-                    'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
-                var directiveElement = compiledDirective(booking);
-                $('.skilaboda-haldari').append(directiveElement);
+            $scope.clickOnTimapant = {
+                name:      b.name,
+                customer:  b.customer_name,
+                phone:     b.customer_phone,
+                service:   b.service,
+                staffId:   b._id,
+                date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
+                startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
+            };
+            console.log('clickOnTimapant:', $scope.clickOnTimapant);
+            compiledDirective = $compile('<boka class="skilabod" ' +
+                'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
+            var directiveElement = compiledDirective(booking);
+            $('.skilaboda-haldari').append(directiveElement);
         }
       };
 
