@@ -407,6 +407,19 @@ boka.skilabod {
     margin-left: 0px;
   }
 
+  .staffName {
+    font-size: 16px;
+    width: 28em;
+    display: table-cell;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .kassar {
+    height: 100%;
+  }
+
   /*.btn:before {
     font-size: 16px;
   }
@@ -536,15 +549,7 @@ input.ng-valid {
   box-shadow: 0 0 10px red;
 }
 
-#haettavidtakkivid {
-  margin-left: -6px;
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}
-
 #haettavidtakki {
-  margin-right: 4px;
-  margin-left: 18px;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
 }
@@ -679,4 +684,9 @@ input.ng-valid {
 }
 .rTableBody {
   display: table-row-group;
+}
+
+input.ng-valid {
+  box-shadow: none;
+  border-color: #cccccc;
 }
