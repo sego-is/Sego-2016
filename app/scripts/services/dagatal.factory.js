@@ -99,6 +99,14 @@
                 return HH + ":" + MM;
 
             },
+            getSessionLength: function (start, end) {
+              var s1 = start.getHours();
+              var s2 = end.getHours();
+              var m1 = start.getMinutes();
+              var m2 = end.getMinutes();
+
+              return ((s2 - s1) * 60) + ((m2 - m1));
+            },
             getDate: function() {
                 return dagsetningValinn;
             },

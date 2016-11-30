@@ -28,12 +28,12 @@
     </thead>
     <tbody ng-if="modifyCus">
     <tr>
-      <th colspan="4">
+      <td colspan="4">
         <form name="form.customerForm"
               class="form-horizontal"
               novalidate>
-          <div class="form-group col-xs-11">
-
+          <div class="form-group row">
+            <div class="col-xs-11">
             <input type="text"
                    name="name"
                    ng-class="{error: (badInput && form.customerForm.name.$error.required)
@@ -46,9 +46,10 @@
                    ng-model="person.name"
                    placeholder="Nafn"
                    required>
+            </div>
           </div>
-          <div class="form-group col-xs-11">
-
+          <div class="form-group row">
+            <div class="col-xs-11">
             <input type="number"
                    class="form-control inputField"
                    ng-click="badInputFalse()"
@@ -61,29 +62,46 @@
                    ng-model="person.phone"
                    placeholder="Símanúmer"
                    required>
+            </div>
           </div>
 
-          <div class="form-group col-xs-11">
-
+          <div class="form-group row">
+            <div class="col-xs-11">
             <input type="email"
                    class="form-control inputField"
                    name="email"
                    ng-model="person.email"
                    placeholder="Netfang">
+            </div>
           </div>
-          <div class="form-group col-xs-11">
-
+          <div class="form-group row">
+            <div class="col-xs-11">
             <input type="text"
                    class="form-control inputField"
                    name="address"
                    ng-model="person.address"
                    placeholder="Heimilisfang">
+            </div>
           </div>
-
+          <div class="form-group row col-xs-11">
+            <div class="takkar col-md-offset-8 col-xs-offset-7">
+              <button type="submit"
+                      id="haettavidtakkivid"
+                      class="btn btn-primary"
+                      ng-click="toggleCus()">Hætta við
+              </button>
+              <button type="submit"
+                      id="uppfaeratakki"
+                      class="btn btn-primary"
+                      ng-click="addCustomer(person)">Bæta við
+              </button>
+            </div>
+          </div>
         </form>
-      </th>
+      </td>
     </tr>
-    <tr>
+
+    <!--<tr>
       <td class="fa fa-arrow-left fa-2x btnTilbaka divTakki"
           ng-click="toggleCus()">
       </td>
@@ -92,7 +110,7 @@
       <td class="fa fa-check fa-2x btnTilbaka divTakki"
           ng-click="addCustomer(person)">
       </td>
-    </tr>
+    </tr>-->
     </tbody>
     <!------------------------------------------------------------------------------------------->
     <!-------------------------          Viðskiptavinir          -------------------------------->

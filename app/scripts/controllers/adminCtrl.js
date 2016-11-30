@@ -32,7 +32,7 @@
             // END GETTING ALL //
 
             // GET ALL USERS //
-            backendFactory.getPersonsfromCID().then(function (response) {
+            backendFactory.getCustomerByCID().then(function (response) {
                 $scope.users = response.data;
                 console.log("RESPONSE:", response);
             }).catch(function(err) {
@@ -110,6 +110,14 @@
                     console.log("removeIndex(), err:", err);
                 })
             }
-
+            
+            $scope.ATHUGA = function(pid) {
+                backendFactory.getCustomerStory().then(function(res) {
+                    console.log("getCustomerStory() - THEE TOKSTS, res:", res);
+                }, function(err) {
+                    console.log("getCustomerStory() - ERROR, err:", err);
+                });
+            }
+            
       }]);
 })();
