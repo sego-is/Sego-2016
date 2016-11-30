@@ -3,6 +3,25 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
+
+const bookSchema = Schema({
+    customer_id: {
+      type: Schema.Types.ObjectId,
+      ref:  'Person'
+    },
+    staff_id: {
+      type: Schema.Types.ObjectId,
+      ref:  'Person'
+    },
+    startTime: Date,
+    endTime: Date,
+    service: [{
+        type:    Schema.Types.ObjectId,
+        require: true,
+        ref:     'Service'
+    }]
+});
+
 const personSchema = Schema({
   company_id: {
     type:    Schema.Types.ObjectId,
@@ -24,10 +43,7 @@ const personSchema = Schema({
     maxlength: 15
   },
   image_url: String,
-  history: [{
-        type: [Schema.Types.ObjectId],
-        ref: 'Book'
-  }],
+  history: [bookSchema],
   comments: [String],
   // 0:Customer 1:Staff
   role: {
@@ -81,23 +97,6 @@ const serviceSchema = Schema({
 
 serviceSchema.index({ _id: 1 }, { unique: true });
 
-const bookSchema = Schema({
-    customer_id: {
-      type: Schema.Types.ObjectId,
-      ref:  'Person'
-    },
-    staff_id: {
-      type: Schema.Types.ObjectId,
-      ref:  'Person'
-    },
-    startTime: Date,
-    endTime: Date,
-    service: [{
-        type:    Schema.Types.ObjectId,
-        require: true,
-        ref:     'Service'
-    }]
-});
 
 const bookingsSchema = Schema({
   company_id: {
