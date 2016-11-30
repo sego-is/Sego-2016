@@ -398,6 +398,12 @@ module.exports = function (grunt) {
           cwd: 'bower_components/components-font-awesome/',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        },{
+
+          expand: true,
+          cwd: '/images/*',
+          src: 'image/*',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       images: {
