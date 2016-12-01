@@ -100,6 +100,22 @@
         </form>
       </td>
     </tr>
+    <tr>
+        <td>Dagsetning</td>
+        <td>Klippari</td>
+        <td>Þjónusta</td>
+        <td>Verð</td>
+    </tr>
+    <tr ng-repeat="hist in person.history">
+        <td>{{ hist.startTime }}</td>
+        <td>{{ hist.staff_id }}</td>
+        <td>
+            <ul>
+                <li ng-repeat="serv in hist.service"> {{ serv }}</li>
+            </ul>
+        </td>
+        <td> ?.??? kr</td>
+    </tr>
 
     <!--<tr>
       <td class="fa fa-arrow-left fa-2x btnTilbaka divTakki"
@@ -131,5 +147,21 @@
     </tr>
     </tbody>
   </table>
+</div>
+<div class="content">
+   <table>
+       <thead>
+       <tr>
+           <th></th>
+           <th></th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr>
+           <td></td>
+           <td></td>
+           </tr>
+        </tbody>
+    </table>
 </div>
 <div class="footer">SEGO</div>

@@ -10,6 +10,7 @@
 
       backendFactory.set = function (company) {
         _company = company;
+        console.log('_company:', _company.staff[0]._id);
       };
 
       backendFactory.ID = function () {

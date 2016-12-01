@@ -41,7 +41,7 @@
           scope.modifyCus = false;
 
           scope.editCust = function(c, index) {
-              console.log("editCust ", c + " index: ", index);
+              console.log("editCust ", c, " index: ", index);
               if (c !== undefined) {
                 console.log("editCust if");
                   scope.person = c;
