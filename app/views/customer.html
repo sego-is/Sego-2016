@@ -42,7 +42,7 @@
                    ng-click="badInputFalse()"
                    ng-minlength="3"
                    ng-maxlength="44"
-                   class="form-control inputField"
+                   class="form-control"
                    ng-model="person.name"
                    placeholder="Nafn"
                    required>
@@ -51,7 +51,7 @@
           <div class="form-group row">
             <div class="col-xs-11">
             <input type="number"
-                   class="form-control inputField"
+                   class="form-control"
                    ng-click="badInputFalse()"
                    ng-class="{error: (badInput && form.customerForm.phone.$error.required)
                                   || (badInput && form.customerForm.phone.$error.maxlength)
@@ -68,7 +68,7 @@
           <div class="form-group row">
             <div class="col-xs-11">
             <input type="email"
-                   class="form-control inputField"
+                   class="form-control"
                    name="email"
                    ng-model="person.email"
                    placeholder="Netfang">
@@ -77,7 +77,7 @@
           <div class="form-group row">
             <div class="col-xs-11">
             <input type="text"
-                   class="form-control inputField"
+                   class="form-control"
                    name="address"
                    ng-model="person.address"
                    placeholder="Heimilisfang">
@@ -86,7 +86,7 @@
           <div class="form-group row col-xs-11">
             <div class="takkar col-md-offset-8 col-xs-offset-7">
               <button type="submit"
-                      id="haettavidtakkivid"
+                      id="haettavidtakki"
                       class="btn btn-primary"
                       ng-click="toggleCus()">Hætta við
               </button>
