@@ -40,26 +40,43 @@
 
           scope.modifyCus = false;
 
-          scope.editCust = function(c, index) {
-              console.log("editCust ", c + " index: ", index);
+          scope.editCust = function(c) {
               if (c !== undefined) {
-                console.log("editCust if");
                   scope.person = c;
                   scope.modifyCus = !scope.modifyCus;
               }
               else {
-                console.log("editCust else");
                   scope.modifyCus = !scope.modifyCus;
               }
           };
+          
+          scope.returnStaff = function(pid) {
+                return backendFactory.getStaffById(pid);
+          };
+          
+          scope.totalPrice = [];
 
-          scope.toggleCus = function() {
-            console.log("toggleCus");
+          scope.returnService = function(sid, index) {
+              if (scope.totalPrice[index] === undefined) {
+                scope.totalPrice[index] = 0;
+              }  
+              var tmp = backendFactory.getServiceById(sid);
+              scope.totalPrice[index]   = scope.totalPrice[index] + tmp.price;
+              return tmp.name;
+          };
+          
+          scope.newCus = function() {
               scope.modifyCus = !scope.modifyCus;
+              scope.newCustomer = true;
               scope.badInput = false;
               scope.person = {};
           };
-
+        
+          scope.toggleCus = function() {
+              scope.modifyCus = !scope.modifyCus;
+              scope.newCustomer = !scope.newCustomer;
+          };
+          
           // Varð að setja til að gera badinput false,
           // ekki hægt í html einhverra hluta vegna
           scope.badInputFalse = function () {
@@ -71,7 +88,6 @@
             if(scope.form.customerForm.$valid) {
                 s.company_id = backendFactory.ID();
                 s.role = 0;
-                console.log("bæta við nýjum viðskiptavin: ", scope.vidskiptavinir);
                 backendFactory.postPerson(s).then(function (res) {
                     scope.vidskiptavinir.push(res.data);
                 }, function (err) {
@@ -86,6 +102,11 @@
           scope.removeCustomer = function () {
             console.log("henda viðskiptavin");
           };
+          
+          scope.toMMDDYY = function(d) {
+              var tmpDate = new Date(d);
+              return (tmpDate.getMonth() + '-' + tmpDate.getDate() + '-' + tmpDate.getFullYear());
+          }
         }
       };
     }]);

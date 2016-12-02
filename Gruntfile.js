@@ -298,15 +298,15 @@ module.exports = function (grunt) {
     },
 
     //imagemin: {
-    //  dist: {
+    // dist: {
     //    files: [{
-    //      expand: true,
-    //      cwd: '<%= yeoman.app %>/images',
-    //      src: '{,*/}*.{png,jpg,jpeg,gif}',
-    //      dest: '<%= yeoman.dist %>/images'
-    //    }]
-    //  }
-    //},
+     //     expand: true,
+     //    cwd: '<%= yeoman.app %>/images',
+     //     src: '{,*/}*.{png,jpg,jpeg,gif}',
+     //    dest: '<%= yeoman.dist %>/images'
+     //  }]
+     // }
+   // },
 
     svgmin: {
       dist: {
@@ -401,9 +401,9 @@ module.exports = function (grunt) {
         },{
 
           expand: true,
-          cwd: '/images/*',
-          src: 'image/*',
-          dest: '<%= yeoman.dist %>'
+          cwd: 'app/images/*',
+          src: 'images/*',
+          dest: '<%= yeoman.dist %>/images'
         }]
       },
       images: {
@@ -438,7 +438,7 @@ module.exports = function (grunt) {
         'copy:images',
         'copy:styles',
         'copy:views',
-        //'imagemin',
+       // 'imagemin',
         'svgmin'
       ]
     },

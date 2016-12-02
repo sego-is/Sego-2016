@@ -17,7 +17,8 @@ angular
     'angular-jwt',
     'ngAnimate',
     'ngSanitize',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angularUtils.directives.dirPagination'
   ])
   .config(['$routeProvider', '$locationProvider', '$httpProvider', 'lockProvider', 'jwtOptionsProvider', 'jwtInterceptorProvider', function ($routeProvider, $locationProvider, $httpProvider, lockProvider, jwtOptionsProvider, jwtInterceptorProvider) {
     // Initialization for the Lock widget

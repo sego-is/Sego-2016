@@ -5,13 +5,22 @@
     .module('segoapp')
     .factory('backendFactory', ['$http', function ($http) {
       var _company = null; // THIS IS COMPANY COLLECTION FROM DB //
-
+      var _pricelist = {};
+      
       var backendFactory = {};
 
       backendFactory.set = function (company) {
         _company = company;
+        console.log('_company:', _company.staff[0]._id);
       };
-
+      
+      backendFactory.setPricelist = function(prices) {
+          if (_company !== null) {
+              _company.pricelist = prices;
+              console.log("setPricelisT(prices): _company:", _company);
+          }
+      };
+      
       backendFactory.ID = function () {
         return _company._id;
       };
@@ -21,7 +30,33 @@
           return _company.staff;
         }
       };
-
+      
+      backendFactory.getServiceById = function(sid) {
+          if (_pricelist[sid] === undefined) {
+            for (var i in _company.pricelist) {
+                if (_company.pricelist[i]._id === sid) {
+                    _pricelist[sid] = _company.pricelist[i];
+                }
+            }
+          }
+          return _pricelist[sid];
+      };
+      
+      backendFactory.Pricelist = function() {
+          if (_company !== null) {
+              return _company.pricelist;
+          }
+      }
+      
+      backendFactory.getStaffById = function(pid) {
+        for (var i in _company.staff) {
+            if (_company.staff[i]._id === pid) {
+                return _company.staff[i].name;
+            }
+        }
+        return "PERSON NOT FOUND.. EXCUSE US";
+      };
+      
       //------------------------------ ADMIN CALLS ------------------------------//
         backendFactory.getPersons = function () {
             return $http({
@@ -219,7 +254,7 @@
       };
 
       backendFactory.postBooking = function (p) {
-        console.log("backendF.postBooking p.customer_service: ", p.customer_service);
+        console.log("backendF.postBooking p.customer_service: ", p);
         p.company_id = this.ID();
         return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/',

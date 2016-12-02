@@ -16,9 +16,13 @@ const bookSchema = Schema({
     startTime: Date,
     endTime: Date,
     service: [{
-        type:    Schema.Types.ObjectId,
-        require: true,
-        ref:     'Service'
+        service_id: {
+            type:    Schema.Types.ObjectId,
+            require: true,
+            ref:     'Service'
+        },
+        name: String,
+        price: Number
     }]
 });
 
