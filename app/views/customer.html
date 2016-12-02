@@ -10,12 +10,16 @@
     
   <table class="table table-striped">
     <thead ng-if="!modifyCus">
+        <tr>
+            <td coslpan="4">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="text" ng-model="search" class="form-control" placeholder="Leita..">
+                    </div>
+                </form>
+            </td>
+        </tr>
     <tr>
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="text" ng-model="search" class="form-control" placeholder="Leita..">
-            </div>
-        </form>
       <th>
         <div class="pull-left">Nafn</div>
       </th>
@@ -89,16 +93,22 @@
                    ng-model="person.address"
                    placeholder="Heimilisfang">
             </div>
+            <div class="form-group row col-xs-11">
+            <div class="takkar col-md-offset-8 col-xs-offset-7">
+              <button type="submit"
+                      id="haettavidtakki"
+                      class="btn btn-primary"
+                      ng-click="toggleCus()">Hætta við
+              </button>
+              <button type="submit"
+                      id="uppfaeratakki"
+                      class="btn btn-primary"
+                      ng-click="addCustomer(person)">Uppfæra
+              </button>
+            </div>
+          </div>
         </form>
       </td>
-    </tr>
-    <tr>
-        <td>
-        nafn: <span ng-bind="person.name"></span>
-        símí: <span ng-bind="person.phone"></span>
-        netfang: <span ng-bind="person.email"></span>
-        heimilisfang: <span ng-bind="person.address"></span>
-        </td>
     </tr>
     <tr>
         <td>Dagsetning</td>
@@ -106,15 +116,15 @@
         <td>Þjónusta</td>
         <td>Verð</td>
     </tr>
-    <tr ng-repeat="hist in person.history track by $index">
-        <td>{{ hist.startTime }}</td>
+    <tr ng-repeat="hist in person.history track by $index" ng-init="hist.total = 0">
+        <td style="width:10%;">{{ toMMDDYY(hist.startTime) }}</td>
         <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
         <td>
             <ul>
-                <li ng-repeat="serv in hist.service">{{ serv }}</li>
+                <li ng-repeat="serv in hist.service" ng-init="hist.total = serv.price + hist.total">{{ serv.name }}</li>
             </ul>
         </td>
-        <td>{{ totalPrice[$index] }}</td>
+        <td>{{ hist.total }}</td>
     </tr>
     </tbody>
     

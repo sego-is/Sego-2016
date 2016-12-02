@@ -102,6 +102,11 @@
           scope.removeCustomer = function () {
             console.log("henda viðskiptavin");
           };
+          
+          scope.toMMDDYY = function(d) {
+              var tmpDate = new Date(d);
+              return (tmpDate.getMonth() + '-' + tmpDate.getDate() + '-' + tmpDate.getFullYear());
+          }
         }
       };
     }]);
