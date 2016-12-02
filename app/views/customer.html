@@ -5,7 +5,11 @@
           ng-click="closeWindow()">&times;
   </button>
 </div>
+
 <div class="content">
+    <div class="input-group">
+    <input type="text" class="form-control" ng-model="search" aria-describedby="basic-addon1" placeholder="Leita..">
+  </div>
   <table class="table table-striped">
     <thead ng-if="!modifyCus">
     <tr>
@@ -106,15 +110,15 @@
         <td>Þjónusta</td>
         <td>Verð</td>
     </tr>
-    <tr ng-repeat="hist in person.history">
+    <tr ng-repeat="hist in person.history track by $index">
         <td>{{ hist.startTime }}</td>
-        <td>{{ hist.staff_id }}</td>
+        <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
         <td>
             <ul>
-                <li ng-repeat="serv in hist.service"> {{ serv }}</li>
+                <li ng-repeat="serv in hist.service">{{ serv }}</li>
             </ul>
         </td>
-        <td> ?.??? kr</td>
+        <td>{{ totalPrice[$index] }}</td>
     </tr>
 
     <!--<tr>
@@ -132,7 +136,7 @@
     <!-------------------------          Viðskiptavinir          -------------------------------->
     <!------------------------------------------------------------------------------------------->
     <tbody ng-if="!modifyCus">
-    <tr ng-repeat="vinur in vidskiptavinir track by $index"
+    <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:10"
         id="{{ $index }}">
       <td>{{ vinur.name }}</td>
       <td>{{ vinur.phone }}</td>
@@ -145,7 +149,18 @@
         </div>
       </td>
     </tr>
+    <tr>
+        <td colspan="4" style="text-align:center;">
+            <dir-pagination-controls
+            max-size="10"
+            direction-links="true"
+            boundary-links="true" >
+            </dir-pagination-controls>
+       </td>
+    </tr>
+    
     </tbody>
+    
   </table>
 </div>
 <div class="content">

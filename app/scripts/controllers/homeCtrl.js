@@ -40,6 +40,7 @@
 
         // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
         function update() {
+            // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
             backendFactory.getBookingByDate(selectedDay).then(function(res) {
                 // If there are no bookings by given date -> return EMPTY ARRAY
                 if (res.data.length === 0) {
@@ -55,6 +56,14 @@
                 }
             }, function(err) {
                 console.log("update()->getBookingByDate() ERR:", err);
+            });
+            // SAEKJA VERDLISTAN,
+            backendFactory.getService().then(function(res) {
+                console.log("getService(), res.data:", res.data);
+                // Set pricelist as pricelist for given response
+                backendFactory.setPricelist(res.data);
+            }, function(err) {
+                console.log("ERROR getService(): ", err);
             });
             $scope.staff = backendFactory.Staff();
             console.log("$scope.staff:", $scope.staff);

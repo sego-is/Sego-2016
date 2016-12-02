@@ -41,20 +41,31 @@
           scope.modifyCus = false;
 
           scope.editCust = function(c, index) {
-              console.log("editCust ", c, " index: ", index);
               if (c !== undefined) {
-                console.log("editCust if");
                   scope.person = c;
                   scope.modifyCus = !scope.modifyCus;
               }
               else {
-                console.log("editCust else");
                   scope.modifyCus = !scope.modifyCus;
               }
           };
+          
+          scope.returnStaff = function(pid) {
+                return backendFactory.getStaffById(pid);
+          };
+          
+          scope.totalPrice = [];
 
+          scope.returnService = function(sid, index) {
+              if (scope.totalPrice[index] === undefined) {
+                scope.totalPrice[index] = 0;
+              }  
+              var tmp = backendFactory.getServiceById(sid);
+              scope.totalPrice[index]   = scope.totalPrice[index] + tmp.price;
+              return tmp.name;
+          };
+          
           scope.toggleCus = function() {
-            console.log("toggleCus");
               scope.modifyCus = !scope.modifyCus;
               scope.badInput = false;
               scope.person = {};
@@ -71,7 +82,6 @@
             if(scope.form.customerForm.$valid) {
                 s.company_id = backendFactory.ID();
                 s.role = 0;
-                console.log("bæta við nýjum viðskiptavin: ", scope.vidskiptavinir);
                 backendFactory.postPerson(s).then(function (res) {
                     scope.vidskiptavinir.push(res.data);
                 }, function (err) {
