@@ -7,11 +7,14 @@
 </div>
 
 <div class="content">
-    <div class="input-group">
-    <input type="text" class="form-control" ng-model="search" aria-describedby="basic-addon1" placeholder="Leita..">
-  </div>
+    
   <table class="table table-striped">
     <thead ng-if="!modifyCus">
+        <form class="form-inline">
+        <div class="form-group">
+            <input type="text" ng-model="search" class="form-control" placeholder="Leita..">
+        </div>
+    </form>
     <tr>
       <th>
         <div class="pull-left">Nafn</div>
@@ -136,47 +139,23 @@
     <!-------------------------          Viðskiptavinir          -------------------------------->
     <!------------------------------------------------------------------------------------------->
     <tbody ng-if="!modifyCus">
-    <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:10"
-        id="{{ $index }}">
-      <td>{{ vinur.name }}</td>
-      <td>{{ vinur.phone }}</td>
-      <td>{{ vinur.email }}</td>
-      <td>
-        <div class="pull-right">
-          <a ng-click="editCust(vinur, $index)">
-            <i class="glyphicon glyphicon-pencil divTakki"></i>
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-        <td colspan="4" style="text-align:center;">
-            <dir-pagination-controls
-            max-size="10"
-            direction-links="true"
-            boundary-links="true" >
-            </dir-pagination-controls>
-       </td>
-    </tr>
-    
+        <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:10" ng-click="editCust(vinur)">
+        <td>{{ vinur.name }}</td>
+        <td>{{ vinur.phone }}</td>
+        <td>{{ vinur.email }}</td>
+        <td></td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:center;">
+                <dir-pagination-controls
+                max-size="10"
+                direction-links="true"
+                boundary-links="true" >
+                </dir-pagination-controls>
+        </td>
+        </tr>
     </tbody>
-    
   </table>
 </div>
-<div class="content">
-   <table>
-       <thead>
-       <tr>
-           <th></th>
-           <th></th>
-       </tr>
-       </thead>
-       <tbody>
-       <tr>
-           <td></td>
-           <td></td>
-           </tr>
-        </tbody>
-    </table>
-</div>
+
 <div class="footer">SEGO</div>

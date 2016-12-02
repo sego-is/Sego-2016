@@ -40,7 +40,7 @@
 
           scope.modifyCus = false;
 
-          scope.editCust = function(c, index) {
+          scope.editCust = function(c) {
               if (c !== undefined) {
                   scope.person = c;
                   scope.modifyCus = !scope.modifyCus;
