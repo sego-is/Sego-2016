@@ -65,12 +65,18 @@
               return tmp.name;
           };
           
-          scope.toggleCus = function() {
+          scope.newCus = function() {
               scope.modifyCus = !scope.modifyCus;
+              scope.newCustomer = true;
               scope.badInput = false;
               scope.person = {};
           };
-
+        
+          scope.toggleCus = function() {
+              scope.modifyCus = !scope.modifyCus;
+              scope.newCustomer = !scope.newCustomer;
+          };
+          
           // Varð að setja til að gera badinput false,
           // ekki hægt í html einhverra hluta vegna
           scope.badInputFalse = function () {

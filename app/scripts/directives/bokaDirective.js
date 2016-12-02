@@ -33,15 +33,23 @@
             console.log('scope.objFrom:', scope.objFrom);
             // TO CALCULATE ENDTIME
             scope.timeTaken = 0;
-
+            // SMA HACK TIL AD SENDA INN NAME OG PRICE MED SERVICE ID
+            var VALIN_THJONUSTA = {};
+            
             scope.toggleSelection = function(s) {
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
                   scope.serviceSelected.splice(posOfSelected, 1);
+                  delete VALIN_THJONUSTA[s._id];
                   scope.timeTaken -= s.timeLength;
                 }
                 else {
                   scope.serviceSelected.push(s._id);
+                  VALIN_THJONUSTA[s._id] = { 
+                      "service_id": s._id,
+                      "name": s.name,
+                      "price": s.price
+                  };
                   scope.timeTaken += s.timeLength;
                 }
             };
@@ -68,16 +76,19 @@
                 console.log("tmpEndTime:", tmpEndTime);
 
                 scope.badInput = false;
-
+                
                 // AFKOMMENTA ÞEGAR timeTaken ER READY
-
+                console.log("VALIN_THJONUSTA:", VALIN_THJONUSTA);
+                
+                var arr = Object.keys(VALIN_THJONUSTA).map(function(key) { return VALIN_THJONUSTA[key]; })
+                
                 backendFactory.postBooking({
                     startTime: scope.objFrom.startTime,
                     endTime: tmpEndTime,
                     staff_id: scope.objFrom.staffId,
                     customer_name:  scope.objFrom.customer,
                     customer_phone: scope.objFrom.phone,
-                    customer_service: scope.serviceSelected,
+                    customer_service: arr,
                     date: scope.objFrom.date
                 }).then(function(doc) {
                     console.log("CB scope.stafesta() - doc: ", doc);
