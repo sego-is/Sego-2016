@@ -206,6 +206,8 @@ body.jumbotron #page-header-wrapper {
 /*til að hafa full veiw yfir main*/
 .container-fluid-fullSego {
   margin-top: 4em;
+  width: 100%;
+
 }
 
 /*.row {
