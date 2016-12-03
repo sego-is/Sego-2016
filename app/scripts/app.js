@@ -28,12 +28,12 @@ angular
       options: {
         theme: {
           logo: 'http://cdn.firespring.com/images/90349557-f83b-4af1-a134-ef1b43293823.png',//'http://cdn2-www.playstationlifestyle.net/assets/uploads/2012/10/Sega.jpg',
-          primaryColor: 'white',
+          primaryColor: '#d8d8d8',
           authButtons: {
             connectionName: {
               displayName: ".Sego.",
               primaryColor: "black",
-              foregroundColor: "white",
+              foregroundColor: "#d8d8d8",
               icon: "http://cdn1-www.craveonline.com/assets/mandatory/legacy/2016/08/man_file_1112579_horsepoopstartsfire.jpg"
             }
           }
