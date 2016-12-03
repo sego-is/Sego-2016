@@ -1,4 +1,4 @@
-<div class="col-xs-12">
+<div class="kassar">
   <div class="haus">BÓKA TÍMA
     <i class="fa fa-book"
        style="font-size:30px">
@@ -14,7 +14,7 @@
       <h5>Tími: {{ objFrom.startTime }}</h5>
       <form name="bookingForm"
             class="form-horizontal">
-        <div class="form-group col-xs-11">
+        <div class="form-group col-xs-12">
           <input type="text"
                  name="name"
                  ng-class="{error: (badInput && bookingForm.name.$error.required)
@@ -28,17 +28,7 @@
                  placeholder="Nafn"
                  required>
         </div>
-        <!-- vantar gott error msg eða eitthvað -->
-        <div ng-show="badInput && bookingForm.name.$error.required">x</div>
-        <div class="pull-right col-xs-1">
-          <i class="fa fa-plus fa-2x stadfestaTakki"
-             aria-hidden="true"
-             data-toggle="tooltip"
-             data-placement="auto"
-             title="Staðfesta"
-             ng-click="stadfesta(objFrom)"></i>
-        </div>
-        <div class="form-group col-xs-11">
+        <div class="form-group col-xs-12">
           <!-- input type="tel" er bara stutt í safari -->
           <input type="number"
                  ng-click="badInput = false"
@@ -53,7 +43,7 @@
                  placeholder="Sími"
                  required>
         </div>
-        <div class="form-group row col-xs-11">
+        <div class="form-group row col-xs-12">
           <div class="takkar col-md-offset-8 col-xs-offset-7">
             <button type="submit"
                     id="haettavidtakki"
@@ -76,7 +66,7 @@
           <!-- vantar gott error msg eða eitthvað
           <div ng-show="badInput && bookingForm.service.$error.required">x</div>
         </div>-->
-        <div class="form-group col-xs-11">
+        <div class="form-group col-xs-12">
            <div ng-repeat="p in pricelist track by $index">
            <input type="checkbox"
                    name="{{ p.name }}"
