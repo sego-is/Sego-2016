@@ -1,42 +1,18 @@
-<div class="haus">VIÐSKIPTAVINIR
+<div class="haus">VIÐSKIPTAVINIR 
   <i class="fa fa-users"></i>
   <button type="button"
           class="close takki"
           ng-click="closeWindow()">&times;
   </button>
 </div>
-
-<div class="content">
-    
-  <table class="table table-striped">
-    <thead ng-if="!modifyCus">
-        <tr>
-            <td coslpan="4">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <input type="text" ng-model="search" class="form-control" placeholder="Leita..">
-                    </div>
-                </form>
-            </td>
-        </tr>
-    <tr>
-      <th>
-        <div class="pull-left">Nafn</div>
-      </th>
-      <th>Símanúmer</th>
-      <th>Netfang</th>
-      <th>
-        <div class="pull-right">
-          <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
-                  ng-click="newCus()"
-                  data-toggle="tooltip"
-                  data-placement="auto"
-                  title="Bæta við viðskiptavin">
-          </button>
+    <form class="form-inline">
+        <div class="form-group">
+            <input type="text" ng-model="search" class="form-control" placeholder="Leita..">
         </div>
-      </th>
-    </tr>
-    </thead>
+    </form>
+<div class="content">
+  <table class="table table-striped">
+    
     <tbody ng-if="modifyCus && !newCustomer">
     <tr>
       <td colspan="4">
@@ -111,6 +87,19 @@
       </td>
     </tr>
     <tr>
+        <td>Athugasemdir:</td>
+        <td colspan="3"><ul><li ng-repeat="comm in person.comments">{{ comm }}</li></ul></td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Bæta við athugasemd..">
+                </div>
+            </form>
+        </td>
+    </tr>
+    <tr>
         <td>Dagsetning</td>
         <td>Klippari</td>
         <td>Þjónusta</td>
@@ -126,6 +115,7 @@
         </td>
         <td>{{ hist.total }}</td>
     </tr>
+
     </tbody>
     
     <tbody ng-if="modifyCus && newCustomer">
@@ -206,7 +196,27 @@
     <!------------------------------------------------------------------------------------------->
     <!-------------------------          Viðskiptavinir          -------------------------------->
     <!------------------------------------------------------------------------------------------->
-    <tbody ng-if="!modifyCus">
+<table class="table table-striped" ng-if="!modifyCus">
+    <thead>
+        <tr>
+        <th>
+            <div class="pull-left">Nafn</div>
+        </th>
+        <th>Símanúmer</th>
+        <th>Netfang</th>
+        <th>
+            <div class="pull-right">
+            <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
+                    ng-click="newCus()"
+                    data-toggle="tooltip"
+                    data-placement="auto"
+                    title="Bæta við viðskiptavin">
+            </button>
+            </div>
+        </th>
+        </tr>
+    </thead>
+    <tbody>
         <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:10" ng-click="editCust(vinur)">
         <td>{{ vinur.name }}</td>
         <td>{{ vinur.phone }}</td>
@@ -227,4 +237,3 @@
 </div>
 
 <div class="footer">SEGO</div>
-i
