@@ -142,7 +142,7 @@ body.jumbotron #page-header-wrapper {
   height: 100%;
   width: 100%;
   visibility: hidden;
-  z-index: 2;
+  z-index: 3;
 }
 
 .main-view {
@@ -167,11 +167,11 @@ body.jumbotron #page-header-wrapper {
 }
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+/*@media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
   }
-}
+}*/
   /* Remove the padding we set earlier */
   .header,
   .marketing,
@@ -185,7 +185,7 @@ body.jumbotron #page-header-wrapper {
     margin-bottom: 30px;
   }
 
-@media screen and (max-width: 960px) {
+/*@media screen and (max-width: 960px) {
   .skilabod {
     position: absolute;
     left: 0;
@@ -193,7 +193,7 @@ body.jumbotron #page-header-wrapper {
     width: 100%;
     height: 100%;
   }
-}
+}*/
 
 /* Allt nýtt fyrir neðan þetta*/
 
@@ -382,7 +382,39 @@ boka.skilabod {
     width: 28.0em;
 }
 
+@media only screen and (max-device-width: 736px) {
+  .container-fluid > .navbar-header {
+    margin-left: -10px;
+  }
+
+  .container-fluid > .navbar-header-top {
+    margin-left: -10px;
+  }
+}
+
+@media only screen and (max-device-width: 667px) {
+  .container-fluid > .navbar-header {
+    margin-left: -10px;
+  }
+
+  .container-fluid > .navbar-header-top {
+    margin-left: -10px;
+  }
+}
+
 @media only screen and (max-device-width: 375px) {
+  .container {
+    max-width: 730px;
+  }
+
+  .skilabod {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 100%;
+    height: 100%;
+  }
+
   .navbar-right {
     float: right;
   }
@@ -401,8 +433,13 @@ boka.skilabod {
   }
 
   .container-fluid > .navbar-header {
-    margin-top: 6px;
-    margin-left: -8px;
+    margin-top: 13px;
+    margin-left: -10px;
+  }
+
+  .container-fluid > .navbar-header-top {
+    margin-top: 13px;
+    margin-left: -10px;
   }
 
   .row .col-xs-1 {
@@ -468,16 +505,41 @@ boka.skilabod {
 }
 
 .navbar-header {
+  position: absolute;
+  font-family: scala, sans-serif;
+  font-size: 20px;
+  text-align: right;
+  color: white;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-  width: 100px;
-  height: 48px;
+  width: 200px;
+  height: 35px;
+  margin-top: 8px;
   -moz-border-radius: 100px/50px;
   -webkit-border-radius: 100px/50px;
-  border-radius: 100px/50px;
+  border-radius: 50px;
   padding-left: 9px;
+  padding-right: 22px;
+  padding-top: 3px;
   box-shadow: 5px 5px 5px grey;
   display: inline-block;
+}
+
+.navbar-header-top {
+  position: absolute;
+  font-family: scala, sans-serif;
+  font-size: 1.4em;
+  text-align: center;
+  width: 100px;
+  height: 35px;
+  background-color: black;
+  -moz-border-radius: 100px/50px;
+  -webkit-border-radius: 100px/50px;
+  border-radius: 50px;
+  margin-top: 8px;
+  padding-top: 5px;
+  color: white;
+  z-index: 1;
 }
 
 /*#nav {
@@ -603,10 +665,18 @@ input.ng-valid {
   border: 1px solid red;
 }
 
-.confirmedBooking {
+.confirmedBookingLeft {
   background-color: greenyellow;
   width: 50%;
-  float: inherit;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+.confirmedBookingRight {
+  background-color: red;
+  margin-left: 50%;
+  width: 50%;
   overflow: hidden;
   position: absolute;
   z-index: 1;
