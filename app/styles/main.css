@@ -142,7 +142,7 @@ body.jumbotron #page-header-wrapper {
   height: 100%;
   width: 100%;
   visibility: hidden;
-  z-index: 2;
+  z-index: 3;
 }
 
 .main-view {
@@ -669,10 +669,18 @@ input.ng-valid {
   border: 1px solid red;
 }
 
-.confirmedBooking {
+.confirmedBookingLeft {
   background-color: greenyellow;
   width: 50%;
-  float: inherit;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+.confirmedBookingRight {
+  background-color: red;
+  margin-left: 50%;
+  width: 50%;
   overflow: hidden;
   position: absolute;
   z-index: 1;

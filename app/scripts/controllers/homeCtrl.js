@@ -81,49 +81,66 @@
         var bookingsToday = function() {
             var dictEndTime = {};
             for (var b in $scope.bookings) {
-                
+                // FYRIR LENGD A TIMAPONTUNUM
+                var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
+                var rowspan = 0;
+                if (sessionLength % 2 === 0) {
+                    rowspan = (sessionLength/15) * 2;
+                } else {
+                    rowspan = (sessionLength/15) * 2.2;
+                }
+                // BREYTA TIL AD SETJA SAMAN id SEM A AD SAEKJA UR DIV TOFLU
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id._id;
+                // SETJA INN STADSETNINGU FYRIR BOKUN I $scope.bookings, fyrir ID-id sem britist a div toflunni
                 bookingForToday[tmp] = b;
-                var session = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
 
-
-              var rowspan = 0;
-              if (session % 2 === 0) {
-                rowspan = (session/15) * 2;
-                //console.log("name: ", $scope.bookings[b].customer_id.name);
-                //console.log("rowspan true: ", rowspan);
-              } else {
-                rowspan = (session/15) * 2.2;
-               //console.log("name: ", $scope.bookings[b].customer_id.name);
-               // console.log("rowspan false: ", rowspan);
-              }
-
-
-                // console.log('b:', $scope.bookings[b]);
-                // Mismun a startTime og endTime ==> 45 min
-                var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
+              //var sessionStart =  dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime));
+              //var sessionEnd =    dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].endTime));
+              
+/*
+              staffBookings.push( {
+                id:     $scope.bookings[b].staff_id._id,
+                start:  sessionStart,
+                end:    sessionEnd,
+                marked: false
+              });
+*/
+              //console.log("start end: ", sessionStart +" "+ sessionEnd);
+              var texti = "";
+              var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
                 myElm.innerHTML =
                 '<div style="height:' + rowspan + 'em;" class="confirmedBooking" id="' + $scope.bookings[b].customer_id._id + '">' + $scope.bookings[b].customer_id.name + '</div>';
 
                 if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
                     dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
+                    texti = "confirmedBookingLeft";
                 }
                 else {
                     if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
                         console.log("UPPTEKKIN, KLIPPARI:", $scope.bookings[b]);
+                        texti = "confirmedBookingRight";
                         console.log("other,endTime:",  dictEndTime[$scope.bookings[b].staff_id._id])
-                        
                     }
                     else {
-                        dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;                        
+                        texti = "confirmedBookingLeft";
+                        dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
                     }
                 }
+                
+                myElm.innerHTML =
+                        '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' + $scope.bookings[b].customer_id.name + '</div>';
             }
+
+
+                // console.log('b:', $scope.bookings[b]);
+                // Mismun a startTime og endTime ==> 45 min
+               
         };
 
         // HREINSA BLADSIDA FYRIR NYJAN DAG
         function cleanPage() {
-            $('.confirmedBooking').remove();
+            $('.confirmedBookingLeft').remove();
+            $('.confirmedBookingRight').remove();
         }
 
         // Get bookings for selected date in datepicker
@@ -149,18 +166,23 @@
                 var tmpBook =      $scope.bookings[idForCell];
                 b.customer_name =  tmpBook.customer_id.name;
                 b.customer_phone = tmpBook.customer_id.phone;
-                // GET ONLY SERVICE_ID FROM BOOKED SERVICE
                 var arr = tmpBook.service.map(function(key) { return key.service_id; });
                 b.service =        arr;
 
-                
-               
+               /* var tmpFyrirThetta = document.getElementById(tmpBook.customer_id._id);
+                if (tmpFyrirThetta.style.marginLeft) {
+                    tmpFyrirThetta.style.marginLeft = "";
+                }
+                else {
+                    tmpFyrirThetta.style.marginLeft = "50%";
+                }*/
             }
             else {
                 b.customer_name = "";
                 b.customer_phone = "";
                 b.service = [];
             }
+            
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             booking = $scope.$new();
             var compiledDirective;
