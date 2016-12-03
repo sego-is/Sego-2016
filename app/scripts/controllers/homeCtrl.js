@@ -83,12 +83,15 @@
             for (var b in $scope.bookings) {
                 // FYRIR LENGD A TIMAPONTUNUM
                 var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
+                var minutes = dagatalFactory.getMMfromDate(new Date($scope.bookings[b].startTime));
                 var rowspan = 0;
-                console.log("sessLEngth ", ((sessionLength/15) * 1.5) + " nafn ", $scope.bookings[b].customer_id.name);
+                console.log("sessLEngth ", ((sessionLength/15) * 2.5) + " nafn ", $scope.bookings[b].customer_id.name + " min " + minutes);
                 if (sessionLength % 2 === 0) {
-                    rowspan = ((sessionLength/15) * 1.5);
+                  rowspan = ((sessionLength/15) * 2.5);
+                } else if(sessionLength % 2 !== 0 && (minutes === 15 || minutes === 45)) {
+                  rowspan = ((sessionLength/15) * 2.5) - 0.5;
                 } else {
-                    rowspan = ((sessionLength/15) * 1.5);
+                  rowspan = ((sessionLength/15) * 2.5) + 0.5;
                 }
                 // BREYTA TIL AD SETJA SAMAN id SEM A AD SAEKJA UR DIV TOFLU
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id._id;
@@ -104,13 +107,11 @@
                 start:  sessionStart,
                 end:    sessionEnd,
                 marked: false
-              });
-*/
+              });*/
+              sessionLength = sessionLength/15;
               //console.log("start end: ", sessionStart +" "+ sessionEnd);
               var texti = "";
               var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
-                myElm.innerHTML =
-                '<div style="height:' + rowspan + 'px;" class="confirmedBooking" id="' + $scope.bookings[b].customer_id._id + '">' + $scope.bookings[b].customer_id.name + '</div>';
 
                 if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
                     dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
@@ -129,7 +130,11 @@
                 }
 
                 myElm.innerHTML =
-                        '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' + $scope.bookings[b].customer_id.name + '</div>';
+                        '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
+                        $scope.bookings[b].customer_id.name +
+                          '<br>'+
+                        sessionLength +
+                        '</div>';
             }
 
 
