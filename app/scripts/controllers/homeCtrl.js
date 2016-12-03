@@ -94,18 +94,6 @@
                 // SETJA INN STADSETNINGU FYRIR BOKUN I $scope.bookings, fyrir ID-id sem britist a div toflunni
                 bookingForToday[tmp] = b;
 
-              //var sessionStart =  dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime));
-              //var sessionEnd =    dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].endTime));
-              
-/*
-              staffBookings.push( {
-                id:     $scope.bookings[b].staff_id._id,
-                start:  sessionStart,
-                end:    sessionEnd,
-                marked: false
-              });
-*/
-              //console.log("start end: ", sessionStart +" "+ sessionEnd);
               var texti = "";
               var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
                 myElm.innerHTML =
@@ -117,24 +105,16 @@
                 }
                 else {
                     if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
-                        console.log("UPPTEKKIN, KLIPPARI:", $scope.bookings[b]);
                         texti = "confirmedBookingRight";
-                        console.log("other,endTime:",  dictEndTime[$scope.bookings[b].staff_id._id])
                     }
                     else {
                         texti = "confirmedBookingLeft";
-                        dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
                     }
                 }
                 
                 myElm.innerHTML =
                         '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' + $scope.bookings[b].customer_id.name + '</div>';
-            }
-
-
-                // console.log('b:', $scope.bookings[b]);
-                // Mismun a startTime og endTime ==> 45 min
-               
+            }               
         };
 
         // HREINSA BLADSIDA FYRIR NYJAN DAG
