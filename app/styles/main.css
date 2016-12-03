@@ -409,6 +409,9 @@ input.ng-valid {
 .confirmedBookingLeft {
   background-color: #e9ccee;
   font-size: 0.8em;
+  box-shadow: 2px 2px 1px grey;
+  border-bottom: 1px solid grey;
+  border-radius: 2px;
   width: 50%;
   overflow: hidden;
   position: absolute;
@@ -416,11 +419,15 @@ input.ng-valid {
 }
 
 .confirmedBookingLeft:hover {
-  background-color: #dff0d8;
+  transform: translateY(1px);
+  box-shadow: 1px 1px 1px grey;
 }
 
 .confirmedBookingRight {
   background-color: #ce9ed7;
+  box-shadow: 2px 2px 1px grey;
+  border-radius: 2px;
+  border-bottom: 1px solid grey;
   font-size: 0.8em;
   margin-left: 50%;
   width: 50%;
@@ -430,7 +437,8 @@ input.ng-valid {
 }
 
 .confirmedBookingRight:hover {
-  background-color: #dff0d8;
+  transform: translateY(1px);
+  box-shadow: 1px 1px 1px grey;
 }
 
 .klukka {
@@ -463,7 +471,7 @@ input.ng-valid {
 
 .bookingCell:hover {
   cursor: pointer;
-  background-color: #dff0d8;
+  background-color: #fcf1ff;
 }
 .quart {
   padding-top: 0.2em;
