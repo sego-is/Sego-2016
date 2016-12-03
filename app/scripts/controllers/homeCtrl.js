@@ -80,7 +80,10 @@
 
         var bookingsToday = function() {
           var staffBookings = [];
+
+            var dictEndTime = {};
             for (var b in $scope.bookings) {
+
                 var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id._id;
                 bookingForToday[tmp] = b;
 
@@ -99,10 +102,14 @@
 
               var rowspan = 0;
 
-              if (sessionLength % 2 === 0) {
-                rowspan = (sessionLength/15) * 2;
+              if (session % 2 === 0) {
+                rowspan = (session/15) * 2;
+                //console.log("name: ", $scope.bookings[b].customer_id.name);
+                //console.log("rowspan true: ", rowspan);
               } else {
-                rowspan = (sessionLength/15) * 2.2;
+                rowspan = (session/15) * 2.2;
+               //console.log("name: ", $scope.bookings[b].customer_id.name);
+               // console.log("rowspan false: ", rowspan);
               }
 
               // console.log('b:', $scope.bookings[b]);
@@ -118,6 +125,7 @@
                   if(/*(sessionStart <= staffBookings[i].start) && */(staffBookings[i].id === $scope.bookings[b].staff_id._id)) {
 
                     //console.log("SAMI klippari ", sessionStart + " " + staffBookings[i].start + " t/f "+ staffBookings[i].marked);
+
 
 
                     if((sessionStart > staffBookings[i].start) && (sessionEnd <= staffBookings[i].end)) {
@@ -136,7 +144,27 @@
                       break;
                     }
                   }
+
+                // console.log('b:', $scope.bookings[b]);
+                // Mismun a startTime og endTime ==> 45 min
+               /* var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
+                myElm.innerHTML =
+                '<div style="height:' + rowspan + 'em;" class="confirmedBooking" id="' + $scope.bookings[b].customer_id._id + '">' + $scope.bookings[b].customer_id.name + '</div>';
+
+                if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
+                    dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
                 }
+                else {
+                    if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
+                        console.log("UPPTEKKIN, KLIPPARI:", $scope.bookings[b]);
+                        console.log("other,endTime:",  dictEndTime[$scope.bookings[b].staff_id._id])
+
+                    }
+                    else {
+                        dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
+                    }
+
+                }*/
             }
         };
 
@@ -169,7 +197,9 @@
                 var tmpBook =      $scope.bookings[idForCell];
                 b.customer_name =  tmpBook.customer_id.name;
                 b.customer_phone = tmpBook.customer_id.phone;
-                b.service =        tmpBook.service;
+                // GET ONLY SERVICE_ID FROM BOOKED SERVICE
+                var arr = tmpBook.service.map(function(key) { return key.service_id; });
+                b.service =        arr;
 
                /* var tmpFyrirThetta = document.getElementById(tmpBook.customer_id._id);
                 if (tmpFyrirThetta.style.marginLeft) {

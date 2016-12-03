@@ -1,39 +1,14 @@
-<div class="haus">VIÐSKIPTAVINIR
+<div class="haus">VIÐSKIPTAVINIR 
   <i class="fa fa-users"></i>
   <button type="button"
           class="close takki"
           ng-click="closeWindow()">&times;
   </button>
 </div>
-
-<div class="content">
-    
+   
+<div class="content" ng-if="modifyCus">
   <table class="table table-striped">
-    <thead ng-if="!modifyCus">
-    <tr>
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="text" ng-model="search" class="form-control" placeholder="Leita..">
-            </div>
-        </form>
-      <th>
-        <div class="pull-left">Nafn</div>
-      </th>
-      <th>Símanúmer</th>
-      <th>Netfang</th>
-      <th>
-        <div class="pull-right">
-          <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
-                  ng-click="newCus()"
-                  data-toggle="tooltip"
-                  data-placement="auto"
-                  title="Bæta við viðskiptavin">
-          </button>
-        </div>
-      </th>
-    </tr>
-    </thead>
-    <tbody ng-if="modifyCus && !newCustomer">
+    <tbody ng-if="!newCustomer">
     <tr>
       <td colspan="4">
         <form name="form.customerForm"
@@ -89,15 +64,34 @@
                    ng-model="person.address"
                    placeholder="Heimilisfang">
             </div>
+            <div class="form-group row col-xs-11">
+            <div class="takkar col-md-offset-8 col-xs-offset-7">
+              <button type="submit"
+                      id="haettavidtakki"
+                      class="btn btn-primary"
+                      ng-click="toggleCus()">Hætta við
+              </button>
+              <button type="submit"
+                      id="uppfaeratakki"
+                      class="btn btn-primary"
+                      ng-click="addCustomer(person)">Uppfæra
+              </button>
+            </div>
+          </div>
         </form>
       </td>
     </tr>
     <tr>
-        <td>
-        nafn: <span ng-bind="person.name"></span>
-        símí: <span ng-bind="person.phone"></span>
-        netfang: <span ng-bind="person.email"></span>
-        heimilisfang: <span ng-bind="person.address"></span>
+        <td>Athugasemdir:</td>
+        <td colspan="3"><ul><li ng-repeat="comm in person.comments">{{ comm }}</li></ul></td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Bæta við athugasemd..">
+                </div>
+            </form>
         </td>
     </tr>
     <tr>
@@ -106,19 +100,19 @@
         <td>Þjónusta</td>
         <td>Verð</td>
     </tr>
-    <tr ng-repeat="hist in person.history track by $index">
-        <td>{{ hist.startTime }}</td>
+    <tr ng-repeat="hist in person.history track by $index" ng-init="hist.total = 0">
+        <td style="width:10%;">{{ toMMDDYY(hist.startTime) }}</td>
         <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
         <td>
             <ul>
-                <li ng-repeat="serv in hist.service">{{ serv }}</li>
+                <li ng-repeat="serv in hist.service" ng-init="hist.total = serv.price + hist.total">{{ serv.name }}</li>
             </ul>
         </td>
-        <td>{{ totalPrice[$index] }}</td>
+        <td>{{ hist.total }}</td>
     </tr>
+
     </tbody>
-    
-    <tbody ng-if="modifyCus && newCustomer">
+    <tbody ng-if="newCustomer">
     <tr>
       <td colspan="4">
         <form name="form.customerForm"
@@ -193,28 +187,56 @@
       </td>
     </tr>
     </tbody>
+    </table>
+    </div>
     <!------------------------------------------------------------------------------------------->
     <!-------------------------          Viðskiptavinir          -------------------------------->
     <!------------------------------------------------------------------------------------------->
-    <tbody ng-if="!modifyCus">
-        <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:10" ng-click="editCust(vinur)">
-        <td>{{ vinur.name }}</td>
-        <td>{{ vinur.phone }}</td>
-        <td>{{ vinur.email }}</td>
-        <td></td>
-        </tr>
-        <tr>
-            <td colspan="4" style="text-align:center;">
-                <dir-pagination-controls
-                max-size="10"
-                direction-links="true"
-                boundary-links="true" >
-                </dir-pagination-controls>
-        </td>
-        </tr>
-    </tbody>
-  </table>
-</div>
+    <div class="content"  ng-if="!modifyCus">
+    <form class="form-inline">
+        <div class="form-group">
+            <input type="text" ng-model="search" class="form-control" placeholder="Leita..">
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>
+                <div class="pull-left">Nafn</div>
+            </th>
+            <th>Símanúmer</th>
+            <th>Netfang</th>
+            <th>
+                <div class="pull-right">
+                <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
+                        ng-click="newCus()"
+                        data-toggle="tooltip"
+                        data-placement="auto"
+                        title="Bæta við viðskiptavin">
+                </button>
+                </div>
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:10" ng-click="editCust(vinur)">
+            <td>{{ vinur.name }}</td>
+            <td>{{ vinur.phone }}</td>
+            <td>{{ vinur.email }}</td>
+            <td></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <dir-pagination-controls
+                    max-size="10"
+                    direction-links="true"
+                    boundary-links="true" >
+                    </dir-pagination-controls>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
 
 <div class="footer">SEGO</div>
-i
