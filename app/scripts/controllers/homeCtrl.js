@@ -133,8 +133,11 @@
                 var tmpBook =      $scope.bookings[idForCell];
                 b.customer_name =  tmpBook.customer_id.name;
                 b.customer_phone = tmpBook.customer_id.phone;
-                b.service =        tmpBook.service;
+                // GET ONLY SERVICE_ID FROM BOOKED SERVICE
+                var arr = tmpBook.service.map(function(key) { return key.service_id; });
+                b.service =        arr;
 
+                
                 var tmpFyrirThetta = document.getElementById(tmpBook.customer_id._id);
                 if (tmpFyrirThetta.style.marginLeft) {
                     tmpFyrirThetta.style.marginLeft = "";

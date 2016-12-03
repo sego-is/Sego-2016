@@ -37,6 +37,7 @@
             var VALIN_THJONUSTA = {};
             
             scope.toggleSelection = function(s) {
+                console.log("toggleSelection, s:", s);
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
                   scope.serviceSelected.splice(posOfSelected, 1);
@@ -55,7 +56,6 @@
             };
 
             backendFactory.getService().then(function(res) {
-                console.log("getService(), res.data:", res.data);
                 // Set pricelist as pricelist for given response
                 scope.pricelist = res.data;
             }, function(err) {
@@ -77,9 +77,8 @@
 
                 scope.badInput = false;
                 
-                // AFKOMMENTA ÞEGAR timeTaken ER READY
-                console.log("VALIN_THJONUSTA:", VALIN_THJONUSTA);
                 
+                // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value                
                 var arr = Object.keys(VALIN_THJONUSTA).map(function(key) { return VALIN_THJONUSTA[key]; })
                 
                 backendFactory.postBooking({
