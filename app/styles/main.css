@@ -505,7 +505,7 @@ boka.skilabod {
 }
 
 .navbar-header {
-  position: absolute;
+  position: relative;
   font-family: scala, sans-serif;
   font-size: 20px;
   text-align: right;
@@ -523,6 +523,10 @@ boka.skilabod {
   padding-top: 3px;
   box-shadow: 5px 5px 5px grey;
   display: inline-block;
+}
+
+.navbar-header:hover {
+  color: black;
 }
 
 .navbar-header-top {
