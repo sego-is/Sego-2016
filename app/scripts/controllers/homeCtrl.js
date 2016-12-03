@@ -150,17 +150,15 @@
                 b.customer_name =  tmpBook.customer_id.name;
                 b.customer_phone = tmpBook.customer_id.phone;
                 // GET ONLY SERVICE_ID FROM BOOKED SERVICE
-                var arr = tmpBook.service.map(function(key) { return key.service_id; });
-                b.service =        arr;
-
-                
-               
+                //var arr = ;
+                b.service =        tmpBook.service.map(function(key) { return key.service_id; });
             }
             else {
                 b.customer_name = "";
                 b.customer_phone = "";
                 b.service = [];
             }
+            
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             booking = $scope.$new();
             var compiledDirective;
