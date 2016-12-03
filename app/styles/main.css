@@ -407,20 +407,30 @@ input.ng-valid {
 }
 
 .confirmedBookingLeft {
-  background-color: greenyellow;
+  background-color: #e9ccee;
+  font-size: 0.8em;
   width: 50%;
   overflow: hidden;
   position: absolute;
   z-index: 1;
 }
 
+.confirmedBookingLeft:hover {
+  background-color: #dff0d8;
+}
+
 .confirmedBookingRight {
-  background-color: red;
+  background-color: #ce9ed7;
+  font-size: 0.8em;
   margin-left: 50%;
   width: 50%;
   overflow: hidden;
   position: absolute;
   z-index: 1;
+}
+
+.confirmedBookingRight:hover {
+  background-color: #dff0d8;
 }
 
 .klukka {
@@ -477,7 +487,7 @@ input.ng-valid {
   background-color: #ddd;
 }
 .rTableCell {
-  font-size: 14px;
+  font-size: 1em;
   display: table-cell;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
