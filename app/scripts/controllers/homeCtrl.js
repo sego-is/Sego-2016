@@ -102,12 +102,12 @@
 
               var rowspan = 0;
 
-              if (session % 2 === 0) {
-                rowspan = (session/15) * 2;
+              if (sessionLength % 2 === 0) {
+                rowspan = (sessionLength/15) * 2;
                 //console.log("name: ", $scope.bookings[b].customer_id.name);
                 //console.log("rowspan true: ", rowspan);
               } else {
-                rowspan = (session/15) * 2.2;
+                rowspan = (sessionLength/15) * 2.2;
                //console.log("name: ", $scope.bookings[b].customer_id.name);
                // console.log("rowspan false: ", rowspan);
               }
