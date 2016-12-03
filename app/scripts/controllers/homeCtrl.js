@@ -163,8 +163,8 @@
                     else {
                         dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
                     }
-
-                }*/
+*/
+                }
             }
         };
 
