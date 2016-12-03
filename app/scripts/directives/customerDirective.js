@@ -105,7 +105,8 @@
           
           scope.toMMDDYY = function(d) {
               var tmpDate = new Date(d);
-              return (tmpDate.getMonth() + '-' + tmpDate.getDate() + '-' + tmpDate.getFullYear());
+              var tmpMonth = tmpDate.getMonth() + 1;
+              return (tmpMonth + '-' + tmpDate.getDate() + '-' + tmpDate.getFullYear());
           }
         }
       };
