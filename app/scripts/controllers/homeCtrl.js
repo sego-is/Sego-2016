@@ -113,6 +113,7 @@
 
                 if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
                     dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
+                    texti = "confirmedBookingLeft";
                 }
                 else {
                     if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
