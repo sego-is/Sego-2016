@@ -1,33 +1,8 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
 body {
   padding: 0;
   font-family: scala, sans-serif;
   font-size: 12px;
 }
-
-body.jumbotron #page-header-wrapper {
-  display: none !important;
-}
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-}*/
 
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -37,99 +12,9 @@ body.jumbotron #page-header-wrapper {
   padding-bottom: 19px;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
 .adalmynd img {
   width: 100%;
   height: 30%;
-}
-
-/* The Magic */
-.accordion:hover .accordion-item:hover .accordion-item-content,
-.accordion .accordion-item--default .accordion-item-content {
-  height: 6em;
-}
-
-.accordion-item-content,
-.accordion:hover .accordion-item-content {
-  height: 0;
-  overflow: hidden;
-  transition: height 0.75s;
-  z-index: 1000;
-}
-
-/* Aesthetic */
-.forsida {
-  background: #222;
-}
-
-.accordion .accordion-item {
-  background-image: linear-gradient(90deg, #eee, #f5f5f5, #eee);
-  border-bottom: 1px solid #666;
-  padding: 1em;
-  color: #eee;
-}
-
-.accordion {
-  position: absolute;
-  padding-left: 0px;
-  padding-right: 2px;
-  z-index: 1000;
-}
-
-.accordion .forsidafyrirsogn {
-  margin: 0;
-  font-family: scala, sans-serif;
-  font-size: 24px;
-}
-
-.accordion p {
-  font-family: scala;
-  font-size: 12px;
-}
-
-.accordion .accordion-item {
-  border: black;
-}
-
-.accordion .accordion-item:nth-child(1) {
-  font-family: Gadugi, sans-serif;
-  text-align: center;
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-  margin-top: 1px;
-}
-
-.accordion .accordion-item:nth-child(2) {
-  font-family: Gadugi, sans-serif;
-  text-align: center;
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-  margin-top: 1px;
-}
-
-.accordion .accordion-item:nth-child(3) {
-  font-family: Gadugi, sans-serif;
-  text-align: center;
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-  margin-top: 1px;
-}
-
-.botnmynd img {
-  width: 100%;
-  height: 10%;
-  padding-top: 4px;
-  position: relative;
 }
 
 /* Supporting marketing content */
@@ -146,7 +31,6 @@ body.jumbotron #page-header-wrapper {
 }
 
 .main-view {
-
   margin-top: 4em;
 }
 
@@ -166,38 +50,8 @@ body.jumbotron #page-header-wrapper {
   position: relative;
 }
 
-/* Responsive: Portrait tablets and up */
-/*@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}*/
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-
-/*@media screen and (max-width: 960px) {
-  .skilabod {
-    position: absolute;
-    left: 0;
-    top: 2px;
-    width: 100%;
-    height: 100%;
-  }
-}*/
 
 /* Allt nýtt fyrir neðan þetta*/
-
-
 .takki {
   position: relative;
   top: 7px;
@@ -209,10 +63,6 @@ body.jumbotron #page-header-wrapper {
   width: 100%;
 
 }
-
-/*.row {
-  background-color: white;
-}*/
 
 .dagurin_i_dag .col-md-3 {
   padding-right: 0px;
@@ -227,6 +77,16 @@ body.jumbotron #page-header-wrapper {
 
 boka.skilabod {
   padding: 0px;
+}
+
+.btn-primary {
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+}
+
+.btn-primary:hover {
+  background-color: hsl(290, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(290, 80%, 60%), hsl(290, 60%, 45%) 2em, hsl(290, 80%, 60%));
 }
 
 .haus {
@@ -266,40 +126,11 @@ boka.skilabod {
   opacity: 1;
 }
 
-.dropdown {
-  margin-left: 40%;
-}
-
 .dagur {
   width: 85%;
   margin: 0.5em auto;
   font-weight: bold;
   font-size: 2.0em;
-}
-
-.btnSkiptumDag {
-  color: #7a43b6;
-  margin: 0.5em 0em;
-  top: 50%;
-  cursor: pointer;
-}
-
-.nextTakki i {
-  cursor: pointer;
-}
-
-.bookingcontent {
-  height: 300px;
-  /*overflow-y: auto;*/
-}
-
-.bookingcontent h4 {
-  text-align: center;
-  font-weight: bold;
-}
-
-.bookingcontent h5 {
-  text-align: center;
 }
 
 .list-group-item-heading {
@@ -311,11 +142,6 @@ boka.skilabod {
   height: 500px;
   overflow-y: auto;
   font-family: scala;
-}
-
-.content .pull-right {
-  font-size: 12px;
-  padding-bottom: 3px;
 }
 
 .content thead {
@@ -339,20 +165,6 @@ boka.skilabod {
   padding: 0 !important;
 }
 
-.inputField {
-  width: 90%;
-  margin-left: 5%;
-}
-
-.stadfestaTakki {
-  color: green;
-}
-
-.stadfestaTakki:hover {
-  cursor: pointer;
-  text-shadow: 0 0 10px green;
-}
-
 .divTakki:hover {
   cursor: pointer;
 }
@@ -361,7 +173,7 @@ boka.skilabod {
   padding: 0 0 10px 0;
 }
 
-.booking {
+/*.booking {
   height: 1em;
 }
 
@@ -380,7 +192,7 @@ boka.skilabod {
 
 .staff {
     width: 28.0em;
-}
+}*/
 
 @media only screen and (max-device-width: 736px) {
   .container-fluid > .navbar-header {
@@ -454,38 +266,6 @@ boka.skilabod {
     text-align: center;
     font-weight: bold;
   }
-
-  .kassar {
-    height: 100%;
-  }
-
-  /*.btn:before {
-    font-size: 16px;
-  }
-
-  .fa-dollar {
-    font-size: 25px;
-  }
-
-  .fa-cogs {
-    font-size: 25px;
-  }
-
-  .fa-users {
-    font-size: 25px;
-  }
-
-  .fa-sign-out {
-    font-size: 25px;
-  }
-
-  .booking-time {
-    font-size: 20px;
-  }
-
-  .dagurin_i_dag .col-xs-6 {
-    padding-right: 18px;
-  }*/
 }
 
 .navbar-default .navbar-brand {
@@ -505,7 +285,7 @@ boka.skilabod {
 }
 
 .navbar-header {
-  position: relative;
+  position: absolute;
   font-family: scala, sans-serif;
   font-size: 20px;
   text-align: right;
@@ -546,11 +326,7 @@ boka.skilabod {
   z-index: 1;
 }
 
-/*#nav {
-  border-bottom: 1px solid black;
-}*/
-
-.skilabod-x {
+/*.skilabod-x {
   position: absolute;
   top: 0;
   right: 0;
@@ -565,7 +341,7 @@ boka.skilabod {
   overflow: hidden;
   padding-left: 250px;
   padding-top: 10px;
-}
+}*/
 
 .loading {
   padding: 15% 60% 50% 40%;
@@ -593,9 +369,9 @@ boka.skilabod {
   padding-top: 0.15em;
 }
 
-.horizontal-collapse {
+/*.horizontal-collapse {
   height: 70px;
-}
+}*/
 
 .navbar-collapse.in {
   overflow-y: hidden;
@@ -607,53 +383,14 @@ input.ng-valid {
   box-shadow: 0 0 10px #9ecaed;
 }
 
-.btnTilbaka {
-  color: #7a43b6;
-}
-
 .error {
   outline: none;
   border-color: red;
   box-shadow: 0 0 10px red;
 }
 
-#haettavidtakki {
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}
-
-#uppfaeratakki {
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}
-
-.form-horizontal .form-group {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-#haettavid {
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}
-
-#stadfesta {
-  padding-left: 11px;
-  padding-right: 11px;
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}
-
 .booking-time {
   font-size: 14px;
-}
-
-.staff th {
-  text-align: center;
-}
-
-.col-xs-12 {
-  margin-left: 0px;
 }
 
 .datepicker {
