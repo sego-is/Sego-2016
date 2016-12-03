@@ -115,16 +115,16 @@
 
                 if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
                     dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
-                    texti = "confirmedBookingLeft";
+                    texti = "confirmedBooking";
                 }
                 else {
                     if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
                         console.log("UPPTEKKIN, KLIPPARI:", $scope.bookings[b]);
-                        texti = "confirmedBookingRight";
+                        texti = "confirmedBooking right";
                         console.log("other,endTime:",  dictEndTime[$scope.bookings[b].staff_id._id])
                     }
                     else {
-                        texti = "confirmedBookingLeft";
+                        texti = "confirmedBooking";
                         dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
                     }
                 }

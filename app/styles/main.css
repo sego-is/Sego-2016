@@ -406,7 +406,7 @@ input.ng-valid {
   border: 1px solid red;
 }
 
-.confirmedBookingLeft {
+.confirmedBooking {
   background-color: #e9ccee;
   font-size: 0.8em;
   box-shadow: 2px 2px 1px grey;
@@ -418,25 +418,12 @@ input.ng-valid {
   z-index: 1;
 }
 
-.confirmedBookingLeft:hover {
-  transform: translateY(1px);
-  box-shadow: 1px 1px 1px grey;
-}
-
-.confirmedBookingRight {
-  background-color: #ce9ed7;
-  box-shadow: 2px 2px 1px grey;
-  border-radius: 2px;
-  border-bottom: 1px solid grey;
-  font-size: 0.8em;
+.right {
   margin-left: 50%;
-  width: 50%;
-  overflow: hidden;
-  position: absolute;
-  z-index: 1;
+  background-color: #ce9ed7;
 }
 
-.confirmedBookingRight:hover {
+.confirmedBooking:hover {
   transform: translateY(1px);
   box-shadow: 1px 1px 1px grey;
 }
