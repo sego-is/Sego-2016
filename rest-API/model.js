@@ -54,6 +54,10 @@ const personSchema = Schema({
     type:    Number,
     require: true,
     default: 0
+  },
+  active: {
+      type: Boolean,
+      default: true
   }
 });
 

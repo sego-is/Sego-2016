@@ -210,6 +210,15 @@ api.get('/book/:cid/:pid', (req, res) => {
     });
   });
   
+  // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
+  api.get('/bookings/:cid/:date/:option', (req, res) => {
+     if (req.params.option === 1) {
+         console.log("OPTION === 1");
+     } else if (req.params.option === 2) {
+         console.log("OPTION === 2");
+     }
+  });
+  
    //
   // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
   api.get('/services/:company_id', (req, res) => {
@@ -220,43 +229,6 @@ api.get('/book/:cid/:pid', (req, res) => {
       } else {
         res.send(docs);
       }
-    });
-  });
-  
-  // CREATE NEW SERVICE //
-  api.post('/services', bodyParser.json(), (req, res) => {
-    const data = req.body;
-    if (data._id !== undefined) {
-        model.Service.findOne({'_id': data._id }, function(err, doc) {
-            if (err) {
-                console.log("IN CREATE SERVICE->findOne ERROR, err:", err);
-                res.status(500).send(err);
-            }
-            else {
-                doc.active = false;
-                doc.save((err1, doc1) => {
-                    if (err1) {
-                        console.log("IN CREATE SERVICE->findOne.save() ERROR, err1:", err1);
-                        res.status(500).send(err1);
-                    }
-                    else {
-                        delete data._id;
-                        console.log("SERVICE HAVE BEEN DE-ACTIVATED");
-                    }
-                });
-            }
-        })
-    }
-    const s = new model.Service(data);
-    s.save((err, doc) => {
-        if (err) {
-            console.log("CREATE SERVICE ERROR, err:", err);
-            res.status(500).send(err);
-        } 
-        else {
-            console.log("NEW SERVICE HAVE BEEN CREATED!");
-            res.send(doc);
-        }
     });
   });
   
@@ -315,8 +287,6 @@ api.get('/book/:cid/:pid', (req, res) => {
       });
     }
   });
-  
-  
   
   // THARF EF TIL VILL AD IHUGA HVERNIG VERDUR HAEGT AD UPDATE BOKUN OG/EDA HAETTA VID BOKUN
   api.post('/bookings/', bodyParser.json(), (req, res) => {
@@ -436,9 +406,66 @@ api.get('/book/:cid/:pid', (req, res) => {
       }});
   });
 
+  // CREATE NEW SERVICE //
+  api.post('/services', bodyParser.json(), (req, res) => {
+    const data = req.body;
+    // IF THERE IS _id ON OBJECT 
+    if (data._id !== undefined) {
+        model.Service.findOne({'_id': data._id }, function(err, doc) {
+            if (err) {
+                console.log("IN CREATE SERVICE->findOne ERROR, err:", err);
+                res.status(500).send(err);
+            }
+            else {
+                doc.active = false;
+                doc.save((err1, doc1) => {
+                    if (err1) {
+                        console.log("IN CREATE SERVICE->findOne.save() ERROR, err1:", err1);
+                        res.status(500).send(err1);
+                    }
+                    else {
+                        delete data._id;
+                        console.log("SERVICE HAVE BEEN DE-ACTIVATED");
+                    }
+                });
+            }
+        })
+    }
+    const s = new model.Service(data);
+    s.save((err, doc) => {
+        if (err) {
+            console.log("CREATE SERVICE ERROR, err:", err);
+            res.status(500).send(err);
+        } 
+        else {
+            console.log("NEW SERVICE HAVE BEEN CREATED!");
+            res.send(doc);
+        }
+    });
+  });
   
-  
-  
+    // REMOVE PERSON FROM COMPANY STAFF
+  // EYDA STARFSMANNI UR STAFF ARRAY I COMPANY OG MERKJA SIDAN SEM 0 I PERSON SAFNI
+  api.post('/companies/staff/', bodyParser.json(), (req, res) => {
+      const data = req.body;
+      model.Company.update({ '_id': data.cid },
+        { $pull: { "staff": { _id: data.staff._id } } },
+        { safe: true, upsert: true }, function (err, doc) {
+          if (err) {
+            res.status(500).send(err);
+          }
+          else {
+            model.Person.update({ '_id': data.staff.person_id }, { $set: { 'role' : 0 }}, function(e, d) {
+                if (e) {
+                    res.status(500).send(err);
+                }
+                else {
+                    res.send(d);
+                }
+            });
+        }
+    });
+  });
   
  
 
@@ -482,28 +509,8 @@ api.get('/book/:cid/:pid', (req, res) => {
     });
   });
 
-  // REMOVE PERSON FROM COMPANY STAFF
-  api.post('/companies/staff/', bodyParser.json(), (req, res) => {
-      const data = req.body;
-      model.Company.update({ '_id': data.cid },
-        { $pull: { "staff": { _id: data.staff._id } } },
-        { safe: true, upsert: true }, function (err, doc) {
-          if (err) {
-            res.status(500).send(err);
-          }
-          else {
-            model.Person.update({ '_id': data.staff.person_id }, { $set: { 'role' : 0 }}, function(e, d) {
-                if (e) {
-                    res.status(500).send(err);
-                }
-                else {
-                    res.send(d);
-                }
-            });
-        }
-    });
-  });
 
+  
   api.put('/companies/staff/', bodyParser.json(), (req, res) => {
       const data = req.body;
       console.log("DATA:", data);
