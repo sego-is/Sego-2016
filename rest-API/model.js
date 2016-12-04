@@ -3,7 +3,6 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-
 const bookSchema = Schema({
     customer_id: {
       type: Schema.Types.ObjectId,
@@ -23,7 +22,8 @@ const bookSchema = Schema({
         },
         name: String,
         price: Number
-    }]
+    }],
+    
 });
 
 const personSchema = Schema({
