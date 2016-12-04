@@ -222,18 +222,41 @@ api.get('/book/:cid/:pid', (req, res) => {
       }
     });
   });
+  
   // CREATE NEW SERVICE //
   api.post('/services', bodyParser.json(), (req, res) => {
-    console.log("POST SERVICE req.body:", req.body);
-    const s = new model.Service(req.body);
+    const data = req.body;
+    if (data._id !== undefined) {
+        model.Service.findOne({'_id': data._id }, function(err, doc) {
+            if (err) {
+                console.log("IN CREATE SERVICE->findOne ERROR, err:", err);
+                res.status(500).send(err);
+            }
+            else {
+                doc.active = false;
+                doc.save((err1, doc1) => {
+                    if (err1) {
+                        console.log("IN CREATE SERVICE->findOne.save() ERROR, err1:", err1);
+                        res.status(500).send(err1);
+                    }
+                    else {
+                        delete data._id;
+                        console.log("SERVICE HAVE BEEN DE-ACTIVATED");
+                    }
+                });
+            }
+        })
+    }
+    const s = new model.Service(data);
     s.save((err, doc) => {
-       if (err) {
-           console.log("post.services, err:", err);
-           res.status(500).send(err);
-       } 
-       else {
-           res.send(doc);
-       }
+        if (err) {
+            console.log("CREATE SERVICE ERROR, err:", err);
+            res.status(500).send(err);
+        } 
+        else {
+            console.log("NEW SERVICE HAVE BEEN CREATED!");
+            res.send(doc);
+        }
     });
   });
   

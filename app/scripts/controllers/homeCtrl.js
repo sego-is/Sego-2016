@@ -38,6 +38,8 @@
         $scope.getDailyBookings(selectedDay);
       };
 
+
+
       // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
       function update() {
         // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
