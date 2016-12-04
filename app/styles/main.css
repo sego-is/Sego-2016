@@ -37,8 +37,8 @@ body {
 .skilabod {
   position: absolute;
   margin: 5.0em auto;
-  width: 40%;
-  right: 30%;
+  width: 70%;
+  right: 16%;
   background: white;
   -webkit-transition: all 5s ease-in-out;
   -moz-transition: all duration ease-in-out;
@@ -198,7 +198,15 @@ input[type="text"], #leitargluggi  {
     width: 28.0em;
 }*/
 
-@media only screen and (max-device-width: 736px) {
+@media only screen and (max-device-width: 768px) {
+  .skilabod {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 100%;
+    height: 100%;
+  }
+
   .container-fluid > .navbar-header {
     margin-left: -10px;
   }
@@ -215,6 +223,14 @@ input[type="text"], #leitargluggi  {
 
   .container-fluid > .navbar-header-top {
     margin-left: -10px;
+  }
+
+  .skilabod {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 100%;
+    height: 100%;
   }
 }
 
