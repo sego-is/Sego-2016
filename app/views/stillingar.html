@@ -56,8 +56,8 @@
                 <input type="text"
                        name="name"
                        ng-class="{error: (badInput && form.staffForm.name.$error.required)
-                                  || (badInput && form.staffForm.name.$error.maxlength)
-                                  || (badInput && form.staffForm.name.$error.minlength)}"
+                                      || (badInput && form.staffForm.name.$error.maxlength)
+                                      || (badInput && form.staffForm.name.$error.minlength)}"
                        ng-click="badInputFalse()"
                        ng-minlength="3"
                        ng-maxlength="44"
@@ -74,7 +74,7 @@
                        class="form-control"
                        name="email"
                        ng-class="{error: (badInput && form.staffForm.email.$error.required)
-                                  || (badInput && form.staffForm.email.$error.email)}"
+                                      || (badInput && form.staffForm.email.$error.email)}"
                        id="email"
                        placeholder="Netfang"
                        ng-model="editUser.email"
@@ -138,8 +138,8 @@
                 <input type="text"
                        name="name"
                        ng-class="{error: (badInput && form.staffForm.name.$error.required)
-                                  || (badInput && form.staffForm.name.$error.maxlength)
-                                  || (badInput && form.staffForm.name.$error.minlength)}"
+                                      || (badInput && form.staffForm.name.$error.maxlength)
+                                      || (badInput && form.staffForm.name.$error.minlength)}"
                        ng-click="badInputFalse()"
                        ng-minlength="3"
                        ng-maxlength="44"
@@ -156,7 +156,7 @@
                        class="form-control"
                        name="email"
                        ng-class="{error: (badInput && form.staffForm.email.$error.required)
-                                  || (badInput && form.staffForm.email.$error.email)}"
+                                      || (badInput && form.staffForm.email.$error.email)}"
                        id="email"
                        placeholder="Netfang"
                        ng-model="editUser.email"
@@ -224,15 +224,6 @@
                  title="Henda">
               </i>
             </a>-->
-
-
-            <label class="switch">
-              <input type="checkbox"
-              ng-click="toggleStaffActive()">
-              <div class="slider round"></div>
-            </label>
-
-
           </div>
         </td>
       </tr>
@@ -296,8 +287,8 @@
                        name="service"
                        class="form-control"
                        ng-class="{error: (badInput && form.priceForm.service.$error.required)
-                                  || (badInput && form.priceForm.service.$error.maxlength)
-                                  || (badInput && form.priceForm.service.$error.minlength)}"
+                                      || (badInput && form.priceForm.service.$error.maxlength)
+                                      || (badInput && form.priceForm.service.$error.minlength)}"
                        ng-click="badInputFalse()"
                        ng-minlength="3"
                        ng-maxlength="44"
@@ -313,8 +304,8 @@
                        class="form-control"
                        name="price"
                        ng-class="{error: (badInput && form.priceForm.price.$error.required)
-                                  || (badInput && form.priceForm.price.$error.maxlength)
-                                  || (badInput && form.priceForm.price.$error.minlength)}"
+                                      || (badInput && form.priceForm.price.$error.maxlength)
+                                      || (badInput && form.priceForm.price.$error.minlength)}"
                        ng-click="badInputFalse()"
                        ng-maxlength="5"
                        id="inputPrice"
@@ -330,8 +321,8 @@
                      class="form-control"
                      name="timeLength"
                      ng-class="{error: (badInput && form.priceForm.timeLength.$error.required)
-                                  || (badInput && form.priceForm.timeLength.$error.maxlength)
-                                  || (badInput && form.priceForm.timeLength.$error.minlength)}"
+                                    || (badInput && form.priceForm.timeLength.$error.maxlength)
+                                    || (badInput && form.priceForm.timeLength.$error.minlength)}"
                      ng-minlength="2"
                      ng-maxlength="3"
                      ng-click="badInputFalse()"

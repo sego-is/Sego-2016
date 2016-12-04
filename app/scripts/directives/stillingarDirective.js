@@ -66,8 +66,8 @@
             });
           };
 
-          scope.toggleStaffActive = function () {
-            console.log("staff active/!active");
+          scope.toggleStaffActive = function (ev) {
+            console.log("toggleStaffActive: $event:", ev);
           };
 
           scope.toggleView = function () {

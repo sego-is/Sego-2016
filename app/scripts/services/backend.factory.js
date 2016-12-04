@@ -252,7 +252,19 @@
           }
         });
       };
-
+       
+       backendFactory.getBookingByMonth = function(date) {
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + date + '/' + 1,
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
+      };
+      
       backendFactory.postBooking = function (p) {
         console.log("backendF.postBooking p.customer_service: ", p);
         p.company_id = this.ID();
