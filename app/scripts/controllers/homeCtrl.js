@@ -66,7 +66,7 @@
                 console.log("ERROR getService(): ", err);
             });
             $scope.staff = backendFactory.Staff();
-            console.log("$scope.staff:", $scope.staff);
+            //console.log("$scope.staff:", $scope.staff);
             $scope.times = dagatalFactory.timeSession();
         }
         // ENDIR update()
@@ -85,7 +85,7 @@
                 var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
                 var minutes = dagatalFactory.getMMfromDate(new Date($scope.bookings[b].startTime));
                 var rowspan = 0;
-                console.log("sessLEngth ", ((sessionLength/15) * 2.5) + " nafn ", $scope.bookings[b].customer_id.name + " min " + minutes);
+                console.log("BOOKING ", $scope.bookings[b]);
                 if (sessionLength % 2 === 0) {
                   rowspan = ((sessionLength/15) * 2.5);
                 } else if(sessionLength % 2 !== 0 && (minutes === 15 || minutes === 45)) {
@@ -119,9 +119,7 @@
                 }
                 else {
                     if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
-                        console.log("UPPTEKKIN, KLIPPARI:", $scope.bookings[b]);
                         texti = "confirmedBooking right";
-                        console.log("other,endTime:",  dictEndTime[$scope.bookings[b].staff_id._id])
                     }
                     else {
                         texti = "confirmedBooking";
@@ -132,7 +130,7 @@
                 myElm.innerHTML =
                         '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
                         $scope.bookings[b].customer_id.name +
-                          '<br>'+
+                        '<br>'+
                         sessionLength +
                         '</div>';
             }
@@ -145,8 +143,7 @@
 
         // HREINSA BLADSIDA FYRIR NYJAN DAG
         function cleanPage() {
-            $('.confirmedBookingLeft').remove();
-            $('.confirmedBookingRight').remove();
+            $('.confirmedBooking').remove();
         }
 
         // Get bookings for selected date in datepicker
