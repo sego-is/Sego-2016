@@ -67,7 +67,6 @@
           };
 
           scope.toggleStaffActive = function (ev) {
-              
             console.log("toggleStaffActive: $event:", ev);
           };
 

@@ -212,9 +212,9 @@ api.get('/book/:cid/:pid', (req, res) => {
   
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
   api.get('/bookings/:cid/:date/:option', (req, res) => {
-     if (req.params.options === 1) {
+     if (req.params.option === 1) {
          console.log("OPTION === 1");
-     } else if (req.params.options === 2) {
+     } else if (req.params.option === 2) {
          console.log("OPTION === 2");
      }
   });
