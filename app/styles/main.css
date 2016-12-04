@@ -52,10 +52,6 @@ body {
 
 
 /* Allt nýtt fyrir neðan þetta*/
-.takki {
-  position: relative;
-  top: 7px;
-}
 
 /*til að hafa full veiw yfir main*/
 .container-fluid-fullSego {
@@ -85,9 +81,13 @@ body {
   background-image: linear-gradient(-90deg, hsl(290, 80%, 60%), hsl(290, 60%, 45%) 2em, hsl(290, 80%, 60%));
 }
 
-.navbar-header {
-  background-color: hsl(280, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+input[type="text"], #leitargluggi  {
+  background-color : #f8f8f8;
+}
+
+#leitargluggi {
+  margin-left: 30px;
+  margin-bottom: 4px;
 }
 
 .haus {
@@ -117,12 +117,15 @@ body {
   text-align: center;
 }
 
-.close {
+.close.takki {
+  font-size: 30px;
   color: white;
+  position: relative;
+  top: 7px;
   opacity: 1;
 }
 
-.close:hover {
+.close.takki:hover {
   color: lightgray;
   opacity: 1;
 }

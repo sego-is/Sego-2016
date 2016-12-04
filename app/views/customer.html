@@ -1,5 +1,7 @@
-<div class="haus">VIÐSKIPTAVINIR
-  <i class="fa fa-users"></i>
+<div class="haus form-inline">VIÐSKIPTAVINIR
+  <div class="form-group fa fa-users">
+    <input type="text" ng-model="search" id="leitargluggi" class="form-control" placeholder="Leita..">
+  </div>
   <button type="button"
           class="close takki"
           ng-click="closeWindow()">&times;
@@ -193,11 +195,6 @@
     <!-------------------------          Viðskiptavinir          -------------------------------->
     <!------------------------------------------------------------------------------------------->
     <div class="content"  ng-if="!modifyCus">
-    <form class="form-inline">
-        <div class="form-group">
-            <input type="text" ng-model="search" class="form-control" placeholder="Leita..">
-        </div>
-    </form>
     <table class="table table-striped">
         <thead>
             <tr>
