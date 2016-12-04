@@ -10,30 +10,30 @@
    */
   angular.module('segoapp')
     .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
-        $scope.bookings = [];
-        // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
-        var p = JSON.parse(localStorage.getItem('profile'));
-        backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
-            backendFactory.set(response.data[0]);
-            console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
-            // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
-            update();
-        }, function errorCallback(error) {
-            console.log("ERROR", error);
-        });
+      $scope.bookings = [];
+      // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
+      var p = JSON.parse(localStorage.getItem('profile'));
+      backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
+        backendFactory.set(response.data[0]);
+        console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
+        // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
+        update();
+      }, function errorCallback(error) {
+        console.log("ERROR", error);
+      });
 
-        // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
-        var selectedDay = dagatalFactory.getStringForDate();
+      // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
+      var selectedDay = dagatalFactory.getStringForDate();
 
-        // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
-        $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
+      // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
+      $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
 
-      $scope.prevDay = function() {
+      $scope.prevDay = function () {
         dagatalFactory.yesterday();
         $scope.getDailyBookings(selectedDay);
       };
 
-      $scope.nextDay = function() {
+      $scope.nextDay = function () {
         dagatalFactory.tomorrow();
         $scope.getDailyBookings(selectedDay);
       };
@@ -128,16 +128,17 @@
         function cleanPage() {
             $('.confirmedBookingLeft').remove();
             $('.confirmedBookingRight').remove();
-        }
-
-        // Get bookings for selected date in datepicker
-        $scope.getDailyBookings = function (t) {
-            cleanPage();
-            dagatalFactory.setDate(t);
-            selectedDay =         dagatalFactory.getDate();
-            $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
-            update();
         };
+
+
+      // Get bookings for selected date in datepicker
+      $scope.getDailyBookings = function (t) {
+        cleanPage();
+        dagatalFactory.setDate(t);
+        selectedDay =         dagatalFactory.getDate();
+        $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
+        update();
+      };
 
       // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
       var booking;
@@ -148,46 +149,40 @@
           console.log("UNDEFINED");
         }
         else {
-            var idForCell = bookingForToday[ev.currentTarget.id];
-            if (idForCell !== undefined) {
-                var tmpBook =      $scope.bookings[idForCell];
-                b.customer_name =  tmpBook.customer_id.name;
-                b.customer_phone = tmpBook.customer_id.phone;
-                var arr = tmpBook.service.map(function(key) { return key.service_id; });
-                b.service =        arr;
+          var idForCell = bookingForToday[ev.currentTarget.id];
+          if (idForCell !== undefined) {
+            var tmpBook =      $scope.bookings[idForCell];
+            b.customer_name =  tmpBook.customer_id.name;
+            b.customer_phone = tmpBook.customer_id.phone;
+            var arr =          tmpBook.service.map(function (key) {
+              return key.service_id;
+            });
+            b.service = arr;
+          }
+          else {
+            b.customer_name =  "";
+            b.customer_phone = "";
+            b.service =        [];
+          }
 
-               /* var tmpFyrirThetta = document.getElementById(tmpBook.customer_id._id);
-                if (tmpFyrirThetta.style.marginLeft) {
-                    tmpFyrirThetta.style.marginLeft = "";
-                }
-                else {
-                    tmpFyrirThetta.style.marginLeft = "50%";
-                }*/
-            }
-            else {
-                b.customer_name = "";
-                b.customer_phone = "";
-                b.service = [];
-            }
+          document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
+          booking = $scope.$new();
+          var compiledDirective;
 
-            document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
-            booking = $scope.$new();
-            var compiledDirective;
-
-            $scope.clickOnTimapant = {
-                name:      b.name,
-                customer:  b.customer_name,
-                phone:     b.customer_phone,
-                service:   b.service,
-                staffId:   b._id,
-                date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
-                startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
-            };
-            console.log('clickOnTimapant:', $scope.clickOnTimapant);
-            compiledDirective = $compile('<boka class="skilabod" ' +
-                'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
-            var directiveElement = compiledDirective(booking);
-            $('.skilaboda-haldari').append(directiveElement);
+          $scope.clickOnTimapant = {
+            name:      b.name,
+            customer:  b.customer_name,
+            phone:     b.customer_phone,
+            service:   b.service,
+            staffId:   b._id,
+            date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
+            startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
+          };
+          console.log('clickOnTimapant:', $scope.clickOnTimapant);
+          compiledDirective = $compile('<boka class="skilabod" ' +
+            'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
+          var directiveElement = compiledDirective(booking);
+          $('.skilaboda-haldari').append(directiveElement);
         }
       };
 

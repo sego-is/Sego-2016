@@ -1,5 +1,3 @@
-
-
 <div class="loading"
      ng-show="loadingData">
   <img
@@ -67,36 +65,3 @@
     </div>
   </div>
 </div>
-<!-- ATTEMPT AT DIV TABLE DONE
-<div>space</div>
-
-<div class="row col-md-12 col-sm-12 col-xs-12">
-  <table class="table table-hover table-bordered">
-    <thead>
-    <tr class="staff">
-      <th class="klukka col-md-1 col-sm-1 col-xs-1">
-        <i class="fa fa-clock-o"
-           aria-hidden="true"></i>
-      </th>
-        <th class="staffname"
-            ng-repeat="xts in staff | orderBy: xts._id">
-          {{ xts.name }}
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="booking"
-        ng-repeat="tt in times track by $index ">
-      <td class="booking-time">
-        <p ng-if="$index % 2 == 0">{{ tt }}</p>
-      </td>
-
-      <td class="booking-cell"
-               ng-repeat="xt in staff | orderBy: xt._id"
-               ng-click="openBooking(tt, xt, $event)"
-               id="{{ tt }}{{ xt._id }}">
-      </td>
-
-    </tr>
-    </tbody>
-  </table>
