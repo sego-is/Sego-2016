@@ -66,6 +66,10 @@
             });
           };
 
+          scope.toggleStaffActive = function () {
+            console.log("staff active/!active");
+          };
+
           scope.toggleView = function () {
             scope.state.edit = false;
             scope.state.add = false;
