@@ -6,10 +6,6 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-haus" href="home">Lausnir</div>
         <div class="navbar-haus-top" href="home">SEGO</div>
-        <a class="navbar-brand col-md-offset-2 hidden-xs hidden-sm"
-           rel="home"
-           href="admin">tmpAdmin
-        </a>
         <div class="nav navbar-nav navbar-right"
              ng-if="!isAuthenticated">
           <button type="button"
@@ -22,6 +18,10 @@
         </div>
         <div class="nav navbar-nav pull-right"
              ng-if="isAuthenticated">
+          <a class="btn btn-link btn-lg hidden-xs hidden-sm"
+             rel="home"
+             href="admin">tmpAdmin
+          </a>
           <button type="button"
                   class="btn btn-link btn-lg"
                   ng-click="opnaGlugga('verdlisti')">
