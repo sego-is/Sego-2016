@@ -97,7 +97,9 @@
                 if (MM < 10) {MM = "0"+MM;}
 
                 return HH + ":" + MM;
-
+            },
+            getMMfromDate: function (d) {
+              return d.getMinutes();
             },
             getSessionLength: function (start, end) {
               var s1 = start.getHours();
