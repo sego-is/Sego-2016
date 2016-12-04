@@ -240,13 +240,13 @@ api.get('/book/:cid/:pid', (req, res) => {
                         res.status(500).send(err1);
                     }
                     else {
+                        delete data._id;
                         console.log("SERVICE HAVE BEEN DE-ACTIVATED");
                     }
                 });
             }
         })
     }
-    delete data._id;
     const s = new model.Service(data);
     s.save((err, doc) => {
         if (err) {
