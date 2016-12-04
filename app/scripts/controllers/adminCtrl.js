@@ -5,6 +5,12 @@
       .controller('AdminCtrl', ['$scope', 'backendFactory', function ($scope, backendFactory) {
             $scope.editCompany = [];
 
+            // Views on admin page
+            $scope.show = "home";
+            $scope.toggleViews = function (view) {
+              $scope.show = view;
+            };
+
             // HREINSA TIL I SERVICE //
             backendFactory.getAllService().then(function(res) {
                 console.log('getAllService(), res.data:', res.data);
@@ -43,17 +49,16 @@
             // CREATING NEW COMPANY
             $scope.company = {};
             $scope.company.staff = [];
-            
+
             backendFactory.getBook().then(function(res) {
                 console.log('getBook success, res:', res);
             }, function(err) {
                 console.log('getBook error, err:', err);
             });
-            
+
             $scope.addCompany = function(c) {
                 backendFactory.postCompany(c).then(function (response) {
                     console.log("RESPONSE:", response);
-
                 }).catch(function(err) {
                     console.log("ERROR", JSON.stringify(err));
                 }).finally(function() {} );
@@ -109,8 +114,8 @@
                 }, function(err) {
                     console.log("removeIndex(), err:", err);
                 })
-            }
-            
+            };
+
             $scope.ATHUGA = function(pid) {
                 backendFactory.getCustomerStory().then(function(res) {
                     console.log("getCustomerStory() - THEE TOKSTS, res:", res);
@@ -118,6 +123,6 @@
                     console.log("getCustomerStory() - ERROR, err:", err);
                 });
             }
-            
+
       }]);
 })();

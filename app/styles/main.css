@@ -590,3 +590,11 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/*******************************/
+/************ ADMIN ************/
+/*******************************/
+
+.adminNewDay {
+  background-color: #66afe9;
+}
