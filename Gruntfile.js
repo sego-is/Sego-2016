@@ -296,7 +296,19 @@ module.exports = function (grunt) {
     concat: {
       dist: {}
     },
-
+    imagemin: {
+      dist: {
+        options: {
+          optimizationLevel: 5
+        },
+        files: [{
+          expand: true,
+          cwd: '*/images',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: 'dist/images/'
+        }]
+      }
+    },
     //imagemin: {
     // dist: {
     //    files: [{
