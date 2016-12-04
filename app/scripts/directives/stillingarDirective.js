@@ -147,11 +147,13 @@
           scope.updatePrice = function() {
             if (scope.form.priceForm.$valid) {
               // CLOSE EDIT/ADD VIEW
-              var tmp_id = scope.editVerd._id;
+              //var tmp_id = scope.editVerd._id;
               scope.editVerd.timeLength *= 60;
               console.log("updatePrice() data", scope.editVerd);
               backendFactory.postService(scope.editVerd).then(function(res) {
                 scope.pricelist.push(res.data);
+                console.log("postService() TOKST, res:", res);
+                /*
                 backendFactory.deleteFromPricelist({ '_id': tmp_id }).then(function(res1) {
                     console.log("postService  ->res:", res);
                     console.log("deleteFromPricelist ->res1:", res1);
@@ -159,6 +161,7 @@
                 }, function(err) {
                     console.log("ERROR removePrice", err);
                 });
+                */
               }, function(err) {
                 console.log("postService() -> postService(priceObj), err:", err);
               });

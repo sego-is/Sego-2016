@@ -38,98 +38,97 @@
         $scope.getDailyBookings(selectedDay);
       };
 
-        // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
-        function update() {
-            // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
-            backendFactory.getBookingByDate(selectedDay).then(function(res) {
-                // If there are no bookings by given date -> return EMPTY ARRAY
-                if (res.data.length === 0) {
-                    $scope.bookings =    [];
-                    $scope.curr =        {};
-                    $scope.loadingData = false;
-                }
-                else {
-                    // GEYMA BOKANIR
-                    $scope.bookings = res.data;
-                    bookingsToday();
-                    $scope.loadingData = false;
-                }
-            }, function(err) {
-                console.log("update()->getBookingByDate() ERR:", err);
-            });
-            // SAEKJA VERDLISTAN,
-            backendFactory.getService().then(function(res) {
-                console.log("getService(), res.data:", res.data);
-                // Set pricelist as pricelist for given response
-                backendFactory.setPricelist(res.data);
-            }, function(err) {
-                console.log("ERROR getService(): ", err);
-            });
-            $scope.staff = backendFactory.Staff();
-            console.log("$scope.staff:", $scope.staff);
-            $scope.times = dagatalFactory.timeSession();
-        }
-        // ENDIR update()
 
-        // FYRIR PROGRESS MYND
-        $scope.loadingData = true;
 
-        // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
-        // Breytti frá $scope i var, því enginn ástæða til að kalla á þetta fall á scope-i
-        var bookingForToday = {};
+      // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
+      function update() {
+        // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
+        backendFactory.getBookingByDate(selectedDay).then(function (res) {
+          // If there are no bookings by given date -> return EMPTY ARRAY
+          if (res.data.length === 0) {
+            $scope.bookings =    [];
+            $scope.curr =        {};
+            $scope.loadingData = false;
+          }
+          else {
+            // GEYMA BOKANIR
+            $scope.bookings =    res.data;
+            bookingsToday();
+            $scope.loadingData = false;
+          }
+        }, function (err) {
+          console.log("update()->getBookingByDate() ERR:", err);
+        });
+        // SAEKJA VERDLISTAN,
+        backendFactory.getService().then(function (res) {
+          console.log("getService(), res.data:", res.data);
+          // Set pricelist as pricelist for given response
+          backendFactory.setPricelist(res.data);
+        }, function (err) {
+          console.log("ERROR getService(): ", err);
+        });
+        $scope.staff = backendFactory.Staff();
+        //console.log("$scope.staff:", $scope.staff);
+        $scope.times = dagatalFactory.timeSession();
+      }
+      // ENDIR update()
 
-        var bookingsToday = function() {
-            var dictEndTime = {};
-            for (var b in $scope.bookings) {
-                // FYRIR LENGD A TIMAPONTUNUM
-                var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
-                var minutes = dagatalFactory.getMMfromDate(new Date($scope.bookings[b].startTime));
-                var rowspan = 0;
-                console.log("sessLEngth ", ((sessionLength/15) * 2.5) + " nafn ", $scope.bookings[b].customer_id.name + " min " + minutes);
-                if (sessionLength % 2 === 0) {
-                  rowspan = ((sessionLength/15) * 2.5);
-                } else if(sessionLength % 2 !== 0 && (minutes === 15 || minutes === 45)) {
-                  rowspan = ((sessionLength/15) * 2.5) - 0.5;
-                } else {
-                  rowspan = ((sessionLength/15) * 2.5) + 0.5;
-                }
-                // BREYTA TIL AD SETJA SAMAN id SEM A AD SAEKJA UR DIV TOFLU
-                var tmp = dagatalFactory.getHHMMfromDate( new Date($scope.bookings[b].startTime) ) + "" + $scope.bookings[b].staff_id._id;
-                // SETJA INN STADSETNINGU FYRIR BOKUN I $scope.bookings, fyrir ID-id sem britist a div toflunni
-                bookingForToday[tmp] = b;
-                
-              sessionLength = sessionLength/15;
-              var texti = "";
-              var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
+      // FYRIR PROGRESS MYND
+      $scope.loadingData = true;
 
-                if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
-                    dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
-                    texti = "confirmedBooking";
-                }
-                else {
-                    if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
-                        texti = "confirmedBookingRight";
-                    }
-                    else {
-                        texti = "confirmedBookingLeft";
-                    }
-                }
+      // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
+      // Breytti frá $scope i var, því enginn ástæða til að kalla á þetta fall á scope-i
+      var bookingForToday = {};
 
-                myElm.innerHTML =
-                        '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
-                        $scope.bookings[b].customer_id.name +
-                          '<br>'+
-                        sessionLength +
-                        '</div>';
+      var bookingsToday = function () {
+        var dictEndTime = {};
+        for (var b in $scope.bookings) {
+          // FYRIR LENGD A TIMAPONTUNUM
+          var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
+          var minutes = dagatalFactory.getMMfromDate(new Date($scope.bookings[b].startTime));
+          var rowspan = 0;
+          if (sessionLength % 2 === 0) {
+            rowspan = sessionLength * 2.5;
+          } else if (sessionLength % 2 !== 0 && (minutes === 15 || minutes === 45)) {
+            rowspan = (sessionLength * 2.5) - 0.5;
+          } else {
+            rowspan = (sessionLength * 2.5) + 0.5;
+          }
+
+          // BREYTA TIL AD SETJA SAMAN id SEM A AD SAEKJA UR DIV TOFLU
+          var tmp = dagatalFactory.getHHMMfromDate(new Date($scope.bookings[b].startTime)) + "" + $scope.bookings[b].staff_id._id;
+          // SETJA INN STADSETNINGU FYRIR BOKUN I $scope.bookings, fyrir ID-id sem britist a div toflunni
+          bookingForToday[tmp] = b;
+          var texti = "";
+          var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
+
+          if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
+            dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
+            texti = "confirmedBooking";
+          }
+          else {
+            if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
+              texti = "confirmedBooking right";
             }
-        };
+            else {
+              texti = "confirmedBooking";
+              dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
+            }
+          }
 
-        // HREINSA BLADSIDA FYRIR NYJAN DAG
-        function cleanPage() {
-            $('.confirmedBookingLeft').remove();
-            $('.confirmedBookingRight').remove();
-        };
+          myElm.innerHTML =
+            '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
+            $scope.bookings[b].customer_id.name +
+            '<br>' +
+            sessionLength +
+            '</div>';
+        }
+      };
 
+      // HREINSA BLADSIDA FYRIR NYJAN DAG
+      function cleanPage() {
+        $('.confirmedBooking').remove();
+      }
 
       // Get bookings for selected date in datepicker
       $scope.getDailyBookings = function (t) {
