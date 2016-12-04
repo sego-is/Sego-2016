@@ -245,7 +245,8 @@ api.get('/book/:cid/:pid', (req, res) => {
                 });
             }
         })
-    } 
+    }
+    delete data._id;
     const s = new model.Service(data);
     s.save((err, doc) => {
         if (err) {
