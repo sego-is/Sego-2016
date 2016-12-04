@@ -6,21 +6,21 @@
     .factory('backendFactory', ['$http', function ($http) {
       var _company = null; // THIS IS COMPANY COLLECTION FROM DB //
       var _pricelist = {};
-      
+
       var backendFactory = {};
 
       backendFactory.set = function (company) {
         _company = company;
         console.log('_company:', _company.staff[0]._id);
       };
-      
+
       backendFactory.setPricelist = function(prices) {
           if (_company !== null) {
               _company.pricelist = prices;
               console.log("setPricelisT(prices): _company:", _company);
           }
       };
-      
+
       backendFactory.ID = function () {
         return _company._id;
       };
@@ -30,7 +30,7 @@
           return _company.staff;
         }
       };
-      
+
       backendFactory.getServiceById = function(sid) {
           if (_pricelist[sid] === undefined) {
             for (var i in _company.pricelist) {
@@ -41,13 +41,13 @@
           }
           return _pricelist[sid];
       };
-      
+
       backendFactory.Pricelist = function() {
           if (_company !== null) {
               return _company.pricelist;
           }
       }
-      
+
       backendFactory.getStaffById = function(pid) {
         for (var i in _company.staff) {
             if (_company.staff[i]._id === pid) {
@@ -56,7 +56,7 @@
         }
         return "PERSON NOT FOUND.. EXCUSE US";
       };
-      
+
       //------------------------------ ADMIN CALLS ------------------------------//
         backendFactory.getPersons = function () {
             return $http({
@@ -166,7 +166,7 @@
                 }
             });
         };
-        
+
         backendFactory.getBook = function() {
             return $http({
                 url: 'http://wwww.sego.is:6969/api/book',
@@ -206,7 +206,7 @@
             }
         });
       };
-      
+
       backendFactory.getCustomerStory = function(pid) {
           return $http({
               method: 'GET',
@@ -218,7 +218,7 @@
             }
           });
       };
-      
+
       // PERSON REST CALLS / BOTH FOR CUSTOMERS AND STAFF //
 
 
@@ -284,8 +284,6 @@
           }
         });
       };
-
-
 
       backendFactory.postService = function (s) {
         s.company_id  = this.ID();
