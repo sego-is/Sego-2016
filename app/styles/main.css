@@ -75,10 +75,6 @@ body {
   padding-right: 0;
 }
 
-boka.skilabod {
-  padding: 0px;
-}
-
 .btn-primary {
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
@@ -87,6 +83,11 @@ boka.skilabod {
 .btn-primary:hover {
   background-color: hsl(290, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(290, 80%, 60%), hsl(290, 60%, 45%) 2em, hsl(290, 80%, 60%));
+}
+
+.navbar-header {
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
 }
 
 .haus {
@@ -284,7 +285,7 @@ boka.skilabod {
   text-decoration: none;
 }
 
-.navbar-header {
+.navbar-haus {
   position: absolute;
   font-family: scala, sans-serif;
   font-size: 20px;
@@ -305,11 +306,11 @@ boka.skilabod {
   display: inline-block;
 }
 
-.navbar-header:hover {
+.navbar-haus:hover {
   color: black;
 }
 
-.navbar-header-top {
+.navbar-haus-top {
   position: absolute;
   font-family: scala, sans-serif;
   font-size: 1.4em;
