@@ -1,13 +1,13 @@
-<div class="haus form-inline">VIÐSKIPTAVINIR
-  <div class="form-group fa fa-users">
+<div class="haus form-inline row">VIÐSKIPTAVINIR
+  <div class="form-group fa fa-users"></div>
+  <div class="bla">
     <input type="text" ng-model="search" id="leitargluggi" class="form-control" placeholder="Leita..">
+    <button type="button"
+            class="close takki"
+            ng-click="closeWindow()">&times;
+    </button>
   </div>
-  <button type="button"
-          class="close takki"
-          ng-click="closeWindow()">&times;
-  </button>
 </div>
-
 <div class="content" ng-if="modifyCus">
   <table class="table table-striped">
     <tbody ng-if="!newCustomer">
@@ -18,99 +18,103 @@
               novalidate>
           <div class="form-group row">
             <div class="col-xs-12">
-            <input type="text"
-                   name="name"
-                   ng-class="{error: (badInput && form.customerForm.name.$error.required)
+              <input type="text"
+                     name="name"
+                     ng-class="{error: (badInput && form.customerForm.name.$error.required)
                                   || (badInput && form.customerForm.name.$error.maxlength)
                                   || (badInput && form.customerForm.name.$error.minlength)}"
-                   ng-click="badInputFalse()"
-                   ng-minlength="3"
-                   ng-maxlength="44"
-                   class="form-control"
-                   ng-model="person.name"
-                   placeholder="Nafn"
-                   required>
+                     ng-click="badInputFalse()"
+                     ng-minlength="3"
+                     ng-maxlength="44"
+                     class="form-control"
+                     ng-model="person.name"
+                     placeholder="Nafn"
+                     required>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-xs-12">
-            <input type="number"
-                   class="form-control"
-                   ng-click="badInputFalse()"
-                   ng-class="{error: (badInput && form.customerForm.phone.$error.required)
+              <input type="number"
+                     class="form-control"
+                     ng-click="badInputFalse()"
+                     ng-class="{error: (badInput && form.customerForm.phone.$error.required)
                                   || (badInput && form.customerForm.phone.$error.maxlength)
                                   || (badInput && form.customerForm.phone.$error.minlength)}"
-                   ng-minlength="7"
-                   ng-maxlength="7"
-                   name="phone"
-                   ng-model="person.phone"
-                   placeholder="Símanúmer"
-                   required>
+                     ng-minlength="7"
+                     ng-maxlength="7"
+                     name="phone"
+                     ng-model="person.phone"
+                     placeholder="Símanúmer"
+                     required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-xs-12">
-            <input type="email"
-                   class="form-control"
-                   name="email"
-                   ng-model="person.email"
-                   placeholder="Netfang">
+              <input type="email"
+                     class="form-control"
+                     name="email"
+                     ng-model="person.email"
+                     placeholder="Netfang">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-xs-12">
-            <input type="text"
-                   class="form-control"
-                   name="address"
-                   ng-model="person.address"
-                   placeholder="Heimilisfang">
+              <input type="text"
+                     class="form-control"
+                     name="address"
+                     ng-model="person.address"
+                     placeholder="Heimilisfang">
             </div>
             <div class="form-group row col-xs-11">
-            <div class="takkar col-md-offset-8 col-xs-offset-7">
-              <button type="submit"
-                      id="haettavidtakki"
-                      class="btn btn-primary"
-                      ng-click="toggleCus()">Hætta við
-              </button>
-              <button type="submit"
-                      id="uppfaeratakki"
-                      class="btn btn-primary"
-                      ng-click="addCustomer(person)">Uppfæra
-              </button>
+              <div class="takkar col-md-offset-8 col-xs-offset-7">
+                <button type="submit"
+                        id="haettavidtakki"
+                        class="btn btn-primary"
+                        ng-click="toggleCus()">Hætta við
+                </button>
+                <button type="submit"
+                        id="uppfaeratakki"
+                        class="btn btn-primary"
+                        ng-click="addCustomer(person)">Uppfæra
+                </button>
+              </div>
             </div>
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td>Athugasemdir:</td>
+      <td colspan="3">
+        <ul>
+          <li ng-repeat="comm in person.comments">{{ comm }}</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <form class="form-inline">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Bæta við athugasemd..">
           </div>
         </form>
       </td>
     </tr>
     <tr>
-        <td>Athugasemdir:</td>
-        <td colspan="3"><ul><li ng-repeat="comm in person.comments">{{ comm }}</li></ul></td>
-    </tr>
-    <tr>
-        <td colspan="4">
-            <form class="form-inline">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Bæta við athugasemd..">
-                </div>
-            </form>
-        </td>
-    </tr>
-    <tr>
-        <td>Dagsetning</td>
-        <td>Klippari</td>
-        <td>Þjónusta</td>
-        <td>Verð</td>
+      <td>Dagsetning</td>
+      <td>Klippari</td>
+      <td>Þjónusta</td>
+      <td>Verð</td>
     </tr>
     <tr ng-repeat="hist in person.history track by $index" ng-init="hist.total = 0">
-        <td style="width:10%;">{{ toMMDDYY(hist.startTime) }}</td>
-        <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
-        <td>
-            <ul>
-                <li ng-repeat="serv in hist.service" ng-init="hist.total = serv.price + hist.total">{{ serv.name }}</li>
-            </ul>
-        </td>
-        <td>{{ hist.total }}</td>
+      <td style="width:10%;">{{ toMMDDYY(hist.startTime) }}</td>
+      <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
+      <td>
+        <ul>
+          <li ng-repeat="serv in hist.service" ng-init="hist.total = serv.price + hist.total">{{ serv.name }}</li>
+        </ul>
+      </td>
+      <td>{{ hist.total }}</td>
     </tr>
 
     </tbody>
@@ -122,53 +126,53 @@
               novalidate>
           <div class="form-group row">
             <div class="col-xs-12">
-            <input type="text"
-                   name="name"
-                   ng-class="{error: (badInput && form.customerForm.name.$error.required)
+              <input type="text"
+                     name="name"
+                     ng-class="{error: (badInput && form.customerForm.name.$error.required)
                                   || (badInput && form.customerForm.name.$error.maxlength)
                                   || (badInput && form.customerForm.name.$error.minlength)}"
-                   ng-click="badInputFalse()"
-                   ng-minlength="3"
-                   ng-maxlength="44"
-                   class="form-control"
-                   ng-model="person.name"
-                   placeholder="Nafn"
-                   required>
+                     ng-click="badInputFalse()"
+                     ng-minlength="3"
+                     ng-maxlength="44"
+                     class="form-control"
+                     ng-model="person.name"
+                     placeholder="Nafn"
+                     required>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-xs-12">
-            <input type="number"
-                   class="form-control"
-                   ng-click="badInputFalse()"
-                   ng-class="{error: (badInput && form.customerForm.phone.$error.required)
+              <input type="number"
+                     class="form-control"
+                     ng-click="badInputFalse()"
+                     ng-class="{error: (badInput && form.customerForm.phone.$error.required)
                                   || (badInput && form.customerForm.phone.$error.maxlength)
                                   || (badInput && form.customerForm.phone.$error.minlength)}"
-                   ng-minlength="7"
-                   ng-maxlength="7"
-                   name="phone"
-                   ng-model="person.phone"
-                   placeholder="Símanúmer"
-                   required>
+                     ng-minlength="7"
+                     ng-maxlength="7"
+                     name="phone"
+                     ng-model="person.phone"
+                     placeholder="Símanúmer"
+                     required>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-xs-12">
-            <input type="email"
-                   class="form-control"
-                   name="email"
-                   ng-model="person.email"
-                   placeholder="Netfang">
+              <input type="email"
+                     class="form-control"
+                     name="email"
+                     ng-model="person.email"
+                     placeholder="Netfang">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-xs-12">
-            <input type="text"
-                   class="form-control"
-                   name="address"
-                   ng-model="person.address"
-                   placeholder="Heimilisfang">
+              <input type="text"
+                     class="form-control"
+                     name="address"
+                     ng-model="person.address"
+                     placeholder="Heimilisfang">
             </div>
           </div>
           <div class="form-group row col-xs-12">
@@ -189,51 +193,52 @@
       </td>
     </tr>
     </tbody>
-    </table>
-    </div>
-    <!------------------------------------------------------------------------------------------->
-    <!-------------------------          Viðskiptavinir          -------------------------------->
-    <!------------------------------------------------------------------------------------------->
-    <div class="content"  ng-if="!modifyCus">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-            <th>
-                <div class="pull-left">Nafn</div>
-            </th>
-            <th>Símanúmer</th>
-            <th>Netfang</th>
-            <th>
-                <div class="pull-right">
-                <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
-                        ng-click="newCus()"
-                        data-toggle="tooltip"
-                        data-placement="auto"
-                        title="Bæta við viðskiptavin">
-                </button>
-                </div>
-            </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:9" ng-click="editCust(vinur)">
-            <td>{{ vinur.name }}</td>
-            <td>{{ vinur.phone }}</td>
-            <td>{{ vinur.email }}</td>
-            <td></td>
-            </tr>
-            <tr>
-                <td colspan="4" style="text-align:center;">
-                    <dir-pagination-controls
-                    max-size="10"
-                    direction-links="true"
-                    boundary-links="true" >
-                    </dir-pagination-controls>
-            </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
+  </table>
+</div>
+<!------------------------------------------------------------------------------------------->
+<!-------------------------          Viðskiptavinir          -------------------------------->
+<!------------------------------------------------------------------------------------------->
+<div class="content" ng-if="!modifyCus">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>
+        <div class="pull-left">Nafn</div>
+      </th>
+      <th>Símanúmer</th>
+      <th>Netfang</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:9"
+        ng-click="editCust(vinur)">
+      <td>{{ vinur.name }}</td>
+      <td>{{ vinur.phone }}</td>
+      <td>{{ vinur.email }}</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align:center;">
+        <dir-pagination-controls
+          max-size="10"
+          direction-links="true"
+          boundary-links="true">
+        </dir-pagination-controls>
+      </td>
+      <td>
+        <div class="pull-right">
+          <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
+                  ng-click="newCus()"
+                  data-toggle="tooltip"
+                  data-placement="auto"
+                  title="Bæta við viðskiptavin">
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
 
 <div class="footer">SEGO</div>
