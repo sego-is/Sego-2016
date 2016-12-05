@@ -233,7 +233,7 @@ api.get('/book/:cid/:pid', (req, res) => {
                      for (var i in docs) {
                         tmpDoc.push(_.where(docs[i].bookings, { staff_id: req.params.pid }));    
                      }
-                     console.log("get('/bookings/:cid/:pid/:date, tmpDoc:", tmpDoc);
+                     console.log("get('/bookings/:cid/:pid/:date, tmpDoc:", docs[0].bookings);
                      res.send(tmpDoc);
                     
                 }
