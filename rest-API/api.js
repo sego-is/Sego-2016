@@ -216,10 +216,11 @@ api.get('/book/:cid/:pid', (req, res) => {
       var d = new Date(req.params.date);
       var year = d.getFullYear();
       var month = d.getMonth();
+      d.setMonth(d.getMonth() + 1);
      model.Booking.find({ 
          'company_id': { $eq: req.params.cid }, 
          'date': { 
-             $lt: new Date(), 
+             $lt: d, 
              $gt: new Date(year+','+month)
          }
         }).populate('bookings.customer_id')
@@ -229,17 +230,11 @@ api.get('/book/:cid/:pid', (req, res) => {
              }
              else { 
                  if (docs !== null) {
-                     var tmpDoc = [];
                      for (var i in docs) {
-                        tmpDoc.push(_.where(docs[i].bookings, { staff_id: req.params.pid }));    
+                        docs[i].bookings = _.where(docs[i].bookings, { staff_id: req.params.pid });    
                      }
-                     console.log("get('/bookings/:cid/:pid/:date, tmpDoc:", docs[0].bookings);
-                     res.send(tmpDoc);
-                    
                 }
-                else {
-                    res.send(docs);
-                }
+                res.send(docs);
                  
              }
          });

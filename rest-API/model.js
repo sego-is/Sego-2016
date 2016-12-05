@@ -23,7 +23,8 @@ const bookSchema = Schema({
         name: String,
         price: Number
     }],
-    
+    attendance: Boolean,
+    reason: String
 });
 
 const personSchema = Schema({
