@@ -231,14 +231,7 @@ api.get('/book/:cid/:pid', (req, res) => {
                  res.status(500).send(err);
              }
              else {
-                 docs.bookings.find({ staff_id: req.params.pid }, function(err1, docs1) {
-                    if (err1) {
-                        res.status(500).send(err1);
-                    }
-                    else {
-                        res.send(docs1);  
-                    }
-                 });
+                 res.send(docs);  
              }
          });
   });
