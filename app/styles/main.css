@@ -161,12 +161,13 @@ input[type="text"], #leitargluggi  {
 }
 
 .content .thjonusta {
+  margin-left: 20px;
   font-size: 18px;
 }
 
 .verd {
   text-align: right;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
 }
 

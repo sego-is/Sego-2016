@@ -102,7 +102,9 @@
 
   <div class="col-md-9" ng-if="show === 'nik'">
       <h3>Notendur í kerfinu</h3>
+    {{u.count}}
       <table class="table table-striped">
+        {{u.count}}
         <thead>
         <tr>
           <th>Notendur</th>
@@ -114,17 +116,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="u in users track by $index">
-          <td>{{ u.name }}</td>
+        <tr ng-repeat="u in users track by $index" ng-init="u.count = 0; hist.total = 0">
+          <td ng-init="u.count = u.count + 1">{{ u.name }}</td>
           <td>{{ u.phone }}</td>
           <td>{{ u.email }}</td>
           <td>{{ u.role }}</td>
-          <td>{{u.history}}</td>
+          <td ng-repeat="hist in u.history track by $index"
+              ng-init="hist.total = hist.total + 1">
+            <ul>
+              <li>{{hist.name}}</li>
+            </ul>
+          </td>
           <td>
             <button ng-click="deleteUser(u._id, $index)" value="eyða">eyða</button>
             <button ng-click="ATHUGA(u._id)" value="?">???</button>
           </td>
-          <td>{{u}}</td>
+          <td>{{u.history}}</td>
         </tr>
         </tbody>
       </table>

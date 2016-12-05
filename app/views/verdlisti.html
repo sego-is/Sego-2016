@@ -1,27 +1,37 @@
-<div class="kassar">
 <div class="haus">VERÐLISTI
-  <i class="fa fa-dollar"
-     style="font-size:30px" ; color: white>
+  <i class="fa fa-dollar">
   </i>
-  <button type="button"
-          class="close takki"
-          ng-click="closeWindow()">&times;
-  </button>
+  <div class="close takki"
+       ng-click="closeWindow()">&times;
+  </div>
 </div>
 <div class="content">
   <table class="table table-striped">
     <tbody>
-    <!------------------------------------------------------------------------------------------->
-    <!-------------------------          Verðlisti          -------------------------------->
-    <!------------------------------------------------------------------------------------------->
-    <tr ng-repeat="p in pricelist" ng-if="p.active || p.active === undefined">
-      <td class="thjonusta">{{ p.name }}</td>
-      <td class="verd">{{ p.price }} kr.</td>
-    </tr>
+      <tr ng-repeat="p in pricelist"
+          ng-if="p.active || p.active === undefined"
+          ng-switch on="$index %2">
+        <td class="thjonusta" ng-switch-when="0">
+          {{ pricelist[$index].name }}
+        </td>
+        <td class="verd" ng-switch-when="0">
+          {{ pricelist[$index].price }} kr.
+        </td>
+        <td class="thjonusta" ng-switch-when="0">
+          <span ng-show="pricelist[$index+1]">
+            {{ pricelist[$index+1].name }}
+          </span>
+        </td>
+        <td class="verd" ng-switch-when="0">
+          <span ng-show="pricelist[$index+1]">
+            {{ pricelist[$index+1].price }} kr.
+          </span>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
 <div class="footer">SEGO</div>
-</div>
+
 
 
