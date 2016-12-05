@@ -128,11 +128,15 @@
           };
           
           // SEKJA BOKANIR FYRIR STARFSMANN FYRIR MANUDINN
-           backendFactory.getBookingByMonth(dagatalFactory.getStringForDate()).then(function(res) {
+          scope.klikkaStarfsmann = function(p) {
+            console.log("KLIKKASTARFSNANN INPUT MED PARAMETER:", p);
+            backendFactory.getBookingByMonth(p ,dagatalFactory.getStringForDate()).then(function(res) {
                 console.log("getBookingByMonth, res:", res);
             }, function (err) {
                 console.log("update()->getBookingByMonth() ERR:", err);
             });
+          }
+           
             
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p) {
