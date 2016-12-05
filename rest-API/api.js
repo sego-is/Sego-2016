@@ -213,12 +213,15 @@ api.get('/book/:cid/:pid', (req, res) => {
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
   api.get('/bookings/:cid/:pid/:date', (req, res) => {
       console.log("/bookings/:cid/:pid/:date -> JIBBÍ", req.params);
+      var d = new Date(req.params.date);
+      //var year = d.getFullYear();
+      //var month = d.getMonth();
      model.Booking.find({ 
          company_id: { $eq: req.params.cid }, 
          date: { 
              $lt: new Date(), 
-             $gt: new Date()
-         }).populate('bookings')
+             $gt: new Date(d.getFullYear()+','+d.getMonths())
+         }}).populate('bookings')
          .exec(function (err, docs) {
              if (err) {
                  res.status(500).send(err);
@@ -226,7 +229,7 @@ api.get('/book/:cid/:pid', (req, res) => {
              else {
                 res.send(docs);    
              }
-         })
+         });
   });
   
    //
