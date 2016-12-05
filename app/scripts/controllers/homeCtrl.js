@@ -44,11 +44,6 @@
       function update() {
         // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
         backendFactory.getBookingByDate(selectedDay).then(function (res) {
-            backendFactory.getBookingByMonth(selectedDay).then(function(res) {
-                console.log("getBookingByMonth, res:", res);
-            }, function (err) {
-                console.log("update()->getBookingByMonth() ERR:", err);
-            });
           // If there are no bookings by given date -> return EMPTY ARRAY
           if (res.data.length === 0) {
             $scope.bookings =    [];
@@ -182,7 +177,6 @@
             date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
             startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
           };
-          console.log('clickOnTimapant:', $scope.clickOnTimapant);
           compiledDirective = $compile('<boka class="skilabod" ' +
             'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
           var directiveElement = compiledDirective(booking);

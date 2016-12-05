@@ -220,7 +220,7 @@ api.get('/book/:cid/:pid', (req, res) => {
          company_id: { $eq: req.params.cid }, 
          date: { 
              $lt: new Date(), 
-             $gt: new Date(d.getFullYear()+','+d.getMonths())
+             $gt: new Date(d.getFullYear()+','+d.getMonth())
          }}).populate('bookings')
          .exec(function (err, docs) {
              if (err) {

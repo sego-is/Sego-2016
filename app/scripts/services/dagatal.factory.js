@@ -90,7 +90,7 @@
         },
         getStringForDate: function (d, t) {
           if (d === undefined) {
-            d = new Date();
+            d = dagsetningValinn;
           }
           if (t === undefined) {
             t = "00:00:00";
