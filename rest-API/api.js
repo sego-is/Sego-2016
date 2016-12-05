@@ -221,15 +221,26 @@ api.get('/book/:cid/:pid', (req, res) => {
          'date': { 
              $lt: new Date(), 
              $gt: new Date(year+','+month)
-         },
-         'bookings.staff_id': { $eq: req.params.pid }
+         }
         }).populate('bookings.customer_id')
          .exec(function (err, docs) {
              if (err) {
                  res.status(500).send(err);
              }
-             else {
-                 res.send(docs);  
+             else { 
+                 if (docs !== null) {
+                     var tmpDoc = [];
+                     for (var i in docs) {
+                        tmpDoc.push(_.where(docs[i].bookings, { staff_id: req.params.pid }));    
+                     }
+                     console.log("get('/bookings/:cid/:pid/:date, tmpDoc:", docs[0].bookings);
+                     res.send(tmpDoc);
+                    
+                }
+                else {
+                    res.send(docs);
+                }
+                 
              }
          });
   });
