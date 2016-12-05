@@ -118,7 +118,7 @@ const bookingsSchema = Schema({
   },
   bookings: [bookSchema]
 });
-
+/*
 bookingsSchema.static('findIdOfBooking', function(b, cb) {
     return this.findOne({ 
         'company_id' : b.company_id, 
@@ -126,15 +126,9 @@ bookingsSchema.static('findIdOfBooking', function(b, cb) {
         'bookings.staff_id': b.staff_id,
         'bookings.startTime': b.startTime }, 'bookings._id', cb); 
 });
-
+*/
 bookingsSchema.index({company_id: 1, date: 1}, {unique: true});
 
-
-
-// CAST string to ObjectId //
-/*function ObjectId(id_string) {
-    return mongoose.Types.ObjectId(id_string);
-};*/
 
 module.exports = {
   Person:  mongoose.model('Person',   personSchema),
@@ -142,5 +136,4 @@ module.exports = {
   Book: mongoose.model('Book', bookSchema),
   Booking: mongoose.model('Booking',  bookingsSchema),
   Service: mongoose.model('Service',  serviceSchema)
-  //ObjectId: ObjectId
 };
