@@ -217,15 +217,13 @@ api.get('/book/:cid/:pid', (req, res) => {
       var year = d.getFullYear();
       var month = d.getMonth();
      model.Booking.find({ 
-         company_id: { $eq: req.params.cid }, 
-         date: { 
+         'company_id': { $eq: req.params.cid }, 
+         'date': { 
              $lt: new Date(), 
              $gt: new Date(year+','+month)
-         }}).populate({
-             'path': 'bookings',
-             'match': { 'staff_id': req.params.pid },
-             'select': 'customer_id  startTime endTime service'
-             })
+         },
+         'bookings.staff_id': { $eq: req.params.pid }
+        }).populate('bookings.customer_id')
          .exec(function (err, docs) {
              if (err) {
                  res.status(500).send(err);
