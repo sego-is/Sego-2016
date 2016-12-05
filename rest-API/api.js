@@ -222,9 +222,9 @@ api.get('/book/:cid/:pid', (req, res) => {
              $lt: new Date(), 
              $gt: new Date(year+','+month)
          }}).populate({
-             path: 'bookings',
-             match: { staff_id: req.params.pid },
-             select: 'customer_id  startTime endTime service'
+             'path': 'bookings',
+             'match': { 'staff_id': req.params.pid },
+             'select': 'customer_id  startTime endTime service'
              })
          .exec(function (err, docs) {
              if (err) {
