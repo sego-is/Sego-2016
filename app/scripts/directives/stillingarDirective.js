@@ -41,9 +41,9 @@
 
           // HELP FUNCTION WHEN TOGGLE TO CREATING STAFF MEMBER
           scope.toStaffAdd = function() {
-            scope.state.add =  !scope.state.add;
-            scope.editUser = {};
-            scope.editUser.role = 1;
+            scope.state.add           = !scope.state.add;
+            scope.editUser            = {};
+            scope.editUser.role       = 1;
             scope.editUser.company_id = backendFactory.ID();
           };
 
@@ -126,7 +126,7 @@
                  console.log("ERROR removePrice", err);
              });
           };
-          
+
           // SEKJA BOKANIR FYRIR STARFSMANN FYRIR MANUDINN
           scope.klikkaStarfsmann = function(p) {
             console.log("KLIKKASTARFSNANN INPUT MED PARAMETER:", p);
@@ -136,8 +136,8 @@
                 console.log("update()->getBookingByMonth() ERR:", err);
             });
           }
-           
-            
+
+
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p) {
             scope.editVerd = p;
@@ -205,8 +205,6 @@
 
             });
           };
-
-
         }
       };
     }]);

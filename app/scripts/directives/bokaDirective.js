@@ -35,9 +35,8 @@
             scope.timeTaken = 0;
             // SMA HACK TIL AD SENDA INN NAME OG PRICE MED SERVICE ID
             var VALIN_THJONUSTA = {};
-            
+
             scope.toggleSelection = function(s) {
-                console.log("toggleSelection, s:", s);
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
                   scope.serviceSelected.splice(posOfSelected, 1);
@@ -46,7 +45,7 @@
                 }
                 else {
                   scope.serviceSelected.push(s._id);
-                  VALIN_THJONUSTA[s._id] = { 
+                  VALIN_THJONUSTA[s._id] = {
                       "service_id": s._id,
                       "name": s.name,
                       "price": s.price
@@ -65,22 +64,13 @@
             scope.stadfesta = function(bokun) {
 
               if (scope.bookingForm.$valid) {
-                console.log("getur bókað það ", JSON.stringify(bokun));
-
-                // kannski þarf að breyta timeTaken í sek
-                console.log("service time ", scope.timeTaken);
-
                 var tmpEndTime = new Date(scope.objFrom.startTime);
                 tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
-
-                console.log("tmpEndTime:", tmpEndTime);
-
                 scope.badInput = false;
-                
-                
-                // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value                
+
+                // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
                 var arr = Object.keys(VALIN_THJONUSTA).map(function(key) { return VALIN_THJONUSTA[key]; })
-                
+
                 backendFactory.postBooking({
                     startTime: scope.objFrom.startTime,
                     endTime: tmpEndTime,
@@ -97,7 +87,6 @@
                     console.log("CB scope.stafesta() - err: ", err);
                 });
               } else {
-                console.log("bad input ");
                 scope.badInput = true;
               }
             };

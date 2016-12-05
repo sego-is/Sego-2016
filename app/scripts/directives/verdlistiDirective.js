@@ -16,10 +16,10 @@
                     backendFactory.getService().then(function(res) {
                         scope.pricelist = res.data;
                     }, function(err) {
-                        console.log("ERROR getStaf(): ", err);
+                        console.log("ERROR getStaff(): ", err);
                     });
                 }
-              
+
                 scope.closeWindow = function() {
         			scope.lokaGlugga();
         		};

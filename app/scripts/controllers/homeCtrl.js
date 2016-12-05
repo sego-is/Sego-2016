@@ -68,7 +68,6 @@
           console.log("ERROR getService(): ", err);
         });
         $scope.staff = backendFactory.Staff();
-        //console.log("$scope.staff:", $scope.staff);
         $scope.times = dagatalFactory.timeSession();
       }
       // ENDIR update()
