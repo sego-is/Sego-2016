@@ -229,9 +229,18 @@ api.get('/book/:cid/:pid', (req, res) => {
              }
              else { 
                  if (docs !== null) {
-                    console.log("get('/bookings/:cid/:pid/:date, docs:", docs);
+                     var tmpDoc = [];
+                     for (var i in docs) {
+                        tmpDoc.push(_.where(docs[i].bookings, { staff_id: req.params.pid }));    
+                     }
+                     console.log("get('/bookings/:cid/:pid/:date, tmpDoc:", tmpDoc);
+                     res.send(tmpDoc);
+                    
                 }
-                res.send(docs); 
+                else {
+                    res.send(docs);
+                }
+                 
              }
          });
   });
