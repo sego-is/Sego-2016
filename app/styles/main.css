@@ -166,10 +166,9 @@ input[type="text"], #leitargluggi  {
 }
 
 .verd {
-  float: right;
+  text-align: right;
   font-size: 18px;
   font-weight: bold;
-  margin-right: 20px;
 }
 
 .hiddenRow {
@@ -613,9 +612,4 @@ input:checked + .slider:before {
 
 .adminNewDay {
   background-color: #66afe9;
-}
-
-.columns {
-  margin-top: 1.2em;
-  columns: 2;
 }
