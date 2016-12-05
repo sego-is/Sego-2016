@@ -161,6 +161,7 @@ input[type="text"], #leitargluggi  {
 }
 
 .content .thjonusta {
+  margin-left: 20px;
   font-size: 18px;
 }
 
@@ -192,7 +193,7 @@ input[type="text"], #leitargluggi  {
 
 .verd {
   text-align: right;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -632,4 +633,12 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/*******************************/
+/************ ADMIN ************/
+/*******************************/
+
+.adminNewDay {
+  background-color: #66afe9;
 }

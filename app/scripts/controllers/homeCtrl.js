@@ -68,7 +68,6 @@
           console.log("ERROR getService(): ", err);
         });
         $scope.staff = backendFactory.Staff();
-        //console.log("$scope.staff:", $scope.staff);
         $scope.times = dagatalFactory.timeSession();
       }
       // ENDIR update()
@@ -177,7 +176,6 @@
             date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
             startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
           };
-          console.log('clickOnTimapant:', $scope.clickOnTimapant);
           compiledDirective = $compile('<boka class="skilabod" ' +
             'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
           var directiveElement = compiledDirective(booking);

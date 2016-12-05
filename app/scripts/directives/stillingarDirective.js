@@ -4,7 +4,7 @@
 
   angular
     .module('segoapp')
-    .directive('stillingar', ['$http', 'backendFactory', function ($http, backendFactory) {
+    .directive('stillingar', ['dagatalFactory','backendFactory', function (dagatalFactory, backendFactory) {
       return {
         restrict: 'E',
         scope: {
@@ -25,13 +25,25 @@
           // Needed for validation
           scope.form = {};
 
-          // COMPANY->_ID PERSON WORKS FOR
+
+          // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
+          scope.state = {
+              verdskra: false,
+              add: false,
+              edit: false
+          };
+
+          scope.toggle = function() {
+              scope.state.verdskra = !scope.state.verdskra;
+          };
+          // END OF TOGGLE
+         // COMPANY->_ID PERSON WORKS FOR
 
           // HELP FUNCTION WHEN TOGGLE TO CREATING STAFF MEMBER
           scope.toStaffAdd = function() {
-            scope.state.add =  !scope.state.add;
-            scope.editUser = {};
-            scope.editUser.role = 1;
+            scope.state.add           = !scope.state.add;
+            scope.editUser            = {};
+            scope.editUser.role       = 1;
             scope.editUser.company_id = backendFactory.ID();
           };
 
@@ -115,6 +127,17 @@
              });
           };
 
+          // SEKJA BOKANIR FYRIR STARFSMANN FYRIR MANUDINN
+          scope.klikkaStarfsmann = function(p) {
+            console.log("KLIKKASTARFSNANN INPUT MED PARAMETER:", p);
+            backendFactory.getBookingByMonth(p ,dagatalFactory.getStringForDate()).then(function(res) {
+                console.log("getBookingByMonth, res:", res);
+            }, function (err) {
+                console.log("update()->getBookingByMonth() ERR:", err);
+            });
+          }
+
+
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p) {
             scope.editVerd = p;
@@ -182,19 +205,6 @@
 
             });
           };
-
-
-          // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
-          scope.state = {
-              verdskra: false,
-              add: false,
-              edit: false
-          };
-
-          scope.toggle = function() {
-              scope.state.verdskra = !scope.state.verdskra;
-          };
-          // END OF TOGGLE
         }
       };
     }]);

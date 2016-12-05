@@ -1,6 +1,44 @@
 <div class="container" permissions="['administration']">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3 ">
+      <div class="list-group">
+        <div class="list-group-item divTakki"
+             ng-click="toggleViews('home')">
+          <h6>Admin</h6>
+        </div>
+        <div class="list-group-item divTakki"
+             ng-click="toggleViews('bvh')">bæta við hárgreiðslustofu
+        </div>
+        <div class="list-group-item divTakki"
+             ng-click="toggleViews('hik')">hárgreiðslustofur í kerfinu
+        </div>
+        <div class="list-group-item divTakki"
+             ng-click="toggleViews('bvn')">bæta við notanda
+        </div>
+        <div class="list-group-item divTakki"
+             ng-click="toggleViews('nik')">notendur í kerfinu
+        </div>
+        <div class="list-group-item divTakki"
+             ng-click="toggleViews('bik')">Bókanir í kerfinu
+        </div>
+        <div class="list-group-item divTakki"
+             ng-click="toggleViews('thik')">þjónustur í kerfinu
+        </div>
+        <div class="list-group-item divTakki"
+             ng-click="toggleViews('tf')">Tölfræði</div>
+      </div>
+    </div>
+    <div class="col-md-9" ng-if="show === 'home'">
+      <h5>til hliðar er hægt að kalla fram lista af öllu í kerfinu og bæta við og eyða</h5>
+      <h7>fyrir neðan eru hugmyndir af skemmtilegri tölfræði sem væri gaman að sjá hér</h7>
+      <ul>
+        <li>birta fjölda hárgreiðslustofa</li>
+        <li>birta fjölda klippara</li>
+        <li>birta fjölda bókana í kerfinu</li>
+        <li>birta fjölda þjónustna í kerfinu</li>
+      </ul>
+    </div>
+    <div class="col-md-9" ng-if="show === 'bvh'">
       <h3>Bæta við hárgreiðslustofu:</h3>
       <form>
         <div class="form-group">
@@ -18,7 +56,8 @@
         <input type="button" ng-click="addCompany(company)" value="STADFESTA">
       </form>
     </div>
-    <div class="col-md-6">
+
+  <div class="col-md-9" ng-if="show === 'hik'">
       <h3>Hárgreiðslustofur í kerfinu</h3>
       <table class="table table-striped">
         <thead>
@@ -31,7 +70,7 @@
         <tbody ng-repeat="c in companies track by $index">
         <tr>
           <td>{{ c.name }}</td>
-          <td>{{ c.phone }}</td> 
+          <td>{{ c.phone }}</td>
         </tr>
         <tr ng-repeat="s in c.staff track by $index">
             <td>{{ s._id }}</td>
@@ -40,9 +79,9 @@
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
+
+
+  <div class="col-md-9" ng-if="show === 'bvn'">
       <h3>Bæta við notanda</h3>
       <form>
         <div class="form-group">
@@ -60,9 +99,12 @@
         <input type="button" ng-click="addUser(user)" value="STADFESTA">
       </form>
     </div>
-    <div class="col-md-6">
+
+  <div class="col-md-9" ng-if="show === 'nik'">
       <h3>Notendur í kerfinu</h3>
+    {{u.count}}
       <table class="table table-striped">
+        {{u.count}}
         <thead>
         <tr>
           <th>Notendur</th>
@@ -74,54 +116,74 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="u in users track by $index">
-          <td>{{ u.name }}</td>
+        <tr ng-repeat="u in users track by $index" ng-init="u.count = 0; hist.total = 0">
+          <td ng-init="u.count = u.count + 1">{{ u.name }}</td>
           <td>{{ u.phone }}</td>
           <td>{{ u.email }}</td>
           <td>{{ u.role }}</td>
-          <td>{{u.history}}</td>
+          <td ng-repeat="hist in u.history track by $index"
+              ng-init="hist.total = hist.total + 1">
+            <ul>
+              <li>{{hist.name}}</li>
+            </ul>
+          </td>
           <td>
             <button ng-click="deleteUser(u._id, $index)" value="eyða">eyða</button>
             <button ng-click="ATHUGA(u._id)" value="?">???</button>
           </td>
-          <td>{{u}}</td>
+          <td>{{u.history}}</td>
         </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-md-6">
+
+
+
+  <div class="col-md-9" ng-if="show === 'bik'">
       <h3>Bókanir í kerfinu</h3>
+
       <table class="table table-striped">
         <thead>
         <tr>
-          <th>ID</th>
           <th>Staff Name</th>
           <th>Customer Name</th>
           <th>Start Time</th>
           <th>End time</th>
-          <th></th>
+          <th>Þjónusta</th>
+          <th>Sala</th>
         </tr>
         </thead>
-        <tbody ng-repeat="b in bookings">
-            <tr ng-repeat="books in b.bookings">
-                <td>{{ books._id }}</td>
+        <tbody ng-repeat="b in bookings" ng-init="b.dayTotal = 0">
+
+            <tr ng-repeat="books in b.bookings" ng-init="books.total = 0">
                 <td>{{ books.staff_id.name }}</td>
                 <td>{{ books.customer_id.name }}</td>
                 <td>{{ books.startTime }}</td>
                 <td>{{ books.endTime }}</td>
+              <td>
+                <ul>
+                  <li ng-repeat="s in books.service track by $index"
+                      ng-init="books.total = s.price + books.total;
+                               b.dayTotal = b.dayTotal + books.total">{{s.name}}
+                  </li>
+                </ul>
+              </td>
+              <td>{{books.total}}kr</td>
             </tr>
-            <tr>
-                <td colspan=4>{{b}}</td>
-                <td>
-                    <button ng-click="deleteBooking(b._id)" value="eyða">eyða</button>
-                </td>
+            <tr class="adminNewDay">
+              <td>Samtala dags</td>
+              <td colspan="3">{{b.date}}</td>
+              <td>{{b.dayTotal}} kr</td>
+              <td>
+                <button ng-click="deleteBooking(b._id)" value="eyða">Eyða degi</button>
+              </td>
             </tr>
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="row">
-      <div class="col-md-6">
+
+
+  <div class="col-md-9" ng-if="show === 'thik'">
       <h3>Þjónustur í kerfinu</h3>
       <table class="table table-striped">
         <thead>
@@ -149,6 +211,6 @@
         </tbody>
       </table>
     </div>
-    
+
     </div>
 </div>

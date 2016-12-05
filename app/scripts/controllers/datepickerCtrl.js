@@ -69,7 +69,6 @@
 
     var date = data.date,
       mode = data.mode;
-    //console.log("88", data);
     if (mode === 'day') {
       var dayToCheck = new Date(date).setHours(0,0,0,0);
 

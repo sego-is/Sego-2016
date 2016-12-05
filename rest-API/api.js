@@ -209,14 +209,35 @@ api.get('/book/:cid/:pid', (req, res) => {
         }
     });
   });
-  
+   
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
-  api.get('/bookings/:cid/:date/:option', (req, res) => {
-     if (req.params.option === 1) {
-         console.log("OPTION === 1");
-     } else if (req.params.option === 2) {
-         console.log("OPTION === 2");
-     }
+  api.get('/bookings/:cid/:pid/:date', (req, res) => {
+      console.log("/bookings/:cid/:pid/:date -> JIBBÍ", req.params);
+      var d = new Date(req.params.date);
+      var year = d.getFullYear();
+      var month = d.getMonth();
+      d.setMonth(d.getMonth() + 1);
+     model.Booking.find({ 
+         'company_id': { $eq: req.params.cid }, 
+         'date': { 
+             $lt: d, 
+             $gt: new Date(year+','+month)
+         }
+        }).populate('bookings.customer_id')
+         .exec(function (err, docs) {
+             if (err) {
+                 res.status(500).send(err);
+             }
+             else { 
+                 if (docs !== null) {
+                     for (var i in docs) {
+                        docs[i].bookings = _.where(docs[i].bookings, { staff_id: req.params.pid });    
+                     }
+                }
+                res.send(docs);
+                 
+             }
+         });
   });
   
    //
