@@ -223,7 +223,7 @@ api.get('/book/:cid/:pid', (req, res) => {
              $gt: new Date(year+','+month)
          }}).populate({
              path: 'bookings',
-             match: { staff_id: { $eq: req.params.pid }},
+             match: { staff_id: req.params.pid },
              select: 'customer_id  startTime endTime service'
              })
          .exec(function (err, docs) {
