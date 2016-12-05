@@ -216,10 +216,11 @@ api.get('/book/:cid/:pid', (req, res) => {
       var d = new Date(req.params.date);
       var year = d.getFullYear();
       var month = d.getMonth();
+      d.setMonth(d.getMonth() + 1);
      model.Booking.find({ 
          'company_id': { $eq: req.params.cid }, 
          'date': { 
-             $lt: new Date(), 
+             $lt: d, 
              $gt: new Date(year+','+month)
          }
         }).populate('bookings.customer_id')
