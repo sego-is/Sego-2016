@@ -211,12 +211,22 @@ api.get('/book/:cid/:pid', (req, res) => {
   });
   
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
-  api.get('/bookings/:cid/:date/:option', (req, res) => {
-     if (req.params.option === 1) {
-         console.log("OPTION === 1");
-     } else if (req.params.option === 2) {
-         console.log("OPTION === 2");
-     }
+  api.get('/bookings/:cid/:pid/:date', (req, res) => {
+      console.log("/bookings/:cid/:pid/:date -> JIBBÍ", req.params);
+     model.Booking.find({ 
+         company_id: { $eq: req.params.cid }, 
+         date: { 
+             $lt: new Date(), 
+             $gt: new Date()
+         }).populate('bookings')
+         .exec(function (err, docs) {
+             if (err) {
+                 res.status(500).send(err);
+             }
+             else {
+                res.send(docs);    
+             }
+         })
   });
   
    //
