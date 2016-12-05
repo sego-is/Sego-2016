@@ -221,15 +221,17 @@ api.get('/book/:cid/:pid', (req, res) => {
          'date': { 
              $lt: new Date(), 
              $gt: new Date(year+','+month)
-         },
-         'bookings.staff_id': { $eq: req.params.pid }
+         }
         }).populate('bookings.customer_id')
          .exec(function (err, docs) {
              if (err) {
                  res.status(500).send(err);
              }
-             else {
-                 res.send(docs);  
+             else { 
+                 if (docs !== null) {
+                    console.log("get('/bookings/:cid/:pid/:date, docs:", docs);
+                }
+                res.send(docs); 
              }
          });
   });
