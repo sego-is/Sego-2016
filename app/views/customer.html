@@ -48,7 +48,6 @@
                      required>
             </div>
           </div>
-
           <div class="form-group row">
             <div class="col-xs-12">
               <input type="email"
@@ -198,15 +197,15 @@
 <!------------------------------------------------------------------------------------------->
 <!-------------------------          Viðskiptavinir          -------------------------------->
 <!------------------------------------------------------------------------------------------->
-<div class="content" ng-if="!modifyCus">
+<div class="content v" ng-if="!modifyCus">
   <table class="table table-striped">
     <thead>
     <tr>
       <th>
         <div class="pull-left">Nafn</div>
       </th>
-      <th>Símanúmer</th>
-      <th>Netfang</th>
+      <th class="símanúmer">Símanúmer</th>
+      <th class="email">Netfang</th>
     </tr>
     </thead>
     <tbody>
@@ -214,31 +213,24 @@
         ng-click="editCust(vinur)">
       <td>{{ vinur.name }}</td>
       <td>{{ vinur.phone }}</td>
-      <td>{{ vinur.email }}</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td colspan="4" style="text-align:center;">
-        <dir-pagination-controls
-          max-size="10"
-          direction-links="true"
-          boundary-links="true">
-        </dir-pagination-controls>
-      </td>
-      <td>
-        <div class="pull-right">
-          <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
-                  ng-click="newCus()"
-                  data-toggle="tooltip"
-                  data-placement="auto"
-                  title="Bæta við viðskiptavin">
-          </button>
-        </div>
-      </td>
+      <td class="email">{{ vinur.email }}</td>
     </tr>
     </tbody>
   </table>
 </div>
-
-
+<div class="row form-group blaðsíður" ng-if="!modifyCus">
+    <dir-pagination-controls
+      max-size="10"
+      direction-links="true"
+      boundary-links="true">
+    </dir-pagination-controls>
+    <div class="viðskiptatakki">
+      <button class="btn btn-primary"
+              type="submit"
+              id="bætavið_takki"
+              ng-click="newCus()">Bæta við
+      </button>
+  </div>
+</div>
 <div class="footer">SEGO</div>
+</div>

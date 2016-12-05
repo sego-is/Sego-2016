@@ -146,9 +146,9 @@ input[type="text"], #leitargluggi  {
 }
 
 .content {
-  height: 500px;
+  height: 521px;
   width: 100%;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   font-family: scala;
 }
 
@@ -164,10 +164,40 @@ input[type="text"], #leitargluggi  {
   font-size: 18px;
 }
 
+.email {
+  text-align: center;
+}
+
+.content.v {
+  height: 383px;
+  width: 100%;
+  /*overflow-y: auto;*/
+  font-family: scala;
+}
+
+.table-striped {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.símanúmer {
+  width: 100px;
+}
+
+
+.blaðsíður {
+  margin-top: 23px;
+  margin-bottom: 7px;
+}
+
 .verd {
   text-align: right;
   font-size: 14px;
   font-weight: bold;
+}
+
+.blaðsíður {
+  text-align: center;
 }
 
 .hiddenRow {
@@ -222,6 +252,7 @@ input[type="text"], #leitargluggi  {
 }
 
 @media only screen and (max-device-width: 667px) {
+
   .container-fluid > .navbar-header {
     margin-left: -10px;
   }
@@ -239,7 +270,7 @@ input[type="text"], #leitargluggi  {
   }
 }
 
-@media only screen and (max-device-width: 375px) {
+@media only screen and (max-device-width: 414px) {
   .container {
     max-width: 730px;
   }
@@ -249,7 +280,10 @@ input[type="text"], #leitargluggi  {
     left: 0;
     top: 2px;
     width: 100%;
-    height: 100%;
+  }
+
+  .blaðsíður {
+    margin-top: 50px;
   }
 
   .navbar-right {
@@ -281,11 +315,6 @@ input[type="text"], #leitargluggi  {
   .container-fluid > .navbar-header-top {
     margin-top: 13px;
     margin-left: -10px;
-  }
-
-  .row {
-    margin-left: 0px;
-    margin-right: 0px;
   }
 
   .row .col-xs-1 {
