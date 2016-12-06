@@ -180,6 +180,18 @@ body {
   font-family: scala;
 }
 
+.content.b {
+  height: 511px;
+  width: 100%;
+  /*overflow-y: auto;*/
+  font-family: scala;
+}
+
+.input-group {
+  position: relative;
+  left: 11px;
+}
+
 .table-striped {
   table-layout: fixed;
   width: 100%;
