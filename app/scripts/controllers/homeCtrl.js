@@ -23,7 +23,7 @@
       });
 
       // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
-      var selectedDay = dagatalFactory.getStringForDate();
+      var selectedDay = dagatalFactory.getDate();
 
       // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
       $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
@@ -35,7 +35,8 @@
 
       $scope.nextDay = function () {
         dagatalFactory.tomorrow();
-        $scope.getDailyBookings(selectedDay);
+        console.log(selectedDay);
+          $scope.getDailyBookings(selectedDay);
       };
 
 
@@ -114,7 +115,6 @@
               dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
             }
           }
-
           myElm.innerHTML =
             '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
             $scope.bookings[b].customer_id.name +
