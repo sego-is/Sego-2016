@@ -708,7 +708,7 @@ input.ng-valid {
   font-weight: bold;
   background-color: #ddd;
 }
-.rTableBody {
+.rTableBody   {
   display: table-row-group;
 }
 
@@ -728,55 +728,6 @@ input.ng-valid {
 /* Hide default HTML checkbox */
 .switch input {
   display:none;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 0.9em;
-  width: 0.9em;
-  top: 0.05em;
-  left: 0.1em;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: hsl(290, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(0.9em);
-  -ms-transform: translateX(0.9em);
-  transform: translateX(0.9em);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
 }
 
 /*******************************/
