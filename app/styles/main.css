@@ -81,10 +81,14 @@ body {
   background-image: linear-gradient(-90deg, hsl(290, 80%, 60%), hsl(290, 60%, 45%) 2em, hsl(290, 80%, 60%));
 }
 
-input[type="text"], #leitargluggi  {
+#leitargluggi  {
   background-color : #f8f8f8;
   margin-right: 50px;
   margin-bottom: 2px;
+}
+
+.form {
+  margin-bottom: 10px;
 }
 
 .bla {
@@ -189,6 +193,10 @@ input[type="text"], #leitargluggi  {
 .blaðsíður {
   margin-top: 23px;
   margin-bottom: 7px;
+}
+
+.takkar {
+  float: right;
 }
 
 .verd {
