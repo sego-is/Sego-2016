@@ -36,7 +36,7 @@
       $scope.nextDay = function () {
         dagatalFactory.tomorrow();
         console.log(selectedDay);
-          $scope.getDailyBookings(selectedDay);
+        $scope.getDailyBookings(selectedDay);
       };
 
 
@@ -47,6 +47,7 @@
         backendFactory.getBookingByDate(selectedDay).then(function (res) {
           // If there are no bookings by given date -> return EMPTY ARRAY
           if (res.data.length === 0) {
+              console.log("HER ER ENGAR BOKANIR", selectedDay);
             $scope.bookings =    [];
             $scope.curr =        {};
             $scope.loadingData = false;
@@ -73,7 +74,7 @@
       }
       // ENDIR update()
 
-      // FYRIR PROGRESS MYND
+      // FYRIR PROGRESS MYND(
       $scope.loadingData = true;
 
       // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
@@ -81,6 +82,7 @@
       var bookingForToday = {};
 
       var bookingsToday = function () {
+          console.log("BOOKING4TODAY:", bookingForToday);
         var dictEndTime = {};
         for (var b in $scope.bookings) {
           // FYRIR LENGD A TIMAPONTUNUM
