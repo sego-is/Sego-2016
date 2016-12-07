@@ -57,6 +57,17 @@
             }
         });
     });
+    
+    // GET ALL COMPANIES
+    api.delete('/companies/:cid', (req, res) => {
+        model.Company.findByIdAndRemove(req.params.cid, (err, doc) => {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(201).send(doc);
+            }
+        });
+    });
   
   api.get('/book', (req, res) => {
       model.Book.find({}, function(err, docs) {
@@ -194,6 +205,7 @@ api.get('/book/:cid/:pid', (req, res) => {
   
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
   api.get('/bookings/:cid/:date', (req, res) => {
+      console.log("GET BOOKINGS BY DATE: Tussan", req.params.cid, " - ", req.params.date);
      model.Booking.find({ company_id: req.params.cid, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
         if (err) {
             res.status(500).send(err);
@@ -426,7 +438,44 @@ api.get('/book/:cid/:pid', (req, res) => {
             }
       }});
   });
-
+  
+  // THARF EF TIL VILL AD IHUGA HVERNIG VERDUR HAEGT AD UPDATE BOKUN OG/EDA HAETTA VID BOKUN
+  api.post('/bookings/:bid', bodyParser.json(), (req, res) => {
+    const data = req.body;
+    model.Booking.update({ 'company_id': { eq: data.company_id }, 'date': { eq: data.date }, ' bookings._id': { $eq: data.book_id }}, {
+        '$set': {
+            'bookings.$.attendance': data.attendance,
+            'bookings.$.reason': data.reason
+        }}, (err, doc) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                res.send(doc);
+            }
+        })
+  });
+  
+  /* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
+  api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
+    var data = req.body;
+    console.log("UPDATE PRICE data: ", data);
+    model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
+      '$set': {
+        'pricelist.$.name':       data.name,
+        'pricelist.$.price':      data.price,
+        'pricelist.$.timeLength': data.timeLength
+      }}, (err, doc) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(doc);
+      }
+    });
+  });
+*/
+  
   // CREATE NEW SERVICE //
   api.post('/services', bodyParser.json(), (req, res) => {
     const data = req.body;
@@ -445,24 +494,28 @@ api.get('/book/:cid/:pid', (req, res) => {
                         res.status(500).send(err1);
                     }
                     else {
-                        delete data._id;
                         console.log("SERVICE HAVE BEEN DE-ACTIVATED");
                     }
                 });
             }
         })
     }
-    const s = new model.Service(data);
-    s.save((err, doc) => {
+    model.Service.create({
+       "company_id": data.company_id,
+       "name": data.name,
+       "price": data.price,
+       "timeLength": data.timeLength,
+    }, (err, s) => {
         if (err) {
             console.log("CREATE SERVICE ERROR, err:", err);
             res.status(500).send(err);
         } 
         else {
             console.log("NEW SERVICE HAVE BEEN CREATED!");
-            res.send(doc);
+            res.send(s);
         }
     });
+
   });
   
     // REMOVE PERSON FROM COMPANY STAFF
@@ -490,25 +543,7 @@ api.get('/book/:cid/:pid', (req, res) => {
   
  
 
-/* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
-  api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
-    var data = req.body;
-    console.log("UPDATE PRICE data: ", data);
-    model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
-      '$set': {
-        'pricelist.$.name':       data.name,
-        'pricelist.$.price':      data.price,
-        'pricelist.$.timeLength': data.timeLength
-      }}, (err, doc) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      else {
-        res.send(doc);
-      }
-    });
-  });
-*/
+
   
 
   // De-activate specific service with price in services.pricelist //

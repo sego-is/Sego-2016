@@ -14,24 +14,14 @@
         },
         templateUrl: '../../views/boka.html',
         link: function (scope, element, attrs) {
-          /*
-            scope.bokun = {};
-
-            scope.bokun.timi = scope.objFrom.timi;
-
-            // kannski ad huga ad lengdinni hja mer seinna
-            scope.bokun.klippari = scope.objFrom.nafn.name;
-            scope.bokun.dags = scope.objFrom.dags;
-            */
-
+  
             scope.leave = function() {
                 scope.close();
             };
 
             // FOR CHECKBOX SELECTED SERVICE
             scope.serviceSelected = scope.objFrom.service;
-            console.log('scope.objFrom:', scope.objFrom);
-            // TO CALCULATE ENDTIME
+             // TO CALCULATE ENDTIME
             scope.timeTaken = 0;
             // SMA HACK TIL AD SENDA INN NAME OG PRICE MED SERVICE ID
             var VALIN_THJONUSTA = {};

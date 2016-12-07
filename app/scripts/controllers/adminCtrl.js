@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('segoapp')
-    .controller('AdminCtrl', ['$scope', 'backendFactory', function ($scope, backendFactory) {
+    .controller('AdminCtrl', ['$scope', 'adminFactory', 'backendFactory', function ($scope, adminFactory, backendFactory) {
       $scope.editCompany = [];
 
       // Views on admin page
@@ -12,7 +12,7 @@
       };
 
       // HREINSA TIL I SERVICE //
-      backendFactory.getAllService().then(function (res) {
+      adminFactory.getAllService().then(function (res) {
         console.log('getAllService(), res.data:', res.data);
         $scope.service = res.data;
       }, function (err) {
@@ -20,16 +20,16 @@
       });
 
       $scope.removeService = function (sid, index) {
-        backendFactory.removeService(sid).then(function (res) {
+        adminFactory.removeService(sid).then(function (res) {
           $scope.service.splice(index, 1);
         }, function (err) {
-          console.log('ERROR deleteService(_id)->backendFactory.removeService(), err:', err);
+          console.log('ERROR deleteService(_id)->adminFactory.removeService(), err:', err);
         });
       };
       // HREINSA TIL I SERVICE, LOKID //
 
       // GET ALL COMPANIES //
-      backendFactory.getCompanies().then(function (response) {
+      adminFactory.getCompanies().then(function (response) {
         $scope.companies = response.data;
         console.log("RESPONSE:", response);
       }).catch(function (err) {
@@ -52,14 +52,14 @@
       $scope.company =       {};
       $scope.company.staff = [];
 
-      backendFactory.getBook().then(function (res) {
+      adminFactory.getBook().then(function (res) {
         console.log('getBook success, res:', res);
       }, function (err) {
         console.log('getBook error, err:', err);
       });
 
       $scope.addCompany = function (c) {
-        backendFactory.postCompany(c).then(function (response) {
+        adminFactory.postCompany(c).then(function (response) {
           console.log("RESPONSE:", response);
         }).catch(function (err) {
           console.log("ERROR", JSON.stringify(err));
@@ -72,7 +72,7 @@
       $scope.user = {};
 
       $scope.addUser = function (u) {
-        backendFactory.postPerson(p).then(function (response) {
+        adminFactory.postPerson(p).then(function (response) {
           console.log("RESPONSE:", response);
         }).catch(function (err) {
           console.log("ERROR", JSON.stringify(err));
@@ -83,7 +83,7 @@
 
       //DELETE USER
       $scope.deleteUser = function (u, index) {
-        backendFactory.deletePerson(u).then(function (response) {
+        adminFactory.deletePerson(u).then(function (response) {
           $scope.users.splice(index, 1);
         }).catch(function (err) {
           console.log("ERROR", JSON.stringify(err));
@@ -102,7 +102,7 @@
       });
 
       $scope.deleteBooking = function (bid, index) {
-        backendFactory.deleteBookings(bid).then(function (res) {
+        adminFactory.deleteBookings(bid).then(function (res) {
           $scope.bookings.splice(index, 1);
           console.log("BOOKINGS FOR GIVEN DAY HAVE BEEN DELETED");
         }, function (err) {
@@ -111,15 +111,25 @@
       };
 
       $scope.removeIndex = function () {
-        backendFactory.removeIndex().then(function (res) {
+        adminFactory.removeIndex().then(function (res) {
           console.log("removeIndex()->TOKST, res:", res);
         }, function (err) {
           console.log("removeIndex(), err:", err);
-        })
+        });
       };
-
+      
+      $scope.deleteCompany = function(cid, index) {
+        adminFactory.deleteCompany(cid).then(function(res) {
+            $scope.companies.splice(index, 1);
+            console.log("deleteCompany(cid)->TOKST, res:", res);
+        }, function(err) {
+            console.log("deleteCompany(cid), err:", err);
+        });
+      };
+      
+      
       $scope.ATHUGA = function (pid) {
-        backendFactory.getCustomerStory().then(function (res) {
+        adminFactory.getCustomerStory().then(function (res) {
           console.log("getCustomerStory() - THEE TOKSTS, res:", res);
         }, function (err) {
           console.log("getCustomerStory() - ERROR, err:", err);

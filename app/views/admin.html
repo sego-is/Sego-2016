@@ -71,10 +71,12 @@
         <tr>
           <td>{{ c.name }}</td>
           <td>{{ c.phone }}</td>
+          <td><input type="button" ng-click="deleteCompany(c._id, $index)" value="remove"></td>
         </tr>
         <tr ng-repeat="s in c.staff track by $index">
             <td>{{ s._id }}</td>
             <td>{{ s.name }}</td>
+            <td></td>
         </tr>
         </tbody>
       </table>

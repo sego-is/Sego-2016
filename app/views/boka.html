@@ -16,7 +16,7 @@
     <tbody>
     <tr>
       <td colspan="4">
-        <form name="form.bookingForm"
+        <form name="bookingForm"
               class="form-horizontal"
               novalidate>
           <div class="form">
@@ -59,7 +59,7 @@
     </tr>
     </tbody>
   </table>
-
+  <div ng-show="badInput && bookingForm.phone.$error.required">x</div>
   <div class="input-group">
     <div class="checkbox" ng-repeat="p in pricelist track by $index" ng-if="p.active">
       <label> <input type="checkbox"
@@ -76,8 +76,8 @@
 
 <div class="footer"><h3>SEGO</h3></div>
 
-<!-- vantar gott error msg eða eitthvað
-<div ng-show="badInput && bookingForm.phone.$error.required">x</div>
--->
+<!--vantar gott error msg eða eitthvað-->
+
+
 
 

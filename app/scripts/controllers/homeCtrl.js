@@ -15,7 +15,6 @@
       var p = JSON.parse(localStorage.getItem('profile'));
       backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
         backendFactory.set(response.data[0]);
-        console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
         // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
         update();
       }, function errorCallback(error) {
@@ -35,8 +34,7 @@
 
       $scope.nextDay = function () {
         dagatalFactory.tomorrow();
-        console.log(selectedDay);
-          $scope.getDailyBookings(selectedDay);
+        $scope.getDailyBookings(selectedDay);
       };
 
 
@@ -44,7 +42,7 @@
       // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
       function update() {
         // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
-        backendFactory.getBookingByDate(selectedDay).then(function (res) {
+        backendFactory.getBookingByDate(dagatalFactory.getStringForDate(selectedDay)).then(function (res) {
           // If there are no bookings by given date -> return EMPTY ARRAY
           if (res.data.length === 0) {
             $scope.bookings =    [];
@@ -62,7 +60,6 @@
         });
         // SAEKJA VERDLISTAN,
         backendFactory.getService().then(function (res) {
-          console.log("getService(), res.data:", res.data);
           // Set pricelist as pricelist for given response
           backendFactory.setPricelist(res.data);
         }, function (err) {
@@ -73,7 +70,7 @@
       }
       // ENDIR update()
 
-      // FYRIR PROGRESS MYND
+      // FYRIR PROGRESS MYND(
       $scope.loadingData = true;
 
       // HJALP FYRIR AD SETJA BOKANIR A RETTAN STAD I UTLITI
@@ -85,15 +82,6 @@
         for (var b in $scope.bookings) {
           // FYRIR LENGD A TIMAPONTUNUM
           var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
-          var minutes = dagatalFactory.getMMfromDate(new Date($scope.bookings[b].startTime));
-          var rowspan = 0;
-          if (sessionLength % 2 === 0) {
-            rowspan = sessionLength * 2.5;
-          } else if (sessionLength % 2 !== 0 && (minutes === 15 || minutes === 45)) {
-            rowspan = (sessionLength * 2.5) - 0.5;
-          } else {
-            rowspan = (sessionLength * 2.5) + 0.5;
-          }
 
           // BREYTA TIL AD SETJA SAMAN id SEM A AD SAEKJA UR DIV TOFLU
           var tmp = dagatalFactory.getHHMMfromDate(new Date($scope.bookings[b].startTime)) + "" + $scope.bookings[b].staff_id._id;
@@ -116,11 +104,8 @@
             }
           }
           myElm.innerHTML =
-            '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
-            $scope.bookings[b].customer_id.name +
-            '<br>' +
-            sessionLength +
-            '</div>';
+            '<div style="height:' + (sessionLength * 3.1) + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
+            $scope.bookings[b].customer_id.name;
         }
       };
 
@@ -150,6 +135,7 @@
           var idForCell = bookingForToday[ev.currentTarget.id];
           if (idForCell !== undefined) {
             var tmpBook =      $scope.bookings[idForCell];
+            b.book_id = tmpBook._id;
             b.customer_name =  tmpBook.customer_id.name;
             b.customer_phone = tmpBook.customer_id.phone;
             var arr =          tmpBook.service.map(function (key) {
@@ -169,6 +155,7 @@
 
           $scope.clickOnTimapant = {
             name:      b.name,
+            book_id:   b.book_id,
             customer:  b.customer_name,
             phone:     b.customer_phone,
             service:   b.service,
