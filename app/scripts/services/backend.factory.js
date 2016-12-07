@@ -10,8 +10,9 @@
       var backendFactory = {};
 
       backendFactory.set = function (company) {
-        _company = company;
-        console.log('_company:', _company.staff[0]._id);
+          if (company !== undefined) {
+            _company = company;      
+          }
       };
 
       backendFactory.setPricelist = function(prices) {
@@ -22,7 +23,9 @@
       };
 
       backendFactory.ID = function () {
-        return _company._id;
+          if (_company !== null) {
+              return _company._id;
+          }
       };
 
       backendFactory.Staff = function () {
