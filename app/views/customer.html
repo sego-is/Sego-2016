@@ -1,13 +1,14 @@
-<div class="haus form-inline row">VIÐSKIPTAVINIR
-  <div class="form-group fa fa-users"></div>
-  <div class="bla">
-    <input type="text" ng-model="search" id="leitargluggi" ng-if="!modifyCus" class="form-control"
+<div class="haus">
+  <h2 class="col-xs-7 col-md-10">VIÐSKIPTAVINIR
+    <i class="fa fa-users"></i>
+  </h2>
+    <input type="text" ng-model="search" id="leitargluggi" ng-if="!modifyCus" class="form-control col-md-3"
            placeholder="Leita..">
     <button type="button"
-            class="close takki"
-            ng-click="closeWindow()">&times;
+            id="molar"
+            class="btn btn-link btn-lg"
+            ng-click="closeWindow()"><i class="fa fa-times" aria-hidden="true"></i>
     </button>
-  </div>
 </div>
 <div class="content" ng-if="modifyCus">
   <table class="table table-striped">
@@ -215,5 +216,5 @@
     </button>
   </div>
 </div>
-<div class="footer">SEGO</div>
+<div class="footer"><h3>SEGO</h3></div>
 
