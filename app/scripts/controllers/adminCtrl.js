@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('segoapp')
-    .controller('AdminCtrl', ['$scope', 'adminFactory', function ($scope, adminFactory) {
+    .controller('AdminCtrl', ['$scope', 'adminFactory', 'backendFactory', function ($scope, adminFactory, backendFactory) {
       $scope.editCompany = [];
 
       // Views on admin page
@@ -39,7 +39,7 @@
       // END GETTING ALL //
 
       // GET ALL USERS //
-      adminFactory.getCustomerByCID().then(function (response) {
+      backendFactory.getCustomerByCID().then(function (response) {
         $scope.users = response.data;
         console.log("RESPONSE:", response);
       }).catch(function (err) {
@@ -94,7 +94,7 @@
 
       // GET ALL COLLECTIONS IN BOOKINGS
       //backendFactory.getBooking().then(function(res) {
-      adminFactory.getBookingByCompany().then(function (res) {
+      backendFactory.getBookingByCompany().then(function (res) {
         $scope.bookings = res.data;
         console.log("GET BOOKING ($scope.bookings): ", $scope.bookings);
       }, function (err) {
