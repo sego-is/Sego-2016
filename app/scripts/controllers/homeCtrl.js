@@ -35,7 +35,6 @@
 
       $scope.nextDay = function () {
         dagatalFactory.tomorrow();
-        console.log(selectedDay);
         $scope.getDailyBookings(selectedDay);
       };
 
@@ -47,7 +46,6 @@
         backendFactory.getBookingByDate(dagatalFactory.getStringForDate(selectedDay)).then(function (res) {
           // If there are no bookings by given date -> return EMPTY ARRAY
           if (res.data.length === 0) {
-              console.log("HER ER ENGAR BOKANIR", selectedDay);
             $scope.bookings =    [];
             $scope.curr =        {};
             $scope.loadingData = false;
@@ -87,15 +85,6 @@
         for (var b in $scope.bookings) {
           // FYRIR LENGD A TIMAPONTUNUM
           var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
-          var minutes = dagatalFactory.getMMfromDate(new Date($scope.bookings[b].startTime));
-          var rowspan = 0;
-          if (sessionLength % 2 === 0) {
-            rowspan = sessionLength * 2.5;
-          } else if (sessionLength % 2 !== 0 && (minutes === 15 || minutes === 45)) {
-            rowspan = (sessionLength * 2.5) - 0.5;
-          } else {
-            rowspan = (sessionLength * 2.5) + 0.5;
-          }
 
           // BREYTA TIL AD SETJA SAMAN id SEM A AD SAEKJA UR DIV TOFLU
           var tmp = dagatalFactory.getHHMMfromDate(new Date($scope.bookings[b].startTime)) + "" + $scope.bookings[b].staff_id._id;
@@ -118,11 +107,8 @@
             }
           }
           myElm.innerHTML =
-            '<div style="height:' + rowspan + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
-            $scope.bookings[b].customer_id.name +
-            '<br>' +
-            sessionLength +
-            '</div>';
+            '<div style="height:' + (sessionLength * 3.1) + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
+            $scope.bookings[b].customer_id.name;
         }
       };
 
