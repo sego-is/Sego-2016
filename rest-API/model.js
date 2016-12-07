@@ -23,8 +23,14 @@ const bookSchema = Schema({
         name: String,
         price: Number
     }],
-    attendance: Boolean,
-    reason: String
+    attendance: {
+        type: Boolean,
+        default: false
+    },
+    reason: {
+        type: String,
+        default: "Enginn ástæða"
+    }
 });
 
 const personSchema = Schema({
