@@ -1,5 +1,5 @@
 <div class="haus">
-  <h2 class="col-xs-7 col-md-10">VIÐSKIPTAVINIR
+  <h2 class="col-xs-7 col-md-8">VIÐSKIPTAVINIR
     <i class="fa fa-users"></i>
   </h2>
     <input type="text" ng-model="search" id="leitargluggi" ng-if="!modifyCus" class="form-control col-md-3"
@@ -204,14 +204,14 @@
 </div>
 <div class="row form-group blaðsíður" ng-if="!modifyCus">
   <dir-pagination-controls
-    max-size="10"
+    max-size="5"
     direction-links="true"
     boundary-links="true">
   </dir-pagination-controls>
-  <div class="viðskiptatakki">
-    <button class="btn btn-primary"
-            type="submit"
+  <div class="takkar">
+    <button type="submit"
             id="bætavið_takki"
+            class="btn btn-primary"
             ng-click="newCus()">Bæta við
     </button>
   </div>
