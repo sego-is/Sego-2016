@@ -298,14 +298,11 @@ module.exports = function (grunt) {
     },
     imagemin: {
       dist: {
-        options: {
-          optimizationLevel: 5
-        },
         files: [{
           expand: true,
-          cwd: '*/images',
-          src: ['**/*.{png,jpg,gif}'],
-          dest: 'dist/images/'
+          cwd: '<%= yeoman.app %>/images',
+          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          dest: '<%= yeoman.dist %>/images'
         }]
       }
     },
@@ -411,17 +408,17 @@ module.exports = function (grunt) {
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
         },{
-
+/*
           expand: true,
           cwd: 'app/images/*',
           src: 'images/*',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.dist %>/images'*/
         }]
       },
       images: {
         expand: true,
         cwd: '<%= yeoman.app %>/images',
-        dest: 'app/images/',
+        dest: 'dist/images/',
         src: '{,*/}*.png'
       },
       styles: {
