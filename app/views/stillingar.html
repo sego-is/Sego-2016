@@ -4,20 +4,58 @@
 <!-- Stillingar á klippurum -->
 <!---------------------------->
 
-<div ng-if="!state.verdskra"
-     class="kassar col-xs-12">
-  <div class="haus">KLIPPARAR
-    <i class="fa fa-cut"
-       style="font-size: 30px">
-    </i>
-    <button type="button"
-            class="close takki"
-            ng-click="closeWindow()">&times;
-    </button>
+<div ng-if="!state.verdskra">
+  <div class="haus">
+    <h2>KLIPPARAR
+      <i class="fa fa-cut"></i>
+    </h2>
+    <div class="molar">
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="tolfraedi()"
+              data-toggle="tooltip"
+              data-placement="auto"
+              title="Yfir á tölfræði">
+      <span class="fa fa-pie-chart"
+            aria-hidden="true">
+      </span>
+        <span class="texti">Tölfræði</span>
+      </button>
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="toggle()"
+              data-toggle="tooltip"
+              data-placement="auto"
+              title="Yfir á verðlista">
+      <span class="fa fa-dollar"
+            aria-hidden="true">
+      </span>
+        <span class="texti">Verðlisti</span>
+      </button>
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="toStaffAdd()"
+              data-toggle="tooltip"
+              data-placement="auto"
+              title="Bæta við klippara">
+      <span class="fa fa-plus"
+            aria-hidden="true">
+      </span>
+        <span class="texti">Bæta við klippara</span>
+      </button>
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="closeWindow()"><i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
   <div class="content">
     <table class="table table-striped">
-        <!-- HAUSINN A RODINNI -->
+      <!-- HAUSINN A RODINNI -->
       <thead ng-if="!state.verdskra && !state.add && !state.edit">
       <tr>
         <th>
@@ -25,22 +63,6 @@
         </th>
         <th>Símanúmer</th>
         <th>Netfang</th>
-        <th>
-          <div class="pull-right">
-            <button class="eigandi-editPriceList glyphicon glyphicon-usd"
-                    ng-click="toggle()"
-                    data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Yfir á verðlista">
-            </button>
-            <button class="eigandi-addHairdresser glyphicon glyphicon-plus"
-                    ng-click="toStaffAdd()"
-                    data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Bæta við klippara">
-            </button>
-          </div>
-        </th>
       </tr>
       </thead>
       <!-- HAUSINN A RODINNI, ENDIR -->
@@ -51,64 +73,52 @@
           <form name="form.staffForm"
                 class="form-horizontal"
                 novalidate>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="text"
-                       name="name"
-                       ng-class="{error: (badInput && form.staffForm.name.$error.required)
-                                      || (badInput && form.staffForm.name.$error.maxlength)
-                                      || (badInput && form.staffForm.name.$error.minlength)}"
-                       ng-click="badInputFalse()"
-                       ng-minlength="3"
-                       ng-maxlength="44"
-                       class="form-control"
-                       id="name"
-                       placeholder="Nafn"
-                       ng-model="editUser.name"
-                       required>
-              </div>
+            <div class="form">
+              <input type="text"
+                     name="name"
+                     ng-class="{error: (badInput && form.staffForm.name.$error.required)
+                                  || (badInput && form.staffForm.name.$error.maxlength)
+                                  || (badInput && form.staffForm.name.$error.minlength)}"
+                     ng-click="badInputFalse()"
+                     ng-minlength="3"
+                     ng-maxlength="44"
+                     class="form-control"
+                     ng-model="editUser.name"
+                     placeholder="Nafn"
+                     required>
             </div>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="email"
-                       class="form-control"
-                       name="email"
-                       ng-class="{error: (badInput && form.staffForm.email.$error.required)
-                                      || (badInput && form.staffForm.email.$error.email)}"
-                       id="email"
-                       placeholder="Netfang"
-                       ng-model="editUser.email"
-                       required>
-              </div>
+            <div class="form">
+              <input type="email"
+                     class="form-control"
+                     name="email"
+                     ng-class="{error: (badInput && form.staffForm.email.$error.required)
+                                  || (badInput && form.staffForm.email.$error.email)}"
+                     ng-model="editUser.email"
+                     placeholder="Netfang"
+                     required>
             </div>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="number"
-                       name="phone"
-                       ng-class="{error: (badInput && form.staffForm.phone.$error.required)
+            <div class="form">
+              <input type="number"
+                     name="phone"
+                     ng-class="{error: (badInput && form.staffForm.phone.$error.required)
                                       || (badInput && form.staffForm.phone.$error.maxlength)
                                       || (badInput && form.staffForm.phone.$error.minlength)}"
-                       ng-minlength="7"
-                       ng-maxlength="7"
-                       ng-click="badInputFalse()"
-                       class="form-control"
-                       id="phone"
-                       placeholder="Símanúmer"
-                       ng-model="editUser.phone"
-                       required>
-              </div>
+                     ng-minlength="7"
+                     ng-maxlength="7"
+                     ng-click="badInputFalse()"
+                     class="form-control"
+                     ng-model="editUser.phone"
+                     placeholder="Símanúmer"
+                     required>
             </div>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="text"
-                       class="form-control"
-                       id="address"
-                       placeholder="Heimilisfang"
-                       ng-model="editUser.address">
-              </div>
+            <div class="form">
+              <input type="text"
+                     class="form-control"
+                     placeholder="Heimilisfang"
+                     ng-model="editUser.address">
             </div>
-            <div class="form-group row col-xs-12">
-              <div class="takkar col-md-offset-8 col-xs-offset-5">
+            <div class="form">
+              <div class="takkar">
                 <button type="submit"
                         id="haettavidtakki"
                         class="btn btn-primary"
@@ -118,11 +128,6 @@
                         id="uppfaeratakki"
                         class="btn btn-primary"
                         ng-click="addStaff(editUser)">Uppfæra
-                </button>
-                <button type="submit"
-                        id="uppfaeratakki"
-                        class="btn btn-primary"
-                        ng-click="klikkaStarfsmann(editUser._id)">klikka
                 </button>
               </div>
             </div>
@@ -138,144 +143,146 @@
           <form name="form.staffForm"
                 class="form-horizontal"
                 novalidate>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="text"
-                       name="name"
-                       ng-class="{error: (badInput && form.staffForm.name.$error.required)
-                                      || (badInput && form.staffForm.name.$error.maxlength)
-                                      || (badInput && form.staffForm.name.$error.minlength)}"
-                       ng-click="badInputFalse()"
-                       ng-minlength="3"
-                       ng-maxlength="44"
-                       class="form-control"
-                       id="name"
-                       placeholder="Nafn"
-                       ng-model="editUser.name"
-                       required>
-              </div>
+            <div class="form">
+              <input type="text"
+                     name="name"
+                     ng-class="{error: (badInput && form.staffForm.name.$error.required)
+                                  || (badInput && form.staffForm.name.$error.maxlength)
+                                  || (badInput && form.staffForm.name.$error.minlength)}"
+                     ng-click="badInputFalse()"
+                     ng-minlength="3"
+                     ng-maxlength="44"
+                     class="form-control"
+                     ng-model="editUser.name"
+                     placeholder="Nafn"
+                     required>
             </div>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="email"
-                       class="form-control"
-                       name="email"
-                       ng-class="{error: (badInput && form.staffForm.email.$error.required)
-                                      || (badInput && form.staffForm.email.$error.email)}"
-                       id="email"
-                       placeholder="Netfang"
-                       ng-model="editUser.email"
-                       required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="number"
-                       name="phone"
-                       ng-class="{error: (badInput && form.staffForm.phone.$error.required)
+  </div>
+  <div class="form">
+    <input type="email"
+           class="form-control"
+           name="email"
+           ng-class="{error: (badInput && form.staffForm.email.$error.required)
+                                  || (badInput && form.staffForm.email.$error.email)}"
+           ng-model="editUser.email"
+           placeholder="Netfang"
+           required>
+  </div>
+</div>
+<div class="form">
+  <input type="number"
+         name="phone"
+         ng-class="{error: (badInput && form.staffForm.phone.$error.required)
                                       || (badInput && form.staffForm.phone.$error.maxlength)
                                       || (badInput && form.staffForm.phone.$error.minlength)}"
-                       ng-minlength="7"
-                       ng-maxlength="7"
-                       ng-click="badInputFalse()"
-                       class="form-control"
-                       id="phone"
-                       placeholder="Símanúmer"
-                       ng-model="editUser.phone"
-                       required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="text"
-                       class="form-control"
-                       id="address"
-                       placeholder="Heimilisfang"
-                       ng-model="editUser.address">
-              </div>
-            </div>
-            <div class="form-group row col-xs-12">
-              <div class="takkar col-md-offset-8 col-xs-offset-7">
-                <button type="submit"
-                        id="haettavidtakki"
-                        class="btn btn-primary"
-                        ng-click="toggleView()">Hætta við
-                </button>
-                <button type="submit"
-                        id="uppfaeratakki"
-                        class="btn btn-primary"
-                        ng-click="addStaff(editUser)">Uppfæra
-                </button>
-              </div>
-            </div>
-          </form>
-        </td>
-      </tr>
-      </tbody>
-      <!-- ADD KLIPPARA, ENDIR -->
-      <!-- SHOW name, phone and role OF KLIPPARA -->
-      <tbody ng-if="!state.verdskra && !state.add && !state.edit">
-      <tr ng-repeat="s in staff track by $index">
-        <td class="theFirst col-xs-4 divTakki"
-            ng-click="editStaff(s)">{{ s.name }}</td>
-        <td>{{ s.phone }}</td>
-        <td>{{ s.email }}</td>
-        <td>
-          <div class="pull-right">
-            <!--<a ng-click="removeStaff(s, $index)">
-              <i class="glyphicon glyphicon-trash divTakki"
-                 data-toggle="tooltip"
-                 data-placement="auto"
-                 title="Henda">
-              </i>
-            </a>-->
-          </div>
-        </td>
-      </tr>
-      </tbody>
-      <!-- SHOW ... KLIPPARA OUT OF IT -->
-    </table>
+         ng-minlength="7"
+         ng-maxlength="7"
+         ng-click="badInputFalse()"
+         class="form-control"
+         ng-model="editUser.phone"
+         placeholder="Símanúmer"
+         required>
+</div>
+</div>
+<div class="form">
+  <input type="text"
+         class="form-control"
+         ng-model="editUser.address"
+         placeholder="Heimilisfang">
+</div>
+</div>
+<div class="form">
+  <div class="takkar">
+    <button type="submit"
+            id="haettavidtakki"
+            class="btn btn-primary"
+            ng-click="toggleView()">Hætta við
+    </button>
+    <button type="submit"
+            id="uppfaeratakki"
+            class="btn btn-primary"
+            ng-click="addStaff(editUser)">Bæta við
+    </button>
   </div>
-  <div class="footer">SEGO</div>
+</div>
+</form>
+</td>
+</tr>
+</tbody>
+<!-- ADD KLIPPARA, ENDIR -->
+<!-- SHOW name, phone and role OF KLIPPARA -->
+<tbody ng-if="!state.verdskra && !state.add && !state.edit">
+<tr ng-repeat="s in staff track by $index">
+  <td class="theFirst col-xs-4 divTakki"
+      ng-click="editStaff(s)">{{ s.name }}
+  </td>
+  <td>{{ s.phone }}</td>
+  <td>{{ s.email }}</td>
+  <!--<td>
+    <div class="pull-right">
+      <label class="switch">
+        <input type="checkbox"
+        ng-click="toggleStaffActive()">
+        <div class="slider round"></div>
+      </label>
+    </div>
+  </td>-->
+</tr>
+</tbody>
+<!-- SHOW ... KLIPPARA OUT OF IT -->
+</table>
+</div>
+<div class="footer"><h3>SEGO</h3></div>
 </div>
 <!------------------------->
 <!-- Stillingar á verðum -->
 <!------------------------->
-<div ng-if="state.verdskra"
-     class="col-xs-12">
-  <div class="haus">VERÐLISTI
-    <i class="fa fa-dollar"
-       style="font-size: 30px">
-    </i>
-    <button type="button"
-            class="close takki"
-            ng-click="closeWindow()">&times;
-    </button>
+<div ng-if="state.verdskra">
+  <div class="haus">
+    <h2>VERÐLISTI
+      <i class="fa fa-dollar"></i>
+    </h2>
+    <div class="molar">
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="toggle()"
+              data-toggle="tooltip"
+              data-placement="auto"
+              title="Fara yfir á klippara">
+      <span class="fa fa-user"
+            aria-hidden="true">
+      </span>
+        <span class="texti">Klipparar</span>
+      </button>
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="toPriceAdd()"
+              data-toggle="tooltip"
+              data-placement="auto"
+              title="Bæta við þjónustu">
+      <span class="fa fa-plus"
+            aria-hidden="true">
+      </span>
+        <span class="texti">Bæta við þjónustu</span>
+      </button>
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="closeWindow()"><i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
   <div class="content">
     <table class="table table-striped">
       <thead ng-if="state.verdskra && !state.add && !state.edit">
       <tr>
         <th>
-          <div class="pull-left">Nafn</div>
+          <div class="col-xs-1">Nafn</div>
         </th>
         <th>Verð</th>
         <th>Mínútur</th>
-        <th>
-          <div class="pull-right">
-            <button class="eigandi-toggle glyphicon glyphicon-user"
-                    ng-click="toggle()"
-                    data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Fara yfir á klippara">
-            </button>
-            <button class="eigandi-addService glyphicon glyphicon-plus"
-                    ng-click="toPriceAdd()"
-                    data-toggle="tooltip"
-                    data-placement="auto"
-                    title="Bæta við þjónustu">
-            </button>
-          </div>
       </tr>
       </thead>
       <!-- EDIT VERDSKRA -->
@@ -283,63 +290,54 @@
                  || state.verdskra && state.add">
       <tr>
         <td colspan="4">
-        <form name="form.priceForm"
-              class="form-horizontal"
-              novalidate>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="text"
-                       name="service"
-                       class="form-control"
-                       ng-class="{error: (badInput && form.priceForm.service.$error.required)
-                                      || (badInput && form.priceForm.service.$error.maxlength)
-                                      || (badInput && form.priceForm.service.$error.minlength)}"
-                       ng-click="badInputFalse()"
-                       ng-minlength="3"
-                       ng-maxlength="44"
-                       id="inputName"
-                       placeholder="Nafn"
-                       ng-model="editVerd.name"
-                       required>
-              </div>
+          <form name="form.priceForm"
+                class="form-horizontal"
+                novalidate>
+            <div class="form">
+              <input type="text"
+                     name="service"
+                     class="form-control"
+                     ng-class="{error: (badInput && form.priceForm.service.$error.required)
+                                  || (badInput && form.priceForm.service.$error.maxlength)
+                                  || (badInput && form.priceForm.service.$error.minlength)}"
+                     ng-click="badInputFalse()"
+                     ng-minlength="3"
+                     ng-maxlength="44"
+                     ng-model="editVerd.name"
+                     placeholder="Nafn"
+                     required>
             </div>
-            <div class="form-group row">
-              <div class="col-xs-12">
-                <input type="number"
-                       class="form-control"
-                       name="price"
-                       ng-class="{error: (badInput && form.priceForm.price.$error.required)
-                                      || (badInput && form.priceForm.price.$error.maxlength)
-                                      || (badInput && form.priceForm.price.$error.minlength)}"
-                       ng-click="badInputFalse()"
-                       ng-maxlength="5"
-                       id="inputPrice"
-                       placeholder="Verð"
-                       ng-model="editVerd.price"
-                       required>
-              </div>
+            <div class="form">
+              <input type="number"
+                     class="form-control"
+                     name="price"
+                     ng-class="{error: (badInput && form.priceForm.price.$error.required)
+                                  || (badInput && form.priceForm.price.$error.maxlength)
+                                  || (badInput && form.priceForm.price.$error.minlength)}"
+                     ng-click="badInputFalse()"
+                     ng-maxlength="5"
+                     ng-model="editVerd.price"
+                     placeholder="Verð"
+                     required>
             </div>
 
-          <div class="form-group row">
-            <div class="col-xs-12">
+            <div class="form">
               <input type="number"
                      class="form-control"
                      name="timeLength"
                      ng-class="{error: (badInput && form.priceForm.timeLength.$error.required)
-                                    || (badInput && form.priceForm.timeLength.$error.maxlength)
-                                    || (badInput && form.priceForm.timeLength.$error.minlength)}"
+                                  || (badInput && form.priceForm.timeLength.$error.maxlength)
+                                  || (badInput && form.priceForm.timeLength.$error.minlength)}"
                      ng-minlength="2"
                      ng-maxlength="3"
                      ng-click="badInputFalse()"
-                     id="inputTime"
-                     placeholder="Tími í mínútum"
                      ng-model="editVerd.timeLength"
+                     placeholder="Tími í mínútum"
                      required>
             </div>
-          </div>
 
-            <div class="form-group row col-xs-12">
-              <div class="takkar col-md-offset-8 col-xs-offset-7">
+            <div class="form">
+              <div class="takkar">
                 <button type="submit"
                         id="haettavidtakki"
                         class="btn btn-primary"
@@ -370,14 +368,14 @@
         <td>
           <div class="pull-right">
             <a ng-click="removePrice(p, $index)">
-              <i class="glyphicon glyphicon-trash divTakki"
+              <i class="fa fa-trash"
                  data-toggle="tooltip"
                  data-placement="auto"
                  title="Henda">
               </i>
             </a>
             <a ng-click="editPrice(p)">
-              <i class="glyphicon glyphicon-pencil divTakki"
+              <i class="fa fa-pencil"
                  data-toggle="tooltip"
                  data-placement="auto"
                  title="Breyta">
@@ -390,5 +388,5 @@
       <!-- EDIT VERDSKRA DONE -->
     </table>
   </div>
-  <div class="footer">SEGO</div>
+  <div class="footer"><h3>SEGO</h3></div>
 </div>

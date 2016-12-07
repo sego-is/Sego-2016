@@ -1,37 +1,43 @@
-<div class="haus">VERÐLISTI
-  <i class="fa fa-dollar">
-  </i>
-  <div class="close takki"
-       ng-click="closeWindow()">&times;
-  </div>
+<div class="haus"><h2>VERÐLISTI
+  <i class="fa fa-dollar"></i>
+</h2>
+  <button type="button"
+          id="molar"
+          class="btn btn-link btn-lg"
+          ng-click="closeWindow()"><i class="fa fa-times" aria-hidden="true"></i>
+  </button>
 </div>
 <div class="content">
   <table class="table table-striped">
     <tbody>
-      <tr ng-repeat="p in pricelist"
-          ng-if="p.active || p.active === undefined"
-          ng-switch on="$index %2">
-        <td class="thjonusta" ng-switch-when="0">
-          {{ pricelist[$index].name }}
-        </td>
-        <td class="verd" ng-switch-when="0">
-          {{ pricelist[$index].price }} kr.
-        </td>
-        <td class="thjonusta" ng-switch-when="0">
-          <span ng-show="pricelist[$index+1]">
-            {{ pricelist[$index+1].name }}
+    <tr ng-repeat="p in pricelist"
+        ng-if="p.active || p.active === undefined"
+        ng-switch on="$index %2">
+      <td class="thjonusta"
+          ng-switch-when="0">
+        {{ pricelist[$index].name }}
+      </td>
+      <td class="verd"
+          ng-switch-when="0">
+        {{ pricelist[$index].price }} kr.
+      </td>
+      <td class="thjonusta"
+          ng-switch-when="0">
+          <span ng-show="pricelist[$index + 1]">
+            {{ pricelist[$index + 1].name }}
           </span>
-        </td>
-        <td class="verd" ng-switch-when="0">
-          <span ng-show="pricelist[$index+1]">
-            {{ pricelist[$index+1].price }} kr.
+      </td>
+      <td class="verd"
+          ng-switch-when="0">
+          <span ng-show="pricelist[$index + 1]">
+            {{ pricelist[$index + 1].price }} kr.
           </span>
-        </td>
-      </tr>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>
-<div class="footer">SEGO</div>
+<div class="footer"><h3>SEGO</h3></div>
 
 
 
