@@ -1,6 +1,6 @@
 body {
   padding: 0;
-  font-family: scala, sans-serif;
+  font-family: sans-serif;
   font-size: 12px;
 }
 
@@ -81,23 +81,31 @@ body {
   background-image: linear-gradient(-90deg, hsl(290, 80%, 60%), hsl(290, 60%, 45%) 2em, hsl(290, 80%, 60%));
 }
 
-input[type="text"], #leitargluggi  {
-  background-color : #f8f8f8;
+#leitargluggi  {
+  background-color : whitesmoke;
   margin-right: 50px;
-  margin-bottom: 2px;
+  margin-top: 5px;
+  width: 250px;
+}
+
+.form {
+  margin-bottom: 10px;
 }
 
 .bla {
   float: right;
 }
 
+.fa-times {
+  margin-bottom: 8px;
+}
+
 .haus {
+  display: flex;
+  justify-content: space-between;
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100%;
-  color: white;
-  font-size: 30px;
-  font-family: scala, sans-serif;
   padding-top: 5px;
   height: 55px;
   padding-left: 12px;
@@ -106,13 +114,40 @@ input[type="text"], #leitargluggi  {
   margin-right: 0px;
 }
 
+.haus > h2 {
+  color: whitesmoke;
+  margin-top: 5px;
+  font-family: sans;
+}
+
+#molar {
+  color: whitesmoke;
+}
+
+#molar:hover {
+  color: lightgray;
+}
+
+.fa-trash {
+  color: black;
+}
+
+.fa-trash:hover {
+  color: gray;
+}
+
+.fa-pencil {
+  color: black;
+}
+
+.fa-pencil:hover {
+  color: gray;
+}
+
 .footer {
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
   width: 100%;
-  color: white;
-  font-size: 18px;
-  font-family: scala, sans-serif;
   padding-top: 5px;
   height: 30px;
   padding-top: 3px;
@@ -120,17 +155,10 @@ input[type="text"], #leitargluggi  {
   text-align: center;
 }
 
-.close.takki {
-  font-size: 30px;
-  color: white;
-  position: relative;
-  top: 7px;
-  opacity: 1;
-}
-
-.close.takki:hover {
-  color: lightgray;
-  opacity: 1;
+.footer > h3 {
+  margin-top: 0px;
+  font-family: sans;
+  color: whitesmoke;
 }
 
 .dagur {
@@ -146,10 +174,9 @@ input[type="text"], #leitargluggi  {
 }
 
 .content {
-  height: 500px;
+  height: 521px;
   width: 100%;
-  overflow-y: auto;
-  font-family: scala;
+  font-family: sans-serif;
 }
 
 .content thead {
@@ -165,10 +192,56 @@ input[type="text"], #leitargluggi  {
   font-size: 18px;
 }
 
+.email {
+  text-align: center;
+}
+
+.content.v {
+  height: 383px;
+  width: 100%;
+  /*overflow-y: auto;*/
+  font-family: sans-serif;
+}
+
+.content.b {
+  height: 511px;
+  width: 100%;
+  /*overflow-y: auto;*/
+  font-family: sans-serif;
+}
+
+.input-group {
+  position: relative;
+  left: 11px;
+}
+
+.table-striped {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.símanúmer {
+  width: 100px;
+}
+
+
+.blaðsíður {
+  margin-top: 23px;
+  margin-bottom: 7px;
+}
+
+.takkar {
+  float: right;
+}
+
 .verd {
   text-align: right;
   font-size: 18px;
   font-weight: bold;
+}
+
+.blaðsíður {
+  text-align: center;
 }
 
 .hiddenRow {
@@ -183,34 +256,19 @@ input[type="text"], #leitargluggi  {
   padding: 0 0 10px 0;
 }
 
-/*.booking {
-  height: 1em;
-}
-
-.booking-time {
-  text-align: center;
-  height: 1em;
-}
-
-.booking-time p {
-  font-size: 0.8em;
-}
-
-.booking-cell {
-  overflow: visible;
-}
-
-.staff {
-    width: 28.0em;
-}*/
-
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
   .skilabod {
     position: absolute;
     left: 0;
     top: 2px;
     width: 100%;
     height: 100%;
+  }
+
+  #leitargluggi {
+    margin-right: 0px;
+    width: 150px;
+    left: 40px;
   }
 
   .container-fluid > .navbar-header {
@@ -222,13 +280,43 @@ input[type="text"], #leitargluggi  {
   }
 }
 
-@media only screen and (max-device-width: 667px) {
+@media only screen and (max-width: 736px), only screen and (max-device-width: 736px) {
+  .haus {
+
+  }
+
+  div.navbar-haus  {
+    margin-top: 12px;
+  }
+
+  div.navbar-haus-top {
+    margin-top: 12px;
+  }
+
+  .fa.fa-calendar {
+    margin-top: 10px;
+  }
+
+  .buttonleft {
+    margin-top: 7px;
+  }
+
+  p.dagurinn {
+    left: 34px;
+    top: 5px;
+  }
+
   .container-fluid > .navbar-header {
     margin-left: -10px;
   }
 
   .container-fluid > .navbar-header-top {
     margin-left: -10px;
+  }
+
+  .allt {
+    height:229px;
+    overflow-y: auto;
   }
 
   .skilabod {
@@ -240,9 +328,12 @@ input[type="text"], #leitargluggi  {
   }
 }
 
-@media only screen and (max-device-width: 375px) {
-  .container {
-    max-width: 730px;
+@media only screen and (max-width: 414px), only screen and (max-device-width: 414px) {
+
+  p.dagurinn {
+    top: 1px;
+    left: 0px;
+    width: 70%;
   }
 
   .skilabod {
@@ -251,14 +342,18 @@ input[type="text"], #leitargluggi  {
     top: 2px;
     width: 100%;
     height: 100%;
+  }
+
+  #leitargluggi {
+    margin-right: 50px;
+  }
+
+  .blaðsíður {
+    margin-top: 23px;
   }
 
   .navbar-right {
     float: right;
-  }
-
-  .navbar-haus-top {
-    margin-top: 13px;
   }
 
   .adalmynd {
@@ -284,11 +379,6 @@ input[type="text"], #leitargluggi  {
     margin-left: -10px;
   }
 
-  .row {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
   .row .col-xs-1 {
     margin-left: 0px;
   }
@@ -301,18 +391,77 @@ input[type="text"], #leitargluggi  {
     text-align: center;
     font-weight: bold;
   }
+
+  .fa.fa-calendar {
+    margin-top: 4px;
+  }
+
+  .buttonleft {
+    margin-top: 3px;
+  }
+
+  div.navbar-h {
+    font-family: sans-serif;
+    font-size: 14px;
+    height: 25px;
+    width: 140px;
+    padding-top: 2px;
+    padding-right: 17px;
+    margin-top: 18px;
+  }
+
+  div.navbar-haus-t {
+    font-family: sans-serif;
+    font-size: 12px;
+    height: 25px;
+    width: 65px;
+    padding-top: 4px;
+    margin-top: 18px;
+  }
+
+  span.fa-dollar {
+    font-size: 25px;
+  }
+
+  .fa-cogs {
+    font-size: 25px;
+  }
+
+  .fa-users {
+    font-size: 25px;
+  }
+
+  .fa-sign-out {
+    font-size: 25px;
+  }
+}
+
+@media only screen and (max-width: 375px), only screen and (max-device-width: 375px) {
+  p.dagurinn {
+    left: 0px;
+  }
+}
+
+@media only screen and (max-width: 320px), only screen and (max-device-width: 320px) {
+  .buttonright {
+    padding-right: 0px;
+  }
+}
+
+button.fa.fa-plus {
+  color: white;
 }
 
 .navbar-default .navbar-brand {
   color: white;
   text-shadow: 3px 3px 5px black;
-  font-family: scala, sans-serif;
+  font-family: sans-serif;
 }
 
 .navbar-default .navbar-brand:hover {
   color: black;
   text-shadow: 2px 2px 4px white;
-  font-family: scala, sans-serif;
+  font-family: sans-serif;
 }
 
 .btn.btn-link.btn-lg:hover {
@@ -321,7 +470,7 @@ input[type="text"], #leitargluggi  {
 
 .navbar-haus {
   position: absolute;
-  font-family: scala, sans-serif;
+  font-family: sans-serif;
   font-size: 20px;
   text-align: right;
   color: white;
@@ -340,13 +489,9 @@ input[type="text"], #leitargluggi  {
   display: inline-block;
 }
 
-.navbar-haus:hover {
-  color: black;
-}
-
 .navbar-haus-top {
   position: absolute;
-  font-family: scala, sans-serif;
+  font-family: sans-serif;
   font-size: 1.4em;
   text-align: center;
   width: 100px;
@@ -361,22 +506,43 @@ input[type="text"], #leitargluggi  {
   z-index: 1;
 }
 
-/*.skilabod-x {
+.navbar-h {
   position: absolute;
-  top: 0;
-  right: 0;
+  font-family: sans-serif;
+  font-size: 20px;
+  text-align: right;
+  color: white;
+  background-color: hsl(280, 60%, 45%);
+  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
+  width: 200px;
+  height: 35px;
+  margin-top: 8px;
+  -moz-border-radius: 100px/50px;
+  -webkit-border-radius: 100px/50px;
+  border-radius: 50px;
+  padding-left: 9px;
+  padding-right: 22px;
+  padding-top: 3px;
+  box-shadow: 5px 5px 5px grey;
+  display: inline-block;
 }
 
-.list-group-item-heading {
-  float: left;
-  border: solid red;
+.navbar-haus-t {
+  position: absolute;
+  font-family: sans-serif;
+  font-size: 1.4em;
+  text-align: center;
+  width: 100px;
+  height: 35px;
+  background-color: black;
+  -moz-border-radius: 100px/50px;
+  -webkit-border-radius: 100px/50px;
+  border-radius: 50px;
+  margin-top: 8px;
+  padding-top: 5px;
+  color: white;
+  z-index: 1;
 }
-
-.list-group-item-text {
-  overflow: hidden;
-  padding-left: 250px;
-  padding-top: 10px;
-}*/
 
 .loading {
   padding: 15% 60% 50% 40%;
@@ -403,10 +569,6 @@ input[type="text"], #leitargluggi  {
   padding-right: 1em;
   padding-top: 0.15em;
 }
-
-/*.horizontal-collapse {
-  height: 70px;
-}*/
 
 .navbar-collapse.in {
   overflow-y: hidden;
@@ -535,7 +697,7 @@ input.ng-valid {
   font-weight: bold;
   background-color: #ddd;
 }
-.rTableBody {
+.rTableBody   {
   display: table-row-group;
 }
 
@@ -555,55 +717,6 @@ input.ng-valid {
 /* Hide default HTML checkbox */
 .switch input {
   display:none;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 0.9em;
-  width: 0.9em;
-  top: 0.05em;
-  left: 0.1em;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: hsl(290, 60%, 45%);
-  background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(0.9em);
-  -ms-transform: translateX(0.9em);
-  transform: translateX(0.9em);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
 }
 
 /*******************************/
