@@ -14,6 +14,12 @@
   angular.module('segoapp')
     .controller('navbarCtrl', ['$scope', 'authService', function ($scope, authService) {
         $scope.isLoggedIn - authService.auth();
+        
+        $scope.isAdmin = function() {
+            var p = JSON.parse(localStorage.getItem('profile'));
+            return p.app_metadata.user[0] === "admin";
+        };
+        
       }]);
 })();
 

@@ -127,7 +127,7 @@
              });
           };
 
-          // SEKJA BOKANIR FYRIR STARFSMANN FYRIR MANUDINN
+         // !!! SEKJA BOKANIR FYRIR STARFSMANN FYRIR MANUDINN - TILRAUN !!!!
           scope.klikkaStarfsmann = function(p) {
             console.log("KLIKKASTARFSNANN INPUT MED PARAMETER:", p);
             backendFactory.getBookingByMonth(p ,dagatalFactory.getStringForDate()).then(function(res) {

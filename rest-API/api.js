@@ -457,24 +457,28 @@ api.get('/book/:cid/:pid', (req, res) => {
                         res.status(500).send(err1);
                     }
                     else {
-                        delete data._id;
                         console.log("SERVICE HAVE BEEN DE-ACTIVATED");
                     }
                 });
             }
         })
     }
-    const s = new model.Service(data);
-    s.save((err, doc) => {
+    model.Service.create({
+       "company_id": data.company_id,
+       "name": data.name,
+       "price": data.price,
+       "timeLength": data.timeLength,
+    }, (err, s) => {
         if (err) {
             console.log("CREATE SERVICE ERROR, err:", err);
             res.status(500).send(err);
         } 
         else {
             console.log("NEW SERVICE HAVE BEEN CREATED!");
-            res.send(doc);
+            res.send(s);
         }
     });
+
   });
   
     // REMOVE PERSON FROM COMPANY STAFF

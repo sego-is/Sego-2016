@@ -35,7 +35,6 @@
 
       $scope.nextDay = function () {
         dagatalFactory.tomorrow();
-        console.log(selectedDay);
         $scope.getDailyBookings(selectedDay);
       };
 
@@ -47,7 +46,6 @@
         backendFactory.getBookingByDate(dagatalFactory.getStringForDate(selectedDay)).then(function (res) {
           // If there are no bookings by given date -> return EMPTY ARRAY
           if (res.data.length === 0) {
-              console.log("HER ER ENGAR BOKANIR", selectedDay);
             $scope.bookings =    [];
             $scope.curr =        {};
             $scope.loadingData = false;
