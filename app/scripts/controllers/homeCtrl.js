@@ -15,7 +15,6 @@
       var p = JSON.parse(localStorage.getItem('profile'));
       backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
         backendFactory.set(response.data[0]);
-        console.log("RESPONSE GET COMPANY BY AUTH ID", response.data[0]);
         // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
         update();
       }, function errorCallback(error) {
@@ -61,7 +60,6 @@
         });
         // SAEKJA VERDLISTAN,
         backendFactory.getService().then(function (res) {
-          console.log("getService(), res.data:", res.data);
           // Set pricelist as pricelist for given response
           backendFactory.setPricelist(res.data);
         }, function (err) {
@@ -80,7 +78,6 @@
       var bookingForToday = {};
 
       var bookingsToday = function () {
-          console.log("BOOKING4TODAY:", bookingForToday);
         var dictEndTime = {};
         for (var b in $scope.bookings) {
           // FYRIR LENGD A TIMAPONTUNUM
@@ -138,6 +135,7 @@
           var idForCell = bookingForToday[ev.currentTarget.id];
           if (idForCell !== undefined) {
             var tmpBook =      $scope.bookings[idForCell];
+            b.book_id = tmpBook._id;
             b.customer_name =  tmpBook.customer_id.name;
             b.customer_phone = tmpBook.customer_id.phone;
             var arr =          tmpBook.service.map(function (key) {
@@ -157,6 +155,7 @@
 
           $scope.clickOnTimapant = {
             name:      b.name,
+            book_id:   b.book_id,
             customer:  b.customer_name,
             phone:     b.customer_phone,
             service:   b.service,

@@ -438,7 +438,39 @@ api.get('/book/:cid/:pid', (req, res) => {
             }
       }});
   });
-
+  
+  // THARF EF TIL VILL AD IHUGA HVERNIG VERDUR HAEGT AD UPDATE BOKUN OG/EDA HAETTA VID BOKUN
+  api.post('/bookings/:bid', bodyParser.json(), (req, res) => {
+    const data = req.body;
+    model.Booking.update({ 'company_id': { eq: data.company_id }, 'date': { eq: data.date }, ' bookings._id': { $eq: data.book_id }}, {
+        '$set': {
+            'bookings.$.attendance': data.attendance,
+            'bookings.$.reason': data.reason,
+            
+        }
+    })
+  });
+  
+  /* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
+  api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
+    var data = req.body;
+    console.log("UPDATE PRICE data: ", data);
+    model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
+      '$set': {
+        'pricelist.$.name':       data.name,
+        'pricelist.$.price':      data.price,
+        'pricelist.$.timeLength': data.timeLength
+      }}, (err, doc) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.send(doc);
+      }
+    });
+  });
+*/
+  
   // CREATE NEW SERVICE //
   api.post('/services', bodyParser.json(), (req, res) => {
     const data = req.body;
@@ -506,25 +538,7 @@ api.get('/book/:cid/:pid', (req, res) => {
   
  
 
-/* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
-  api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
-    var data = req.body;
-    console.log("UPDATE PRICE data: ", data);
-    model.Service.update({ 'company_id': { $eq: data.company_id }, 'pricelist._id': { $eq: data._id }}, {
-      '$set': {
-        'pricelist.$.name':       data.name,
-        'pricelist.$.price':      data.price,
-        'pricelist.$.timeLength': data.timeLength
-      }}, (err, doc) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      else {
-        res.send(doc);
-      }
-    });
-  });
-*/
+
   
 
   // De-activate specific service with price in services.pricelist //

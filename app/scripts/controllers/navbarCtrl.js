@@ -17,7 +17,13 @@
         
         $scope.isAdmin = function() {
             var p = JSON.parse(localStorage.getItem('profile'));
-            return p.app_metadata.user[0] === "admin";
+            if (p.app_metadata.user !== undefined) {
+                return p.app_metadata.user[0] === "admin";
+            }
+            else {
+                return false;    
+            }
+                    
         };
         
       }]);

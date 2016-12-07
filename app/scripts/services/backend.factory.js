@@ -148,7 +148,6 @@
       };
       
       backendFactory.postBooking = function (p) {
-        console.log("backendF.postBooking p.customer_service: ", p);
         p.company_id = this.ID();
         return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/',
@@ -160,6 +159,20 @@
           },
           data: p
         });
+      };
+      
+      backendFactory.updateBooking = function(b) {
+        b.company_id = this.ID();
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/' + b._id,
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: b
+        });      
       };
       // END OF BOOKING
 

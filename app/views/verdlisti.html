@@ -10,28 +10,12 @@
 <div class="content">
   <table class="table table-striped">
     <tbody>
-    <tr ng-repeat="p in pricelist"
-        ng-if="p.active || p.active === undefined"
-        ng-switch on="$index %2">
-      <td class="thjonusta"
-          ng-switch-when="0">
-        {{ pricelist[$index].name }}
+    <tr ng-repeat="p in pricelist" ng-if="p.active || p.active === undefined">
+      <td class="thjonusta">
+        {{ p.name }}
       </td>
-      <td class="verd"
-          ng-switch-when="0">
-        {{ pricelist[$index].price }} kr.
-      </td>
-      <td class="thjonusta"
-          ng-switch-when="0">
-          <span ng-show="pricelist[$index + 1]">
-            {{ pricelist[$index + 1].name }}
-          </span>
-      </td>
-      <td class="verd"
-          ng-switch-when="0">
-          <span ng-show="pricelist[$index + 1]">
-            {{ pricelist[$index + 1].price }} kr.
-          </span>
+      <td class="verd">
+        {{ p.price }} kr.
       </td>
     </tr>
     </tbody>
