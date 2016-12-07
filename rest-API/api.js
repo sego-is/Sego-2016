@@ -205,6 +205,7 @@ api.get('/book/:cid/:pid', (req, res) => {
   
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
   api.get('/bookings/:cid/:date', (req, res) => {
+      console.log("GET BOOKINGS BY DATE: Tussan", req.params.cid, " - ", req.params.date);
      model.Booking.find({ company_id: req.params.cid, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
         if (err) {
             res.status(500).send(err);
