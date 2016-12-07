@@ -57,6 +57,17 @@
             }
         });
     });
+    
+    // GET ALL COMPANIES
+    api.delete('/companies/:cid', (req, res) => {
+        model.Company.findByIdAndRemove(req.params.cid, (err, doc) => {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(201).send(doc);
+            }
+        });
+    });
   
   api.get('/book', (req, res) => {
       model.Book.find({}, function(err, docs) {

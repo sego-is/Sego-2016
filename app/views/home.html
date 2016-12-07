@@ -55,7 +55,7 @@
       <div class="rTableCell">
         <div ng-if="$index % 2 == 0">{{ t }}</div>
         <div ng-if="$index % 2 != 0"
-             class="quart"></div>
+             class="quart">{{ t }}</div>
       </div>
       <div class="bookingCell"
            ng-repeat="x in staff | orderBy: x._id"
