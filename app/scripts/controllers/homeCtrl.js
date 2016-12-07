@@ -44,7 +44,7 @@
       // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
       function update() {
         // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
-        backendFactory.getBookingByDate(selectedDay).then(function (res) {
+        backendFactory.getBookingByDate(dagatalFactory.getStringForDate(selectedDay)).then(function (res) {
           // If there are no bookings by given date -> return EMPTY ARRAY
           if (res.data.length === 0) {
               console.log("HER ER ENGAR BOKANIR", selectedDay);
