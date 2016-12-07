@@ -445,10 +445,15 @@ api.get('/book/:cid/:pid', (req, res) => {
     model.Booking.update({ 'company_id': { eq: data.company_id }, 'date': { eq: data.date }, ' bookings._id': { $eq: data.book_id }}, {
         '$set': {
             'bookings.$.attendance': data.attendance,
-            'bookings.$.reason': data.reason,
-            
-        }
-    })
+            'bookings.$.reason': data.reason
+        }}, (err, doc) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                res.send(doc);
+            }
+        })
   });
   
   /* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
