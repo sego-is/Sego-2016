@@ -122,10 +122,6 @@
         $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
         update();
       };
-
-      // FOR THE BOOKING WHEN TIME IS PICKED ON DAILY SCHEDULE
-      var booking;
-
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
       $scope.openBooking = function (t, b, ev) {
         gluggaService.init($scope);

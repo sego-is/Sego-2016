@@ -140,7 +140,7 @@ bookingsSchema.index({company_id: 1, date: 1}, {unique: true});
 module.exports = {
   Person:  mongoose.model('Person',   personSchema),
   Company: mongoose.model('Company', companySchema),
-  Book: mongoose.model('Book', bookSchema),
+  //Book: mongoose.model('Book', bookSchema),
   Booking: mongoose.model('Booking',  bookingsSchema),
   Service: mongoose.model('Service',  serviceSchema)
 };
