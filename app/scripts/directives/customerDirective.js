@@ -84,7 +84,8 @@
               s.role =       0;
               backendFactory.postPerson(s).then(function (res) {
                 scope.vidskiptavinir.push(res.data);
-                scope.lokaGlugga();
+                scope.modifyCus =  !scope.modifyCus;
+                //scope.lokaGlugga();
               }, function (err) {
                 console.log("ERROR addCustomer(): ", err);
               });
