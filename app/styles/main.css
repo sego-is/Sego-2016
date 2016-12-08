@@ -174,16 +174,12 @@ body {
 }
 
 .content {
-  height: 521px;
+  height: 502px;
   width: 100%;
   font-family: sans-serif;
 }
 
-.content thead {
-  font-size: 18px;
-}
-
-.content tbody td {
+.content thead, .content tbody td {
   font-size: 18px;
 }
 
@@ -197,14 +193,14 @@ body {
 }
 
 .content.v {
-  height: 383px;
+  height: 387px;
   width: 100%;
   /*overflow-y: auto;*/
   font-family: sans-serif;
 }
 
 .content.b {
-  height: 511px;
+  height: 492px;
   width: 100%;
   /*overflow-y: auto;*/
   font-family: sans-serif;
@@ -226,8 +222,14 @@ body {
 
 
 .blaðsíður {
-  margin-top: 23px;
-  margin-bottom: 7px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+#bætavið_takki {
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
 
 .takkar {
@@ -238,10 +240,6 @@ body {
   text-align: right;
   font-size: 18px;
   font-weight: bold;
-}
-
-.blaðsíður {
-  text-align: center;
 }
 
 .hiddenRow {
@@ -256,7 +254,29 @@ body {
   padding: 0 0 10px 0;
 }
 
-@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+@media only screen and (max-height: 414px), only screen and (max-device-height: 414px) {
+  .content {
+    height: 228px;
+  }
+
+  .content.v {
+    height: 207px;
+    overflow-y: auto;
+  }
+
+  .blaðsíður {
+    margin-top: -15px;
+    margin-bottom: 0px;
+  }
+
+  customer .skilabod {
+    top: 0px;
+  }
+
+
+}
+
+@media only screen and (max-width: 1024px), only screen and (max-device-width: 1024px) {
   .skilabod {
     position: absolute;
     left: 0;
@@ -280,10 +300,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 736px), only screen and (max-device-width: 736px) {
-  .haus {
-
-  }
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 
   div.navbar-haus  {
     margin-top: 12px;
