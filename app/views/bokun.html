@@ -1,0 +1,34 @@
+<div class="haus">
+  <h2>BÓKA TÍMA
+    <i class="fa fa-book"></i>
+  </h2>
+  <button type="button"
+          id="molar"
+          class="btn btn-link btn-lg"
+          ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+  </button>
+</div>
+<div class="content b">
+  <h4 class="text-center">Klippari: {{ objFrom.name }}</h4>
+  <h4 class="text-center">Viðskiptavinur: {{ objFrom.customer }}</h4>
+  <h2 class="text-center">Tími: {{ timi }}</h2>
+  <div class="input-group">
+      <ul style="list-style-type:none;">
+          <li><h5>Umbeðinn þjónusta:</h5></li>
+          <li ng-repeat="s in objFrom.service">
+              {{ s.name }} - {{ s.price }} kr.
+          </li>
+      </ul>
+  </div>
+  <div class="input-group pull-right">
+   <button class="btn btn-default " type="button" ng-click="afBoka()" style="margin-right:3.2em;">Afbóka</button>
+   <button class="btn btn-default " type="button" ng-click="breytaBokun()" style="margin-right:3.2em;">Breyta</button>
+   </div>
+</div>
+</div>  
+<div class="footer"><h3>SEGO</h3></div>
+
+<!--vantar gott error msg eða eitthvað-->
+
+
+
