@@ -14,42 +14,67 @@
         },
         templateUrl: '../../views/boka.html',
         link: function (scope, element, attrs) {
-  
+            
+            var selectedService = {};
+            
+            function update() {
+                
+                scope.addBokun = true;
+                // FOR CHECKBOX SELECTED SERVICE
+                scope.serviceSelected = scope.objFrom.service;
+                // GET THE TIME
+                scope.timi = dagatalFactory.getHHMMfromDate(new Date(scope.objFrom.startTime));
+                // TO CALCULATE ENDTIME
+                scope.timeTaken = 0;
+                scope.totalPrice = 0;
+                // GET SERVICE THAT COMPANY OFFERS, MAYBE WISE TO ALLWAY MAKE THESE HTTP CALLS ?
+                backendFactory.getService().then(function(res) {
+                        // Set pricelist as pricelist for given response
+                        scope.pricelist = res.data;
+                    }, function(err) {
+                        console.log("ERROR getService(): ", err);
+                });
+                if (scope.serviceSelected.length > 0) {
+                    scope.addBokun = false;
+                    console.log("FULL BÓKUN");
+                }
+            };
+            
+           
+            
             scope.leave = function() {
                 scope.close();
             };
 
-            // FOR CHECKBOX SELECTED SERVICE
-            scope.serviceSelected = scope.objFrom.service;
-             // TO CALCULATE ENDTIME
-            scope.timeTaken = 0;
-            // SMA HACK TIL AD SENDA INN NAME OG PRICE MED SERVICE ID
-            var VALIN_THJONUSTA = {};
+            scope.afBoka = function() {
+                console.log("afBoka");
+            };
+            
+            scope.breytaBokun = function() {
+                console.log("breytaBokun");
+            };
 
             scope.toggleSelection = function(s) {
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
                   scope.serviceSelected.splice(posOfSelected, 1);
-                  delete VALIN_THJONUSTA[s._id];
+                  delete selectedService[s._id];
                   scope.timeTaken -= s.timeLength;
+                  scope.totalPrice -= s.price;
                 }
                 else {
                   scope.serviceSelected.push(s._id);
-                  VALIN_THJONUSTA[s._id] = {
+                  selectedService[s._id] = {
                       "service_id": s._id,
                       "name": s.name,
                       "price": s.price
                   };
                   scope.timeTaken += s.timeLength;
+                  scope.totalPrice += s.price;
                 }
             };
 
-            backendFactory.getService().then(function(res) {
-                // Set pricelist as pricelist for given response
-                scope.pricelist = res.data;
-            }, function(err) {
-                console.log("ERROR getService(): ", err);
-            });
+           
 
             scope.stadfesta = function(bokun) {
 
@@ -59,8 +84,8 @@
                 scope.badInput = false;
 
                 // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
-                var arr = Object.keys(VALIN_THJONUSTA).map(function(key) { return VALIN_THJONUSTA[key]; })
-
+                var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; })
+                
                 backendFactory.postBooking({
                     startTime: scope.objFrom.startTime,
                     endTime: tmpEndTime,
@@ -80,6 +105,8 @@
                 scope.badInput = true;
               }
             };
+            
+            update();
         }
       };
     }]);
