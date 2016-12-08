@@ -485,6 +485,24 @@ button.fa.fa-plus {
   text-decoration: none;
 }
 
+.navbar-haus a {
+  color: whitesmoke;
+}
+
+.navbar-haus a:hover {
+  text-decoration: none;
+  color: gray;
+}
+
+.navbar-haus-top a {
+  color: whitesmoke;
+}
+
+.navbar-haus-top a:hover {
+  text-decoration: none;
+  color: gray;
+}
+
 .navbar-haus {
   position: absolute;
   font-family: sans-serif;
