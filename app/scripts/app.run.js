@@ -39,13 +39,12 @@
       // logging helper
       $rootScope.$on("$routeChangeStart", function(evt, to, from) {
             // requires authorization?
-            if (to.authorize === true) {
-                if (authService.auth()) {
-
-                }
-                else {
-                    $location.path("/");
-                }
+            if (to.authorize === true && authService.auth()) {
+                console.log("THAD ER AUTHORIZED!");
+                //$location.path("/home");
+            }
+            else {
+                $location.path("/");
             }
         });
 
