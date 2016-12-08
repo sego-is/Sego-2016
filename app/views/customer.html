@@ -2,8 +2,11 @@
   <h2 class="col-xs-7 col-md-8">VIÐSKIPTAVINIR
     <i class="fa fa-users"></i>
   </h2>
-    <input type="text" ng-model="search" id="leitargluggi" ng-if="!modifyCus" class="form-control col-md-3"
-           placeholder="Leita..">
+    <form class="form-inline">
+         <div class="form-group">
+            <input type="text" ng-model="search" id="leitargluggi" class="form-control col-md-3" placeholder="Leita..">
+         </div>
+    </form>
     <button type="button"
             id="molar"
             class="btn btn-link btn-lg"
@@ -193,9 +196,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:9"
-        ng-click="editCust(vinur)">
-      <td>{{ vinur.name }}</td>
+    <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:9" ng-click="editCust(vinur)">
+      <td class="divTakki">{{ vinur.name }}</td>
       <td>{{ vinur.phone }}</td>
       <td class="email">{{ vinur.email }}</td>
     </tr>
