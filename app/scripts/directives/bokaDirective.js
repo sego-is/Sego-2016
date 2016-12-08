@@ -39,12 +39,6 @@
                     console.log("FULL BÓKUN");
                 }
             };
-            
-           
-            
-            scope.leave = function() {
-                scope.close();
-            };
 
             scope.afBoka = function() {
                 console.log("afBoka");

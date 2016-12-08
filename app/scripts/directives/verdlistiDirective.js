@@ -6,7 +6,7 @@
       return {
         restrict: 'E',
         scope: {
-          lokaGlugga: '&close'
+          close: '&close'
         },
         templateUrl: '../../views/verdlisti.html',
         link: function (scope) {
@@ -17,9 +17,7 @@
               console.log("ERROR getStaff(): ", err);
             });
           }
-          scope.closeWindow = function () {
-            scope.lokaGlugga();
-          };
+
         }
       };
     }]);

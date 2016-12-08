@@ -8,7 +8,7 @@
       return {
         restrict: 'E',
         scope: {
-          lokaGlugga: '&close'
+          close: '&close'
         },
         templateUrl: '../../views/customer.html',
         link: function (scope, element, attrs) {
@@ -28,11 +28,6 @@
 
           scope.vidskiptavinir = [];
           scope.form = {};
-
-          // TO CLOSE THIS VIEW
-          scope.closeWindow = function () {
-            scope.lokaGlugga();
-          };
 
           scope.modifyCus = false;
 

@@ -8,7 +8,7 @@
       return {
         restrict: 'E',
         scope: {
-          lokaGlugga: '&close'
+          close: '&close'
         },
         templateUrl: '../../views/stillingar.html',
         link: function (scope, element, attrs) {
@@ -111,11 +111,6 @@
               });
           }
          // END OF GETTING U/S
-
-         // LOKA GLUGGANUM A STILLINGAR VIEW-INU
-          scope.closeWindow = function () {
-            scope.lokaGlugga();
-          };
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
           scope.removePrice = function (p, index) {

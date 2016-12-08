@@ -9,7 +9,7 @@
    * Controller of the segoEnnOgAfturApp
    */
   angular.module('segoapp')
-    .controller('HomeCtrl', ['$scope', '$compile', 'dagatalFactory', 'backendFactory', function ($scope, $compile, dagatalFactory, backendFactory) {
+    .controller('HomeCtrl', ['$scope', 'gluggaService', 'dagatalFactory', 'backendFactory', function ($scope, gluggaService, dagatalFactory, backendFactory) {
       $scope.bookings = [];
       // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
       var p = JSON.parse(localStorage.getItem('profile'));
@@ -128,14 +128,11 @@
 
       // t: TIMI, b: STARFSMADUR, date: DATE:FULLDATE
       $scope.openBooking = function (t, b, ev) {
+        gluggaService.init($scope);
         if (t === undefined) {
           console.log("UNDEFINED");
         }
         else {
-            document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
-            booking = $scope.$new();
-            var compiledDirective;
-          
             var idForCell = bookingForToday[ev.currentTarget.id];
             if (idForCell !== undefined) {
                 var tmpBook =      $scope.bookings[idForCell];
@@ -154,11 +151,9 @@
                     date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
                     startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
                 };
+                gluggaService.bokunGluggi();
                 
-                compiledDirective = $compile('<bokun class="skilabod" ' +
-                    'close="lokaBokun()" obj-from="clickOnTimapant"></bokun>');
-                var directiveElement = compiledDirective(booking);
-                $('.skilaboda-haldari').append(directiveElement);
+                
             }
             else {
                 b.customer_name =  "";
@@ -175,18 +170,14 @@
                     date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
                     startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
                 };
-                compiledDirective = $compile('<boka class="skilabod" ' +
-                    'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
-                var directiveElement = compiledDirective(booking);
-                $('.skilaboda-haldari').append(directiveElement);
+                gluggaService.bokaGluggi();
             }  
         }
       };
 
       $scope.lokaBokun = function () {
-        booking.$destroy();
-        $('.skilaboda-haldari').empty();
-        document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "hidden";
+        gluggaService.destroy();
+        
         update();
       };
       // END OF BOOKING CLICK
