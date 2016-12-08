@@ -1,6 +1,5 @@
-<div ng-controller="navbarCtrl">
-  <nav class="navbar navbar-default navbar-fixed-top"
-       ng-controller="MainCtrl">
+<div>
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div id="nav">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,7 +19,7 @@
         <div class="navbar-haus-top" ng-if="isAuthenticated" href="home">SEGO</div>
         <div class="nav navbar-nav pull-right"
              ng-if="isAuthenticated">
-            <a class="btn btn-link btn-lg hidden-xs hidden-sm" rel="home" href="admin" ng-if="isAdmin()">tmpAdmin</a>
+            <a class="btn btn-link btn-lg hidden-xs hidden-sm" rel="home" href="admin">tmpAdmin</a>
           <button type="button"
                   class="btn btn-link btn-lg"
                   ng-click="opnaGlugga('verdlisti')">

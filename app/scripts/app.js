@@ -58,23 +58,19 @@ angular
 
     $routeProvider
       .when('/', {
-        templateUrl:  '../views/main.html',
-        controller:   'MainCtrl',
-        controllerAs: 'main'
+        templateUrl:  '../views/main.html'
       })
       .when('/home', {
         templateUrl:  '../views/home.html',
         controller:   'HomeCtrl',
         controllerAs: 'home',
         authorize: true,
-        permissions: ["user", "owner"]
       })
       .when('/admin', {
         templateUrl:  '../views/admin.html',
         controller:   'AdminCtrl',
         controllerAs: 'admin',
         authorize: true,
-        permissions: ["administration"]
       })
       .otherwise({
         redirectTo: '/'
