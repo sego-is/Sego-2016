@@ -131,25 +131,10 @@
         else {
             var idForCell = bookingForToday[ev.currentTarget.id];
             if (idForCell !== undefined) {
-                var tmpBook =      $scope.bookings[idForCell];
-                b.book_id = tmpBook._id;
-                b.customer_name =  tmpBook.customer_id.name;
-                b.customer_phone = tmpBook.customer_id.phone;
-                b.service = tmpBook.service;
-        
-                 $scope.clickOnTimapant = {
-                    name:      b.name,
-                    book_id:   b.book_id,
-                    customer:  b.customer_name,
-                    phone:     b.customer_phone,
-                    service:   b.service,
-                    staffId:   b._id,
-                    date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
-                    startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
-                };
-                gluggaService.bokunGluggi();
-                
-                
+                $scope.clickOnTimapant = $scope.bookings[idForCell];
+                $scope.clickOnTimapant.name = b.name;
+                console.log("clickOnTimapant:", $scope.clickOnTimapant);
+                gluggaService.bokunGluggi();            
             }
             else {
                 b.customer_name =  "";
