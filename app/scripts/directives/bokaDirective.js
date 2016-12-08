@@ -14,9 +14,9 @@
         },
         templateUrl: '../../views/boka.html',
         link: function (scope, element, attrs) {
-            
+
             var selectedService = {};
-            
+
             function update() {
                 // FOR CHECKBOX SELECTED SERVICE
                 scope.serviceSelected = scope.objFrom.service;
@@ -32,9 +32,9 @@
                     }, function(err) {
                         console.log("ERROR getService(): ", err);
                 });
-            };
+            }
 
-            
+
             scope.toggleSelection = function(s) {
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
@@ -55,7 +55,7 @@
                 }
             };
 
-           
+
 
             scope.stadfesta = function(bokun) {
 
@@ -65,8 +65,8 @@
                 scope.badInput = false;
 
                 // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
-                var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; })
-                
+                var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });
+
                 backendFactory.postBooking({
                     startTime: scope.objFrom.startTime,
                     endTime: tmpEndTime,
@@ -86,7 +86,7 @@
                 scope.badInput = true;
               }
             };
-            
+
             update();
         }
       };

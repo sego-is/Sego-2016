@@ -94,10 +94,6 @@
             scope.badInput = false;
           };
 
-          // GET DATA, NEED TO SHOW
-          getStaff();
-          getService();
-
           function getStaff() {
               scope.staff = backendFactory.Staff();
           }
@@ -110,6 +106,10 @@
                   console.log("ERROR getService(): ", err);
               });
           }
+
+          // GET DATA, NEED TO SHOW
+          getStaff();
+          getService();
          // END OF GETTING U/S
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
@@ -130,7 +130,7 @@
             }, function (err) {
                 console.log("update()->getBookingByMonth() ERR:", err);
             });
-          }
+          };
 
 
           // HELP FUNCTION WHEN CLICK EDIT PRICE

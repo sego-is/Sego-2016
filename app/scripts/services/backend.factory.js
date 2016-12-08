@@ -11,7 +11,7 @@
 
       backendFactory.set = function (company) {
           if (company !== undefined) {
-            _company = company;      
+            _company = company;
           }
       };
 
@@ -49,7 +49,7 @@
           if (_company !== null) {
               return _company.pricelist;
           }
-      }
+      };
 
       backendFactory.getStaffById = function(pid) {
         for (var i in _company.staff) {
@@ -60,7 +60,7 @@
         return "PERSON NOT FOUND.. EXCUSE US";
       };
 
-      
+
 
 
       //------------------------------ NORMAL PEOPLE CALLS ------------------------------//
@@ -133,7 +133,7 @@
           }
         });
       };
-       
+
        backendFactory.getBookingByMonth = function(pid, date) {
            console.log("GETBOOKINGBYMONTH, date:", date);
           return $http({
@@ -146,7 +146,7 @@
           }
         });
       };
-      
+
       backendFactory.postBooking = function (p) {
         p.company_id = this.ID();
         return $http({
@@ -160,7 +160,7 @@
           data: p
         });
       };
-      
+
       backendFactory.updateBooking = function(b) {
         b.company_id = this.ID();
         return $http({
@@ -172,7 +172,7 @@
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
           data: b
-        });      
+        });
       };
       // END OF BOOKING
 

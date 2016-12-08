@@ -13,25 +13,25 @@
    */
   angular.module('segoapp')
     .controller('navbarCtrl', ['$scope', 'gluggaService', 'authService', function ($scope, gluggaService, authService) {
-        
+
         $scope.lokaGlugga = function() {
-            gluggaService.destroy();    
+            gluggaService.destroy();
         };
-        
+
         $scope.vidskiptavinir = function() {
             gluggaService.init($scope);
             gluggaService.customerGluggi();
         };
-        
+
         $scope.stillingar = function() {
             gluggaService.init($scope);
             gluggaService.stillingarGluggi($scope);
         };
-        
+
         $scope.verdlisti = function() {
             gluggaService.init($scope);
             gluggaService.verdlistiGluggi($scope);
-        }
+        };
 
 /*
       $scope.checkPass = function (lykill) {
@@ -46,7 +46,7 @@
           $scope.lokaGlugga();
         }
       };
-      */   
+      */
       }]);
 })();
 
