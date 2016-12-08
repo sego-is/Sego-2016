@@ -18,8 +18,6 @@
             var selectedService = {};
             
             function update() {
-                
-                scope.addBokun = true;
                 // FOR CHECKBOX SELECTED SERVICE
                 scope.serviceSelected = scope.objFrom.service;
                 // GET THE TIME
@@ -34,20 +32,9 @@
                     }, function(err) {
                         console.log("ERROR getService(): ", err);
                 });
-                if (scope.serviceSelected.length > 0) {
-                    scope.addBokun = false;
-                    console.log("FULL BÓKUN");
-                }
             };
 
-            scope.afBoka = function() {
-                console.log("afBoka");
-            };
             
-            scope.breytaBokun = function() {
-                console.log("breytaBokun");
-            };
-
             scope.toggleSelection = function(s) {
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
