@@ -223,17 +223,19 @@ api.get('/book/:cid/:pid', (req, res) => {
   });
    
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
-  api.get('/bookings/:cid/:pid/:date', (req, res) => {
-      console.log("/bookings/:cid/:pid/:date -> JIBBÍ", req.params);
+  api.get('/bookings/:cid/:date/month', (req, res) => {
+      console.log("/bookings/:cid/:date/month-> JIBBÍ", req.params);
       var d = new Date(req.params.date);
+      d.setDate(1);
+      var date = d.getDate();
       var year = d.getFullYear();
       var month = d.getMonth();
       d.setMonth(d.getMonth() + 1);
-     model.Booking.find({ 
+        model.Booking.find({ 
          'company_id': { $eq: req.params.cid }, 
          'date': { 
              $lt: d, 
-             $gt: new Date(year+','+month)
+             $gt: new Date(year+','+month+','+ date)
          }
         }).populate('bookings.customer_id')
          .exec(function (err, docs) {
@@ -241,13 +243,7 @@ api.get('/book/:cid/:pid', (req, res) => {
                  res.status(500).send(err);
              }
              else { 
-                 if (docs !== null) {
-                     for (var i in docs) {
-                        docs[i].bookings = _.where(docs[i].bookings, { staff_id: req.params.pid });    
-                     }
-                }
                 res.send(docs);
-                 
              }
          });
   });

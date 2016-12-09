@@ -134,10 +134,10 @@
         });
       };
 
-       backendFactory.getBookingByMonth = function(pid, date) {
-           console.log("GETBOOKINGBYMONTH, date:", date);
+       backendFactory.getBookingByMonth = function(date) {
+          console.log("GETBOOKINGBYMONTH, date:", date);
           return $http({
-          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + pid + '/' + date,
+          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + date + '/month',
           method: 'GET',
           headers: {
             'Accept': 'application/json',

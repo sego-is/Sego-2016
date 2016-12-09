@@ -160,6 +160,11 @@
         gluggaService.destroy();
         
         update();
+        backendFactory.getBookingByMonth(dagatalFactory.getStringForDate()).then(function(res) {
+                console.log("RESPOND getBookingByMonth, res:", res);
+            }, function(err) {
+                console.log("ERROR getBookingByMonth, err:", err);
+            });
       };
       // END OF BOOKING CLICK
     }]);

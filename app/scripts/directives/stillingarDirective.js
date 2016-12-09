@@ -12,6 +12,7 @@
         },
         templateUrl: '../../views/stillingar.html',
         link: function (scope, element, attrs) {
+
           // scope Variables
           // When Creating or Updating PERSON (staff)
           scope.editUser = {};
