@@ -111,6 +111,8 @@
 
       // HREINSA BLADSIDA FYRIR NYJAN DAG
       function cleanPage() {
+        // Eyda geymdar bokanir i min
+        bookingForToday = {};
         $('.confirmedBooking').remove();
       }
 
@@ -155,16 +157,28 @@
             }  
         }
       };
-
+      
+      var klipparaBokanir = {};
+      
       $scope.lokaBokun = function () {
         gluggaService.destroy();
         
         update();
         backendFactory.getBookingByMonth(dagatalFactory.getStringForDate()).then(function(res) {
-                console.log("RESPOND getBookingByMonth, res:", res);
-            }, function(err) {
-                console.log("ERROR getBookingByMonth, err:", err);
-            });
+                
+                for (var i in res.data) {
+                    for (var j in res.data[i].bookings) {
+                        if (klipparaBokanir[res.data[i].bookings[j].staff_id] === undefined) {
+                            klipparaBokanir[res.data[i].bookings[j].staff_id] = [];
+                            klipparaBokanir[res.data[i].bookings[j].staff_id].push(res.data[i].bookings[j]);
+                        }
+                        else {
+                            klipparaBokanir[res.data[i].bookings[j].staff_id].push(res.data[i].bookings[j]);
+                        }
+                    }
+                }
+                console.log("RESPOND getBookingByMonth, klipparaBokanir:", klipparaBokanir);
+      });
       };
       // END OF BOOKING CLICK
     }]);

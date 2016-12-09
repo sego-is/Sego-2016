@@ -235,7 +235,7 @@ api.get('/book/:cid/:pid', (req, res) => {
          'company_id': { $eq: req.params.cid }, 
          'date': { 
              $lt: d, 
-             $gt: new Date(year+','+month+','+ date)
+             $gte: new Date(year+','+month+','+ date)
          }
         }).populate('bookings.customer_id')
          .exec(function (err, docs) {
