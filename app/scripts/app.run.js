@@ -44,6 +44,7 @@
                 //$location.path("/home");
             }
             else {
+                console.log("$ROUTECHANGESTART");
                 $location.path("/");
             }
         });

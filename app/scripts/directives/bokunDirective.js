@@ -26,6 +26,7 @@
             scope.afBoka = function() {
                 console.log("afBoka");
                  backendFactory.removeBooking(scope.objFrom).then(function(res) {
+                     scope.close();
                      console.log("RESPINT removeBooking:", res);
                  }, function(err) {
                      console.log("ERROR removeBooking:", err);
@@ -39,6 +40,7 @@
             scope.ekkiBokun = function() {
                 backendFactory.notAttendBooking(scope.objFrom).then(function(res) {
                     console.log("RESPINT notAttending:", res);
+                    scope.close();
                 }, function(err) {
                     console.log("ERROR notAttending:", err);
                 });
