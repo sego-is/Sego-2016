@@ -100,7 +100,12 @@
       }, function (err) {
         console.log("GET BOOKING (err): ", err);
       });
-
+        
+      backendFactory.getBookingByMonth().then(function (res) {
+        
+      }, function(err) {
+              
+      });
       $scope.deleteBooking = function (bid, index) {
         adminFactory.deleteBookings(bid).then(function (res) {
           $scope.bookings.splice(index, 1);

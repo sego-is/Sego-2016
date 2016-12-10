@@ -223,31 +223,24 @@ api.get('/book/:cid/:pid', (req, res) => {
   });
    
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
-  api.get('/bookings/:cid/:pid/:date', (req, res) => {
-      console.log("/bookings/:cid/:pid/:date -> JIBBÍ", req.params);
+  api.get('/bookings/:cid/:date/month', (req, res) => {
+      console.log("/bookings/:cid/:date/month-> JIBBÍ", req.params);
       var d = new Date(req.params.date);
+
       var year = d.getFullYear();
       var month = d.getMonth();
+      
       d.setMonth(d.getMonth() + 1);
-     model.Booking.find({ 
-         'company_id': { $eq: req.params.cid }, 
-         'date': { 
-             $lt: d, 
-             $gt: new Date(year+','+month)
-         }
-        }).populate('bookings.customer_id')
-         .exec(function (err, docs) {
+      model.Booking.find({
+          company_id: req.params.cid,
+          date: { $gt: new Date(year, month, 1), $lt: new Date(year, month+1, 0) }
+      }).populate('bookings.customer_id')
+      .exec(function (err, docs) {
              if (err) {
                  res.status(500).send(err);
              }
              else { 
-                 if (docs !== null) {
-                     for (var i in docs) {
-                        docs[i].bookings = _.where(docs[i].bookings, { staff_id: req.params.pid });    
-                     }
-                }
                 res.send(docs);
-                 
              }
          });
   });
@@ -439,21 +432,35 @@ api.get('/book/:cid/:pid', (req, res) => {
       }});
   });
   
-  // THARF EF TIL VILL AD IHUGA HVERNIG VERDUR HAEGT AD UPDATE BOKUN OG/EDA HAETTA VID BOKUN
+  // EF BOKUN STENNST EKKI, CUSTOMER MAETIR EKKI
   api.post('/bookings/:bid', bodyParser.json(), (req, res) => {
     const data = req.body;
-    model.Booking.update({ 'company_id': { eq: data.company_id }, 'date': { eq: data.date }, ' bookings._id': { $eq: data.book_id }}, {
+    model.Booking.update({ 'company_id': { eq: data.company_id }, 'date': { eq: data.date }, 'bookings._id': { $eq: req.params.bid }}, {
         '$set': {
-            'bookings.$.attendance': data.attendance,
-            'bookings.$.reason': data.reason
+            'bookings.$.attendance': false,
+            'bookings.$.reason': "Mætti ekki"
         }}, (err, doc) => {
             if (err) {
+                console.log("ERROR i model.Booking.update, err:", err);
                 res.status(500).send(err);
             }
             else {
-                res.send(doc);
+                model.Person.update({ '_id': { $eq: data.customer_id._id }, 'history._id': { $eq: req.params.bid }}, {
+                    '$set': {
+                        'bookings.$.attendance': false,
+                        'bookings.$.reason': "Mætti ekki"
+                    }
+                }, (err1, doc1) => {
+                    if (err1) {
+                        console.log("ERROR i model.Person.update, err1:", err1);
+                        res.status(500).send(err1);
+                    }
+                    else {
+                        res.send(doc1);
+                    }
+                });
             }
-        })
+        });
   });
   
   /* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU

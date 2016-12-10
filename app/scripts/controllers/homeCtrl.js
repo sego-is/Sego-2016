@@ -111,6 +111,8 @@
 
       // HREINSA BLADSIDA FYRIR NYJAN DAG
       function cleanPage() {
+        // Eyda geymdar bokanir i min
+        bookingForToday = {};
         $('.confirmedBooking').remove();
       }
 
@@ -155,11 +157,12 @@
             }  
         }
       };
-
+      
+      
+      
       $scope.lokaBokun = function () {
         gluggaService.destroy();
-        
-        update();
+        update();        
       };
       // END OF BOOKING CLICK
     }]);
