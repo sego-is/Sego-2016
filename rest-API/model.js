@@ -25,11 +25,10 @@ const bookSchema = Schema({
     }],
     attendance: {
         type: Boolean,
-        default: false
+        default: true
     },
     reason: {
-        type: String,
-        default: "Enginn ástæða"
+        type: String
     }
 });
 
