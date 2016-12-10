@@ -24,6 +24,9 @@
          aria-hidden="true">
       </i>
     </div>
+    <div class="pull-right" ng-if="bookChangeInProgress"> 
+        <p class="divTakki" style="border:1px solid black; background:red; padding:0.2em; margin-right:2.0em;" ng-click="cancelBookingChange()">Breyting á Bókun / Hætta við</p>
+    </div>
   </div>
 </div>
 <div uib-datepicker

@@ -11,16 +11,8 @@
   angular.module('segoapp')
     .controller('HomeCtrl', ['$scope', 'gluggaService', 'dagatalFactory', 'backendFactory', function ($scope, gluggaService, dagatalFactory, backendFactory) {
       $scope.bookings = [];
-      // GET COMPANY INFORMATION BY AUTH_ID THAT WAS CONNECTING //
-      var p = JSON.parse(localStorage.getItem('profile'));
-      backendFactory.getCompanyByAuthID(p.user_id).then(function successCallback(response) {
-        backendFactory.set(response.data[0]);
-        // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
-        update();
-      }, function errorCallback(error) {
-        console.log("ERROR", error);
-      });
-
+      
+      
       // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
       var selectedDay = dagatalFactory.getDate();
 
@@ -115,7 +107,22 @@
         // Eyda geymdar bokanir i min
         $('.confirmedBooking').remove();
       }
-
+      
+      // HJALPAR FOLL OG BREYTA FYRIR, BREYTINGU A BOKUN I KERFINU - BokunDirective
+      $scope.bookChangeInProgress = false;
+      var bookingToChange = null;
+      
+      $scope.bookingChange = function(b) {
+        $scope.bookChangeInProgress = true;
+        bookingToChange = b;
+      };
+      
+      $scope.cancelBookingChange = function() {
+        $scope.bookChangeInProgress = false;
+        bookingToChange = null;  
+      };
+      // ENDIR A HJALP - BokunDirective
+      
       // Get bookings for selected date in datepicker
       $scope.getDailyBookings = function (t) {
         cleanPage();
@@ -135,13 +142,20 @@
             if (idForCell !== undefined) {
                 $scope.clickOnTimapant = $scope.bookings[idForCell];
                 $scope.clickOnTimapant.name = b.name;
-                console.log("clickOnTimapant:", $scope.clickOnTimapant);
                 gluggaService.bokunGluggi();            
             }
             else {
-                b.customer_name =  "";
-                b.customer_phone = "";
-                b.service =        [];
+                if ($scope.bookChangeInProgress) {
+                    b.customer_name =  bookingToChange.customer_id.name;
+                    b.customer_phone = bookingToChange.customer_id.phone;
+                    b.service =        bookingToChange.service;    
+                }
+                else {
+                    b.customer_name =  "";
+                    b.customer_phone = "";
+                    b.service =        [];    
+                }
+                
                 
                 $scope.clickOnTimapant = {
                     name:      b.name,
@@ -153,6 +167,7 @@
                     date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
                     startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
                 };
+                console.log('$scope.clickOnTimapant:', $scope.clickOnTimapant);
                 gluggaService.bokaGluggi();
             }  
         }
@@ -165,5 +180,13 @@
         update();        
       };
       // END OF BOOKING CLICK
+      backendFactory.init().then(function successCallback(response) {
+        backendFactory.set(response.data[0]);
+        update();
+        // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
+      }, function errorCallback(error) {
+        console.log("ERROR", error);
+      });;
+
     }]);
 })();

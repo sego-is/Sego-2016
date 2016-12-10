@@ -9,6 +9,7 @@
         restrict: 'E',
         scope: {
           close: '&close',
+          change: '&bookingChange',
           objFrom: '=objFrom'
         },
         templateUrl: '../../views/bokun.html',
@@ -34,6 +35,8 @@
             };
             
             scope.breytaBokun = function() {
+                scope.change(scope.objFrom);
+                scope.close();
                 console.log("breytaBokun");
             };
             
