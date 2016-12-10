@@ -766,8 +766,28 @@ input.ng-valid {
   margin-left: -2.3em;
 }
 
+.history {
+  overflow-y: scroll;
+  border: 1px solid red;
+  height: 62%;
+}
+
+.profile {
+  margin-top: 1.2em;
+}
+
+.profilePic {
+
+  height: 15em;
+  width: 12em;
+  border: 1px solid black;
+}
+
 textarea {
+  margin-top: 13%;
   resize: none;
+  height: 10em;
+  width: 30em;
 }
 /*******************************/
 /************ ADMIN ************/
