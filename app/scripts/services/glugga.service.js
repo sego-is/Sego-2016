@@ -41,10 +41,29 @@
             $('.skilaboda-haldari').append(directiveElement);
         }
 
+        function stillaVerdGluggi() {
+          compiledDirective = $compile('<stillaVerd class="skilabod" close="lokaGlugga()"></stillaVerd>');
+          var directiveElement = compiledDirective(thisScope);
+          $('.skilaboda-haldari').append(directiveElement);
+        }
+
+        function stillaKlipparaGluggi() {
+          compiledDirective = $compile('<stillaKlippara class="skilabod" close="lokaGlugga()"></stillaKlippara>');
+          var directiveElement = compiledDirective(thisScope);
+          $('.skilaboda-haldari').append(directiveElement);
+        }
+
         function customerGluggi() {
             compiledDirective = $compile('<customer class="skilabod" close="lokaGlugga()"></customer>');
             var directiveElement = compiledDirective(thisScope);
             $('.skilaboda-haldari').append(directiveElement);
+        }
+
+        function tolfraediGluggi () {
+          compiledDirective = $compile('<tolfraedi class="skilabod" close="lokaGlugga()"></tolfraedi>');
+
+          var directiveElement = compiledDirective(thisScope);
+          $('.skilaboda-haldari').append(directiveElement);
         }
 
         function destroy() {
@@ -60,6 +79,7 @@
             customerGluggi: customerGluggi,
             bokaGluggi: bokaGluggi,
             bokunGluggi: bokunGluggi,
+            tolfraediGluggi: tolfraediGluggi,
             destroy: destroy
         };
   }]);

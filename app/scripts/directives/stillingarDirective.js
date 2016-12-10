@@ -4,7 +4,7 @@
 
   angular
     .module('segoapp')
-    .directive('stillingar', ['dagatalFactory','backendFactory', function (dagatalFactory, backendFactory) {
+    .directive('stillingar', ['gluggaService', 'dagatalFactory','backendFactory', function (gluggaService, dagatalFactory, backendFactory) {
       return {
         restrict: 'E',
         scope: {
@@ -46,6 +46,11 @@
             scope.editUser            = {};
             scope.editUser.role       = 1;
             scope.editUser.company_id = backendFactory.ID();
+          };
+
+          scope.tolfraedi = function () {
+            gluggaService.init(scope);
+            gluggaService.tolfraediGluggi();
           };
 
           // ADD PERSON AS STAFF IN COMPANY
