@@ -39,9 +39,11 @@
       // logging helper
       $rootScope.$on("$routeChangeStart", function(evt, to, from) {
             // requires authorization?
+            console.log("THAD ER AUTHORIZED!, to:", to);
+            console.log("THAD ER AUTHORIZED!, from:", from);
+            
             if (to.authorize === true && authService.auth()) {
-                console.log("THAD ER AUTHORIZED!, to:", to);
-                console.log("THAD ER AUTHORIZED!, from:", from);
+                
                 //$location.path("/home");
             }
             else {
