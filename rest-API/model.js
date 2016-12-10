@@ -21,7 +21,11 @@ const bookSchema = Schema({
             ref:     'Service'
         },
         name: String,
-        price: Number
+        price: Number,
+        timeLength: {
+            type: Number,
+            default: 0
+        }
     }],
     attendance: {
         type: Boolean,

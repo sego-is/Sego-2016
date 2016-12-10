@@ -17,7 +17,7 @@
 
             var selectedService = {};
 
-            function update() {
+            function init() {
                 // GET THE TIME
                 scope.timi = dagatalFactory.getHHMMfromDate(new Date(scope.objFrom.startTime));
                 // TO CALCULATE ENDTIME
@@ -26,7 +26,9 @@
                 // FOR CHECKBOX SELECTED SERVICE
                 scope.serviceSelected = scope.objFrom.service;
                 
+                // IF THERE IS SOMETHING IN ARRAY THEN THERE IS CHANGE OF BOOKING //
                 if (scope.serviceSelected.length > 0) {
+                    console.log('scope.objFrom', scope.objFrom);
                     var arr = Object.keys(scope.objFrom.service).map(function(key) { return scope.objFrom.service[key].service_id; });
                     for (var i in scope.serviceSelected) {
                         selectedService[scope.serviceSelected[i]._id] = {
@@ -35,6 +37,7 @@
                             "price": scope.serviceSelected[i].price
                         };
                         scope.totalPrice += scope.serviceSelected[i].price;
+                        scope.timeTaken += scope.serviceSelected[i].timeLength;
                     }
                     scope.serviceSelected = arr;
                 }
@@ -131,7 +134,7 @@
               }
             };
 
-            update();
+            init();
         }
       };
     }]);
