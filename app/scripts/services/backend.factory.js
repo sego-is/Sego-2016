@@ -156,6 +156,19 @@
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: b
+        });
+      };
+      
+      backendFactory.removeBooking = function(b) {
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + b.date + '/' + b._id + '/' + b.customer_id._id ,
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           }
         });
       };

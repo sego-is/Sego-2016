@@ -16,6 +16,8 @@
 
             scope.timi = dagatalFactory.getHHMMfromDate(new Date(scope.objFrom.startTime));
             scope.totalPrice = 0;
+            scope.objFrom.date = dagatalFactory.getStringForDate(new Date(scope.objFrom.startTime));
+            console.log("scope.objFrom:", scope.objFrom);
             
             for (var i in scope.objFrom.service) {
                 scope.totalPrice += scope.objFrom.service[i].price;
@@ -23,6 +25,11 @@
             
             scope.afBoka = function() {
                 console.log("afBoka");
+                 backendFactory.removeBooking(scope.objFrom).then(function(res) {
+                     console.log("RESPINT removeBooking:", res);
+                 }, function(err) {
+                     console.log("ERROR removeBooking:", err);
+                 })
             };
             
             scope.breytaBokun = function() {
@@ -30,12 +37,10 @@
             };
             
             scope.ekkiBokun = function() {
-                scope.objFrom.date = dagatalFactory.getStringForDate(new Date(scope.objFrom.startTime));
-                console.log("scope.objFrom:", scope.objFrom);
                 backendFactory.notAttendBooking(scope.objFrom).then(function(res) {
-                    
+                    console.log("RESPINT notAttending:", res);
                 }, function(err) {
-                    
+                    console.log("ERROR notAttending:", err);
                 });
                 
                 console.log("bokudBokun");

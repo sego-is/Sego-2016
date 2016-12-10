@@ -435,7 +435,7 @@ api.get('/book/:cid/:pid', (req, res) => {
   // EF BOKUN STENNST EKKI, CUSTOMER MAETIR EKKI
   api.post('/bookings/:bid', bodyParser.json(), (req, res) => {
     const data = req.body;
-    model.Booking.update({ 'company_id': { eq: data.company_id }, 'date': { eq: data.date }, 'bookings._id': { $eq: req.params.bid }}, {
+    model.Booking.update({ 'company_id': { $eq: data.company_id }, 'date': { $eq: data.date }, 'bookings._id': { $eq: req.params.bid }}, {
         '$set': {
             'bookings.$.attendance': false,
             'bookings.$.reason': "Mætti ekki"
@@ -454,6 +454,39 @@ api.get('/book/:cid/:pid', (req, res) => {
                     if (err1) {
                         console.log("ERROR i model.Person.update, err1:", err1);
                         res.status(500).send(err1);
+                    }
+                    else {
+                        res.send(doc1);
+                    }
+                });
+            }
+        });
+  });
+  
+  // !!!  EYDA BOKUN !!!!
+/*
+      model.Company.update({ '_id': data.cid },
+        { $pull: { "staff": { _id: data.staff._id } } },
+        { safe: true, upsert: true }, function (err, doc) {
+
+*/
+  api.delete('/bookings/:cid/:date/:bid/:pid', (req, res) => {
+    model.Booking.update({ 'company_id': { $eq: req.params.cid }, 'date': { $eq: req.params.date }},
+        { $pull: { 'bookings': { _id: req.params.bid } } },
+        { safe: true, upsert: true }, 
+        (err, doc) => {
+            if (err) {
+                console.log("ERROR i DELETE: model.Booking.update, err:", err);
+                res.status(500).send(err);
+            }
+            else {
+                console.log("DOCDOC:", doc);
+                model.Person.update({ '_id': { $eq: req.params.pid }},
+                { $pull: { 'history': { _id: req.params.bid } } },
+                (err1, doc1) => {
+                    if (err1) {
+                        console.log("ERROR i DELETE model.Person.update, err1:", err1);
+                        res.status(500).send    (err1);
                     }
                     else {
                         res.send(doc1);
