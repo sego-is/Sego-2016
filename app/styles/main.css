@@ -81,6 +81,10 @@ body {
   background-image: linear-gradient(-90deg, hsl(290, 80%, 60%), hsl(290, 60%, 45%) 2em, hsl(290, 80%, 60%));
 }
 
+#bætavið_i_stillingar {
+  margin-right: 25px;
+}
+
 #leitargluggi  {
   background-color : whitesmoke;
   margin-right: 50px;
