@@ -761,6 +761,14 @@ input.ng-valid {
   display: none;
 }*/
 
+.lists {
+  list-style:none;
+  margin-left: -2.3em;
+}
+
+textarea {
+  resize: none;
+}
 /*******************************/
 /************ ADMIN ************/
 /*******************************/
