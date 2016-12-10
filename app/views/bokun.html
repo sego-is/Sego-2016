@@ -1,33 +1,44 @@
 <div class="haus">
-  <h2>BÓKA TÍMA
+  <h2>BÓKAÐUR TÍMI
     <i class="fa fa-book"></i>
   </h2>
   <button type="button"
-          id="molar"
-          class="btn btn-link btn-lg"
+          class="molar btn btn-link btn-lg"
           ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
   </button>
 </div>
 <div class="content b">
+  <h3 class="text-center">Viðskiptavinur: {{ objFrom.customer_id.name }}</h3>
   <h4 class="text-center">Klippari: {{ objFrom.name }}</h4>
-  <h4 class="text-center">Viðskiptavinur: {{ objFrom.customer_id.name }}</h4>
-  <h2 class="text-center">Tími: {{ timi }}</h2>
-  <div class="input-group">
+  <h4 class="text-center">Tími: {{ timi }}</h4>
+  <div>
       <ul style="list-style-type:none;">
-          <li><h5>Umbeðinn þjónusta:</h5></li>
-          <li ng-repeat="s in objFrom.service" ng-init="totalPrice = totalPrice + s.price">
+          <li class="þjonusta_i_bokun_haus"><h4>Umbeðin þjónusta:</h4></li>
+          <li class="þjonusta_i_bokun" ng-repeat="s in objFrom.service" ng-init="totalPrice = totalPrice + s.price">
               {{ s.name }} - {{ s.price }} kr.
           </li>
       </ul>
-       <h2 class="text-center">Verð: {{ totalPrice }}</h2>
   </div>
-  <div class="input-group pull-right">
-   <button class="btn btn-default " type="button" ng-click="afBoka()">Afbóka</button>
-   <button class="btn btn-default " type="button" ng-click="breytaBokun()" style="margin-right:3.2em;">Breyta</button>
-   <button class="btn btn-default " type="button" ng-click="ekkiBokun()" style="margin-right:3.2em;">Mætti ekki</button>
+  <div class="takkar">
+    <h2>Verð: {{ totalPrice }}</h2>
+   <button type="submit"
+           id="afboka"
+           class="btn btn-primary"
+           ng-click="afBoka()">Afbóka
+    </button>
+   <button type="submit"
+           id="breytabokun"
+           class="btn btn-primary"
+           ng-click="breytaBokun()">Breyta
+   </button>
+   <button type="submit"
+           id="bætavið_i_stillingar"
+           class="btn btn-primary"
+           ng-click="ekkiBokun()">Mætti ekki
+   </button>
    </div>
 </div>
-</div>  
+</div>
 <div class="footer"><h3>SEGO</h3></div>
 
 <!--vantar gott error msg eða eitthvað-->

@@ -18,13 +18,28 @@
             var selectedService = {};
 
             function update() {
-                // FOR CHECKBOX SELECTED SERVICE
-                scope.serviceSelected = scope.objFrom.service;
                 // GET THE TIME
                 scope.timi = dagatalFactory.getHHMMfromDate(new Date(scope.objFrom.startTime));
                 // TO CALCULATE ENDTIME
                 scope.timeTaken = 0;
                 scope.totalPrice = 0;
+                // FOR CHECKBOX SELECTED SERVICE
+                scope.serviceSelected = scope.objFrom.service;
+                
+                if (scope.serviceSelected.length > 0) {
+                    var arr = Object.keys(scope.objFrom.service).map(function(key) { return scope.objFrom.service[key].service_id; });
+                    for (var i in scope.serviceSelected) {
+                        selectedService[scope.serviceSelected[i]._id] = {
+                            "service_id": scope.serviceSelected[i]._id,
+                            "name": scope.serviceSelected[i].name,
+                            "price": scope.serviceSelected[i].price
+                        };
+                        scope.totalPrice += scope.serviceSelected[i].price;
+                    }
+                    scope.serviceSelected = arr;
+                }
+                
+                
                 // GET SERVICE THAT COMPANY OFFERS, MAYBE WISE TO ALLWAY MAKE THESE HTTP CALLS ?
                 backendFactory.getService().then(function(res) {
                         // Set pricelist as pricelist for given response
