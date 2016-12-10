@@ -10,7 +10,7 @@
       <i class="fa fa-cut"></i>
     </h2>
     <div class="molar">
-      <!--<button type="button"
+      <button type="button"
               id="molar"
               class="btn btn-link btn-lg"
               ng-click="tolfraedi()"
@@ -21,7 +21,7 @@
             aria-hidden="true">
       </span>
         <span class="texti">Tölfræði</span>
-      </button>-->
+      </button>
       <button type="button"
               id="molar"
               class="btn btn-link btn-lg"
@@ -34,7 +34,7 @@
       </span>
         <span class="texti">Verðlisti</span>
       </button>
-      <button type="button"
+      <!--<button type="button"
               id="molar"
               class="btn btn-link btn-lg"
               ng-click="toStaffAdd()"
@@ -45,7 +45,7 @@
             aria-hidden="true">
       </span>
         <span class="texti">Bæta við klippara</span>
-      </button>
+      </button>-->
       <button type="button"
               id="molar"
               class="btn btn-link btn-lg"
@@ -210,7 +210,7 @@
 </tr>
 </tbody>
 <!-- ADD KLIPPARA, ENDIR -->
-<!-- SHOW name, phone and role OF KLIPPARA -->
+<!-- SHOW name, phone and email OF KLIPPARA -->
 <tbody ng-if="!state.verdskra && !state.add && !state.edit">
 <tr ng-repeat="s in staff track by $index">
   <td class="theFirst col-xs-4 divTakki"
@@ -218,19 +218,17 @@
   </td>
   <td>{{ s.phone }}</td>
   <td>{{ s.email }}</td>
-  <!--<td>
-    <div class="pull-right">
-      <label class="switch">
-        <input type="checkbox"
-        ng-click="toggleStaffActive()">
-        <div class="slider round"></div>
-      </label>
-    </div>
-  </td>-->
 </tr>
 </tbody>
 <!-- SHOW ... KLIPPARA OUT OF IT -->
 </table>
+<div class="takkar" ng-if="!state.verdskra && !state.add && !state.edit">
+  <button type="submit"
+          id="bætavið_i_stillingar"
+          class="btn btn-primary"
+          ng-click="toStaffAdd()">Bæta við klippara
+  </button>
+</div>
 </div>
 <div class="footer"><h3>SEGO</h3></div>
 </div>
@@ -246,6 +244,18 @@
       <button type="button"
               id="molar"
               class="btn btn-link btn-lg"
+              ng-click="tolfraedi()"
+              data-toggle="tooltip"
+              data-placement="auto"
+              title="Yfir á tölfræði">
+      <span class="fa fa-pie-chart"
+            aria-hidden="true">
+      </span>
+        <span class="texti">Tölfræði</span>
+      </button>
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
               ng-click="toggle()"
               data-toggle="tooltip"
               data-placement="auto"
@@ -255,7 +265,7 @@
       </span>
         <span class="texti">Klipparar</span>
       </button>
-      <button type="button"
+      <!--<button type="button"
               id="molar"
               class="btn btn-link btn-lg"
               ng-click="toPriceAdd()"
@@ -266,7 +276,7 @@
             aria-hidden="true">
       </span>
         <span class="texti">Bæta við þjónustu</span>
-      </button>
+      </button>-->
       <button type="button"
               id="molar"
               class="btn btn-link btn-lg"
@@ -365,7 +375,7 @@
         <td>{{ p.name }}</td>
         <td>{{ p.price }} kr.</td>
         <td>{{ p.timeLength / 60 }}</td>
-        <td>
+        <!--<td>
           <div class="pull-right">
             <a ng-click="removePrice(p, $index)">
               <i class="fa fa-trash"
@@ -382,11 +392,18 @@
               </i>
             </a>
           </div>
-        </td>
+        </td>-->
       </tr>
       </tbody>
       <!-- EDIT VERDSKRA DONE -->
     </table>
+    <div class="takkar" ng-if="state.verdskra && !state.add && !state.edit">
+      <button type="submit"
+              id="bætavið_i_stillingar"
+              class="btn btn-primary"
+              ng-click="toPriceAdd()">Bæta við þjónustu
+      </button>
+    </div>
   </div>
   <div class="footer"><h3>SEGO</h3></div>
 </div>

@@ -5,7 +5,8 @@
   <button type="button"
           id="molar"
           class="btn btn-link btn-lg"
-          ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+          ng-click="close()">
+    <i class="fa fa-times" aria-hidden="true"></i>
   </button>
 </div>
 <div class="content b">
@@ -47,6 +48,15 @@
                    placeholder="Símanúmer"
                    required>
           </div>
+         <!-- <div class="form">
+            <input type="text"
+                   name="additionalService"
+                   ng-model="objFrom.additionalService"
+                   placeholder="Annað">
+            <input type="number"
+                   ng-model="objFrom.additionalTime"
+                   placeholder="Tími">
+          </div>-->
           <div class="takkar">
             <button type="submit"
                     id="haettavidtakki"
@@ -71,8 +81,28 @@
         </input>
       </label>
     </div>
-           <h2 class="text-center">Verð: {{ totalPrice }}</h2>
+           <h3 class="text-center">Verð: {{ totalPrice }}</h3>
 </div>
+
+ <!-- <div class="input-group">
+    <label class="btn btn-primary"
+           ng-repeat="p in pricelist track by $index"
+           ng-if="p.active">
+       <input type="checkbox" class="checkboxOFF"
+              name="{{ p.name }}"
+              ng-checked="serviceSelected.indexOf(p._id) > -1"
+              ng-click="toggleSelection(p)">
+        {{ p.name }} - {{ p.price }} kr. - {{ p.timeLength / 60 }} mín
+        <br>
+        </input>
+      </label>
+
+    <h3 class="text-center">Verð: {{ totalPrice }}</h3>
+  </div>-->
+
+
+
+
 </div>
 <div class="footer"><h3>SEGO</h3></div>
 
