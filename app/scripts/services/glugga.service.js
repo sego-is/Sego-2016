@@ -4,10 +4,13 @@
   angular
     .module('segoapp')
     .service('gluggaService', ['$compile', function ($compile) {
-        var thisScope;
+        var thisScope = null;
         var compiledDirective;
 
         function init(scope) {
+            if (thisScope !== null) {
+                this.destroy();
+            }
             document.getElementsByClassName("skilaboda-haldari")[0].style.visibility = "visible";
             thisScope = scope.$new();
         }

@@ -18,7 +18,8 @@ angular
     'ngAnimate',
     'ngSanitize',
     'ui.bootstrap',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'chart.js'
   ])
   .config(['$routeProvider', '$locationProvider', '$httpProvider', 'lockProvider', 'jwtOptionsProvider', 'jwtInterceptorProvider', function ($routeProvider, $locationProvider, $httpProvider, lockProvider, jwtOptionsProvider, jwtInterceptorProvider) {
     // Initialization for the Lock widget
@@ -69,6 +70,12 @@ angular
       .when('/admin', {
         templateUrl:  '../views/admin.html',
         controller:   'AdminCtrl',
+        controllerAs: 'admin',
+        authorize: true,
+      })
+      .when('/static', {
+        templateUrl:  '../views/static.html',
+        controller:   'StatisticCtrl',
         controllerAs: 'admin',
         authorize: true,
       })
