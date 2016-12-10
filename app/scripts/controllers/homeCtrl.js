@@ -41,6 +41,7 @@
 
       // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
       function update() {
+        bookingForToday = {};
         // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
         backendFactory.getBookingByDate(dagatalFactory.getStringForDate(selectedDay)).then(function (res) {
           // If there are no bookings by given date -> return EMPTY ARRAY
@@ -112,7 +113,6 @@
       // HREINSA BLADSIDA FYRIR NYJAN DAG
       function cleanPage() {
         // Eyda geymdar bokanir i min
-        bookingForToday = {};
         $('.confirmedBooking').remove();
       }
 

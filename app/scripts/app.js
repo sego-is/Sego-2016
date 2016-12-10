@@ -63,6 +63,7 @@ angular
       })
       .when('/home', {
         templateUrl:  '../views/home.html',
+        cockSuck: 'RASSGAT',
         controller:   'HomeCtrl',
         controllerAs: 'home',
         authorize: true,
