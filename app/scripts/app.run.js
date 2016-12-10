@@ -40,7 +40,8 @@
       $rootScope.$on("$routeChangeStart", function(evt, to, from) {
             // requires authorization?
             if (to.authorize === true && authService.auth()) {
-                console.log("THAD ER AUTHORIZED!");
+                console.log("THAD ER AUTHORIZED!, to:", to);
+                console.log("THAD ER AUTHORIZED!, from:", from);
                 //$location.path("/home");
             }
             else {
