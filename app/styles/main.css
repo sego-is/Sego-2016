@@ -752,6 +752,11 @@ input.ng-valid {
   display:none;
 }
 
+/*fyrir checkbox sem takka pælinguna
+.checkboxOFF {
+  display: none;
+}*/
+
 /*******************************/
 /************ ADMIN ************/
 /*******************************/

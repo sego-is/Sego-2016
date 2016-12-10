@@ -60,10 +60,39 @@
             scope.stadfesta = function(bokun) {
 
               if (scope.bookingForm.$valid) {
+                /*
+                temporary leið til að bóka "annað" ekki nógu gott þarf að athuga með nýtt
+                kall sennilega
+
+                if (scope.objFrom.additionalService && scope.objFrom.additionalTime) {
+                  var tmpEndTime = new Date(scope.objFrom.startTime);
+
+                  tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.objFrom.additionalTime));
+                  var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });
+
+                  console.log("tmpEndTime ", tmpEndTime + "  addtime "+ scope.objFrom.additionalTime);
+                  backendFactory.postBooking({
+                    startTime: scope.objFrom.startTime,
+                    endTime: tmpEndTime,
+                    staff_id: scope.objFrom.staffId,
+                    customer_name:  scope.objFrom.additionalService,
+                    customer_phone: "",
+                    customer_service: arr,
+                    date: scope.objFrom.date
+                  }).then(function(doc) {
+                    console.log("CB scope.stafesta() - doc: ", doc);
+                    scope.serviceSelected = [];
+                    scope.close();
+                  }, function (err) {
+                    console.log("CB scope.stafesta() - err: ", err);
+                  });
+                  return;
+                }*/
+
                 var tmpEndTime = new Date(scope.objFrom.startTime);
+
                 tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
                 scope.badInput = false;
-
                 // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
                 var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });
 
