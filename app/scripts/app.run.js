@@ -39,18 +39,27 @@
       // logging helper
       $rootScope.$on("$routeChangeStart", function(evt, to, from) {
             // requires authorization?
-            console.log("THAD ER AUTHORIZED!, to:", to);
-            console.log("THAD ER AUTHORIZED!, from:", from);
             
-            if (to.authorize === true && authService.auth()) {
-                
-                //$location.path("/home");
+            console.log("THAD ER AUTHORIZED!, to:", to);
+            if (from === undefined) {
+                if (authService.auth()) {
+                    $location.path("/home");
+                }
+                else {
+                    console.log("$ROUTECHANGESTART");
+                    $location.path("/");
+                }
             }
             else {
-                console.log("$ROUTECHANGESTART");
-                $location.path("/");
+                
             }
         });
+        /*
+        $rootScope.$on("$locationChangeStart", function(event, next, current) {
+            console.log("locationChangeStart next:", next);
+            console.log("locationChangeStart current:", current);
+        });
+        */
 
         $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
             if (error)
