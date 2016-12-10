@@ -37,18 +37,15 @@
             scope.breytaBokun = function() {
                 scope.change(scope.objFrom);
                 scope.close();
-                console.log("breytaBokun");
             };
             
             scope.ekkiBokun = function() {
                 backendFactory.notAttendBooking(scope.objFrom).then(function(res) {
-                    console.log("RESPINT notAttending:", res);
+                    console.log("notAttending, res:", res);
                     scope.close();
                 }, function(err) {
                     console.log("ERROR notAttending:", err);
                 });
-                
-                console.log("bokudBokun");
             };
 
         }

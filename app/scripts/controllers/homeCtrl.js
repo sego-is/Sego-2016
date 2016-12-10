@@ -146,6 +146,7 @@
             }
             else {
                 if ($scope.bookChangeInProgress) {
+                    console.log('bookingToChange', bookingToChange);
                     b.customer_name =  bookingToChange.customer_id.name;
                     b.customer_phone = bookingToChange.customer_id.phone;
                     b.service =        bookingToChange.service;    
@@ -167,7 +168,6 @@
                     date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
                     startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
                 };
-                console.log('$scope.clickOnTimapant:', $scope.clickOnTimapant);
                 gluggaService.bokaGluggi();
             }  
         }
