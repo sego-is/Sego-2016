@@ -1,9 +1,49 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-    <canvas id="pie" class="chart chart-pie"
-        chart-data="data" chart-labels="labels" chart-options="options">
-    </canvas> 
+<div>
+  <div class="haus">
+    <h2>TÖLFRÆÐI
+      <i class="fa fa-pie-chart"></i>
+    </h2>
+    <div class="molar">
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="klipparar()"
+              data-toggle="tooltip"
+              data-placement="auto"
+              title="Yfir á klippara">
+      <span class="fa fa-cut"
+            aria-hidden="true">
+      </span>
+        <span class="texti">Klipparar</span>
+      </button>
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="verdlisti()"
+              data-toggle="tooltip"
+              data-placement="auto"
+              title="Yfir á verðlista">
+      <span class="fa fa-dollar"
+            aria-hidden="true">
+      </span>
+        <span class="texti">Verðlisti</span>
+      </button>
+      <button type="button"
+              id="molar"
+              class="btn btn-link btn-lg"
+              ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+      </button>
     </div>
+  </div>
+  <div class="content">
+    <div class="col-md-6">
+      <canvas id="pie" class="chart chart-pie"
+              chart-data="data" chart-labels="labels" chart-options="options">
+      </canvas>
     </div>
+    <div class="col-md-6">
+      eitthvað sniðugt til að manipulatea tölfræðina
+    </div>
+  </div>
+  <div class="footer"><h3>SEGO</h3></div>
 </div>

@@ -10,10 +10,9 @@
             
             var klipparaBokanir = {};
             var staffid = backendFactory.Staff();
-            console.log("STAFFID:", staffid);
+
             backendFactory.getBookingByMonth(dagatalFactory.getStringForDate()).then(function(res) {
                 for (var i in res.data) {
-                    console.log("res.data[i]:", res.data[i]);
                     for (var j in res.data[i].bookings) {
                         if (klipparaBokanir[res.data[i].bookings[j].staff_id] === undefined) {
                             klipparaBokanir[res.data[i].bookings[j].staff_id] = {};
@@ -28,8 +27,6 @@
                 }
                 $scope.labels = Object.keys(klipparaBokanir).map(function(key) { return key; });
                 $scope.data = Object.keys(klipparaBokanir).map(function(key) { return klipparaBokanir[key].income; });
-                console.log("RESPOND getBookingByMonth, klipparaBokanir:", klipparaBokanir);
-                                console.log("RESPOND getBookingByMonth, blas:", blast);
             });
             
     }]);
