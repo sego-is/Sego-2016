@@ -12,10 +12,10 @@ body {
   padding-bottom: 19px;
 }
 
-.adalmynd img {
+/*.adalmynd img {
   width: 100%;
   height: 30%;
-}
+}*/
 
 /* Supporting marketing content */
 
@@ -71,6 +71,16 @@ body {
   padding-right: 0;
 }
 
+.takkar {
+  float: right;
+}
+
+.takkar h2 {
+  margin-top: 145px;
+  margin-bottom: 20px;
+}
+
+/* Litir á öllum tökkum*/
 .btn-primary {
   background-color: hsl(280, 60%, 45%);
   background-image: linear-gradient(-90deg, hsl(280, 80%, 60%), hsl(280, 60%, 45%) 2em, hsl(280, 80%, 60%));
@@ -81,8 +91,45 @@ body {
   background-image: linear-gradient(-90deg, hsl(290, 80%, 60%), hsl(290, 60%, 45%) 2em, hsl(290, 80%, 60%));
 }
 
+/* Takkar til að bæta við klippurum og þjónustu*/
 #bætavið_i_stillingar {
   margin-right: 25px;
+}
+
+/* Takki til að bæta við viðskiptavinum*/
+#bætavið_takki {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+/* Takkar í navbar*/
+.molar {
+  color: whitesmoke;
+}
+
+.molar:hover {
+  color: lightgray;
+}
+
+.btn.btn-link.btn-lg:hover {
+  text-decoration: none;
+}
+
+.divTakki:hover {
+  cursor: pointer;
+}
+
+.buttonleft {
+  font-size: 1.8em;
+  padding-top: 0.15em;
+  padding-left: 1em;
+  padding-right: 0.3em;
+}
+
+.buttonright {
+  font-size: 1.8em;
+  padding-right: 1em;
+  padding-top: 0.15em;
 }
 
 #leitargluggi  {
@@ -122,30 +169,6 @@ body {
   color: whitesmoke;
   margin-top: 5px;
   font-family: sans;
-}
-
-#molar {
-  color: whitesmoke;
-}
-
-#molar:hover {
-  color: lightgray;
-}
-
-.fa-trash {
-  color: black;
-}
-
-.fa-trash:hover {
-  color: gray;
-}
-
-.fa-pencil {
-  color: black;
-}
-
-.fa-pencil:hover {
-  color: gray;
 }
 
 .footer {
@@ -224,20 +247,10 @@ body {
   width: 100px;
 }
 
-
 .blaðsíður {
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
-}
-
-#bætavið_takki {
-  margin-top: 20px;
-  margin-bottom: 0px;
-}
-
-.takkar {
-  float: right;
 }
 
 .verd {
@@ -250,15 +263,19 @@ body {
   padding: 0 !important;
 }
 
-.divTakki:hover {
-  cursor: pointer;
-}
-
 .athugasemd {
   padding: 0 0 10px 0;
 }
 
-@media only screen and (max-height: 414px), only screen and (max-device-height: 414px) {
+.þjonusta_i_bokun {
+  font-size: 16px;
+}
+
+.þjonusta_i_bokun_haus {
+  margin-top: 60px;
+}
+
+/*@media only screen and (max-height: 414px) {
   .content {
     height: 228px;
   }
@@ -276,11 +293,10 @@ body {
   customer .skilabod {
     top: 0px;
   }
+}*/
 
-
-}
-
-@media only screen and (max-width: 1024px), only screen and (max-device-width: 1024px) {
+@media only screen and (max-width: 1024px)
+{
   .skilabod {
     position: absolute;
     left: 0;
@@ -304,7 +320,8 @@ body {
   }
 }
 
-@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+@media only screen and (max-width: 768px)
+{
 
   div.navbar-haus  {
     margin-top: 12px;
@@ -485,10 +502,6 @@ button.fa.fa-plus {
   font-family: sans-serif;
 }
 
-.btn.btn-link.btn-lg:hover {
-  text-decoration: none;
-}
-
 .navbar-haus a {
   color: whitesmoke;
 }
@@ -594,19 +607,6 @@ button.fa.fa-plus {
 
 .dagsetning div p {
   font-size: 1.6em;
-}
-
-.buttonleft {
-  font-size: 1.8em;
-  padding-top: 0.15em;
-  padding-left: 1em;
-  padding-right: 0.3em;
-}
-
-.buttonright {
-  font-size: 1.8em;
-  padding-right: 1em;
-  padding-top: 0.15em;
 }
 
 .navbar-collapse.in {
