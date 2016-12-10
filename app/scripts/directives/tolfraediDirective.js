@@ -19,7 +19,7 @@
           };
 
           $scope.klipparar = function () {
-            gluggaService.stillaKlipparaGluggi();
+            gluggaService.stillingarGluggi();
           };
 
           $scope.verdlisti = function () {
