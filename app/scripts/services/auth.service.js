@@ -3,7 +3,7 @@
 
   angular
     .module('segoapp')
-    .service('authService', ['$rootScope', '$location', 'lock', 'authManager', function ($rootScope, $location, lock, authManager) {
+    .service('authService', ['$rootScope', '$location', 'lock', 'authManager', 'backendFactory', function ($rootScope, $location, lock, authManager, backendFactory) {
 
 
     var userProfile = localStorage.getItem('profile') || {};
@@ -45,6 +45,8 @@
           localStorage.setItem('profile', JSON.stringify(profile));
           $rootScope.$broadcast('userProfileSet', profile);
         });
+        
+        
       });
     }
 

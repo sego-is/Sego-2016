@@ -18,7 +18,6 @@
       backendFactory.setPricelist = function(prices) {
           if (_company !== null) {
               _company.pricelist = prices;
-              console.log("setPricelisT(prices): _company:", _company);
           }
       };
 
@@ -62,13 +61,10 @@
 
 
 
-      var p = JSON.parse(localStorage.getItem('profile'));
+      
       //------------------------------ NORMAL PEOPLE CALLS ------------------------------//
       backendFactory.init = function() {
-          if (p === null) {
-              
-          }
-          else {
+          var p = JSON.parse(localStorage.getItem('profile'));
               return $http({
                 method: 'GET',
                 url: 'http://wwww.sego.is:6969/api/companies/' + p.user_id,
@@ -78,7 +74,6 @@
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
                 }
                 });
-          }
         };
       
       backendFactory.getCompanyByAuthID = function (c) {
@@ -167,7 +162,21 @@
       backendFactory.notAttendBooking = function(b) {
           b.company_id = this.ID();
           return $http({
-          url: 'http://wwww.sego.is:6969/api/bookings/' + b._id,
+          url: 'http://wwww.sego.is:6969/api/bookings/' + b._id + '/notAttend',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          },
+          data: b
+        });
+      };
+      
+      backendFactory.changeBooking = function(b) {
+          b.company_id = this.ID();
+          return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/' + b._id + '/change',
           method: 'POST',
           headers: {
             'Accept': 'application/json',

@@ -113,22 +113,32 @@
                 scope.badInput = false;
                 // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
                 var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });
-
-                backendFactory.postBooking({
-                    startTime: scope.objFrom.startTime,
-                    endTime: tmpEndTime,
-                    staff_id: scope.objFrom.staffId,
-                    customer_name:  scope.objFrom.customer,
-                    customer_phone: scope.objFrom.phone,
-                    customer_service: arr,
-                    date: scope.objFrom.date
-                }).then(function(doc) {
-                    console.log("CB scope.stafesta() - doc: ", doc);
-                    scope.serviceSelected = [];
-                    scope.close();
-                }, function (err) {
-                    console.log("CB scope.stafesta() - err: ", err);
-                });
+                
+                if (scope.objFrom.book_id === undefined) {
+                    backendFactory.postBooking({
+                        startTime: scope.objFrom.startTime,
+                        endTime: tmpEndTime,
+                        staff_id: scope.objFrom.staffId,
+                        customer_name:  scope.objFrom.customer,
+                        customer_phone: scope.objFrom.phone,
+                        customer_service: arr,
+                        date: scope.objFrom.date
+                    }).then(function(doc) {
+                        console.log("CB scope.stafesta() - doc: ", doc);
+                        scope.serviceSelected = [];
+                        scope.close();
+                    }, function (err) {
+                        console.log("CB scope.stafesta() - err: ", err);
+                    });
+                }
+                else {
+                    backendFactory.changeBooking({}).then(function(doc) {
+                        
+                    }, function (err) {
+                        console.log("CB backendFactory.changeBooking() - err: ", err);
+                    });
+                }
+                
               } else {
                 scope.badInput = true;
               }

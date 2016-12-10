@@ -149,12 +149,13 @@
                     console.log('bookingToChange', bookingToChange);
                     b.customer_name =  bookingToChange.customer_id.name;
                     b.customer_phone = bookingToChange.customer_id.phone;
-                    b.service =        bookingToChange.service;    
+                    b.service =        bookingToChange.service;   
+                    $scope.clickOnTimapant.book_id =  bookingToChange._id;
                 }
                 else {
                     b.customer_name =  "";
                     b.customer_phone = "";
-                    b.service =        [];    
+                    b.service =        [];
                 }
                 
                 
