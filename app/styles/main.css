@@ -92,7 +92,7 @@ body {
 }
 
 /* Takkar til að bæta við klippurum og þjónustu*/
-#bætavið_i_stillingar {
+.bætavið_i_stillingar {
   margin-right: 25px;
 }
 
@@ -273,6 +273,18 @@ body {
 
 .þjonusta_i_bokun_haus {
   margin-top: 60px;
+}
+
+.umbeðin_þjónusta {
+  display: inline-block;
+}
+
+.takkar_i_bokun {
+ float: right;
+}
+
+.takkar_i_bokun h2 {
+  margin-top: 290px;
 }
 
 /*@media only screen and (max-height: 414px) {
