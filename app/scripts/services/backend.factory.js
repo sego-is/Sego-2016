@@ -65,6 +65,7 @@
       //------------------------------ NORMAL PEOPLE CALLS ------------------------------//
       backendFactory.init = function() {
           var p = JSON.parse(localStorage.getItem('profile'));
+          if (p !== null) {
               return $http({
                 method: 'GET',
                 url: 'http://wwww.sego.is:6969/api/companies/' + p.user_id,
@@ -73,8 +74,10 @@
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('id_token')
                 }
-                });
-        };
+              });
+          }
+          
+      };
       
       backendFactory.getCompanyByAuthID = function (c) {
         return $http({

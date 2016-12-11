@@ -63,10 +63,14 @@ angular
       })
       .when('/home', {
         templateUrl:  '../views/home.html',
-        cockSuck: 'RASSGAT',
         controller:   'HomeCtrl',
         controllerAs: 'home',
         authorize: true,
+        resolve: {
+            initialize: function(initializeFactory) {
+                return initializeFactory();
+            }
+        }
       })
       .when('/admin', {
         templateUrl:  '../views/admin.html',
