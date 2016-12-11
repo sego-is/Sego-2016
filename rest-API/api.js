@@ -432,8 +432,14 @@ api.get('/book/:cid/:pid', (req, res) => {
       }});
   });
   
-  // EF BOKUN STENNST EKKI, CUSTOMER MAETIR EKKI
-  api.post('/bookings/:bid', bodyParser.json(), (req, res) => {
+  // CUSTOMER BREYTA BOKUN
+  api.post('/bookings/:bid/change', bodyParser.json(), (req, res) => {
+    const data = req.body;
+    model.Booking.update({ 'company_id': { $eq: data.company_id }, 'date': { $eq: data.date }, 'bookings._id': { $eq: req.params.bid }}, {  
+  });
+  
+  // MERKJA BOKUN AD CUSTOMER MAETTI EKKI
+  api.post('/bookings/:bid/notAttend', bodyParser.json(), (req, res) => {
     const data = req.body;
     model.Booking.update({ 'company_id': { $eq: data.company_id }, 'date': { $eq: data.date }, 'bookings._id': { $eq: req.params.bid }}, {
         '$set': {
