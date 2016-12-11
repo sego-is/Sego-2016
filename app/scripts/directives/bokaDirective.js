@@ -57,17 +57,18 @@
 
 
             scope.toggleSelection = function(s) {
-              var posOfSelected = scope.serviceSelected.indexOf(s.service_id);
+                console.log('S:', s);
+              var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
                   scope.serviceSelected.splice(posOfSelected, 1);
-                  delete selectedService[s.service_id];
+                  delete selectedService[s._id];
                   scope.timeTaken -= s.timeLength;
                   scope.totalPrice -= s.price;
                 }
                 else {
-                  scope.serviceSelected.push(s.service_id);
+                  scope.serviceSelected.push(s._id);
                   selectedService[s._id] = {
-                      "service_id": s.service_id,
+                      "service_id": s._id,
                       "name": s.name,
                       "price": s.price,
                       "timeLength": s.timeLength
@@ -82,42 +83,12 @@
             scope.stadfesta = function(bokun) {
 
               if (scope.bookingForm.$valid) {
-                /*
-                temporary leið til að bóka "annað" ekki nógu gott þarf að athuga með nýtt
-                kall sennilega
-
-                if (scope.objFrom.additionalService && scope.objFrom.additionalTime) {
-                  var tmpEndTime = new Date(scope.objFrom.startTime);
-
-                  tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.objFrom.additionalTime));
-                  var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });
-
-                  console.log("tmpEndTime ", tmpEndTime + "  addtime "+ scope.objFrom.additionalTime);
-                  backendFactory.postBooking({
-                    startTime: scope.objFrom.startTime,
-                    endTime: tmpEndTime,
-                    staff_id: scope.objFrom.staffId,
-                    customer_name:  scope.objFrom.additionalService,
-                    customer_phone: "",
-                    customer_service: arr,
-                    date: scope.objFrom.date
-                  }).then(function(doc) {
-                    console.log("CB scope.stafesta() - doc: ", doc);
-                    scope.serviceSelected = [];
-                    scope.close();
-                  }, function (err) {
-                    console.log("CB scope.stafesta() - err: ", err);
-                  });
-                  return;
-                }*/
-
                 var tmpEndTime = new Date(scope.objFrom.startTime);
 
                 tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
                 scope.badInput = false;
                 // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
                 var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });
-                console.log('ARRR, arr:', arr);
                 
                     backendFactory.postBooking({
                         startTime: scope.objFrom.startTime,
@@ -144,8 +115,7 @@
                         scope.close();
                         scope.serviceSelected = [];
                         selectedService = {};
-                            
- 
+                        scope.objFrom = {};
                     }, function (err) {
                         console.log("CB scope.stafesta() - err: ", err);
                     });
