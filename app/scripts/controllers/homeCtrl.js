@@ -147,9 +147,12 @@
             else {
                 if ($scope.bookChangeInProgress) {
                     console.log('bookingToChange', bookingToChange);
+                    b.customer_id = bookingToChange.customer_id._id;
                     b.customer_name =  bookingToChange.customer_id.name;
                     b.customer_phone = bookingToChange.customer_id.phone;
-                    b.service =        bookingToChange.service;
+                    b.service =        bookingToChange.service;   
+                    b.book_id =  bookingToChange._id;
+
                 }
                 else {
                     b.customer_name =  "";
@@ -161,6 +164,7 @@
                 $scope.clickOnTimapant = {
                     name:      b.name,
                     book_id:   b.book_id,
+                    customer_id: b.customer_id,
                     customer:  b.customer_name,
                     phone:     b.customer_phone,
                     service:   b.service,
