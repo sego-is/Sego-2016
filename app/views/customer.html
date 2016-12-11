@@ -2,116 +2,142 @@
   <h2 class="col-xs-7 col-md-8">VIÐSKIPTAVINIR
     <i class="fa fa-users"></i>
   </h2>
-    <form class="form-inline">
-         <div class="form-group">
-            <input type="text" ng-model="search" id="leitargluggi" class="form-control col-md-3" placeholder="Leita..">
-         </div>
-    </form>
-    <button type="button"
-            class="molar btn btn-link btn-lg"
-            ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
-    </button>
+
+  <form class="form-inline">
+    <div class="form-group">
+      <input type="text" ng-model="search" id="leitargluggi" class="form-control col-md-3" placeholder="Leita..">
+    </div>
+  </form>
+  <button type="button"
+          class="molar btn btn-link btn-lg"
+          ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+  </button>
 </div>
+
+<!---------------------------------------------->
+<!-------------- CUSTOMER PROFILE -------------->
+<!---------------------------------------------->
 <div class="content" ng-if="modifyCus">
-  <table class="table table-striped">
-    <tbody ng-if="!newCustomer">
-    <tr>
-      <td colspan="4">
-        <form name="form.customerForm"
-              class="form-horizontal"
-              novalidate>
-          <div class="form">
-            <input type="text"
-                   name="name"
-                   ng-class="{error: (badInput && form.customerForm.name.$error.required)
+  <div class="container profile">
+    <div class="col-md-2 profilePic">
+      <i class="fa fa-user fa-5"></i>
+    </div>
+    <div class="col-md-4" ng-if="!tmpModifyCus">
+      <div>{{person.name}}</div>
+      <div>{{person.phone}}</div>
+      <div>{{person.email}}</div>
+      <div>{{person.address}}</div>
+      <div class="btn btn-primary" ng-click="temp()">Breyta</div>
+    </div>
+    <div class="col-md-6">
+      <form class="form-inline">
+        <div class="form-group">
+          <textarea placeholder="Bæta við athugasemd.."></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- BREYTA start -->
+  <form name="form.customerForm"
+        class="form"
+        ng-if="tmpModifyCus"
+        novalidate>
+    <div class="form">
+      <input type="text"
+             name="name"
+             ng-class="{error: (badInput && form.customerForm.name.$error.required)
                                   || (badInput && form.customerForm.name.$error.maxlength)
                                   || (badInput && form.customerForm.name.$error.minlength)}"
-                   ng-click="badInputFalse()"
-                   ng-minlength="3"
-                   ng-maxlength="44"
-                   class="form-control"
-                   ng-model="person.name"
-                   placeholder="Nafn"
-                   required>
-          </div>
-          <div class="form">
-            <input type="number"
-                   class="form-control"
-                   ng-click="badInputFalse()"
-                   ng-class="{error: (badInput && form.customerForm.phone.$error.required)
+             ng-click="badInputFalse()"
+             ng-minlength="3"
+             ng-maxlength="44"
+             class="form-control"
+             ng-model="person.name"
+             placeholder="Nafn"
+             required>
+    </div>
+    <div class="form">
+      <input type="number"
+             class="form-control"
+             ng-click="badInputFalse()"
+             ng-class="{error: (badInput && form.customerForm.phone.$error.required)
                                   || (badInput && form.customerForm.phone.$error.maxlength)
                                   || (badInput && form.customerForm.phone.$error.minlength)}"
-                   ng-minlength="7"
-                   ng-maxlength="7"
-                   name="phone"
-                   ng-model="person.phone"
-                   placeholder="Símanúmer"
-                   required>
-          </div>
-          <div class="form">
-            <input type="email"
-                   class="form-control"
-                   name="email"
-                   ng-model="person.email"
-                   placeholder="Netfang">
-          </div>
-          <div class="form">
-            <input type="text"
-                   class="form-control"
-                   name="address"
-                   ng-model="person.address"
-                   placeholder="Heimilisfang">
-          </div>
-          <div class="takkar">
-            <button type="submit"
-                    id="haettavidtakki"
-                    class="btn btn-primary"
-                    ng-click="toggleCus()">Hætta við
-            </button>
-            <button type="submit"
-                    id="uppfaeratakki"
-                    class="btn btn-primary"
-                    ng-click="addCustomer(person)">Uppfæra
-            </button>
-          </div>
-        </form>
-      </td>
-    </tr>
-    <tr>
-      <td>Athugasemdir:</td>
-      <td colspan="3">
-        <ul>
-          <li ng-repeat="comm in person.comments">{{ comm }}</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4">
-        <form class="form-inline">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Bæta við athugasemd..">
-          </div>
-        </form>
-      </td>
-    </tr>
-    <tr>
-      <td>Dagsetning</td>
-      <td>Klippari</td>
-      <td>Þjónusta</td>
-      <td>Verð</td>
-    </tr>
-    <tr ng-repeat="hist in person.history track by $index" ng-init="hist.total = 0">
-      <td style="width:10%;">{{ toMMDDYY(hist.startTime) }}</td>
-      <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
-      <td>
-        <ul>
-          <li ng-repeat="serv in hist.service" ng-init="hist.total = serv.price + hist.total">{{ serv.name }}</li>
-        </ul>
-      </td>
-      <td>{{ hist.total }}</td>
-    </tr>
+             ng-minlength="7"
+             ng-maxlength="7"
+             name="phone"
+             ng-model="person.phone"
+             placeholder="Símanúmer"
+             required>
+    </div>
+    <div class="form">
+      <input type="email"
+             class="form-control"
+             name="email"
+             ng-model="person.email"
+             placeholder="Netfang">
+    </div>
+    <div class="form">
+      <input type="text"
+             class="form-control"
+             name="address"
+             ng-model="person.address"
+             placeholder="Heimilisfang">
+    </div>
+    <div class="takkar">
+      <button type="submit"
+              id="haettavidtakki"
+              class="btn btn-primary"
+              ng-click="temp()">Hætta við
+      </button>
+      <button type="submit"
+              id="uppfaeratakki"
+              class="btn btn-primary"
+              ng-click="addCustomer(person)">Uppfæra
+      </button>
+    </div>
+  </form>
+  <!-- BREYTA end -->
 
-    </tbody>
+  <ul>
+    <li ng-repeat="comm in person.comments">{{ comm }}</li>
+  </ul>
+
+
+
+
+
+  <div class="history">
+    <table class="table table-striped">
+      <tbody>
+      <tr>
+        <th>Dagsetning</th>
+        <th>Klippari</th>
+        <th>Þjónusta</th>
+        <th>Verð</th>
+      </tr>
+
+      <tr ng-repeat="hist in person.history track by $index" ng-init="hist.total = 0">
+        <td style="width:10%;">{{ toMMDDYY(hist.startTime) }}</td>
+        <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
+        <td>
+          <ul>
+            <li class="lists"
+                ng-repeat="serv in hist.service"
+                ng-init="hist.total = serv.price + hist.total">
+              {{ serv.name }}
+            </li>
+          </ul>
+        </td>
+        <td>{{ hist.total }}</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <table class="table table-striped">
     <tbody ng-if="newCustomer">
     <tr>
       <td colspan="4">
@@ -195,7 +221,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:9" ng-click="editCust(vinur)">
+    <tr dir-paginate="vinur in vidskiptavinir|orderBy:sortKey:reverse|filter:search|itemsPerPage:9"
+        ng-click="editCust(vinur)">
       <td class="divTakki">{{ vinur.name }}</td>
       <td>{{ vinur.phone }}</td>
       <td class="email">{{ vinur.email }}</td>

@@ -30,6 +30,11 @@
           scope.form = {};
 
           scope.modifyCus = false;
+          scope.tmpModifyCus = false;
+
+          scope.temp = function () {
+            scope.tmpModifyCus = !scope.tmpModifyCus;
+          };
 
           scope.editCust = function (c) {
             if (c !== undefined) {
@@ -80,6 +85,7 @@
               backendFactory.postPerson(s).then(function (res) {
                 scope.vidskiptavinir.push(res.data);
                 scope.modifyCus =  !scope.modifyCus;
+                scope.tmpModifyCus = !scope.tmpModifyCus;
                 //scope.lokaGlugga();
               }, function (err) {
                 console.log("ERROR addCustomer(): ", err);

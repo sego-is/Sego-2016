@@ -9,6 +9,7 @@
         restrict: 'E',
         scope: {
           close: '&close',
+          change: '&bookingChange',
           objFrom: '=objFrom'
         },
         templateUrl: '../../views/bokun.html',
@@ -34,18 +35,17 @@
             };
             
             scope.breytaBokun = function() {
-                console.log("breytaBokun");
+                scope.change(scope.objFrom);
+                scope.close();
             };
             
             scope.ekkiBokun = function() {
                 backendFactory.notAttendBooking(scope.objFrom).then(function(res) {
-                    console.log("RESPINT notAttending:", res);
+                    console.log("notAttending, res:", res);
                     scope.close();
                 }, function(err) {
                     console.log("ERROR notAttending:", err);
                 });
-                
-                console.log("bokudBokun");
             };
 
         }
