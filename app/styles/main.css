@@ -12,11 +12,6 @@ body {
   padding-bottom: 19px;
 }
 
-/*.adalmynd img {
-  width: 100%;
-  height: 30%;
-}*/
-
 /* Supporting marketing content */
 
 .skilaboda-haldari {
@@ -243,6 +238,10 @@ body {
   width: 100%;
 }
 
+.tafla.table.table-striped > tbody > tr > td {
+  font-size: 14px;
+}
+
 .símanúmer {
   width: 100px;
 }
@@ -280,7 +279,8 @@ body {
 }
 
 .takkar_i_bokun {
- float: right;
+  float: right;
+  margin-right: 15px;
 }
 
 .takkar_i_bokun h2 {
@@ -780,7 +780,6 @@ input.ng-valid {
 
 .history {
   overflow-y: scroll;
-  border: 1px solid red;
   height: 62%;
 }
 
@@ -789,14 +788,24 @@ input.ng-valid {
 }
 
 .profilePic {
-
   height: 15em;
   width: 12em;
   border: 1px solid black;
 }
 
+.fa-5x {
+  font-size: 10em;
+  margin-top: 35px;
+  margin-left: 8px;
+}
+
+.viðskiptavinur {
+  font-size: 20px;
+  margin-bottom: 32px;
+}
+
 textarea {
-  margin-top: 13%;
+  margin-top: 8%;
   resize: none;
   height: 10em;
   width: 30em;

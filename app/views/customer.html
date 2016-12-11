@@ -20,16 +20,76 @@
 <div class="content" ng-if="modifyCus">
   <div class="container profile">
     <div class="col-md-2 profilePic">
-      <i class="fa fa-user fa-5"></i>
+      <i class="fa fa-user fa-5x"></i>
     </div>
-    <div class="col-md-4" ng-if="!tmpModifyCus">
-      <div>{{person.name}}</div>
-      <div>{{person.phone}}</div>
-      <div>{{person.email}}</div>
-      <div>{{person.address}}</div>
-      <div class="btn btn-primary" ng-click="temp()">Breyta</div>
+    <div class="col-md-3" ng-if="!tmpModifyCus">
+      <div class="viðskiptavinur">
+        <div>{{person.name}}</div>
+        <div>{{person.phone}}</div>
+        <div>{{person.email}}</div>
+        <div>{{person.address}}</div>
+      </div>
+      <div class="takkar btn btn-primary" ng-click="temp()">Breyta</div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3" ng-if="tmpModifyCus">
+      <form name="form.customerForm"
+            class="form"
+            novalidate>
+        <div>
+          <input type="text"
+                 name="name"
+                 ng-class="{error: (badInput && form.customerForm.name.$error.required)
+                                  || (badInput && form.customerForm.name.$error.maxlength)
+                                  || (badInput && form.customerForm.name.$error.minlength)}"
+                 ng-click="badInputFalse()"
+                 ng-minlength="3"
+                 ng-maxlength="44"
+                 class="form-control"
+                 ng-model="person.name"
+                 placeholder="Nafn"
+                 required>
+        </div>
+        <div>
+          <input type="number"
+                 class="form-control"
+                 ng-click="badInputFalse()"
+                 ng-class="{error: (badInput && form.customerForm.phone.$error.required)
+                                  || (badInput && form.customerForm.phone.$error.maxlength)
+                                  || (badInput && form.customerForm.phone.$error.minlength)}"
+                 ng-minlength="7"
+                 ng-maxlength="7"
+                 name="phone"
+                 ng-model="person.phone"
+                 placeholder="Símanúmer"
+                 required>
+        </div>
+        <div>
+          <input type="email"
+                 class="form-control"
+                 name="email"
+                 ng-model="person.email"
+                 placeholder="Netfang">
+        </div>
+        <div class="form">
+          <input type="text"
+                 class="form-control"
+                 name="address"
+                 ng-model="person.address"
+                 placeholder="Heimilisfang">
+        </div>
+        <div class="takkar">
+          <button type="submit"
+                  class="btn btn-primary"
+                  ng-click="temp()">Hætta við
+          </button>
+          <button type="submit"
+                  class="btn btn-primary"
+                  ng-click="addCustomer(person)">Uppfæra
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-offset-1 col-md-4">
       <form class="form-inline">
         <div class="form-group">
           <textarea placeholder="Bæta við athugasemd.."></textarea>
@@ -38,85 +98,21 @@
     </div>
   </div>
   <!-- BREYTA start -->
-  <form name="form.customerForm"
-        class="form"
-        ng-if="tmpModifyCus"
-        novalidate>
-    <div class="form">
-      <input type="text"
-             name="name"
-             ng-class="{error: (badInput && form.customerForm.name.$error.required)
-                                  || (badInput && form.customerForm.name.$error.maxlength)
-                                  || (badInput && form.customerForm.name.$error.minlength)}"
-             ng-click="badInputFalse()"
-             ng-minlength="3"
-             ng-maxlength="44"
-             class="form-control"
-             ng-model="person.name"
-             placeholder="Nafn"
-             required>
-    </div>
-    <div class="form">
-      <input type="number"
-             class="form-control"
-             ng-click="badInputFalse()"
-             ng-class="{error: (badInput && form.customerForm.phone.$error.required)
-                                  || (badInput && form.customerForm.phone.$error.maxlength)
-                                  || (badInput && form.customerForm.phone.$error.minlength)}"
-             ng-minlength="7"
-             ng-maxlength="7"
-             name="phone"
-             ng-model="person.phone"
-             placeholder="Símanúmer"
-             required>
-    </div>
-    <div class="form">
-      <input type="email"
-             class="form-control"
-             name="email"
-             ng-model="person.email"
-             placeholder="Netfang">
-    </div>
-    <div class="form">
-      <input type="text"
-             class="form-control"
-             name="address"
-             ng-model="person.address"
-             placeholder="Heimilisfang">
-    </div>
-    <div class="takkar">
-      <button type="submit"
-              id="haettavidtakki"
-              class="btn btn-primary"
-              ng-click="temp()">Hætta við
-      </button>
-      <button type="submit"
-              id="uppfaeratakki"
-              class="btn btn-primary"
-              ng-click="addCustomer(person)">Uppfæra
-      </button>
-    </div>
-  </form>
+
   <!-- BREYTA end -->
 
   <ul>
     <li ng-repeat="comm in person.comments">{{ comm }}</li>
   </ul>
-
-
-
-
-
   <div class="history">
-    <table class="table table-striped">
+    <table class="tafla table table-striped">
       <tbody>
       <tr>
-        <th>Dagsetning</th>
-        <th>Klippari</th>
-        <th>Þjónusta</th>
-        <th>Verð</th>
+        <th><h5>Dagsetning</h5></th>
+        <th><h5>Klippari</h5></th>
+        <th><h5>Þjónusta</h5></th>
+        <th><h5>Verð</h5></th>
       </tr>
-
       <tr ng-repeat="hist in person.history track by $index" ng-init="hist.total = 0">
         <td style="width:10%;">{{ toMMDDYY(hist.startTime) }}</td>
         <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
@@ -129,14 +125,11 @@
             </li>
           </ul>
         </td>
-        <td>{{ hist.total }}</td>
+        <td>{{ hist.total }} kr.</td>
       </tr>
-
       </tbody>
     </table>
   </div>
-
-
   <table class="table table-striped">
     <tbody ng-if="newCustomer">
     <tr>
@@ -189,12 +182,10 @@
           <div class="form">
             <div class="takkar">
               <button type="submit"
-                      id="haettavidtakki"
                       class="btn btn-primary"
                       ng-click="toggleCus()">Hætta við
               </button>
               <button type="submit"
-                      id="uppfaeratakki"
                       class="btn btn-primary"
                       ng-click="addCustomer(person)">Bæta við
               </button>
