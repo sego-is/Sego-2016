@@ -11,33 +11,32 @@
   <h3 class="text-center">Viðskiptavinur: {{ objFrom.customer_id.name }}</h3>
   <h4 class="text-center">Klippari: {{ objFrom.name }}</h4>
   <h4 class="text-center">Tími: {{ timi }}</h4>
-  <div>
-      <ul style="list-style-type:none;">
-          <li class="þjonusta_i_bokun_haus"><h4>Umbeðin þjónusta:</h4></li>
-          <li class="þjonusta_i_bokun" ng-repeat="s in objFrom.service" ng-init="totalPrice = totalPrice + s.price">
-              {{ s.name }} - {{ s.price }} kr.
-          </li>
-      </ul>
+  <div class="umbeðin_þjónusta">
+    <ul style="list-style-type:none;">
+      <li class="þjonusta_i_bokun_haus"><h4>Umbeðin þjónusta:</h4></li>
+      <li class="þjonusta_i_bokun" ng-repeat="s in objFrom.service" ng-init="totalPrice = totalPrice + s.price">
+        {{ s.name }} - {{ s.price }} kr.
+      </li>
+    </ul>
   </div>
-  <div class="takkar">
+  <div class="takkar_i_bokun">
     <h2>Verð: {{ totalPrice }}</h2>
-   <button type="submit"
-           id="afboka"
-           class="btn btn-primary"
-           ng-click="afBoka()">Afbóka
+    <button type="submit"
+            id="afboka"
+            class="btn btn-primary"
+            ng-click="afBoka()">Afbóka
     </button>
-   <button type="submit"
-           id="breytabokun"
-           class="btn btn-primary"
-           ng-click="breytaBokun()">Breyta
-   </button>
-   <button type="submit"
-           id="bætavið_i_stillingar"
-           class="btn btn-primary"
-           ng-click="ekkiBokun()">Mætti ekki
-   </button>
-   </div>
-</div>
+    <button type="submit"
+            id="breytabokun"
+            class="btn btn-primary"
+            ng-click="breytaBokun()">Breyta
+    </button>
+    <button type="submit"
+            id="bætavið_i_stillingar"
+            class="btn btn-primary"
+            ng-click="ekkiBokun()">Mætti ekki
+    </button>
+  </div>
 </div>
 <div class="footer"><h3>SEGO</h3></div>
 
