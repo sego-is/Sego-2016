@@ -650,5 +650,5 @@ api.get('/book/:cid/:pid', (req, res) => {
   });
 
   module.exports = api;
-  };
+
 })();
