@@ -17,7 +17,7 @@
 
         function bokaGluggi() {
             compiledDirective = $compile('<boka class="skilabod" ' +
-                    'close="lokaBokun()" obj-from="clickOnTimapant"></boka>');
+                    'close="lokaBokun()" obj-from="clickOnTimapant" finish-change="cancelBookingChange()"></boka>');
             var directiveElement = compiledDirective(thisScope);
             $('.skilaboda-haldari').append(directiveElement);
         }

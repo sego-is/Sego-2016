@@ -794,6 +794,7 @@ input.ng-valid {
   border-right: 1px solid #ddd;
   text-align: center;
   padding-top: 5px;
+  background-color: whitesmoke;
 }
 
 .staffName {
@@ -803,6 +804,7 @@ input.ng-valid {
   border-right: 1px solid #ddd;
   text-align: center;
   font-weight: bold;
+  background-color: whitesmoke;
 }
 
 .bookingCell {
@@ -814,11 +816,13 @@ input.ng-valid {
   border-right: 1px solid #ddd;
 }
 
+.bookingCell:nth-child(odd) {
+  background-color: white;
+}
+
 .bookingCell:hover {
   cursor: pointer;
-  background-color: #fcf1ff;
-}
-.quart {
+  background-color: #eaeaea;
 }
 /***********************/
 /*** DIV TABLE BELOW ***/
@@ -833,10 +837,15 @@ input.ng-valid {
 .rTableRow {
   display: table-row;
 }
+
+.rTableRow:hover {
+  background-color: lightgray;
+}
+
 .rTableHeading {
   display: table-header-group;
-  background-color: #ddd;
 }
+
 .rTableCell {
   font-size: 1em;
   display: table-cell;
