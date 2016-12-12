@@ -1,3 +1,67 @@
+.container.bóka {
+  height: 502px;
+}
+
+.row.booking {
+  display: flex;
+}
+
+.box {
+  margin-left: 15px;
+  display: inline-block;
+  overflow-y: auto;
+  height: 385px;
+  direction: rtl;
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.sam_verð {
+  margin-top: 250px;
+  margin-left: 200px;
+}
+
+.checkbox {
+  direction: ltr;
+  padding-left: 15px;
+}
+
+.bóka_tíma {
+  margin-top: 5px;
+  text-align: center;
+  width: 86.5%;
+  margin-bottom: 30px;
+  border-bottom: solid lightgray;
+  border-bottom-width: 1px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .bóka_tíma {
+    width: 74%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .bóka_tíma {
+    width: 72%;
+    padding-left: 12px;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .bóka_tíma {
+    width: 100%;
+    padding-left: 15px;
+  }
+}
+
+@media only screen and (max-width: 737px) {
+  .bóka_tíma {
+    width: 100%;
+    padding-left: 15px;
+  }
+}
+
 body {
   padding: 0;
   font-family: sans-serif;
@@ -52,7 +116,6 @@ body {
 .container-fluid-fullSego {
   margin-top: 4em;
   width: 100%;
-
 }
 
 .dagurin_i_dag .col-md-3 {
@@ -248,7 +311,7 @@ body {
   font-family: sans-serif;
 }
 
-.input-group {
+/*.input-group {
   font-size: 16px;
   position: fixed;
   float: right;
@@ -264,7 +327,7 @@ body {
   left: 410px;
   bottom: 225px;
 }
-
+*/
 .table-striped {
   table-layout: fixed;
   width: 100%;
@@ -342,7 +405,7 @@ body {
   customer .skilabod {
     top: 0px;
   }
-}*/
+}
 
 @media only screen and (max-width: 1024px)
 {
@@ -543,7 +606,7 @@ body {
   .buttonright {
     padding-right: 0px;
   }
-}
+}*/
 
 button.fa.fa-plus {
   color: white;
