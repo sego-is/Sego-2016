@@ -29,7 +29,16 @@
         <div>{{person.email}}</div>
         <div>{{person.address}}</div>
       </div>
-      <div class="takkar btn btn-primary" ng-click="temp()">Breyta</div>
+      <div class="takkar">
+        <button type="submit"
+                class="btn btn-primary"
+                ng-click="toggleCus()">Til baka
+        </button>
+        <button type="submit"
+                class="btn btn-primary"
+                ng-click="temp()">Breyta
+        </button>
+      </div>
     </div>
     <div class="col-md-3" ng-if="tmpModifyCus">
       <form name="form.customerForm"
@@ -132,8 +141,9 @@
       </tbody>
     </table>
   </div>
+  <div class="content" ng-if="newCustomer">
   <table class="table table-striped">
-    <tbody ng-if="newCustomer">
+    <tbody>
     <tr>
       <td colspan="4">
         <form name="form.customerForm"
@@ -198,6 +208,7 @@
     </tr>
     </tbody>
   </table>
+</div>
 </div>
 <!------------------------------------------------------------------------------------------->
 <!-------------------------          Viðskiptavinir          -------------------------------->

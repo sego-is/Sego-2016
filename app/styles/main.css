@@ -249,8 +249,16 @@ body {
 }
 
 .input-group {
-  position: relative;
+  display: inline-block;
   left: 11px;
+  height: 260px;
+  overflow-y: auto;
+}
+
+.sam_verð {
+  position: fixed;
+  right: 410px;
+  bottom: 225px;
 }
 
 .table-striped {

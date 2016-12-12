@@ -47,15 +47,15 @@
                    placeholder="Símanúmer"
                    required>
           </div>
-         <!-- <div class="form">
-            <input type="text"
-                   name="additionalService"
-                   ng-model="objFrom.additionalService"
-                   placeholder="Annað">
-            <input type="number"
-                   ng-model="objFrom.additionalTime"
-                   placeholder="Tími">
-          </div>-->
+          <!-- <div class="form">
+             <input type="text"
+                    name="additionalService"
+                    ng-model="objFrom.additionalService"
+                    placeholder="Annað">
+             <input type="number"
+                    ng-model="objFrom.additionalTime"
+                    placeholder="Tími">
+           </div>-->
           <div class="takkar">
             <button type="submit"
                     id="haettavidtakki"
@@ -69,7 +69,7 @@
     </tbody>
   </table>
   <div ng-show="badInput && bookingForm.phone.$error.required">x</div>
-  <div class="input-group">
+  <div class="box input-group">
     <div class="checkbox" ng-repeat="p in pricelist track by $index" ng-if="p.active">
       <label> <input type="checkbox"
                      name="{{ p.name }}"
@@ -80,26 +80,24 @@
         </input>
       </label>
     </div>
-           <h3 class="text-center">Verð: {{ totalPrice }}</h3>
-</div>
+  </div>
+  <div class="sam_verð"><h2 class="text-center">Verð: {{ totalPrice }}</h2></div>
 
- <!-- <div class="input-group">
-    <label class="btn btn-primary"
-           ng-repeat="p in pricelist track by $index"
-           ng-if="p.active">
-       <input type="checkbox" class="checkboxOFF"
-              name="{{ p.name }}"
-              ng-checked="serviceSelected.indexOf(p._id) > -1"
-              ng-click="toggleSelection(p)">
-        {{ p.name }} - {{ p.price }} kr. - {{ p.timeLength / 60 }} mín
-        <br>
-        </input>
-      </label>
+  <!-- <div class="input-group">
+     <label class="btn btn-primary"
+            ng-repeat="p in pricelist track by $index"
+            ng-if="p.active">
+        <input type="checkbox" class="checkboxOFF"
+               name="{{ p.name }}"
+               ng-checked="serviceSelected.indexOf(p._id) > -1"
+               ng-click="toggleSelection(p)">
+         {{ p.name }} - {{ p.price }} kr. - {{ p.timeLength / 60 }} mín
+         <br>
+         </input>
+       </label>
 
-    <h3 class="text-center">Verð: {{ totalPrice }}</h3>
-  </div>-->
-
-
+     <h3 class="text-center">Verð: {{ totalPrice }}</h3>
+   </div>-->
 
 
 </div>
