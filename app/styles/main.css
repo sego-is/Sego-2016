@@ -249,15 +249,19 @@ body {
 }
 
 .input-group {
+  font-size: 16px;
+  position: fixed;
+  float: right;
   display: inline-block;
-  left: 11px;
-  height: 260px;
+  height: 430px;
   overflow-y: auto;
+  right: 265px;
+  bottom: 105px;
 }
 
 .sam_verð {
   position: fixed;
-  right: 410px;
+  left: 410px;
   bottom: 225px;
 }
 
@@ -342,6 +346,11 @@ body {
 
 @media only screen and (max-width: 1024px)
 {
+  .sam_verð {
+    bottom: 270px;
+    left: 200px;
+  }
+
   .skilabod {
     position: absolute;
     left: 0;
@@ -367,6 +376,11 @@ body {
 
 @media only screen and (max-width: 768px)
 {
+
+  .sam_verð {
+    bottom: 540px;
+    right: 40px;
+  }
 
   div.navbar-haus  {
     margin-top: 12px;
