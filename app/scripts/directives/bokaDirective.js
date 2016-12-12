@@ -9,8 +9,8 @@
         restrict: 'E',
         scope: {
           close: '&close',
-          objFrom: '=objFrom'
-
+          objFrom: '=objFrom',
+          finishChange: '&finishChange'
         },
         templateUrl: '../../views/boka.html',
         link: function (scope, element, attrs) {
@@ -107,7 +107,8 @@
                                 customer_id: {
                                     _id: scope.objFrom.customer_id
                                 }
-                            }).then(function(res) {                        
+                            }).then(function(res) {                
+                                scope.finishChange();        
                                 console.log("HAVE BEEN CREATEAD AND DELETED");
                             }, function(err) {
                                 console.log('CREATED, THEN ERROR DELETING, err:', err);                                
