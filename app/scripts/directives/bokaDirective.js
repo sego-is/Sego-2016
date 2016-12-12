@@ -23,13 +23,14 @@
                 // TO CALCULATE ENDTIME
                 scope.timeTaken = 0;
                 scope.totalPrice = 0;
+                scope.endTime = scope.timi;
                 // FOR CHECKBOX SELECTED SERVICE
                 scope.serviceSelected = [];
-                
+
                 // IF THERE IS SOMETHING IN ARRAY THEN THERE IS CHANGE OF BOOKING //
                 if (scope.objFrom.service.length > 0) {
                     console.log("scope.objFrom.service:", scope.objFrom.service);
-                    
+
                     for (var i in scope.objFrom.service) {
                         scope.serviceSelected.push(scope.objFrom.service[i].service_id);
                         console.log("scope.objFrom.service[i]:", scope.objFrom.service[i]);
@@ -40,13 +41,13 @@
                             "price": scope.objFrom.service[i].price,
                             "timeLength": scope.objFrom.service[i].timeLength
                         };
-                        
+
                         scope.totalPrice += scope.objFrom.service[i].price;
                         scope.timeTaken += scope.objFrom.service[i].timeLength;
                     }
                 }
-                
-                
+
+
                 // GET SERVICE THAT COMPANY OFFERS, MAYBE WISE TO ALLWAY MAKE THESE HTTP CALLS ?
                 backendFactory.getService().then(function(res) {
                         // Set pricelist as pricelist for given response
@@ -58,6 +59,7 @@
 
 
             scope.toggleSelection = function(s) {
+              scope.endTime = new Date(scope.objFrom.startTime);
                 console.log('S:', s);
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
@@ -77,6 +79,8 @@
                   scope.timeTaken += s.timeLength;
                   scope.totalPrice += s.price;
                 }
+                scope.endTime.setMinutes(scope.endTime.getMinutes() + (scope.timeTaken/60));
+                scope.endTime = dagatalFactory.getHHMMfromDate(new Date(scope.endTime));
             };
 
 
@@ -84,16 +88,17 @@
             scope.stadfesta = function(bokun) {
 
               if (scope.bookingForm.$valid) {
-                var tmpEndTime = new Date(scope.objFrom.startTime);
+                //var tmpEndTime = new Date(scope.objFrom.startTime);
 
-                tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
+                //tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
+                console.log("EnDTiMe ", scope.endTime);
                 scope.badInput = false;
                 // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
                 var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });
-                
+
                     backendFactory.postBooking({
                         startTime: scope.objFrom.startTime,
-                        endTime: tmpEndTime,
+                        endTime: scope.endTime,
                         staff_id: scope.objFrom.staffId,
                         customer_name:  scope.objFrom.customer,
                         customer_phone: scope.objFrom.phone,
@@ -107,11 +112,11 @@
                                 customer_id: {
                                     _id: scope.objFrom.customer_id
                                 }
-                            }).then(function(res) {                
-                                scope.finishChange();        
+                            }).then(function(res) {
+                                scope.finishChange();
                                 console.log("HAVE BEEN CREATEAD AND DELETED");
                             }, function(err) {
-                                console.log('CREATED, THEN ERROR DELETING, err:', err);                                
+                                console.log('CREATED, THEN ERROR DELETING, err:', err);
                             });
                         }
                         scope.close();
