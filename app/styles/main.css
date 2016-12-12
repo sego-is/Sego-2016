@@ -87,8 +87,10 @@ body {
 }
 
 /* Takkar til að bæta við klippurum og þjónustu*/
-.bætavið_i_stillingar {
-  margin-right: 25px;
+.bætavið_klippara_takki {
+  position: fixed;
+  top: 570px;
+  right: 255px;
 }
 
 /* Takki til að bæta við viðskiptavinum*/
@@ -201,13 +203,31 @@ body {
   font-family: sans-serif;
 }
 
+.content.v.s {
+  height: 502px;
+  width: 100%;
+  font-family: sans-serif;
+  overflow-y: auto;
+}
+
+.content.verðlisti {
+  overflow-y: auto;
+}
+
 .content thead, .content tbody td {
   font-size: 18px;
 }
 
 .content .thjonusta {
-  margin-left: 20px;
+  padding-right: 20px;
   font-size: 18px;
+  text-align: right;
+}
+
+#bætavið_þjónustu_takki {
+  position: fixed;
+  top: 570px;
+  right: 255px;
 }
 
 .email {
@@ -252,10 +272,15 @@ body {
   margin-top: 25px;
 }
 
-.verd {
-  text-align: right;
+.content .verd {
+  /*text-align: right;*/
+  padding-left: 60px;
   font-size: 18px;
   font-weight: bold;
+}
+
+.content tbody {
+  overflow-y: auto;
 }
 
 .hiddenRow {
@@ -779,8 +804,12 @@ input.ng-valid {
 }
 
 .history {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 62%;
+}
+
+.history thead {
+  background-color: lightgray;
 }
 
 .profile {

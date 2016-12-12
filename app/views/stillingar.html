@@ -166,14 +166,14 @@
          placeholder="Símanúmer"
          required>
 </div>
-</div>
+
 <div class="form">
   <input type="text"
          class="form-control"
          ng-model="editUser.address"
          placeholder="Heimilisfang">
 </div>
-</div>
+
 <div class="form">
   <div class="takkar">
     <button type="submit"
@@ -186,10 +186,6 @@
     </button>
   </div>
 </div>
-</form>
-</td>
-</tr>
-</tbody>
 <!-- ADD KLIPPARA, ENDIR -->
 <!-- SHOW name, phone and email OF KLIPPARA -->
 <tbody ng-if="!state.verdskra && !state.add && !state.edit">
@@ -205,7 +201,7 @@
 </table>
 <div class="takkar" ng-if="!state.verdskra && !state.add && !state.edit">
   <button type="submit"
-          class="bætavið_i_stillingar btn btn-primary"
+          class="bætavið_klippara_takki btn btn-primary"
           ng-click="toStaffAdd()">Bæta við klippara
   </button>
 </div>
@@ -249,7 +245,7 @@
       </button>
     </div>
   </div>
-  <div class="content">
+  <div class="content v s">
     <table class="table table-striped">
       <thead ng-if="state.verdskra && !state.add && !state.edit">
       <tr>
@@ -315,6 +311,11 @@
               <div class="takkar">
                 <button type="submit"
                         class="btn btn-primary"
+                        ng-if="state.verdskra && state.edit"
+                        ng-click="removePrice(p, $index)">Henda
+                </button>
+                <button type="submit"
+                        class="btn btn-primary"
                         ng-click="toggleView()">Hætta við
                 </button>
                 <button type="submit"
@@ -335,33 +336,17 @@
       </tbody>
       <tbody ng-if="state.verdskra && !state.add && !state.edit">
       <tr ng-repeat="p in pricelist track by $index" ng-if="p.active">
-        <td>{{ p.name }}</td>
+        <td class="theFirst col-xs-4 divTakki"
+            ng-click="editPrice(p)">{{ p.name }}</td>
         <td>{{ p.price }} kr.</td>
         <td>{{ p.timeLength / 60 }}</td>
-        <!--<td>
-          <div class="pull-right">
-            <a ng-click="removePrice(p, $index)">
-              <i class="fa fa-trash"
-                 data-toggle="tooltip"
-                 data-placement="auto"
-                 title="Henda">
-              </i>
-            </a>
-            <a ng-click="editPrice(p)">
-              <i class="fa fa-pencil"
-                 data-toggle="tooltip"
-                 data-placement="auto"
-                 title="Breyta">
-              </i>
-            </a>
-          </div>
-        </td>-->
       </tr>
       </tbody>
       <!-- EDIT VERDSKRA DONE -->
     </table>
     <div class="takkar" ng-if="state.verdskra && !state.add && !state.edit">
       <button type="submit"
+              id="bætavið_þjónustu_takki"
               class="bætavið_i_stillingar btn btn-primary"
               ng-click="toPriceAdd()">Bæta við þjónustu
       </button>

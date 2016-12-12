@@ -106,15 +106,17 @@
   </ul>
   <div class="history">
     <table class="tafla table table-striped">
-      <tbody>
+      <thead>
       <tr>
         <th><h5>Dagsetning</h5></th>
         <th><h5>Klippari</h5></th>
         <th><h5>Þjónusta</h5></th>
         <th><h5>Verð</h5></th>
       </tr>
+      </thead>
+      <tbody>
       <tr ng-repeat="hist in person.history track by $index" ng-init="hist.total = 0">
-        <td style="width:10%;">{{ toMMDDYY(hist.startTime) }}</td>
+        <td>{{ toMMDDYY(hist.startTime) }}</td>
         <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
         <td>
           <ul>
