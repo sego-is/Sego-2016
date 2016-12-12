@@ -39,12 +39,35 @@
   .bóka_tíma {
     width: 74%;
   }
+
+  .bóka_form {
+    width: 30%;
+    margin-top: 13px;
+  }
+
+  .sam_verð {
+    margin-top: 225px;
+    margin-left: 55px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
   .bóka_tíma {
     width: 72%;
     padding-left: 12px;
+  }
+
+  .bóka_form {
+    margin-top: 13px;
+  }
+
+  .box {
+    font-size: 12px;
+  }
+
+  .sam_verð {
+    margin-top: 225px;
+    margin-left: 0px;
   }
 }
 
@@ -53,12 +76,63 @@
     width: 100%;
     padding-left: 15px;
   }
+
+  .bóka_form {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-height: 415px) {
+  .container.bóka {
+    height: 270px;
+  }
+
+  .box {
+    height: 180px;
+  }
+
+  .bóka_form {
+    width: 45%;
+  }
+
+  .sam_verð {
+    margin-top: 75px;
+  }
 }
 
 @media only screen and (max-width: 737px) {
   .bóka_tíma {
     width: 100%;
     padding-left: 15px;
+    margin-bottom: 0px;
+  }
+}
+
+@media only screen and (max-height: 413px) {
+  .container.bóka {
+    height: 245px;
+  }
+
+  .box {
+    height: 170px;
+  }
+
+  .sam_verð {
+    margin-top: 55px;
+  }
+}
+
+@media only screen and (max-height: 320px) {
+  .container.bóka {
+    height: 245px;
+  }
+
+  .box {
+    height: 170px;
+  }
+
+  .sam_verð {
+    margin-top: 55px;
   }
 }
 
@@ -766,7 +840,7 @@ input.ng-valid {
 
 .confirmedBooking {
   background-color: #e9ccee;
-  font-size: 0.8em;
+  font-size: 1em;
   box-shadow: 2px 2px 1px grey;
   border-bottom: 1px solid grey;
   border-radius: 2px;
