@@ -9,13 +9,16 @@
    * Controller of the segoEnnOgAfturApp
    */
   angular.module('segoapp')
-    .controller('HomeCtrl', ['$scope', 'gluggaService', 'dagatalFactory', 'backendFactory', function ($scope, gluggaService, dagatalFactory, backendFactory) {
+    .controller('HomeCtrl', ['$scope', '$rootScope', 'gluggaService', 'dagatalFactory', 'backendFactory', 'initialize', function ($scope, $rootScope, gluggaService, dagatalFactory, backendFactory, initialize) {
+      
+      $rootScope.$on('backendFactoryInit', function(ev, data) {
+          update();
+      });
+      
       $scope.bookings = [];
-
 
       // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
       var selectedDay = dagatalFactory.getDate();
-
       // TIL AD BIRTA ISLENSKT HEITI A DAGSETNINGUNNI
       $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
 
@@ -177,20 +180,10 @@
         }
       };
 
-
-
       $scope.lokaBokun = function () {
         gluggaService.destroy();
         update();
       };
       // END OF BOOKING CLICK
-      backendFactory.init().then(function successCallback(response) {
-        backendFactory.set(response.data[0]);
-        update();
-        // UPPLYSINGAR VARDANDI INNSKRA-ANDA HEFUR VERID SOTT, THEN run update()
-      }, function errorCallback(error) {
-        console.log("ERROR", error);
-      });
-
     }]);
 })();
