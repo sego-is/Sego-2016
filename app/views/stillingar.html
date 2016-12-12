@@ -173,7 +173,7 @@
          ng-model="editUser.address"
          placeholder="Heimilisfang">
 </div>
-
+</form>
 <div class="form">
   <div class="takkar">
     <button type="submit"
@@ -337,7 +337,8 @@
       <tbody ng-if="state.verdskra && !state.add && !state.edit">
       <tr ng-repeat="p in pricelist track by $index" ng-if="p.active">
         <td class="theFirst col-xs-4 divTakki"
-            ng-click="editPrice(p)">{{ p.name }}</td>
+            ng-click="editPrice(p)">{{ p.name }}
+        </td>
         <td>{{ p.price }} kr.</td>
         <td>{{ p.timeLength / 60 }}</td>
       </tr>
