@@ -21,18 +21,9 @@
              ng-if="isAuthenticated">
           <button type="button"
                   class="btn btn-link btn-lg"
-                  ng-click="verdlisti()">
-            <span class="visible-lg-inline-block visible-md-inline-block">Verðlisti</span>
-            <span class="fa fa-dollar"
-                  aria-hidden="true">
-                </span>
-          </button>
-
-          <button type="button"
-                  class="btn btn-link btn-lg"
                   ng-click="stillingar()">
             <span class="visible-lg-inline-block visible-md-inline-block">Stillingar</span>
-            <span class="fa fa-cogs "
+            <span class="fa fa-cogs hidden-xs"
                   aria-hidden="true">
                 </span>
           </button>
@@ -40,7 +31,15 @@
                   class="btn btn-link btn-lg"
                   ng-click="vidskiptavinir()">
             <span class="visible-lg-inline-block visible-md-inline-block">Viðskiptavinir</span>
-            <span class="fa fa-users"
+            <span class="fa fa-users hidden-xs"
+                  aria-hidden="true">
+                </span>
+          </button>
+          <button type="button"
+                  class="btn btn-link btn-lg"
+                  ng-click="verdlisti()">
+            <span class="visible-lg-inline-block visible-md-inline-block">Verðlisti</span>
+            <span class="fa fa-dollar"
                   aria-hidden="true">
                 </span>
           </button>
