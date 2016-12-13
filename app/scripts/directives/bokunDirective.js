@@ -15,9 +15,9 @@
         templateUrl: '../../views/bokun.html',
         link: function (scope) {
 
-          scope.timi = dagatalFactory.getHHMMfromDate(new Date(scope.objFrom.startTime));
-          scope.endTime = dagatalFactory.getHHMMfromDate(new Date(scope.objFrom.endTime));
-          scope.totalPrice = 0;
+          scope.timi =         dagatalFactory.getHHMMfromDate(new Date(scope.objFrom.startTime));
+          scope.endTime =      dagatalFactory.getHHMMfromDate(new Date(scope.objFrom.endTime));
+          scope.totalPrice =   0;
           scope.objFrom.date = dagatalFactory.getStringForDate(new Date(scope.objFrom.startTime));
 
           for (var i in scope.objFrom.service) {
