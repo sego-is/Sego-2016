@@ -33,14 +33,35 @@
     </div>
   </div>
   <div class="content">
-    <div class="col-md-6">
+    <div class="row tölfræði">
+    <div class="col-md-6 tolfr">
       <canvas id="pie" class="chart chart-pie"
               chart-data="data" chart-labels="labels" chart-options="options">
       </canvas>
     </div>
     <div class="col-md-6">
-      eitthvað sniðugt til að manipulatea tölfræðina
+
+      <div class="table-responsive tolfrTafla">
+
+        <table class="table">
+          <tr>
+            <th><h5>Klippari</h5></th>
+            <th><h5>Fjöldi bókana</h5></th>
+            <th><h5>Samtals krónur</h5></th>
+          </tr>
+          <tbody ng-repeat="klippari in labels">
+            <tr>
+              <td>{{klippari}}</td>
+              <td>{{books[$index]}}</td>
+              <td>{{data[$index]}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
     </div>
+  </div>
   </div>
   <div class="footer"><h3>SEGO</h3></div>
 </div>

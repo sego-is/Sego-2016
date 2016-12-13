@@ -47,7 +47,9 @@
             }
             $scope.labels = Object.keys(klipparaBokanir).map(function(key) { return klipparaBokanir[key].name; });
             $scope.data = Object.keys(klipparaBokanir).map(function(key) { return klipparaBokanir[key].income; });
+            $scope.books = Object.keys(klipparaBokanir).map(function(key) { return klipparaBokanir[key].bookings; });
             console.log("RESPOND getBookingByMonth, klipparaBokanir:", klipparaBokanir);
+
           });
         }
       };

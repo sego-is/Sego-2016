@@ -1095,6 +1095,19 @@ input.ng-valid {
   margin-bottom: 32px;
 }
 
+.tolfr {
+  padding-left: 2.3em;
+  margin-top: 2.5em;
+}
+
+.tölfræði {
+  display: flex;
+}
+
+.tolfrTafla {
+  padding-right: 3em;
+}
+
 textarea {
   margin-top: 8%;
   resize: none;
