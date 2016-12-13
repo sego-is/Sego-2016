@@ -590,11 +590,11 @@ api.get('/book/:cid/:pid', (req, res) => {
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
       console.log("DATA", data);
-      model.Service.update({ 
-          'company_id': { $eq: data.service.cid }, 
-          'pricelist._id': { $eq: data.service._id 
-      }},
-        { $set: { "pricelist.$.active": false } },
+      model.Service.update({
+          '_id': { $eq: data._id },
+          'company_id': { $eq: data.company_id }
+          },
+        { $set: { "active": false } },
         { safe: true, upsert: true }, function (err, doc) {
           if (err) {
             res.status(500).send(err);
