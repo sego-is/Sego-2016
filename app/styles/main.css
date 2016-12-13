@@ -36,6 +36,10 @@
 }
 
 @media only screen and (max-width: 1024px) {
+  .skilabod {
+    margin-top: 50px !important;
+  }
+
   .bóka_tíma {
     width: 74%;
   }
@@ -59,8 +63,14 @@
 
 @media only screen and (max-width: 768px) {
   .skilabod {
+    height: 95.4%;
     width: 100% !important;
     right: 0% !important;
+    margin-top: 50px !important;
+  }
+
+  .content.verðlisti {
+    height: 91%;
   }
 
   .bóka_tíma {
@@ -84,11 +94,12 @@
 
 @media only screen and (max-width: 415px) {
   .skilabod {
-    height: 70%;
+    height: 95.4%;
+    margin-top: 68px !important;
   }
 
   .content.verðlisti {
-    height: 91%;
+    height: 92%;
   }
 
   .bóka_tíma {
@@ -119,6 +130,14 @@
 
   .navbar-haus {
     margin-top: 15px !important;
+  }
+
+  .thjonusta {
+    font-size: 24px !important;
+  }
+
+  .verd {
+    font-size: 24px !important;
   }
 }
 
