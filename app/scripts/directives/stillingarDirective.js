@@ -118,10 +118,9 @@
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
           scope.removePrice = function () {
-              console.log('scope.editVerd', scope.editVerd);
             backendFactory.deleteFromPricelist(scope.editVerd).then(function(res) {
-                console.log("RES:", res);
                 scope.pricelist.splice(scope.editVerd.index, 1);
+                scope.state.edit = false;
              }, function(err) {
                  console.log("ERROR removePrice", err);
              });

@@ -589,6 +589,25 @@ api.get('/book/:cid/:pid', (req, res) => {
   // De-activate specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
+      model.Service.findOne({'_id': data.company_id }, function(err, doc) {
+           if (err) {
+                console.log('error: post(//services/pricelist/), err:', err);
+                res.status(500).send(err);
+           }
+           else {
+                doc.active = false;
+                doc.save((err1, doc1) => {
+                    if (err1) {
+                        console.log("HER ER ERROR i api->post('/services/pricelist/.findOne, err1:", err1);
+                        res.status(500).send(err1);
+                    }
+                    else {
+                        res.send(doc1);
+                    }
+                });
+            }
+      });
+      /*
       console.log("DATA", data);
       model.Service.update({
           '_id': { $eq: data._id },
@@ -603,6 +622,7 @@ api.get('/book/:cid/:pid', (req, res) => {
             res.send('HAS BEEN DE-ACTIVATED')
         }
     });
+    */
   });
 
 
