@@ -22,10 +22,8 @@
           scope.service = {};
            // GET ALL STAFF AND SERVICE FOR SALOON
           scope.staff = [];
-          //scope.services = [];
           // Needed for validation
           scope.form = {};
-
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
           scope.state = {
