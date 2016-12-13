@@ -51,6 +51,12 @@
   }
 }
 
+.strik {
+  width: 0%;
+}
+
+
+
 @media only screen and (max-width: 768px) {
   .skilabod {
     width: 100% !important;
@@ -77,6 +83,14 @@
 }
 
 @media only screen and (max-width: 415px) {
+  .skilabod {
+    height: 70%;
+  }
+
+  .content.verðlisti {
+    height: 91%;
+  }
+
   .bóka_tíma {
     width: 100%;
     padding-left: 15px;
@@ -89,6 +103,22 @@
   .umbeðin_þjónusta {
     list-style-type: none;
     height: 390px;
+  }
+
+  .nav .fa-dollar, .fa-sign-out {
+    font-size: 30px;
+  }
+
+  .row.dagsetning {
+    margin-top: 20px;
+  }
+
+  .navbar-haus-top {
+    margin-top: 15px !important;
+  }
+
+  .navbar-haus {
+    margin-top: 15px !important;
   }
 }
 
@@ -129,6 +159,10 @@
 
   .sam_verð {
     margin-top: 75px;
+  }
+
+  .row.dagsetning {
+    margin-top: 10px;
   }
 }
 
@@ -459,7 +493,7 @@ body {
 
 .content .verd {
   /*text-align: right;*/
-  padding-left: 60px;
+  padding-left: 45px;
   font-size: 18px;
   font-weight: bold;
 }
