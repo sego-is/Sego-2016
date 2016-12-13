@@ -117,10 +117,11 @@
          // END OF GETTING U/S
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
-          scope.removePrice = function (p, index) {
-            backendFactory.deleteFromPricelist(p).then(function(res) {
+          scope.removePrice = function () {
+              console.log('scope.editVerd', scope.editVerd);
+            backendFactory.deleteFromPricelist(scope.editVerd).then(function(res) {
                 console.log("RES:", res);
-                scope.pricelist.splice(index, 1);
+                scope.pricelist.splice(scope.editVerd.index, 1);
              }, function(err) {
                  console.log("ERROR removePrice", err);
              });
@@ -138,8 +139,9 @@
 
 
           // HELP FUNCTION WHEN CLICK EDIT PRICE
-          scope.editPrice = function (p) {
+          scope.editPrice = function (p, index) {
             scope.editVerd = p;
+            scope.editVerd.index = index;
             scope.editVerd.timeLength /= 60;
             scope.state.edit = true;
           };

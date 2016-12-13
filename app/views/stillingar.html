@@ -337,7 +337,7 @@
       <tbody ng-if="state.verdskra && !state.add && !state.edit">
       <tr ng-repeat="p in pricelist track by $index" ng-if="p.active">
         <td class="theFirst col-xs-4 divTakki"
-            ng-click="editPrice(p)">{{ p.name }}
+            ng-click="editPrice(p, $index)">{{ p.name }}
         </td>
         <td>{{ p.price }} kr.</td>
         <td>{{ p.timeLength / 60 }}</td>
