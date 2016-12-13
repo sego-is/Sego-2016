@@ -29,7 +29,7 @@
 .bóka_tíma {
   margin-top: 5px;
   text-align: center;
-  width: 86.5%;
+  width: 87.5%;
   margin-bottom: 30px;
   border-bottom: solid lightgray;
   border-bottom-width: 1px;
@@ -85,6 +85,11 @@
   .bóka_form {
     width: 40%;
   }
+
+  .umbeðin_þjónusta {
+    list-style-type: none;
+    height: 390px;
+  }
 }
 
 @media only screen and (max-height: 415px) {
@@ -95,6 +100,19 @@
 
   .content.verðlisti {
     height: 65.5%;
+  }
+
+  .content.b {
+    height: 60% !important;
+  }
+
+  .umbeðin_þjónusta {
+    height: 150px;
+    list-style-type: none;
+  }
+
+  .þjonusta_i_bokun_haus {
+    margin-top: 30px !important;
   }
 
   .container.bóka {
@@ -468,6 +486,7 @@ body {
 
 .umbeðin_þjónusta {
   display: inline-block;
+  overflow-y: auto;
 }
 
 .takkar_i_bokun {
