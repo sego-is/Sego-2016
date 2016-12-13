@@ -31,8 +31,6 @@
   text-align: center;
   width: 87.5%;
   margin-bottom: 30px;
-  border-bottom: solid lightgray;
-  border-bottom-width: 1px;
 }
 
 @media only screen and (max-width: 1024px) {
