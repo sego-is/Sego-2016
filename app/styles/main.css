@@ -29,13 +29,17 @@
 .bóka_tíma {
   margin-top: 5px;
   text-align: center;
-  width: 86.5%;
+  width: 87.5%;
   margin-bottom: 30px;
   border-bottom: solid lightgray;
   border-bottom-width: 1px;
 }
 
 @media only screen and (max-width: 1024px) {
+  .skilabod {
+    margin-top: 50px !important;
+  }
+
   .bóka_tíma {
     width: 74%;
   }
@@ -51,7 +55,24 @@
   }
 }
 
+.strik {
+  width: 0%;
+}
+
+
+
 @media only screen and (max-width: 768px) {
+  .skilabod {
+    height: 95.4%;
+    width: 100% !important;
+    right: 0% !important;
+    margin-top: 50px !important;
+  }
+
+  .content.verðlisti {
+    height: 91%;
+  }
+
   .bóka_tíma {
     width: 72%;
     padding-left: 12px;
@@ -72,6 +93,15 @@
 }
 
 @media only screen and (max-width: 415px) {
+  .skilabod {
+    height: 95.4%;
+    margin-top: 68px !important;
+  }
+
+  .content.verðlisti {
+    height: 92%;
+  }
+
   .bóka_tíma {
     width: 100%;
     padding-left: 15px;
@@ -80,9 +110,60 @@
   .bóka_form {
     width: 40%;
   }
+
+  .umbeðin_þjónusta {
+    list-style-type: none;
+    height: 390px;
+  }
+
+  .nav .fa-dollar, .fa-sign-out {
+    font-size: 30px;
+  }
+
+  .row.dagsetning {
+    margin-top: 20px;
+  }
+
+  .navbar-haus-top {
+    margin-top: 15px !important;
+  }
+
+  .navbar-haus {
+    margin-top: 15px !important;
+  }
+
+  .thjonusta {
+    font-size: 24px !important;
+  }
+
+  .verd {
+    font-size: 24px !important;
+  }
 }
 
 @media only screen and (max-height: 415px) {
+  .skilabod {
+    width: 100%;
+    height: 100%;
+  }
+
+  .content.verðlisti {
+    height: 65.5%;
+  }
+
+  .content.b {
+    height: 60% !important;
+  }
+
+  .umbeðin_þjónusta {
+    height: 150px;
+    list-style-type: none;
+  }
+
+  .þjonusta_i_bokun_haus {
+    margin-top: 30px !important;
+  }
+
   .container.bóka {
     height: 270px;
   }
@@ -98,6 +179,10 @@
   .sam_verð {
     margin-top: 75px;
   }
+
+  .row.dagsetning {
+    margin-top: 10px;
+  }
 }
 
 @media only screen and (max-width: 737px) {
@@ -111,6 +196,10 @@
 @media only screen and (max-height: 413px) {
   .container.bóka {
     height: 245px;
+  }
+
+  .content.verðlisti {
+    height: 62.5%;
   }
 
   .box {
@@ -423,7 +512,7 @@ body {
 
 .content .verd {
   /*text-align: right;*/
-  padding-left: 60px;
+  padding-left: 45px;
   font-size: 18px;
   font-weight: bold;
 }
@@ -450,6 +539,7 @@ body {
 
 .umbeðin_þjónusta {
   display: inline-block;
+  overflow-y: auto;
 }
 
 .takkar_i_bokun {
