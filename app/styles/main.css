@@ -52,6 +52,11 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .skilabod {
+    width: 100% !important;
+    right: 0% !important;
+  }
+
   .bóka_tíma {
     width: 72%;
     padding-left: 12px;
@@ -83,6 +88,15 @@
 }
 
 @media only screen and (max-height: 415px) {
+  .skilabod {
+    width: 100%;
+    height: 100%;
+  }
+
+  .content.verðlisti {
+    height: 65.5%;
+  }
+
   .container.bóka {
     height: 270px;
   }
@@ -111,6 +125,10 @@
 @media only screen and (max-height: 413px) {
   .container.bóka {
     height: 245px;
+  }
+
+  .content.verðlisti {
+    height: 62.5%;
   }
 
   .box {
