@@ -12,12 +12,9 @@
         },
         templateUrl: '../../views/customer.html',
         link: function (scope, element, attrs) {
-          console.log("SCOPE: ", scope.data);
-
           // GET ALL CUSTOMERS FROM CID
           backendFactory.getCustomerByCID().then(function (res) {
             scope.vidskiptavinir = res.data;
-            console.log("vidskiptavinir:", scope.vidskiptavinir);
           }, function (err) {
             console.log("customerDirective, getCustomerByCID() ERROR:", err);
             scope.vidskiptavinir = [];
@@ -39,11 +36,9 @@
           scope.editCust = function (c) {
             if (c !== undefined) {
               scope.person =    c;
-              scope.modifyCus = !scope.modifyCus;
             }
-            else {
-              scope.modifyCus = !scope.modifyCus;
-            }
+            scope.modifyCus = !scope.modifyCus;
+            scope.newCustomer = false;
           };
 
           scope.returnStaff = function (pid) {
@@ -62,15 +57,20 @@
           };
 
           scope.newCus = function () {
-            scope.modifyCus =   !scope.modifyCus;
+            scope.modifyCus =   false;
             scope.newCustomer = true;
             scope.badInput =    false;
             scope.person =      {};
           };
 
           scope.toggleCus = function () {
-            scope.modifyCus =   !scope.modifyCus;
-            scope.newCustomer = !scope.newCustomer;
+             if(!scope.modifyCus) {
+                 scope.newCustomer = false;
+             }
+             else {
+                 scope.modifyCus = false;
+             }
+            //scope.newCustomer = !scope.newCustomer;
           };
 
           // Fyrir input validation
@@ -84,8 +84,7 @@
               s.role =       0;
               backendFactory.postPerson(s).then(function (res) {
                 scope.vidskiptavinir.push(res.data);
-                scope.modifyCus =  !scope.modifyCus;
-                scope.tmpModifyCus = !scope.tmpModifyCus;
+                scope.newCustomer = !scope.newCustomer;
                 //scope.lokaGlugga();
               }, function (err) {
                 console.log("ERROR addCustomer(): ", err);

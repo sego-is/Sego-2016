@@ -1,3 +1,4 @@
+<!-- HAUSINN A GLUGGANUM -->
 <div class="haus">
   <h2 class="col-xs-7 col-md-8">VIÐSKIPTAVINIR
     <i class="fa fa-users"></i>
@@ -13,11 +14,13 @@
           ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
   </button>
 </div>
+<!-- LOKID HAUSINN A GLUGGANUM LOKID -->
+
 
 <!---------------------------------------------->
 <!-------------- CUSTOMER PROFILE -------------->
 <!---------------------------------------------->
-<div class="content" ng-if="modifyCus">
+<div class="content" ng-if="modifyCus || newCustomer">
   <div class="container profile">
     <div class="col-md-2 profilePic">
       <i class="fa fa-user fa-5x"></i>
@@ -29,7 +32,7 @@
         <div>{{person.email}}</div>
         <div>{{person.address}}</div>
       </div>
-      <div class="takkar">
+      <div class="takkar" ng-if="!newCustomer">
         <button type="submit"
                 class="btn btn-primary"
                 ng-click="toggleCus()">Til baka
@@ -40,6 +43,7 @@
         </button>
       </div>
     </div>
+    <!-- TAKKAR FYRIR EDIT MODIFIED CUSTOMER -->
     <div class="col-md-3" ng-if="tmpModifyCus">
       <form name="form.customerForm"
             class="form"
@@ -106,14 +110,11 @@
       </form>
     </div>
   </div>
-  <!-- BREYTA start -->
-
-  <!-- BREYTA end -->
-
   <ul>
     <li ng-repeat="comm in person.comments">{{ comm }}</li>
   </ul>
-  <div class="history">
+  <!--  HISTORY FYRIR CUMSTOMER -->
+  <div class="history" ng-if="modifyCus && !newCustomer">
     <table class="tafla table table-striped">
       <thead>
       <tr>
@@ -141,8 +142,8 @@
       </tbody>
     </table>
   </div>
-  <div class="content" ng-if="newCustomer">
-  <table class="table table-striped">
+  <!--  LOKID HISTORY FYRIR CUMSTOMER LOKID -->
+  <table class="table table-striped"  ng-if="newCustomer">
     <tbody>
     <tr>
       <td colspan="4">
@@ -209,11 +210,15 @@
     </tbody>
   </table>
 </div>
-</div>
+<!-- THEGAR A AD ADD-A CUSTOMER -->
+
+<!-- LOKID AD ADD-A CUSTOMER LOKID -->
+
+
 <!------------------------------------------------------------------------------------------->
-<!-------------------------          Viðskiptavinir          -------------------------------->
+<!---------------      Syna viðskiptavini !modifyCus && !newCustomer      ------------------->
 <!------------------------------------------------------------------------------------------->
-<div class="content v" ng-if="!modifyCus">
+<div class="content v" ng-if="!modifyCus && !newCustomer">
   <table class="table table-striped">
     <thead>
     <tr>
@@ -234,7 +239,7 @@
     </tbody>
   </table>
 </div>
-<div class="row form-group blaðsíður" ng-if="!modifyCus">
+<div class="row form-group blaðsíður" ng-if="!modifyCus && !newCustomer">
   <dir-pagination-controls
     max-size="5"
     direction-links="true"
@@ -248,5 +253,7 @@
     </button>
   </div>
 </div>
+</div> <!-- CLOSE CONTENT -->
+<!--------------- LOKID - Syna viðskiptavini - LOKID  ------------------->
 <div class="footer"><h3>SEGO</h3></div>
 
