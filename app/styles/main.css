@@ -855,6 +855,10 @@ input.ng-valid {
   background-color: #ce9ed7;
 }
 
+.false {
+  background-color: #F1526B;
+}
+
 .confirmedBooking:hover {
   transform: translateY(1px);
   box-shadow: 1px 1px 1px grey;

@@ -87,6 +87,7 @@
               if (scope.bookingForm.$valid) {
                 var tmpEndTime = new Date(scope.objFrom.startTime);
                 tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
+                console.log(tmpEndTime + " " + scope.endTime);
                 scope.badInput = false;
                 // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
                 var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });

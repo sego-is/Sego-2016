@@ -10,11 +10,11 @@
    */
   angular.module('segoapp')
     .controller('HomeCtrl', ['$scope', '$rootScope', 'gluggaService', 'dagatalFactory', 'backendFactory', 'initialize', function ($scope, $rootScope, gluggaService, dagatalFactory, backendFactory, initialize) {
-      
+
       $rootScope.$on('backendFactoryInit', function(ev, data) {
           update();
       });
-      
+
       $scope.bookings = [];
 
       // BREYTA TIL AD HALDA UTAN UM VALINN DAG //
@@ -32,12 +32,11 @@
         $scope.getDailyBookings(selectedDay);
       };
 
-
-
       // KEYRA update() TIL AD GERA OLL GOGN TILBUIN SEM A AD BIRTA
       function update() {
         bookingForToday = {};
         // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
+        cleanPage();
         backendFactory.getBookingByDate(dagatalFactory.getStringForDate(selectedDay)).then(function (res) {
           // If there are no bookings by given date -> return EMPTY ARRAY
           if (res.data.length === 0) {
@@ -76,6 +75,7 @@
       var bookingsToday = function () {
         var dictEndTime = {};
         for (var b in $scope.bookings) {
+          console.log("ekkiBokun ", $scope.bookings);
           // FYRIR LENGD A TIMAPONTUNUM
           var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
 
@@ -89,13 +89,23 @@
           if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
             dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
             texti = "confirmedBooking";
+            if($scope.bookings[b].attendance === false) {
+              texti = "confirmedBooking false";
+            }
           }
           else {
             if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
               texti = "confirmedBooking right";
+              if($scope.bookings[b].attendance === false) {
+                texti = "confirmedBooking right false";
+              }
             }
             else {
               texti = "confirmedBooking";
+
+              if($scope.bookings[b].attendance === false) {
+                texti = "confirmedBooking false";
+              }
               dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
             }
           }
@@ -149,20 +159,17 @@
             }
             else {
                 if ($scope.bookChangeInProgress) {
-                    console.log('bookingToChange', bookingToChange);
                     b.customer_id = bookingToChange.customer_id._id;
                     b.customer_name =  bookingToChange.customer_id.name;
                     b.customer_phone = bookingToChange.customer_id.phone;
-                    b.service =        bookingToChange.service;   
+                    b.service =        bookingToChange.service;
                     b.book_id =  bookingToChange._id;
-
                 }
                 else {
                     b.customer_name =  "";
                     b.customer_phone = "";
                     b.service =        [];
                 }
-
 
                 $scope.clickOnTimapant = {
                     name:      b.name,
