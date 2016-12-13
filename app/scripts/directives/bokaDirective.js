@@ -60,7 +60,6 @@
 
             scope.toggleSelection = function(s) {
               scope.endTime = new Date(scope.objFrom.startTime);
-                console.log('S:', s);
               var posOfSelected = scope.serviceSelected.indexOf(s._id);
                 if (posOfSelected > -1) {
                   scope.serviceSelected.splice(posOfSelected, 1);
@@ -83,22 +82,18 @@
                 scope.endTime = dagatalFactory.getHHMMfromDate(new Date(scope.endTime));
             };
 
-
-
             scope.stadfesta = function(bokun) {
 
               if (scope.bookingForm.$valid) {
-                //var tmpEndTime = new Date(scope.objFrom.startTime);
-
-                //tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
-                console.log("EnDTiMe ", scope.endTime);
+                var tmpEndTime = new Date(scope.objFrom.startTime);
+                tmpEndTime.setMinutes(tmpEndTime.getMinutes() + (scope.timeTaken/60));
                 scope.badInput = false;
                 // TIL AD BUA TIL ARRAY AF THJONUSTU.. i stad key->value
                 var arr = Object.keys(selectedService).map(function(key) { return selectedService[key]; });
 
                     backendFactory.postBooking({
                         startTime: scope.objFrom.startTime,
-                        endTime: scope.endTime,
+                        endTime: tmpEndTime,
                         staff_id: scope.objFrom.staffId,
                         customer_name:  scope.objFrom.customer,
                         customer_phone: scope.objFrom.phone,
@@ -130,7 +125,6 @@
                 scope.badInput = true;
               }
             };
-
             init();
         }
       };
