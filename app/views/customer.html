@@ -6,33 +6,40 @@
 
   <form class="form-inline">
     <div class="form-group">
-      <input type="text" ng-model="search" id="leitargluggi" class="form-control col-md-3" placeholder="Leita..">
+      <input type="text"
+             ng-model="search"
+             id="leitargluggi"
+             class="form-control col-md-3"
+             placeholder="Leita..">
     </div>
   </form>
   <button type="button"
           class="molar btn btn-link btn-lg"
-          ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+          ng-click="close()">
+    <i class="fa fa-times" aria-hidden="true"></i>
   </button>
 </div>
 <!-- LOKID HAUSINN A GLUGGANUM LOKID -->
 
-
 <!---------------------------------------------->
 <!-------------- CUSTOMER PROFILE -------------->
 <!---------------------------------------------->
-<div class="content" ng-if="modifyCus || newCustomer">
+<div class="content"
+     ng-if="modifyCus || newCustomer">
   <div class="container profile">
     <div class="col-md-2 profilePic">
       <i class="fa fa-user fa-5x"></i>
     </div>
-    <div class="col-md-3" ng-if="!tmpModifyCus">
+    <div class="col-md-3"
+         ng-if="!tmpModifyCus">
       <div class="viðskiptavinur">
         <div>{{person.name}}</div>
         <div>{{person.phone}}</div>
         <div>{{person.email}}</div>
         <div>{{person.address}}</div>
       </div>
-      <div class="takkar" ng-if="!newCustomer">
+      <div class="takkar"
+           ng-if="!newCustomer">
         <button type="submit"
                 class="btn btn-primary"
                 ng-click="toggleCus()">Til baka
@@ -52,8 +59,8 @@
           <input type="text"
                  name="name"
                  ng-class="{error: (badInput && form.customerForm.name.$error.required)
-                                  || (badInput && form.customerForm.name.$error.maxlength)
-                                  || (badInput && form.customerForm.name.$error.minlength)}"
+                                || (badInput && form.customerForm.name.$error.maxlength)
+                                || (badInput && form.customerForm.name.$error.minlength)}"
                  ng-click="badInputFalse()"
                  ng-minlength="3"
                  ng-maxlength="44"
@@ -67,8 +74,8 @@
                  class="form-control"
                  ng-click="badInputFalse()"
                  ng-class="{error: (badInput && form.customerForm.phone.$error.required)
-                                  || (badInput && form.customerForm.phone.$error.maxlength)
-                                  || (badInput && form.customerForm.phone.$error.minlength)}"
+                                || (badInput && form.customerForm.phone.$error.maxlength)
+                                || (badInput && form.customerForm.phone.$error.minlength)}"
                  ng-minlength="7"
                  ng-maxlength="7"
                  name="phone"
@@ -114,7 +121,8 @@
     <li ng-repeat="comm in person.comments">{{ comm }}</li>
   </ul>
   <!--  HISTORY FYRIR CUMSTOMER -->
-  <div class="history" ng-if="modifyCus && !newCustomer">
+  <div class="history"
+       ng-if="modifyCus && !newCustomer">
     <table class="tafla table table-striped">
       <thead>
       <tr>
@@ -125,7 +133,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="hist in person.history track by $index" ng-init="hist.total = 0">
+      <tr ng-repeat="hist in person.history track by $index"
+          ng-init="hist.total = 0">
         <td>{{ toMMDDYY(hist.startTime) }}</td>
         <td ng-bind="returnStaff(hist.staff_id)">{{ hist.staff_id }}</td>
         <td>
@@ -143,7 +152,8 @@
     </table>
   </div>
   <!--  LOKID HISTORY FYRIR CUMSTOMER LOKID -->
-  <table class="table table-striped"  ng-if="newCustomer">
+  <table class="table table-striped"
+         ng-if="newCustomer">
     <tbody>
     <tr>
       <td colspan="4">
@@ -210,15 +220,12 @@
     </tbody>
   </table>
 </div>
-<!-- THEGAR A AD ADD-A CUSTOMER -->
-
-<!-- LOKID AD ADD-A CUSTOMER LOKID -->
-
 
 <!------------------------------------------------------------------------------------------->
 <!---------------      Syna viðskiptavini !modifyCus && !newCustomer      ------------------->
 <!------------------------------------------------------------------------------------------->
-<div class="content v" ng-if="!modifyCus && !newCustomer">
+<div class="content v"
+     ng-if="!modifyCus && !newCustomer">
   <table class="table table-striped">
     <thead>
     <tr>
@@ -239,7 +246,8 @@
     </tbody>
   </table>
 </div>
-<div class="row form-group blaðsíður" ng-if="!modifyCus && !newCustomer">
+<div class="row form-group blaðsíður"
+     ng-if="!modifyCus && !newCustomer">
   <dir-pagination-controls
     max-size="5"
     direction-links="true"
@@ -253,7 +261,6 @@
     </button>
   </div>
 </div>
-</div> <!-- CLOSE CONTENT -->
 <!--------------- LOKID - Syna viðskiptavini - LOKID  ------------------->
 <div class="footer"><h3>SEGO</h3></div>
 
