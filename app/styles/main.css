@@ -33,17 +33,11 @@
   margin-bottom: 30px;
 }
 
-.taflaViðskipta {
-  width: 86% !important;
-}
-
-.history.viðskipta {
-  width: 86% !important;
-  height: 59%;
-}
-
-@media only screen and (max-width: 1900px) {
-
+@media only screen and (min-width: 1900px) {
+  canvas #pie {
+    height: 455px !important;
+    width: 455px !important;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -69,8 +63,6 @@
 .strik {
   width: 0%;
 }
-
-
 
 @media only screen and (max-width: 768px) {
   .skilabod {
@@ -435,7 +427,6 @@ body {
 }
 
 .content {
-  display: table;
   height: 502px;
   width: 100%;
   font-family: sans-serif;
