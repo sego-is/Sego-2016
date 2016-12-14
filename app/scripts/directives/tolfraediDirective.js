@@ -3,7 +3,6 @@
   angular
     .module('segoapp')
     .directive('tolfraedi', ['gluggaService', 'backendFactory', 'dagatalFactory', function (gluggaService, backendFactory, dagatalFactory) {
-      console.log("TölfræðiGluggi");
       return {
         restrict: 'E',
         scope: {
@@ -11,8 +10,6 @@
         },
         templateUrl: '../../views/static.html',
         link: function ($scope) {
-
-          //$scope.data = [300, 500, 100];
 
           $scope.close = function () {
             gluggaService.destroy();
@@ -27,9 +24,7 @@
           };
 
           var klipparaBokanir = {};
-          var staffid = backendFactory.Staff();
-          console.log("STAFFID:", staffid);
-          backendFactory.getBookingByMonth(dagatalFactory.getStringForDate()).then(function(res) {
+          backendFactory.getBookingByMonth(dagatalFactory.getStringForDate()).then(function (res) {
             for (var i in res.data) {
               console.log("res.data[i]:", res.data[i]);
               for (var j in res.data[i].bookings) {
@@ -45,11 +40,15 @@
                 }
               }
             }
-            $scope.labels = Object.keys(klipparaBokanir).map(function(key) { return klipparaBokanir[key].name; });
-            $scope.data = Object.keys(klipparaBokanir).map(function(key) { return klipparaBokanir[key].income; });
-            $scope.books = Object.keys(klipparaBokanir).map(function(key) { return klipparaBokanir[key].bookings; });
-            console.log("RESPOND getBookingByMonth, klipparaBokanir:", klipparaBokanir);
-
+            $scope.labels = Object.keys(klipparaBokanir).map(function (key) {
+              return klipparaBokanir[key].name;
+            });
+            $scope.data = Object.keys(klipparaBokanir).map(function (key) {
+              return klipparaBokanir[key].income;
+            });
+            $scope.books = Object.keys(klipparaBokanir).map(function (key) {
+              return klipparaBokanir[key].bookings;
+            });
           });
         }
       };

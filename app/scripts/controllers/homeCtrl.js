@@ -11,8 +11,8 @@
   angular.module('segoapp')
     .controller('HomeCtrl', ['$scope', '$rootScope', 'gluggaService', 'dagatalFactory', 'backendFactory', 'initialize', function ($scope, $rootScope, gluggaService, dagatalFactory, backendFactory, initialize) {
 
-      $rootScope.$on('backendFactoryInit', function(ev, data) {
-          update();
+      $rootScope.$on('backendFactoryInit', function () {
+        update();
       });
 
       $scope.bookings = [];
@@ -46,7 +46,7 @@
           }
           else {
             // GEYMA BOKANIR
-            $scope.bookings =    res.data;
+            $scope.bookings = res.data;
             bookingsToday();
             $scope.loadingData = false;
           }
@@ -63,6 +63,7 @@
         $scope.staff = backendFactory.Staff();
         $scope.times = dagatalFactory.timeSession();
       }
+
       // ENDIR update()
 
       // FYRIR PROGRESS MYND(
@@ -75,7 +76,6 @@
       var bookingsToday = function () {
         var dictEndTime = {};
         for (var b in $scope.bookings) {
-          console.log("ekkiBokun ", $scope.bookings);
           // FYRIR LENGD A TIMAPONTUNUM
           var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
 
@@ -84,26 +84,25 @@
           // SETJA INN STADSETNINGU FYRIR BOKUN I $scope.bookings, fyrir ID-id sem britist a div toflunni
           bookingForToday[tmp] = b;
           var texti = "";
-          var myElm = document.getElementById(tmp); // HH:MM{{STAFF_ID}} FOR 12:00{STAFF_ID}, 12:15{STAFF_ID}, 12:30{STAFF_ID}
+          var myElm = document.getElementById(tmp);
 
           if (dictEndTime[$scope.bookings[b].staff_id._id] === undefined) {
             dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
             texti = "confirmedBooking";
-            if($scope.bookings[b].attendance === false) {
+            if ($scope.bookings[b].attendance === false) {
               texti = "confirmedBooking false";
             }
           }
           else {
             if (dictEndTime[$scope.bookings[b].staff_id._id] > $scope.bookings[b].startTime) {
               texti = "confirmedBooking right";
-              if($scope.bookings[b].attendance === false) {
+              if ($scope.bookings[b].attendance === false) {
                 texti = "confirmedBooking right false";
               }
             }
             else {
               texti = "confirmedBooking";
-
-              if($scope.bookings[b].attendance === false) {
+              if ($scope.bookings[b].attendance === false) {
                 texti = "confirmedBooking false";
               }
               dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
@@ -125,12 +124,12 @@
       $scope.bookChangeInProgress = false;
       var bookingToChange = null;
 
-      $scope.bookingChange = function(b) {
+      $scope.bookingChange = function (b) {
         $scope.bookChangeInProgress = true;
         bookingToChange = b;
       };
 
-      $scope.cancelBookingChange = function() {
+      $scope.cancelBookingChange = function () {
         $scope.bookChangeInProgress = false;
         bookingToChange = null;
       };
@@ -140,7 +139,7 @@
       $scope.getDailyBookings = function (t) {
         cleanPage();
         dagatalFactory.setDate(t);
-        selectedDay =         dagatalFactory.getDate();
+        selectedDay = dagatalFactory.getDate();
         $scope.dagurinnIdag = dagatalFactory.dateToStringISL();
         update();
       };
@@ -151,39 +150,39 @@
           console.log("UNDEFINED");
         }
         else {
-            var idForCell = bookingForToday[ev.currentTarget.id];
-            if (idForCell !== undefined) {
-                $scope.clickOnTimapant = $scope.bookings[idForCell];
-                $scope.clickOnTimapant.name = b.name;
-                gluggaService.bokunGluggi();
+          var idForCell = bookingForToday[ev.currentTarget.id];
+          if (idForCell !== undefined) {
+            $scope.clickOnTimapant = $scope.bookings[idForCell];
+            $scope.clickOnTimapant.name = b.name;
+            gluggaService.bokunGluggi();
+          }
+          else {
+            if ($scope.bookChangeInProgress) {
+              b.customer_id =    bookingToChange.customer_id._id;
+              b.customer_name =  bookingToChange.customer_id.name;
+              b.customer_phone = bookingToChange.customer_id.phone;
+              b.service =        bookingToChange.service;
+              b.book_id =        bookingToChange._id;
             }
             else {
-                if ($scope.bookChangeInProgress) {
-                    b.customer_id = bookingToChange.customer_id._id;
-                    b.customer_name =  bookingToChange.customer_id.name;
-                    b.customer_phone = bookingToChange.customer_id.phone;
-                    b.service =        bookingToChange.service;
-                    b.book_id =  bookingToChange._id;
-                }
-                else {
-                    b.customer_name =  "";
-                    b.customer_phone = "";
-                    b.service =        [];
-                }
-
-                $scope.clickOnTimapant = {
-                    name:      b.name,
-                    book_id:   b.book_id,
-                    customer_id: b.customer_id,
-                    customer:  b.customer_name,
-                    phone:     b.customer_phone,
-                    service:   b.service,
-                    staffId:   b._id,
-                    date:      dagatalFactory.getStringForDate(new Date(selectedDay)),
-                    startTime: dagatalFactory.getStringForDate(new Date(selectedDay), t)
-                };
-                gluggaService.bokaGluggi();
+              b.customer_name =  "";
+              b.customer_phone = "";
+              b.service =        [];
             }
+
+            $scope.clickOnTimapant = {
+              name:        b.name,
+              book_id:     b.book_id,
+              customer_id: b.customer_id,
+              customer:    b.customer_name,
+              phone:       b.customer_phone,
+              service:     b.service,
+              staffId:     b._id,
+              date:        dagatalFactory.getStringForDate(new Date(selectedDay)),
+              startTime:   dagatalFactory.getStringForDate(new Date(selectedDay), t)
+            };
+            gluggaService.bokaGluggi();
+          }
         }
       };
 

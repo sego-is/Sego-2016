@@ -105,7 +105,6 @@
                     }
                   }).then(function (res) {
                     scope.finishChange();
-                    console.log("HAVE BEEN CREATEAD AND DELETED");
                   }, function (err) {
                     console.log('CREATED, THEN ERROR DELETING, err:', err);
                   });
