@@ -1,12 +1,12 @@
 (function () {
   'use strict';
 
-  const express  = require('express');
+  const express =  require('express');
   const mongoose = require('mongoose');
-  const cors     = require('cors');
-  const api      = require('./api');
+  const cors =     require('cors');
+  const api =      require('./api');
 
-  const app  = express();
+  const app =  express();
   const port = 6969;
 
   var allowCrossDomain = function (req, res, next) {
@@ -29,7 +29,7 @@
   app.use(allowCrossDomain);
   app.use('/api', api);
 
-   /*app.use(cors({
+  /*app.use(cors({
    'origin': '*',
    'methods': 'GET,PUT,POST,DELETE',
    'preflightContinue': true

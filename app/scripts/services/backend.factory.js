@@ -10,21 +10,21 @@
       var backendFactory = {};
 
       backendFactory.set = function (company) {
-          if (company !== undefined) {
-            _company = company;
-          }
+        if (company !== undefined) {
+          _company = company;
+        }
       };
 
-      backendFactory.setPricelist = function(prices) {
-          if (_company !== null) {
-              _company.pricelist = prices;
-          }
+      backendFactory.setPricelist = function (prices) {
+        if (_company !== null) {
+          _company.pricelist = prices;
+        }
       };
 
       backendFactory.ID = function () {
-          if (_company !== null) {
-              return _company._id;
-          }
+        if (_company !== null) {
+          return _company._id;
+        }
       };
 
       backendFactory.Staff = function () {
@@ -33,52 +33,50 @@
         }
       };
 
-      backendFactory.getServiceById = function(sid) {
-          if (_pricelist[sid] === undefined) {
-            for (var i in _company.pricelist) {
-                if (_company.pricelist[i]._id === sid) {
-                    _pricelist[sid] = _company.pricelist[i];
-                }
+      backendFactory.getServiceById = function (sid) {
+        if (_pricelist[sid] === undefined) {
+          for (var i in _company.pricelist) {
+            if (_company.pricelist[i]._id === sid) {
+              _pricelist[sid] = _company.pricelist[i];
             }
           }
-          return _pricelist[sid];
+        }
+        return _pricelist[sid];
       };
 
-      backendFactory.Pricelist = function() {
-          if (_company !== null) {
-              return _company.pricelist;
-          }
+      backendFactory.Pricelist = function () {
+        if (_company !== null) {
+          return _company.pricelist;
+        }
       };
 
-      backendFactory.getStaffById = function(pid) {
+      backendFactory.getStaffById = function (pid) {
         for (var i in _company.staff) {
-            if (_company.staff[i]._id === pid) {
-                return _company.staff[i].name;
-            }
+          if (_company.staff[i]._id === pid) {
+            return _company.staff[i].name;
+          }
         }
         return "PERSON NOT FOUND.. EXCUSE US";
       };
 
 
-
-      
       //------------------------------ NORMAL PEOPLE CALLS ------------------------------//
-      backendFactory.init = function() {
-          var p = JSON.parse(localStorage.getItem('profile'));
-          if (p !== null) {
-              return $http({
-                method: 'GET',
-                url: 'http://wwww.sego.is:6969/api/companies/' + p.user_id,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-                }
-              });
-          }
-          
+      backendFactory.init = function () {
+        var p = JSON.parse(localStorage.getItem('profile'));
+        if (p !== null) {
+          return $http({
+            method: 'GET',
+            url: 'http://wwww.sego.is:6969/api/companies/' + p.user_id,
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+            }
+          });
+        }
+
       };
-      
+
       backendFactory.getCompanyByAuthID = function (c) {
         return $http({
           method: 'GET',
@@ -91,32 +89,31 @@
         });
       };
 
-      backendFactory.getCustomerByCID = function() {
+      backendFactory.getCustomerByCID = function () {
         return $http({
-            method: 'GET',
-            url: 'http://www.sego.is:6969/api/companies/customers/' + this.ID(),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-            }
+          method: 'GET',
+          url: 'http://www.sego.is:6969/api/companies/customers/' + this.ID(),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
         });
       };
 
-      backendFactory.getCustomerStory = function(pid) {
-          return $http({
-              method: 'GET',
-              url: 'http://www.sego.is:6969/api/book/' + this.ID() + '/' + pid,
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-            }
-          });
+      backendFactory.getCustomerStory = function (pid) {
+        return $http({
+          method: 'GET',
+          url: 'http://www.sego.is:6969/api/book/' + this.ID() + '/' + pid,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
       };
 
       // PERSON REST CALLS / BOTH FOR CUSTOMERS AND STAFF //
-
 
 
       // END OF PERSON, AND CUSTOMERS AND STAFF
@@ -125,21 +122,9 @@
       // BOOKING REST CALLS
 
 
-      backendFactory.getBookingByCompany = function() {
-          return $http({
-              url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID(),
-              method: 'GET',
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  'Authorization': 'Bearer ' + localStorage.getItem('id_token')
-              }
-          });
-      };
-
-      backendFactory.getBookingByDate = function(date) {
-          return $http({
-          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + date ,
+      backendFactory.getBookingByCompany = function () {
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID(),
           method: 'GET',
           headers: {
             'Accept': 'application/json',
@@ -149,9 +134,21 @@
         });
       };
 
-       backendFactory.getBookingByMonth = function(date) {
-          console.log("GETBOOKINGBYMONTH, date:", date);
-          return $http({
+      backendFactory.getBookingByDate = function (date) {
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + date,
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('id_token')
+          }
+        });
+      };
+
+      backendFactory.getBookingByMonth = function (date) {
+        console.log("GETBOOKINGBYMONTH, date:", date);
+        return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + date + '/month',
           method: 'GET',
           headers: {
@@ -161,10 +158,10 @@
           }
         });
       };
-      
-      backendFactory.notAttendBooking = function(b) {
-          b.company_id = this.ID();
-          return $http({
+
+      backendFactory.notAttendBooking = function (b) {
+        b.company_id = this.ID();
+        return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + b._id + '/notAttend',
           method: 'POST',
           headers: {
@@ -175,10 +172,10 @@
           data: b
         });
       };
-      
-      backendFactory.changeBooking = function(b) {
-          b.company_id = this.ID();
-          return $http({
+
+      backendFactory.changeBooking = function (b) {
+        b.company_id = this.ID();
+        return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + b._id + '/change',
           method: 'POST',
           headers: {
@@ -189,10 +186,10 @@
           data: b
         });
       };
-      
-      backendFactory.removeBooking = function(b) {
-          return $http({
-          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + b.date + '/' + b._id + '/' + b.customer_id._id ,
+
+      backendFactory.removeBooking = function (b) {
+        return $http({
+          url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + b.date + '/' + b._id + '/' + b.customer_id._id,
           method: 'DELETE',
           headers: {
             'Accept': 'application/json',
@@ -201,7 +198,7 @@
           }
         });
       };
-      
+
       backendFactory.postBooking = function (p) {
         p.company_id = this.ID();
         return $http({
@@ -216,7 +213,7 @@
         });
       };
 
-      backendFactory.updateBooking = function(b) {
+      backendFactory.updateBooking = function (b) {
         b.company_id = this.ID();
         return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + b._id,
@@ -248,7 +245,7 @@
       };
 
       backendFactory.postService = function (s) {
-        s.company_id  = this.ID();
+        s.company_id = this.ID();
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/',
           method: 'POST',
@@ -261,7 +258,7 @@
         });
       };
 
-      backendFactory.updatePricelist = function(p) {
+      backendFactory.updatePricelist = function (p) {
         p.cid = this.ServiceID;
         return $http({
           url: 'http://wwww.sego.is:6969/api/services/pricelist/',
@@ -317,10 +314,9 @@
         });
       };
 
-      backendFactory.updateStaff = function(s) {
-          console.log("UpdateStaff(s) -> s =>", s);
-          s.cid = this.ID();
-          return $http({
+      backendFactory.updateStaff = function (s) {
+        s.cid = this.ID();
+        return $http({
           url: 'http://wwww.sego.is:6969/api/companies/staff/',
           method: 'PUT',
           headers: {
@@ -347,10 +343,6 @@
           }
         });
       };
-
-
-
       return backendFactory;
-
     }]);
 })();

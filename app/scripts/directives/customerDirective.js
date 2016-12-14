@@ -81,7 +81,8 @@
               s.role = 0;
               backendFactory.postPerson(s).then(function (res) {
                 scope.vidskiptavinir.push(res.data);
-                scope.newCustomer = !scope.newCustomer;
+                scope.newCustomer = false;
+                scope.tmpModifyCus = false;
               }, function (err) {
                 console.log("ERROR addCustomer(): ", err);
               });

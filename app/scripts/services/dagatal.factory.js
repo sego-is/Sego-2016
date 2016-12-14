@@ -50,7 +50,7 @@
 
       function toHHMMSS(a) {
         var sec_num = parseInt(a, 10); // don't forget the second param
-        var hours =   Math.floor(sec_num / 3600);
+        var hours = Math.floor(sec_num / 3600);
         var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
 
         if (hours < 10) {
@@ -95,7 +95,7 @@
           if (t === undefined) {
             t = "00:00:00";
           }
-          var date =  d.getDate();
+          var date = d.getDate();
           var month = d.getMonth() + 1;
 
           if (month < 10) {
@@ -116,7 +116,6 @@
           if (MM < 10) {
             MM = "0" + MM;
           }
-
           return HH + ":" + MM;
         },
         getMMfromDate: function (d) {

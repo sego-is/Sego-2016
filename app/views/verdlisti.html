@@ -3,23 +3,25 @@
 </h2>
   <button type="button"
           class="molar btn btn-link btn-lg"
-          ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+          ng-click="close()">
+    <i class="fa fa-times" aria-hidden="true"></i>
   </button>
 </div>
 <div class="content verðlisti">
   <table class="table table-striped">
     <tbody>
-    <tr ng-repeat="p in pricelist" ng-if="p.active || p.active === undefined">
-      <td class="thjonusta">
-        {{ p.name }}
-      </td>
-      <td class="strik">
-        -
-      </td>
-      <td class="verd">
-        {{ p.price }} kr.
-      </td>
-    </tr>
+      <tr ng-repeat="p in pricelist"
+          ng-if="p.active || p.active === undefined">
+        <td class="thjonusta">
+          {{ p.name }}
+        </td>
+        <td class="strik">
+          -
+        </td>
+        <td class="verd">
+          {{ p.price }} kr.
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

@@ -4,7 +4,8 @@
   </h2>
   <button type="button"
           class="molar btn btn-link btn-lg"
-          ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+          ng-click="close()">
+    <i class="fa fa-times" aria-hidden="true"></i>
   </button>
 </div>
 <div class="content b">
@@ -14,7 +15,9 @@
   <div class="umbeðin_þjónusta">
     <ul style="list-style-type:none;">
       <li class="þjonusta_i_bokun_haus"><h4>Umbeðin þjónusta:</h4></li>
-      <li class="þjonusta_i_bokun" ng-repeat="s in objFrom.service" ng-init="totalPrice = totalPrice + s.price">
+      <li class="þjonusta_i_bokun"
+          ng-repeat="s in objFrom.service"
+          ng-init="totalPrice = totalPrice + s.price">
         {{ s.name }} - {{ s.price }} kr.
       </li>
     </ul>
@@ -38,9 +41,9 @@
     </button>
   </div>
 </div>
-<div class="footer"><h3>SEGO</h3></div>
-
-<!--vantar gott error msg eða eitthvað-->
+<div class="footer">
+  <h3>SEGO</h3>
+</div>
 
 
 

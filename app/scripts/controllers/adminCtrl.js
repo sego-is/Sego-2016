@@ -49,7 +49,7 @@
       // END GETTING ALL //
 
       // CREATING NEW COMPANY
-      $scope.company =       {};
+      $scope.company = {};
       $scope.company.staff = [];
 
       adminFactory.getBook().then(function (res) {
@@ -100,11 +100,11 @@
       }, function (err) {
         console.log("GET BOOKING (err): ", err);
       });
-        
+
       backendFactory.getBookingByMonth().then(function (res) {
-        
-      }, function(err) {
-              
+
+      }, function (err) {
+
       });
       $scope.deleteBooking = function (bid, index) {
         adminFactory.deleteBookings(bid).then(function (res) {
@@ -122,17 +122,16 @@
           console.log("removeIndex(), err:", err);
         });
       };
-      
-      $scope.deleteCompany = function(cid, index) {
-        adminFactory.deleteCompany(cid).then(function(res) {
-            $scope.companies.splice(index, 1);
-            console.log("deleteCompany(cid)->TOKST, res:", res);
-        }, function(err) {
-            console.log("deleteCompany(cid), err:", err);
+
+      $scope.deleteCompany = function (cid, index) {
+        adminFactory.deleteCompany(cid).then(function (res) {
+          $scope.companies.splice(index, 1);
+          console.log("deleteCompany(cid)->TOKST, res:", res);
+        }, function (err) {
+          console.log("deleteCompany(cid), err:", err);
         });
       };
-      
-      
+
       $scope.ATHUGA = function (pid) {
         adminFactory.getCustomerStory().then(function (res) {
           console.log("getCustomerStory() - THEE TOKSTS, res:", res);
