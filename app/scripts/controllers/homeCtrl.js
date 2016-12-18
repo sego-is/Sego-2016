@@ -108,8 +108,9 @@
               dictEndTime[$scope.bookings[b].staff_id._id] = $scope.bookings[b].endTime;
             }
           }
+          console.log("sesslengt ", sessionLength);
           myElm.innerHTML =
-            '<div style="height:' + (sessionLength * 3.1) + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
+            '<div style="height:' + (sessionLength * 2.5) + 'em;" class="' + texti + '" id="' + $scope.bookings[b].customer_id._id + '">' +
             $scope.bookings[b].customer_id.name;
         }
       };
