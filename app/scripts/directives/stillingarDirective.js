@@ -57,6 +57,7 @@
               backendFactory.postPerson(s).then(function(res) {
                   scope.staff.push(res.data);
                   scope.state.add = false;
+                  scope.state.edit = false;
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
               });
@@ -118,6 +119,7 @@
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
           scope.removePrice = function () {
+              console.log('scope.editVerd', scope.editVerd);
             backendFactory.deleteFromPricelist(scope.editVerd).then(function(res) {
                 scope.pricelist.splice(scope.editVerd.index, 1);
                 scope.state.edit = false;

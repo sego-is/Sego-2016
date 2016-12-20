@@ -36,7 +36,7 @@
             scope.change(scope.objFrom);
             scope.close();
           };
-
+          // MAETTI EKKI //
           scope.ekkiBokun = function () {
             backendFactory.notAttendBooking(scope.objFrom).then(function (res) {
               scope.close();

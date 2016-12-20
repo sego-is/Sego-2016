@@ -589,7 +589,7 @@ api.get('/book/:cid/:pid', (req, res) => {
   // De-activate specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
       var data = req.body;
-      model.Service.findOne({'_id': data.company_id }, function(err, doc) {
+      model.Service.findOne({'_id': data._id, 'company_id': data.company_id }, function(err, doc) {
            if (err) {
                 console.log('error: post(//services/pricelist/), err:', err);
                 res.status(500).send(err);

@@ -310,10 +310,7 @@
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('id_token')
           },
-          data: {
-            service: p,
-            cid: this.ID()
-          }
+          data: p
         });
       };
 
