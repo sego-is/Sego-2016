@@ -33,6 +33,13 @@
   margin-bottom: 30px;
 }
 
+@media only screen and (min-width: 1900px) {
+  canvas #pie {
+    height: 455px !important;
+    width: 455px !important;
+  }
+}
+
 @media only screen and (max-width: 1024px) {
   .skilabod {
     margin-top: 50px !important;
@@ -56,8 +63,6 @@
 .strik {
   width: 0%;
 }
-
-
 
 @media only screen and (max-width: 768px) {
   .skilabod {
@@ -1110,7 +1115,7 @@ textarea {
   margin-top: 8%;
   resize: none;
   height: 10em;
-  width: 30em;
+  width: 23em;
 }
 /*******************************/
 /************ ADMIN ************/

@@ -4,7 +4,7 @@
 
   angular
     .module('segoapp')
-    .directive('stillingar', ['gluggaService', 'dagatalFactory','backendFactory', function (gluggaService, dagatalFactory, backendFactory) {
+    .directive('stillingar', ['gluggaService', 'dagatalFactory', 'backendFactory', function (gluggaService, dagatalFactory, backendFactory) {
       return {
         restrict: 'E',
         scope: {
@@ -20,29 +20,28 @@
           scope.editUser.company_id = backendFactory.ID();
           // CREATE SERVICE
           scope.service = {};
-           // GET ALL STAFF AND SERVICE FOR SALOON
+          // GET ALL STAFF AND SERVICE FOR SALOON
           scope.staff = [];
           // Needed for validation
           scope.form = {};
 
           // TOGGLE BETWEEN PRICELIST AND STAFF also SHOWING ADDING FOR BOTH
           scope.state = {
-              verdskra: false,
-              add: false,
-              edit: false
+            verdskra: false,
+            add:      false,
+            edit:     false
           };
 
-          scope.toggle = function() {
-              scope.state.verdskra = !scope.state.verdskra;
+          scope.toggle = function () {
+            scope.state.verdskra = !scope.state.verdskra;
           };
           // END OF TOGGLE
-         // COMPANY->_ID PERSON WORKS FOR
 
           // HELP FUNCTION WHEN TOGGLE TO CREATING STAFF MEMBER
-          scope.toStaffAdd = function() {
-            scope.state.add           = !scope.state.add;
-            scope.editUser            = {};
-            scope.editUser.role       = 1;
+          scope.toStaffAdd = function () {
+            scope.state.add =           !scope.state.add;
+            scope.editUser =            {};
+            scope.editUser.role =       1;
             scope.editUser.company_id = backendFactory.ID();
           };
 
@@ -52,14 +51,22 @@
           };
 
           // ADD PERSON AS STAFF IN COMPANY
-          scope.addStaff = function(s) {
+          scope.addStaff = function (s) {
             if (scope.form.staffForm.$valid) {
+<<<<<<< HEAD
               backendFactory.postPerson(s).then(function(res) {
                   scope.staff.push(res.data);
                   scope.state.add = false;
                   scope.state.edit = false;
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
+=======
+              backendFactory.postPerson(s).then(function (res) {
+                scope.staff.push(res.data);
+                scope.state.add = false;
+              }, function (err) {
+                console.log("ERROR stadfestaStaff(): ", err);
+>>>>>>> 95371a1a5cb83f2be788bf7809bede4e86bb9a76
               });
             } else {
               scope.badInput = true;
@@ -75,10 +82,9 @@
             scope.state.edit = !scope.state.edit;
           };
 
-          scope.updateStaff = function() {
-            backendFactory.updateStaff(scope.editUser).then(function(res) {
-              console.log("UPDATE SUCCESSFULL", res);
-            }, function(err) {
+          scope.updateStaff = function () {
+            backendFactory.updateStaff(scope.editUser).then(function (res) {
+            }, function (err) {
               console.log("UPDATE ERROR", err);
             });
           };
@@ -89,36 +95,35 @@
 
           scope.toggleView = function () {
             scope.state.edit = false;
-            scope.state.add = false;
-            scope.badInput = false;
+            scope.state.add =  false;
+            scope.badInput =   false;
           };
 
-          // Varð að setja til að gera badinput false,
-          // ekki hægt í html einhverra hluta vegna
+          // Input validation
           scope.badInputFalse = function () {
             scope.badInput = false;
           };
 
           function getStaff() {
-              scope.staff = backendFactory.Staff();
+            scope.staff = backendFactory.Staff();
           }
 
           function getService() {
-              backendFactory.getService().then(function(res) {
-                  console.log("getService(), res.data:", res.data);
-                  scope.pricelist = res.data;
-              }, function(err) {
-                  console.log("ERROR getService(): ", err);
-              });
+            backendFactory.getService().then(function (res) {
+              scope.pricelist = res.data;
+            }, function (err) {
+              console.log("ERROR getService(): ", err);
+            });
           }
 
           // GET DATA, NEED TO SHOW
           getStaff();
           getService();
-         // END OF GETTING U/S
+          // END OF GETTING U/S
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
           scope.removePrice = function () {
+<<<<<<< HEAD
               console.log('scope.editVerd', scope.editVerd);
             backendFactory.deleteFromPricelist(scope.editVerd).then(function(res) {
                 scope.pricelist.splice(scope.editVerd.index, 1);
@@ -133,65 +138,61 @@
             console.log("KLIKKASTARFSNANN INPUT MED PARAMETER:", p);
             backendFactory.getBookingByMonth(p ,dagatalFactory.getStringForDate()).then(function(res) {
                 console.log("getBookingByMonth, res:", res);
+=======
+            backendFactory.deleteFromPricelist(scope.editVerd).then(function (res) {
+              scope.pricelist.splice(scope.editVerd.index, 1);
+              scope.state.edit = false;
+>>>>>>> 95371a1a5cb83f2be788bf7809bede4e86bb9a76
             }, function (err) {
-                console.log("update()->getBookingByMonth() ERR:", err);
+              console.log("ERROR removePrice", err);
             });
           };
 
+          // !!! SEKJA BOKANIR FYRIR STARFSMANN FYRIR MANUDINN - TILRAUN !!!!
+          scope.klikkaStarfsmann = function (p) {
+            backendFactory.getBookingByMonth(p, dagatalFactory.getStringForDate()).then(function (res) {
+            }, function (err) {
+              console.log("update()->getBookingByMonth() ERR:", err);
+            });
+          };
 
           // HELP FUNCTION WHEN CLICK EDIT PRICE
           scope.editPrice = function (p, index) {
-            scope.editVerd = p;
-            scope.editVerd.index = index;
+            scope.editVerd =             p;
+            scope.editVerd.index =       index;
             scope.editVerd.timeLength /= 60;
-            scope.state.edit = true;
+            scope.state.edit =           true;
           };
 
           // HELP FUNCTION FOR ADD PRICE
-          scope.toPriceAdd = function() {
-            scope.editVerd = {};
-             scope.state.add = true;
+          scope.toPriceAdd =  function () {
+            scope.editVerd =  {};
+            scope.state.add = true;
           };
 
           // MAKE CALL to ADD PRICE
-          scope.addPrice = function(s) {
-              console.log("ADDPRICE(S)", s);
+          scope.addPrice = function (s) {
             if (scope.form.priceForm.$valid) {
               scope.state.add = false;
               s.timeLength *= 60;
-              backendFactory.postService(s).then(function(res) {
-                console.log("postService(s), res:", res);
+              backendFactory.postService(s).then(function (res) {
                 scope.pricelist.push(res.data);
                 scope.badInput = false;
-              }, function(err) {
+              }, function (err) {
                 console.log("addUpdatePrice(add) -> postService(priceObj), err:", err);
               });
             } else {
-              console.log('SCOPE.FORM. INVALID!!');
               scope.badInput = true;
             }
           };
 
           // MAKE CALL TO UPDATE PRICE
-          scope.updatePrice = function() {
+          scope.updatePrice = function () {
             if (scope.form.priceForm.$valid) {
-              // CLOSE EDIT/ADD VIEW
-              //var tmp_id = scope.editVerd._id;
               scope.editVerd.timeLength *= 60;
-              console.log("updatePrice() data", scope.editVerd);
-              backendFactory.postService(scope.editVerd).then(function(res) {
+              backendFactory.postService(scope.editVerd).then(function (res) {
                 scope.pricelist.push(res.data);
-                console.log("postService() TOKST, res:", res);
-                /*
-                backendFactory.deleteFromPricelist({ '_id': tmp_id }).then(function(res1) {
-                    console.log("postService  ->res:", res);
-                    console.log("deleteFromPricelist ->res1:", res1);
-                    //scope.pricelist.splice(index, 1);
-                }, function(err) {
-                    console.log("ERROR removePrice", err);
-                });
-                */
-              }, function(err) {
+              }, function (err) {
                 console.log("postService() -> postService(priceObj), err:", err);
               });
             } else {
@@ -202,7 +203,7 @@
           // REMOVE/DELETE STAFF FROM STAFF IN COMPANY, REFERENCE->PERSON DOESN'T DELETE
           scope.removeStaff = function (a, index) {
             backendFactory.deleteFromStaff(a).then(function successCallback(response) {
-                scope.staff.splice(index, 1);
+              scope.staff.splice(index, 1);
             }, function errorCallback(error) {
 
             });

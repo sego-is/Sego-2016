@@ -34,7 +34,8 @@
       </button>
       <button type="button"
               class="molar btn btn-link btn-lg"
-              ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+              ng-click="close()">
+        <i class="fa fa-times" aria-hidden="true"></i>
       </button>
     </div>
   </div>
@@ -62,8 +63,8 @@
               <input type="text"
                      name="name"
                      ng-class="{error: (badInput && form.staffForm.name.$error.required)
-                                  || (badInput && form.staffForm.name.$error.maxlength)
-                                  || (badInput && form.staffForm.name.$error.minlength)}"
+                                    || (badInput && form.staffForm.name.$error.maxlength)
+                                    || (badInput && form.staffForm.name.$error.minlength)}"
                      ng-click="badInputFalse()"
                      ng-minlength="3"
                      ng-maxlength="44"
@@ -77,7 +78,7 @@
                      class="form-control"
                      name="email"
                      ng-class="{error: (badInput && form.staffForm.email.$error.required)
-                                  || (badInput && form.staffForm.email.$error.email)}"
+                                    || (badInput && form.staffForm.email.$error.email)}"
                      ng-model="editUser.email"
                      placeholder="Netfang"
                      required>
@@ -86,8 +87,8 @@
               <input type="number"
                      name="phone"
                      ng-class="{error: (badInput && form.staffForm.phone.$error.required)
-                                      || (badInput && form.staffForm.phone.$error.maxlength)
-                                      || (badInput && form.staffForm.phone.$error.minlength)}"
+                                    || (badInput && form.staffForm.phone.$error.maxlength)
+                                    || (badInput && form.staffForm.phone.$error.minlength)}"
                      ng-minlength="7"
                      ng-maxlength="7"
                      ng-click="badInputFalse()"
@@ -130,8 +131,8 @@
               <input type="text"
                      name="name"
                      ng-class="{error: (badInput && form.staffForm.name.$error.required)
-                                  || (badInput && form.staffForm.name.$error.maxlength)
-                                  || (badInput && form.staffForm.name.$error.minlength)}"
+                                    || (badInput && form.staffForm.name.$error.maxlength)
+                                    || (badInput && form.staffForm.name.$error.minlength)}"
                      ng-click="badInputFalse()"
                      ng-minlength="3"
                      ng-maxlength="44"
@@ -156,8 +157,8 @@
   <input type="number"
          name="phone"
          ng-class="{error: (badInput && form.staffForm.phone.$error.required)
-                                      || (badInput && form.staffForm.phone.$error.maxlength)
-                                      || (badInput && form.staffForm.phone.$error.minlength)}"
+                        || (badInput && form.staffForm.phone.$error.maxlength)
+                        || (badInput && form.staffForm.phone.$error.minlength)}"
          ng-minlength="7"
          ng-maxlength="7"
          ng-click="badInputFalse()"
@@ -199,7 +200,8 @@
 </tbody>
 <!-- SHOW ... KLIPPARA OUT OF IT -->
 </table>
-<div class="takkar" ng-if="!state.verdskra && !state.add && !state.edit">
+<div class="takkar"
+     ng-if="!state.verdskra && !state.add && !state.edit">
   <button type="submit"
           class="bætavið_klippara_takki btn btn-primary"
           ng-click="toStaffAdd()">Bæta við klippara
@@ -241,7 +243,8 @@
       </button>
       <button type="button"
               class="molar btn btn-link btn-lg"
-              ng-click="close()"><i class="fa fa-times" aria-hidden="true"></i>
+              ng-click="close()">
+        <i class="fa fa-times" aria-hidden="true"></i>
       </button>
     </div>
   </div>
@@ -269,8 +272,8 @@
                      name="service"
                      class="form-control"
                      ng-class="{error: (badInput && form.priceForm.service.$error.required)
-                                  || (badInput && form.priceForm.service.$error.maxlength)
-                                  || (badInput && form.priceForm.service.$error.minlength)}"
+                                    || (badInput && form.priceForm.service.$error.maxlength)
+                                    || (badInput && form.priceForm.service.$error.minlength)}"
                      ng-click="badInputFalse()"
                      ng-minlength="3"
                      ng-maxlength="35"
@@ -283,22 +286,21 @@
                      class="form-control"
                      name="price"
                      ng-class="{error: (badInput && form.priceForm.price.$error.required)
-                                  || (badInput && form.priceForm.price.$error.maxlength)
-                                  || (badInput && form.priceForm.price.$error.minlength)}"
+                                    || (badInput && form.priceForm.price.$error.maxlength)
+                                    || (badInput && form.priceForm.price.$error.minlength)}"
                      ng-click="badInputFalse()"
                      ng-maxlength="5"
                      ng-model="editVerd.price"
                      placeholder="Verð"
                      required>
             </div>
-
             <div class="form">
               <input type="number"
                      class="form-control"
                      name="timeLength"
                      ng-class="{error: (badInput && form.priceForm.timeLength.$error.required)
-                                  || (badInput && form.priceForm.timeLength.$error.maxlength)
-                                  || (badInput && form.priceForm.timeLength.$error.minlength)}"
+                                    || (badInput && form.priceForm.timeLength.$error.maxlength)
+                                    || (badInput && form.priceForm.timeLength.$error.minlength)}"
                      ng-minlength="2"
                      ng-maxlength="3"
                      ng-click="badInputFalse()"
@@ -306,7 +308,6 @@
                      placeholder="Tími í mínútum"
                      required>
             </div>
-
             <div class="form">
               <div class="takkar">
                 <button type="submit"
@@ -335,9 +336,11 @@
       </tr>
       </tbody>
       <tbody ng-if="state.verdskra && !state.add && !state.edit">
-      <tr ng-repeat="p in pricelist track by $index" ng-if="p.active">
+      <tr ng-repeat="p in pricelist track by $index"
+          ng-if="p.active">
         <td class="theFirst col-xs-4 divTakki"
-            ng-click="editPrice(p, $index)">{{ p.name }}
+            ng-click="editPrice(p, $index)">
+          {{ p.name }}
         </td>
         <td>{{ p.price }} kr.</td>
         <td>{{ p.timeLength / 60 }}</td>
@@ -345,7 +348,8 @@
       </tbody>
       <!-- EDIT VERDSKRA DONE -->
     </table>
-    <div class="takkar" ng-if="state.verdskra && !state.add && !state.edit">
+    <div class="takkar"
+         ng-if="state.verdskra && !state.add && !state.edit">
       <button type="submit"
               id="bætavið_þjónustu_takki"
               class="bætavið_i_stillingar btn btn-primary"
@@ -353,5 +357,7 @@
       </button>
     </div>
   </div>
-  <div class="footer"><h3>SEGO</h3></div>
+  <div class="footer">
+    <h3>SEGO</h3>
+  </div>
 </div>

@@ -21,13 +21,11 @@
           });
 
           // WHEN CREATING NEW PERSON
-          scope.person = {};
-
+          scope.person =         {};
           scope.vidskiptavinir = [];
-          scope.form = {};
-
-          scope.modifyCus = false;
-          scope.tmpModifyCus = false;
+          scope.form =           {};
+          scope.modifyCus =      false;
+          scope.tmpModifyCus =   false;
 
           scope.temp = function () {
             scope.tmpModifyCus = !scope.tmpModifyCus;
@@ -35,9 +33,9 @@
 
           scope.editCust = function (c) {
             if (c !== undefined) {
-              scope.person =    c;
+              scope.person = c;
             }
-            scope.modifyCus = !scope.modifyCus;
+            scope.modifyCus =   !scope.modifyCus;
             scope.newCustomer = false;
           };
 
@@ -64,13 +62,12 @@
           };
 
           scope.toggleCus = function () {
-             if(!scope.modifyCus) {
-                 scope.newCustomer = false;
-             }
-             else {
-                 scope.modifyCus = false;
-             }
-            //scope.newCustomer = !scope.newCustomer;
+            if (!scope.modifyCus) {
+              scope.newCustomer = false;
+            }
+            else {
+              scope.modifyCus = false;
+            }
           };
 
           // Fyrir input validation
@@ -81,21 +78,17 @@
           scope.addCustomer = function (s) {
             if (scope.form.customerForm.$valid) {
               s.company_id = backendFactory.ID();
-              s.role =       0;
+              s.role = 0;
               backendFactory.postPerson(s).then(function (res) {
                 scope.vidskiptavinir.push(res.data);
-                scope.newCustomer = !scope.newCustomer;
-                //scope.lokaGlugga();
+                scope.newCustomer = false;
+                scope.tmpModifyCus = false;
               }, function (err) {
                 console.log("ERROR addCustomer(): ", err);
               });
             } else {
               scope.badInput = true;
             }
-          };
-
-          scope.removeCustomer = function () {
-            console.log("henda viðskiptavin");
           };
 
           scope.toMMDDYY = function (d) {
