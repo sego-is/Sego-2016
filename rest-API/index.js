@@ -38,15 +38,6 @@
   mongoose.connect('mongodb://mongo.sego.is:27017/app');
   mongoose.connection.once('open', function () {
     console.log('Mongoose is connected');
-    mongoose.connection.db.collectionNames(function (err, names) {
-        if (err) {
-            console.log("err", err);
-        }
-        else {
-            console.log(names); // [{ name: 'dbname.myCollection' }]
-            //module.exports.Collection = names;
-        }   
-    });
     app.listen(port, () => {
       console.log('server is up and running... ', port);
     });
