@@ -41,46 +41,46 @@ angular
         }
       }
     });
-
-    // Configuration for angular-jwt
-    /*   jwtOptionsProvider.config({
-     tokenGetter: function() {
-     return localStorage.getItem('id_token');
-     },
-     whiteListedDomains: ['www.sego.is', 'localhost'],
-     unauthenticatedRedirectPath: '/'
+    
+     // Configuration for angular-jwt
+  /*   jwtOptionsProvider.config({
+        tokenGetter: function() {
+            return localStorage.getItem('id_token');
+        },
+        whiteListedDomains: ['www.sego.is', 'localhost'],
+        unauthenticatedRedirectPath: '/'
      });
-     */
-    // Add the jwtInterceptor to the array of HTTP interceptors
-    // so that JWTs are attached as Authorization headers
+*/
+     // Add the jwtInterceptor to the array of HTTP interceptors
+     // so that JWTs are attached as Authorization headers
     // $httpProvider.interceptors.push('jwtInterceptor');
 
     $locationProvider.html5Mode(true);
 
     $routeProvider
       .when('/', {
-        templateUrl: '../views/main.html'
+        templateUrl:  '../views/main.html'
       })
       .when('/home', {
-        templateUrl: '../views/home.html',
-        controller: 'HomeCtrl',
+        templateUrl:  '../views/home.html',
+        controller:   'HomeCtrl',
         controllerAs: 'home',
         authorize: true,
         resolve: {
-          initialize: function (initializeFactory) {
-            return initializeFactory();
-          }
+            initialize: function(initializeFactory) {
+                return initializeFactory();
+            }
         }
       })
       .when('/admin', {
-        templateUrl: '../views/admin.html',
-        controller: 'AdminCtrl',
+        templateUrl:  '../views/admin.html',
+        controller:   'AdminCtrl',
         controllerAs: 'admin',
         authorize: true,
       })
       .when('/static', {
-        templateUrl: '../views/static.html',
-        controller: 'StatisticCtrl',
+        templateUrl:  '../views/static.html',
+        controller:   'StatisticCtrl',
         controllerAs: 'admin',
         authorize: true,
       })

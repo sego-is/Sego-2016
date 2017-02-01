@@ -61,6 +61,7 @@
 
       function tolfraediGluggi() {
         compiledDirective = $compile('<tolfraedi class="skilabod" close="lokaGlugga()"></tolfraedi>');
+
         var directiveElement = compiledDirective(thisScope);
         $('.skilaboda-haldari').append(directiveElement);
       }

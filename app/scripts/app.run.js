@@ -1,16 +1,16 @@
-(function () {
+(function() {
 
   'use strict';
 
   angular
     .module('segoapp')
-    .run(['$http', '$rootScope', '$location', 'authService', 'authManager', 'lock', function ($http, $rootScope, $location, authService, authManager, lock) {
+    .run(['$http', '$rootScope', '$location', 'authService', 'authManager', 'lock', function($http, $rootScope, $location, authService, authManager, lock) {
 
       /* Send this header with any $http request
-       $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-       // Send this header only in post requests.
-       $http.defaults.headers.post['dataType'] = 'json';
-       */
+      $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+      // Send this header only in post requests.
+      $http.defaults.headers.post['dataType'] = 'json';
+      */
 
       // Intercept the hash that comes back from authentication
       // to ensure the `authenticated` event fires
@@ -37,32 +37,38 @@
       // Check if user is authorized when trying to access something that need authentication
       // http://erraticdev.blogspot.is/2015/10/angular-ngroute-routing-authorization.html
       // logging helper
-      $rootScope.$on("$routeChangeStart", function (evt, to, from) {
-        // requires authorization?
+      $rootScope.$on("$routeChangeStart", function(evt, to, from) {
+            // requires authorization?
+            
+            console.log("THAD ER AUTHORIZED!, to:", to);
+            if (from === undefined) {
+                if (authService.auth()) {
+                    $location.path("/home");
+                }
+                else {
+                    console.log("$ROUTECHANGESTART");
+                    $location.path("/");
+                }
+            }
+            else {
+                
+            }
+        });
+        /*
+        $rootScope.$on("$locationChangeStart", function(event, next, current) {
+            console.log("locationChangeStart next:", next);
+            console.log("locationChangeStart current:", current);
+        });
+        */
 
-        if (from === undefined) {
-          if (authService.auth()) {
-            $location.path("/home");
-          }
-          else {
-            $location.path("/");
-          }
-        }
-      });
-      /*
-       $rootScope.$on("$locationChangeStart", function(event, next, current) {
-       console.log("locationChangeStart next:", next);
-       console.log("locationChangeStart current:", current);
-       });
-       */
-
-      $rootScope.$on("$routeChangeError", function (evt, to, from, error) {
-        if (error) {
-          // redirect to login with original path we'll be returning back to
-          $location
-            .path("/")
-            .search("returnTo", to.originalPath);
-        }
-      });
+        $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
+            if (error)
+            {
+                // redirect to login with original path we'll be returning back to
+                $location
+                    .path("/")
+                    .search("returnTo", to.originalPath);
+            }
+        });
     }]);
 })();

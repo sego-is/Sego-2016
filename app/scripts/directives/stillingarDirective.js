@@ -150,6 +150,7 @@
               scope.state.add = false;
               s.timeLength *= 60;
               backendFactory.postService(s).then(function (res) {
+                console.log("postService(s), res:", res);
                 scope.pricelist.push(res.data);
                 scope.badInput = false;
               }, function (err) {
