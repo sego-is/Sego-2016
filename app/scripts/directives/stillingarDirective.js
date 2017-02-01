@@ -53,20 +53,12 @@
           // ADD PERSON AS STAFF IN COMPANY
           scope.addStaff = function (s) {
             if (scope.form.staffForm.$valid) {
-<<<<<<< HEAD
               backendFactory.postPerson(s).then(function(res) {
                   scope.staff.push(res.data);
                   scope.state.add = false;
                   scope.state.edit = false;
               }, function(err) {
                   console.log("ERROR stadfestaStaff(): ", err);
-=======
-              backendFactory.postPerson(s).then(function (res) {
-                scope.staff.push(res.data);
-                scope.state.add = false;
-              }, function (err) {
-                console.log("ERROR stadfestaStaff(): ", err);
->>>>>>> 95371a1a5cb83f2be788bf7809bede4e86bb9a76
               });
             } else {
               scope.badInput = true;
@@ -123,7 +115,7 @@
 
           // REMOVE/DELETE ITEM AND PRICE FROM SERVICES
           scope.removePrice = function () {
-<<<<<<< HEAD
+
               console.log('scope.editVerd', scope.editVerd);
             backendFactory.deleteFromPricelist(scope.editVerd).then(function(res) {
                 scope.pricelist.splice(scope.editVerd.index, 1);
@@ -138,11 +130,6 @@
             console.log("KLIKKASTARFSNANN INPUT MED PARAMETER:", p);
             backendFactory.getBookingByMonth(p ,dagatalFactory.getStringForDate()).then(function(res) {
                 console.log("getBookingByMonth, res:", res);
-=======
-            backendFactory.deleteFromPricelist(scope.editVerd).then(function (res) {
-              scope.pricelist.splice(scope.editVerd.index, 1);
-              scope.state.edit = false;
->>>>>>> 95371a1a5cb83f2be788bf7809bede4e86bb9a76
             }, function (err) {
               console.log("ERROR removePrice", err);
             });
