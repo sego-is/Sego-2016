@@ -9,7 +9,7 @@
    * Controller of the segoEnnOgAfturApp
    */
   angular.module('segoapp')
-    .controller('HomeCtrl', ['$scope', '$rootScope', 'gluggaService', 'dagatalFactory', 'backendFactory', 'initialize', function ($scope, $rootScope, gluggaService, dagatalFactory, backendFactory, initialize) {
+    .controller('HomeCtrl', ['$rootScope', '$scope', 'gluggaService', 'dagatalFactory', 'backendFactory', function ( $rootScope,$scope, gluggaService, dagatalFactory, backendFactory) {
 
       $rootScope.$on('backendFactoryInit', function () {
         update();

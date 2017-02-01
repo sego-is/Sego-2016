@@ -33,7 +33,7 @@
             }
         });
     });
-  
+
     // DELETE PERSON BY pID
     api.delete('/persons/:pid', (req, res) => {
         var id = req.params.pid;
@@ -46,7 +46,7 @@
             }
         });
     });
-    
+
     // GET ALL COMPANIES
     api.get('/companies', (req, res) => {
         model.Company.find({}).select("_id name phone auth_id staff").find((err, doc) => {
@@ -57,7 +57,7 @@
             }
         });
     });
-    
+
     // GET ALL COMPANIES
     api.delete('/companies/:cid', (req, res) => {
         model.Company.findByIdAndRemove(req.params.cid, (err, doc) => {
@@ -68,7 +68,7 @@
             }
         });
     });
-  
+
   api.get('/book', (req, res) => {
       model.Book.find({}, function(err, docs) {
           if (err) {
@@ -78,7 +78,7 @@
           }
       });
   })
-  
+
   api.get('/bookings/', (req, res) => {
     model.Booking.find({}, function (err, docs) {
       if (err) {
@@ -88,7 +88,7 @@
       }
     });
   });
-  
+
   // REMOVE BOOKINGS FOR THAT DAY FOR BOOKING WITH THE ID->bid
   api.delete('/bookings/:bid', (req, res) => {
       model.Booking.findByIdAndRemove(req.params.bid, function (err, c) {
@@ -134,8 +134,8 @@
         }
     });
   });
-  
-  
+
+
 
 /* ---------------     ENDIR    ADMIN     ENDIR    --------------- */
 
@@ -151,11 +151,11 @@
       }
     });
   });
-  
+
  // api.get('/companies/:company_id/:booking_id', (req, res) => {
      /* model.Booking.find({ 'company_id': { $eq: req.params.company_id }, 'bookings._id': { $eq: req.params._id }}).populate*/
  // });
-  
+
   // GET ALL PERSONS WORKING FOR COMPANY WITH ID
   api.get('/companies/:company_id/staff/', (req, res) => {
      model.Company.findById(req.params.company_id).populate('staff.person_id').run( (err, doc) => {
@@ -167,7 +167,7 @@
          }
      });
  });
- 
+
  // GET ALL CUSTOMER FOR GIVEN COMPANY
  api.get('/companies/customers/:company_id', (req, res) => {
     model.Person.find({'company_id': req.params.company_id, 'role': 0}).populate('history').exec(function(err, persons) {
@@ -192,7 +192,7 @@ api.get('/book/:cid/:pid', (req, res) => {
       }
       });
   });
- 
+
   // GET ALL BOOKINGS BY ID FOR GIVEN COMPANY
   api.get('/bookings/:cid', (req, res) => {
       model.Booking.find({ company_id: req.params.cid }).sort('date').populate("bookings.staff_id bookings.customer_id").exec(function (err, docs) {
@@ -203,7 +203,7 @@ api.get('/book/:cid/:pid', (req, res) => {
       }
     });
   });
-  
+
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
   api.get('/bookings/:cid/:date', (req, res) => {
      model.Booking.find({ company_id: req.params.cid, date: req.params.date}).populate('bookings.customer_id bookings.staff_id').exec(function (err, docs) {
@@ -221,7 +221,7 @@ api.get('/book/:cid/:pid', (req, res) => {
         }
     });
   });
-   
+
   // GET BOOKING BY DATE AND ID BY GIVEN COMPANY
   api.get('/bookings/:cid/:date/month', (req, res) => {
       console.log("/bookings/:cid/:date/month-> JIBBÍ", req.params);
@@ -229,7 +229,7 @@ api.get('/book/:cid/:pid', (req, res) => {
 
       var year = d.getFullYear();
       var month = d.getMonth();
-      
+
       d.setMonth(d.getMonth() + 1);
       model.Booking.find({
           company_id: req.params.cid,
@@ -239,12 +239,12 @@ api.get('/book/:cid/:pid', (req, res) => {
              if (err) {
                  res.status(500).send(err);
              }
-             else { 
+             else {
                 res.send(docs);
              }
          });
   });
-  
+
    //
   // GET ALL SERVICES FOR GIVEN COMPANY, active and inactive
   api.get('/services/:company_id', (req, res) => {
@@ -257,7 +257,7 @@ api.get('/book/:cid/:pid', (req, res) => {
       }
     });
   });
-  
+
 /* ---------------     END GET END GET END GET     --------------- */
 
 /* ---------------     POST POST POST POST POST POST     --------------- */
@@ -289,7 +289,7 @@ api.get('/book/:cid/:pid', (req, res) => {
                         }
                     });
                 }
-            });  
+            });
           }
           else {
             res.send(doc);
@@ -313,7 +313,7 @@ api.get('/book/:cid/:pid', (req, res) => {
       });
     }
   });
-  
+
   // THARF EF TIL VILL AD IHUGA HVERNIG VERDUR HAEGT AD UPDATE BOKUN OG/EDA HAETTA VID BOKUN
   api.post('/bookings/', bodyParser.json(), (req, res) => {
     const data = req.body;
@@ -377,10 +377,10 @@ api.get('/book/:cid/:pid', (req, res) => {
                                                 res.send(modelBook);
                                             }
                                         });
-                                    }  
+                                    }
                                 }
                             });
-                            
+
                         }
                     });
                 }
@@ -422,16 +422,16 @@ api.get('/book/:cid/:pid', (req, res) => {
                                                 res.send(modelBook);
                                             }
                                         });
-                                    }  
+                                    }
                                 }
                             });
-                            
+
                         }
                     });
             }
       }});
   });
-  
+
   // MERKJA BOKUN AD CUSTOMER MAETTI EKKI
   api.post('/bookings/:bid/notAttend', bodyParser.json(), (req, res) => {
     const data = req.body;
@@ -462,7 +462,7 @@ api.get('/book/:cid/:pid', (req, res) => {
             }
         });
   });
-  
+
   // !!!  EYDA BOKUN !!!!
 /*
       model.Company.update({ '_id': data.cid },
@@ -473,7 +473,7 @@ api.get('/book/:cid/:pid', (req, res) => {
   api.delete('/bookings/:cid/:date/:bid/:pid', (req, res) => {
     model.Booking.update({ 'company_id': { $eq: req.params.cid }, 'date': { $eq: req.params.date }},
         { $pull: { 'bookings': { _id: req.params.bid } } },
-        { safe: true, upsert: true }, 
+        { safe: true, upsert: true },
         (err, doc) => {
             if (err) {
                 console.log("ERROR i DELETE: model.Booking.update, err:", err);
@@ -495,7 +495,7 @@ api.get('/book/:cid/:pid', (req, res) => {
             }
         });
   });
-  
+
   /* GAMLA KERFID, THEGAR A AD UPDATE TJHONUSTU
   api.put('/services/pricelist/', bodyParser.json(), (req, res) => {
     var data = req.body;
@@ -515,11 +515,11 @@ api.get('/book/:cid/:pid', (req, res) => {
     });
   });
 */
-  
+
   // CREATE NEW SERVICE //
   api.post('/services', bodyParser.json(), (req, res) => {
     const data = req.body;
-    // IF THERE IS _id ON OBJECT 
+    // IF THERE IS _id ON OBJECT
     if (data._id !== undefined) {
         model.Service.findOne({'_id': data._id }, function(err, doc) {
             if (err) {
@@ -549,7 +549,7 @@ api.get('/book/:cid/:pid', (req, res) => {
         if (err) {
             console.log("CREATE SERVICE ERROR, err:", err);
             res.status(500).send(err);
-        } 
+        }
         else {
             console.log("NEW SERVICE HAVE BEEN CREATED!");
             res.send(s);
@@ -557,7 +557,7 @@ api.get('/book/:cid/:pid', (req, res) => {
     });
 
   });
-  
+
     // REMOVE PERSON FROM COMPANY STAFF
   // EYDA STARFSMANNI UR STAFF ARRAY I COMPANY OG MERKJA SIDAN SEM 0 I PERSON SAFNI
   api.post('/companies/staff/', bodyParser.json(), (req, res) => {
@@ -580,16 +580,22 @@ api.get('/book/:cid/:pid', (req, res) => {
         }
     });
   });
-  
- 
 
 
-  
+
+
+
 
   // De-activate specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
+
       var data = req.body;
       model.Service.findOne({'_id': data.company_id }, function(err, doc) {
+
+/*
+      var data = req.body;
+      model.Service.findOne({'_id': data._id, 'company_id': data.company_id }, function(err, doc) {
+*/
            if (err) {
                 console.log('error: post(//services/pricelist/), err:', err);
                 res.status(500).send(err);
@@ -621,12 +627,35 @@ api.get('/book/:cid/:pid', (req, res) => {
         else {
             res.send('HAS BEEN DE-ACTIVATED')
         }
+<<<<<<< HEAD
+=======
+=======
+    var data = req.body;
+    model.Service.findOne({'_id': data.company_id}, function (err, doc) {
+      if (err) {
+        console.log('error: post(//services/pricelist/), err:', err);
+        res.status(500).send(err);
+      }
+      else {
+        doc.active = false;
+        doc.save((err1, doc1) => {
+          if (err1) {
+            console.log("HER ER ERROR i api->post('/services/pricelist/.findOne, err1:", err1);
+            res.status(500).send(err1);
+          }
+          else {
+            res.send(doc1);
+          }
+        });
+      }
+>>>>>>> 95371a1a5cb83f2be788bf7809bede4e86bb9a76
+>>>>>>> dff2451e33548d3d0cc9e6cff850ccfeb87655ab
     });
     */
   });
 
 
-  
+
   api.put('/companies/staff/', bodyParser.json(), (req, res) => {
       const data = req.body;
       console.log("DATA:", data);
