@@ -76,7 +76,7 @@
       var bookingsToday = function () {
         var dictEndTime = {};
         for (var b in $scope.bookings) {
-          // FYRIR LENGD A TIMAPONTUNUM
+          // FYRIR LENGD A TIMAPONTUNUM.
           var sessionLength = dagatalFactory.getSessionLength(new Date($scope.bookings[b].startTime), new Date($scope.bookings[b].endTime));
 
           // BREYTA TIL AD SETJA SAMAN id SEM A AD SAEKJA UR DIV TOFLU
