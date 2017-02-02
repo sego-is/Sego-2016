@@ -37,6 +37,7 @@
         bookingForToday = {};
         // SAEKJA BOKANIR FYRIR VALDA DAGSETNINGU
         cleanPage();
+        console.log("H'ER ER 'EG ", dagatalFactory.getStringForDate(selectedDay));
         backendFactory.getBookingByDate(dagatalFactory.getStringForDate(selectedDay)).then(function (res) {
           // If there are no bookings by given date -> return EMPTY ARRAY
           if (res.data.length === 0) {

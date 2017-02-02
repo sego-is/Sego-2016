@@ -6,6 +6,8 @@
     .factory('initializeFactory', ['backendFactory', '$rootScope', function (backendFactory, $rootScope) {
       return function () {
         backendFactory.init().then(function (res) {
+          console.log("set data ", res.data);
+          console.log("set data ", res);
           backendFactory.set(res.data[0]);
           $rootScope.$emit('backendFactoryInit', 'DONE');
           console.log("RESPOND FROM initializeFactory, res:", res);

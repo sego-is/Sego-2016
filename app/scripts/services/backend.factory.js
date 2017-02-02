@@ -10,6 +10,7 @@
       var backendFactory = {};
 
       backendFactory.set = function (company) {
+        console.log("set company " , company);
           if (company !== undefined) {
             _company = company;
           }
@@ -22,7 +23,9 @@
       };
 
       backendFactory.ID = function () {
+        console.log("company id = ", "   ", _company);
           if (_company !== null) {
+            console.log("company id = ", _company._id , "   ", _company);
               return _company._id;
           }
       };
@@ -61,10 +64,12 @@
 
 
 
-      
+
       //------------------------------ NORMAL PEOPLE CALLS ------------------------------//
       backendFactory.init = function() {
           var p = JSON.parse(localStorage.getItem('profile'));
+        console.log("PPP " , p);
+        console.log("PPP0000 " , p.user_id);
           if (p !== null) {
               return $http({
                 method: 'GET',
@@ -76,9 +81,9 @@
                 }
               });
           }
-          
+
       };
-      
+
       backendFactory.getCompanyByAuthID = function (c) {
         return $http({
           method: 'GET',
@@ -138,6 +143,7 @@
       };
 
       backendFactory.getBookingByDate = function(date) {
+
           return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + date ,
           method: 'GET',
@@ -161,7 +167,7 @@
           }
         });
       };
-      
+
       backendFactory.notAttendBooking = function(b) {
           b.company_id = this.ID();
           return $http({
@@ -175,7 +181,7 @@
           data: b
         });
       };
-      
+
       backendFactory.changeBooking = function(b) {
           b.company_id = this.ID();
           return $http({
@@ -189,7 +195,7 @@
           data: b
         });
       };
-      
+
       backendFactory.removeBooking = function(b) {
           return $http({
           url: 'http://wwww.sego.is:6969/api/bookings/' + this.ID() + '/' + b.date + '/' + b._id + '/' + b.customer_id._id ,
@@ -201,7 +207,7 @@
           }
         });
       };
-      
+
       backendFactory.postBooking = function (p) {
         p.company_id = this.ID();
         return $http({

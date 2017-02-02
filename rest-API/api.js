@@ -145,8 +145,10 @@
   api.get('/companies/:auth_id', (req, res) => {
     model.Company.find({ auth_id: req.params.auth_id }).populate('staff').exec(function (err, c) {
       if (err) {
+        console.log("get companies err", err);
         res.status(500).send(err);
       } else {
+        console.log("get companies ", c);
         res.send(c);
       }
     });
