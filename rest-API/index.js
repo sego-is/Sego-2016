@@ -36,7 +36,7 @@
    }));*/
   mongoose.Promise = global.Promise;
 
-  mongoose.connect('mongodb://mongo.sego.is:27017/app');
+  mongoose.connect('mongodb://' + process.env.DBUSER + ':' + process.env.DBPISS + '@ds159059-a0.mlab.com:59059,ds159059-a1.mlab.com:59059/hargreidsla?replicaSet=rs-ds159059');
   mongoose.connection.once('open', function () {
     console.log('Mongoose is connected');
     app.listen(port, () => {
