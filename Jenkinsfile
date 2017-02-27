@@ -16,7 +16,7 @@ node {
         	sh 'npm install'
         	sh 'bower install'
         	sh 'grunt build'
-        	/*sh 'cp -RT dist /opt/app/html'*/
+        	sh 'cp -RT dist /opt/app/html'
             sh 'cp -RT rest-API /opt/server' 
             /*sh 'npm --prefix /opt/server install /opt/server'*/
 

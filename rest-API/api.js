@@ -583,12 +583,8 @@ api.get('/book/:cid/:pid', (req, res) => {
 
 
   // De-activate specific service with price in services.pricelist //
+  // stillingarDirective -> { HENDA THJONUSTU - {BTN} }
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
-/*
-      var data = req.body;
-      model.Service.findOne({'_id': data.company_id }, function(err, doc) {
-*/
-
       var data = req.body;
       model.Service.findOne({'_id': data._id, 'company_id': data.company_id }, function(err, doc) {
 
@@ -609,42 +605,7 @@ api.get('/book/:cid/:pid', (req, res) => {
                 });
             }
       });
-      /*
-      console.log("DATA", data);
-      model.Service.update({
-          '_id': { $eq: data._id },
-          'company_id': { $eq: data.company_id }
-          },
-        { $set: { "active": false } },
-        { safe: true, upsert: true }, function (err, doc) {
-          if (err) {
-            res.status(500).send(err);
-        }
-        else {
-            res.send('HAS BEEN DE-ACTIVATED')
-        }
-
-    var data = req.body;
-    model.Service.findOne({'_id': data.company_id}, function (err, doc) {
-      if (err) {
-        console.log('error: post(//services/pricelist/), err:', err);
-        res.status(500).send(err);
-      }
-      else {
-        doc.active = false;
-        doc.save((err1, doc1) => {
-          if (err1) {
-            console.log("HER ER ERROR i api->post('/services/pricelist/.findOne, err1:", err1);
-            res.status(500).send(err1);
-          }
-          else {
-            res.send(doc1);
-          }
-        });
-      }
-
-    });
-    */
+     
   });
 
 
