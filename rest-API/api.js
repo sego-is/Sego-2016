@@ -16,12 +16,6 @@
 
   api.use(jwtCheck);
 
-  api.get('/', (req, res) => {
-    res.status(201).json({
-      hungang: 'thvag byfluga'
-    });
-  });
-
 /* ---------------              ADMIN             --------------- */
     // GET ALL PERSONS
     api.get('/persons', (req, res) => {
@@ -123,8 +117,8 @@
   });
   */
   /* DELETE ENTIRE SERVICES IN DEV */
-  //api.delete('/services/:sid', (req, res) => {
-  api.delete('/services', (req, res) => {
+  api.delete('/services/:sid', (req, res) => {
+  //api.delete('/services', (req, res) => {
      model.Service.remove({}, function (err) {
      //model.Service.findByIdAndRemove(req.params.sid, function (err, c) {
         if (err) {
@@ -590,14 +584,14 @@ api.get('/book/:cid/:pid', (req, res) => {
 
   // De-activate specific service with price in services.pricelist //
   api.post('/services/pricelist/', bodyParser.json(), (req, res) => {
-
-      var data = req.body;
-      model.Service.findOne({'_id': data.company_id }, function(err, doc) {
-
 /*
       var data = req.body;
-      model.Service.findOne({'_id': data._id, 'company_id': data.company_id }, function(err, doc) {
+      model.Service.findOne({'_id': data.company_id }, function(err, doc) {
 */
+
+      var data = req.body;
+      model.Service.findOne({'_id': data._id, 'company_id': data.company_id }, function(err, doc) {
+
            if (err) {
                 console.log('error: post(//services/pricelist/), err:', err);
                 res.status(500).send(err);
@@ -629,9 +623,7 @@ api.get('/book/:cid/:pid', (req, res) => {
         else {
             res.send('HAS BEEN DE-ACTIVATED')
         }
-<<<<<<< HEAD
-=======
-=======
+
     var data = req.body;
     model.Service.findOne({'_id': data.company_id}, function (err, doc) {
       if (err) {
@@ -650,8 +642,7 @@ api.get('/book/:cid/:pid', (req, res) => {
           }
         });
       }
->>>>>>> 95371a1a5cb83f2be788bf7809bede4e86bb9a76
->>>>>>> dff2451e33548d3d0cc9e6cff850ccfeb87655ab
+
     });
     */
   });
