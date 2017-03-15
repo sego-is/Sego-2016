@@ -26,6 +26,7 @@
             scope.endTime =    scope.timi;
             // FOR CHECKBOX SELECTED SERVICE
             scope.serviceSelected = [];
+            scope.bokaAnnad = false;
 
             // IF THERE IS SOMETHING IN ARRAY THEN THERE IS CHANGE OF BOOKING //
             if (scope.objFrom.service.length > 0) {
@@ -52,6 +53,10 @@
               console.log("ERROR getService(): ", err);
             });
           }
+
+          scope.annad = function () {
+            scope.bokaAnnad = !scope.bokaAnnad;
+          };
 
           scope.toggleSelection = function (service) {
             scope.endTime = new Date(scope.objFrom.startTime);

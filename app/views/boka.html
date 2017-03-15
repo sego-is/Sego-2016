@@ -15,10 +15,20 @@
       <h5>Tími: {{ timi }} - {{ endTime }}</h5>
     </div>
   </div>
+  <button class="btn btn-primary"
+          ng-click="annad()">
+    <div ng-if="!bokaAnnad">Annað</div>
+    <div ng-if="bokaAnnad">Þjónusta</div>
+  </button>
   <div class="row booking">
+
     <div ng-show="badInput && bookingForm.phone.$error.required">x</div>
     <div class="box input-group col-md-4">
+      <div ng-if="bokaAnnad">
+        <h5> Til að bóka annað en þjónustu</h5>
+      </div>
       <div class="checkbox"
+           ng-if="!bokaAnnad"
            ng-repeat="p in pricelist track by $index"
            ng-if="p.active">
         <label>
@@ -36,7 +46,38 @@
       <form name="bookingForm"
             class="form-horizontal"
             novalidate>
-        <div class="form">
+        <div class="form"
+             ng-if="bokaAnnad">
+          <input type="text"
+                 name="name"
+                 ng-if="bokaAnnad"
+                 ng-class="{error: (badInput && bookingForm.name.$error.required)
+                                || (badInput && bookingForm.name.$error.maxlength)
+                                || (badInput && bookingForm.name.$error.minlength)}"
+                 ng-click="badInput = false"
+                 ng-minlength="3"
+                 ng-maxlength="44"
+                 class="form-control inputField"
+                 ng-model="objFrom.customer"
+                 placeholder="Aðgerð"
+                 required>
+        </div>
+        <div class="form"
+             ng-if="bokaAnnad">
+          <input type="number"
+                 class="form-control inputField"
+                 step="15"
+                 min="0"
+                 max="600"
+                 name="timeLength"
+                 ng-class="{error: (badInput && form.priceForm.timeLength.$error.required)
+                                || (badInput && form.priceForm.timeLength.$error.maxlength)}"
+                 ng-maxlength="1000"
+                 placeholder="Tími í mínútum"
+                 required>
+        </div>
+        <div class="form"
+             ng-if="!bokaAnnad">
           <input type="text"
                  name="name"
                  ng-class="{error: (badInput && bookingForm.name.$error.required)
@@ -50,7 +91,8 @@
                  placeholder="Nafn"
                  required>
         </div>
-        <div class="form">
+        <div class="form"
+             ng-if="!bokaAnnad">
           <input type="number"
                  class="form-control"
                  ng-click="badInput = false"
